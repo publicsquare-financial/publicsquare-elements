@@ -1,0 +1,12 @@
+{
+  "name": "@psq-pay/elements-react",
+  "version": "0.0.1",
+  "description": "PSQ Payments Elements for React",
+  "main": "index.js",
+  "repository": "https://github.com/PSQ-Payments/psq-payments-elements",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "react": "^18.3.1"
+  }
+}
