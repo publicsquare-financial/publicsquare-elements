@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { Credova } from '@credova/elements-js'
 
-export default function CardElementJs() {
+export default function CardElementsJs() {
   const [credova, setCredova] = useState<Credova>()
   useEffect(() => {
     /**
@@ -35,29 +35,32 @@ export default function CardElementJs() {
   }, [credova])
 
   return (
-    <div className="w-full max-w-md space-y-8">
-      <div className="space-y-2">
-        <h2>Card element</h2>
-        <div className="w-full max-w-md rounded-lg bg-white p-2 shadow">
-          <div id="card-element"></div>
+    <div className="space-y-4 w-full">
+      <h3 className="text-lg font-bold">Credova JS Elements</h3>
+      <div className="w-full max-w-md space-y-8">
+        <div className="space-y-2">
+          <label>Card element</label>
+          <div className="w-full max-w-md rounded-lg bg-white p-2 shadow">
+            <div id="card-element"></div>
+          </div>
         </div>
-      </div>
-      <div className="space-y-2">
-        <h2>Card number element</h2>
-        <div className="w-full max-w-md rounded-lg bg-white p-2 shadow">
-          <div id="card-number-element"></div>
+        <div className="space-y-2">
+          <label>Card number element</label>
+          <div className="w-full max-w-md rounded-lg bg-white p-2 shadow">
+            <div id="card-number-element"></div>
+          </div>
         </div>
-      </div>
-      <div className="space-y-2">
-        <h2>Card expiration date element</h2>
-        <div className="w-full max-w-md rounded-lg bg-white p-2 shadow">
-          <div id="card-expiration-date-element"></div>
+        <div className="space-y-2">
+          <label>Card expiration date element</label>
+          <div className="w-full max-w-md rounded-lg bg-white p-2 shadow">
+            <div id="card-expiration-date-element"></div>
+          </div>
         </div>
-      </div>
-      <div className="space-y-2">
-        <h2>Card verification code element</h2>
-        <div className="w-full max-w-md rounded-lg bg-white p-2 shadow">
-          <div id="card-verification-code-element"></div>
+        <div className="space-y-2">
+          <label>Card verification code element</label>
+          <div className="w-full max-w-md rounded-lg bg-white p-2 shadow">
+            <div id="card-verification-code-element"></div>
+          </div>
         </div>
       </div>
     </div>

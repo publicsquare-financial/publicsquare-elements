@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import CardElementJs from './components/CardElement/CardElementJs'
+import CardElementsJs from './components/CardElements/CardElementsJs'
+import CardElementsReact from './components/CardElements/CardElementsReact'
 
 export default function Home() {
   return (
@@ -15,7 +16,10 @@ export default function Home() {
         />
       </div>
 
-      <CardElementJs />
+      <div className="grid lg:grid-cols-2 gap-8 w-full max-w-4xl">
+        <CardElementsJs />
+        <CardElementsReact />
+      </div>
 
       <div className="mb-32 flex justify-center text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:text-left">
         <a
