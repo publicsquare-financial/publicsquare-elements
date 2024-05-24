@@ -1,7 +1,7 @@
 {
-  "name": "@psq-pay/elements-react",
+  "name": "@credova/elements-react",
   "version": "0.0.1",
-  "description": "PSQ Payments Elements for React",
+  "description": "Credova Card Elements for React",
   "main": "index.js",
   "repository": "https://github.com/PSQ-Payments/psq-payments-elements",
   "license": "MIT",

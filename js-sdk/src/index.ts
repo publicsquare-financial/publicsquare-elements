@@ -1,1 +1,1 @@
-export * from './PSQPay'
+export * from './Credova'
