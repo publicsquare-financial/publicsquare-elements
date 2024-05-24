@@ -4,11 +4,11 @@ import {
   CreateCardElementOptions,
   ElementType,
 } from '@basis-theory/basis-theory-js/types/elements'
-import { PSQPayInitOptions } from '@/types/sdk'
-import { ELEMENTS_INIT_ERROR_MESSAGE } from '@/constants'
+import { PSQPayInitOptions } from './types/sdk'
+import { ELEMENTS_INIT_ERROR_MESSAGE } from './constants'
 
 export class PSQPay {
-  private _bt: any
+  private _bt?: any
 
   private _elements?: BasisTheoryElementsInternal
 
@@ -21,9 +21,9 @@ export class PSQPay {
   }
 
   public createElement(type: ElementType, options: CreateCardElementOptions) {
-    if (!this._bt || !this._elements) {
+    if (!this._bt) {
       throw new Error(ELEMENTS_INIT_ERROR_MESSAGE)
     }
-    return this._elements.createElement(type as never, options)
+    return this._bt.createElement(type as never, options)
   }
 }

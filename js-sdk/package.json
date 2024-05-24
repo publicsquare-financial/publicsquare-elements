@@ -1,0 +1,63 @@
+{
+  "name": "@psq-pay/elements-js",
+  "version": "0.0.1",
+  "description": "PSQ Payments Elements for JS",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PSQ-Payments/psq-payments-elements"
+  },
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@basis-theory/basis-theory-js": "^4.4.0"
+  },
+  "scripts": {
+    "analyze": "size-limit --why",
+    "build": "concurrently 'bun run build:bundle' 'bun run build:module' 'bun run build:declarations' 'bun run build:package' -n 'bundle,module,declarations,package' -c 'yellow,magenta,blue,green' --kill-others-on-fail -g",
+    "build:bundle": "webpack --config webpack.prod.js",
+    "build:declarations": "tsc && tsc-alias",
+    "build:module": "babel src --extensions .ts --out-dir dist",
+    "build:package": "node prepare.js"
+  },
+  "keywords": [
+    "typescript",
+    "npm",
+    "template",
+    "ts"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.22.15",
+    "@babel/core": "^7.15.8",
+    "@babel/plugin-proposal-class-properties": "^7.12.13",
+    "@babel/plugin-transform-arrow-functions": "^7.12.13",
+    "@babel/plugin-transform-runtime": "^7.22.15",
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-typescript": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-inline-dotenv": "^1.1.0",
+    "babel-plugin-transform-builtin-extend": "^1.1.2",
+    "babel-plugin-tsconfig-paths-module-resolver": "^1.0.3",
+    "concurrently": "^8.2.2",
+    "dotenv-webpack": "^8.1.0",
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.7",
+    "tsc-alias": "^1.8.10",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "typescript": "^5.4.5",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "engines": {
+    "node": ">=10.12.0"
+  },
+  "resolutions": {
+    "@basis-theory/basis-theory-js/axios": "1.1.2"
+  }
+}
