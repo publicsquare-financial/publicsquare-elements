@@ -40,8 +40,8 @@ const base = {
 
 const umd = merge(base, {
   output: {
-    filename: 'psq-pay-js.bundle.js',
-    library: 'PSQPayments',
+    filename: 'credova-js.bundle.js',
+    library: 'CredovaElementsJs',
     libraryTarget: 'umd',
     libraryExport: '_instance',
   },
