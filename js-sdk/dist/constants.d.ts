@@ -1,0 +1,8 @@
+declare const ELEMENTS_INIT_ERROR_MESSAGE = "BasisTheory Elements was not properly initialized.";
+declare const ELEMENTS_NOM_DOM_ERROR_MESSAGE = "Tried to load BasisTheoryElements in a non-DOM environment.";
+declare const ELEMENTS_SCRIPT_LOAD_ERROR_MESSAGE = "Basis Theory Elements did not load properly.";
+declare const ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE = "There was an unknown error when loading Basis Theory Elements. Check the console for details.";
+declare const CARD_BRANDS: readonly ["visa", "mastercard", "american-express", "discover", "diners-club", "jcb", "unionpay", "maestro", "elo", "hiper", "hipercard", "mir", "unknown"];
+declare const CARD_ICON_POSITIONS: readonly ["left", "right", "none"];
+declare const AUTOCOMPLETE_VALUES: readonly ["off", "on"];
+export { ELEMENTS_INIT_ERROR_MESSAGE, ELEMENTS_NOM_DOM_ERROR_MESSAGE, ELEMENTS_SCRIPT_LOAD_ERROR_MESSAGE, ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE, CARD_BRANDS, CARD_ICON_POSITIONS, AUTOCOMPLETE_VALUES, };

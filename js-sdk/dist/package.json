@@ -1,0 +1,33 @@
+{
+  "name": "@credova/elements-js",
+  "version": "0.0.1",
+  "description": "Credova Card Elements for JS",
+  "main": "index.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "files": [
+    "*",
+    "!*.bundle.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PSQ-Payments/psq-payments-elements"
+  },
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@basis-theory/basis-theory-js": "^4.4.0"
+  },
+  "scripts": {
+    "postversion": "cd .. && node bump.js"
+  },
+  "keywords": [
+    "typescript",
+    "npm",
+    "template",
+    "ts"
+  ],
+  "engines": {
+    "node": ">=10.12.0"
+  }
+}

@@ -1,0 +1,12 @@
+*.log
+.DS_Store
+node_modules
+dist
+coverage
+cypress/screenshots
+cypress/downloads
+.nvmrc
+.npmrc
+.idea
+.env
+.vscode/

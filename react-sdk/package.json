@@ -1,0 +1,45 @@
+{
+  "name": "@credova/elements-react",
+  "version": "0.0.1",
+  "description": "Credova Card Elements for React",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": "https://github.com/PSQ-Payments/psq-payments-elements",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "yarn clean && concurrently 'yarn build:module' 'yarn build:declarations' 'yarn build:package' --kill-others-on-fail",
+    "build:declarations": "tsc",
+    "build:module": "babel src --extensions .ts,.tsx --out-dir dist",
+    "build:package": "node prepare.js",
+    "lint": "eslint . --quiet --ignore-path .gitignore",
+    "lint:fix": "eslint . --fix --ignore-path .gitignore",
+    "clean": "rimraf dist",
+    "prepare": "yarn build",
+    "release": "semantic-release",
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "postinstall": "husky install"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.22.15",
+    "@babel/core": "^7.22.20",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-typescript": "^7.21.5",
+    "@basis-theory/basis-theory-react": "^1.18.1",
+    "@basis-theory/eslint-config": "^1.0.13",
+    "@types/react": "^18.3.3",
+    "concurrently": "^8.2.0",
+    "eslint": "^9.3.0",
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5",
+    "react": "^18.3.1",
+    "rimraf": "^5.0.7",
+    "typescript": "^5.4.5"
+  }
+}
