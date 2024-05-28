@@ -4,7 +4,16 @@ set -e
 current_directory="$PWD"
 
 cd $(dirname $0)/..
-cd example-app
+
+cd js-sdk
+
+yarn && yarn build
+
+cd ../react-sdk
+
+yarn && yarn build
+
+cd ../example-app
 
 echo "Building project..."
 
