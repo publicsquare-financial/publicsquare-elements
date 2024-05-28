@@ -8,8 +8,8 @@ cd example-app
 
 echo "Building project..."
 
-bun i --frozen-lockfile
-bun run build
+yarn --frozen-lockfile --no-progress --ignore-scripts
+yarn build
 
 result=$?
 

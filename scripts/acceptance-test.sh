@@ -7,6 +7,7 @@ cd $(dirname $0)/..
 
 echo "Building project..."
 
+yarn
 yarn playwright test
 
 result=$?
