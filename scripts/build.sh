@@ -8,6 +8,7 @@ cd example-app
 
 echo "Building project..."
 
+bun i --frozen-lockfile
 bun run build
 
 result=$?
