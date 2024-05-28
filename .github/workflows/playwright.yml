@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       run: make build
     - name: Run Playwright tests
-      run: acceptance-test
+      run: make acceptance-test
     - uses: actions/upload-artifact@v4
       if: always()
       with:
