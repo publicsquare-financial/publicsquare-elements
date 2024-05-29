@@ -19,7 +19,7 @@
   },
   "scripts": {
     "analyze": "size-limit --why",
-    "build": "concurrently 'bun run build:bundle' 'bun run build:module' 'bun run build:declarations' 'bun run build:package' -n 'bundle,module,declarations,package' -c 'yellow,magenta,blue,green' --kill-others-on-fail -g",
+    "build": "concurrently 'yarn build:bundle' 'yarn build:module' 'yarn build:declarations' 'yarn build:package' -n 'bundle,module,declarations,package' -c 'yellow,magenta,blue,green' --kill-others-on-fail -g",
     "build:bundle": "webpack --config webpack.prod.js",
     "build:declarations": "tsc && tsc-alias",
     "build:module": "babel src --extensions .ts --out-dir dist",
