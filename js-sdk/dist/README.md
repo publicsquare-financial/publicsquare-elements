@@ -1,1 +1,0 @@
-# PSQ Pay JS
