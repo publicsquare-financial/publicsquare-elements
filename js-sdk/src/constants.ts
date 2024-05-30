@@ -30,6 +30,10 @@ const CARD_ICON_POSITIONS = ['left', 'right', 'none'] as const
 
 const AUTOCOMPLETE_VALUES = ['off', 'on'] as const
 
+const API_ENDPOINTS = {
+  COLLECT_CARD: 'https://collect.psqpay.com'
+}
+
 export {
   ELEMENTS_INIT_ERROR_MESSAGE,
   ELEMENTS_NOM_DOM_ERROR_MESSAGE,
@@ -38,4 +42,5 @@ export {
   CARD_BRANDS,
   CARD_ICON_POSITIONS,
   AUTOCOMPLETE_VALUES,
+  API_ENDPOINTS
 }

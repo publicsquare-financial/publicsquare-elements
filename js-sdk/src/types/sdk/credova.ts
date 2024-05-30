@@ -1,7 +1,10 @@
 import type {
   CreateCardElementOptions as BTCreateCardElementOptions,
   ElementType as BTElementType,
+  BasisTheoryElements,
+  CardElement as BTCardElement
 } from '@basis-theory/basis-theory-js/types/elements'
+import { BasisTheory as IBasisTheory } from '@basis-theory/basis-theory-js/types/sdk'
 
 export interface ApplicationInfo {
   name?: string
@@ -20,7 +23,11 @@ export enum ElementTypeEnum {
   Card = 'card',
   CardExpirationDate = 'cardExpirationDate',
   CardNumber = 'cardNumber',
-  CardVerificationCode = 'cardVerificationCode',
+  CardVerificationCode = 'cardVerificationCode'
 }
 
 export type CreateCardElementOptions = BTCreateCardElementOptions
+
+export type BasisTheoryInstance = IBasisTheory & BasisTheoryElements
+
+export type CardElement = BTCardElement

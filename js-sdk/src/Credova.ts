@@ -3,17 +3,28 @@ import {
   ElementType,
   CreateCardElementOptions,
   ElementTypeEnum,
-  CredovaInitOptions
+  CredovaInitOptions,
+  BasisTheoryInstance
 } from './types/sdk'
 import { ELEMENTS_INIT_ERROR_MESSAGE } from './constants'
 import {
   CreateCardExpirationDateElementOptions,
   CreateCardNumberElementOptions,
-  CreateCardVerificationCodeElementOptions
+  CreateCardVerificationCodeElementOptions,
+  ElementValue
 } from '@basis-theory/basis-theory-js/types/elements'
+import { CredovaCards } from './cards'
 
 export class Credova {
-  private _bt?: any
+  protected _bt?: BasisTheoryInstance
+
+  get bt(): BasisTheoryInstance | undefined {
+    return this._bt
+  }
+
+  private _elements: ElementValue[] = []
+
+  public cards = new CredovaCards(this)
 
   /**
    * Initialize the Credova sdk. (REQUIRED before calling `createElement`)
@@ -22,10 +33,14 @@ export class Credova {
    * @returns class Credova
    */
   public async init(apiKey: string, options: CredovaInitOptions) {
-    this._bt = await new BasisTheory().init(
+    const bt = await new BasisTheory().init(
       (Math.random() + 1).toString(36).substring(7),
       { elements: true }
     )
+    if (!bt) {
+      throw new Error(ELEMENTS_INIT_ERROR_MESSAGE)
+    }
+    this._bt = bt
     return this
   }
 
@@ -40,7 +55,9 @@ export class Credova {
     if (!this._bt) {
       throw new Error(ELEMENTS_INIT_ERROR_MESSAGE)
     }
-    return this._bt.createElement(type, options)
+    const element = this._bt.createElement(type as any, options as any)
+    this._elements.push(element)
+    return element
   }
 
   /**
