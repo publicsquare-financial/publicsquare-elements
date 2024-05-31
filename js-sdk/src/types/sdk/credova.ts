@@ -1,5 +1,8 @@
 import type {
   CreateCardElementOptions as BTCreateCardElementOptions,
+  CreateCardExpirationDateElementOptions,
+  CreateCardNumberElementOptions,
+  CreateCardVerificationCodeElementOptions,
   ElementType as BTElementType,
   BasisTheoryElements,
   CardElement as BTCardElement
@@ -25,6 +28,12 @@ export enum ElementTypeEnum {
   CardNumber = 'cardNumber',
   CardVerificationCode = 'cardVerificationCode'
 }
+
+export type CreateElementOptions =
+  | BTCreateCardElementOptions
+  | CreateCardExpirationDateElementOptions
+  | CreateCardNumberElementOptions
+  | CreateCardVerificationCodeElementOptions
 
 export type CreateCardElementOptions = BTCreateCardElementOptions
 

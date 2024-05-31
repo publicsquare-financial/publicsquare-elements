@@ -9,13 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@credova/elements-js": "file:../js-sdk",
     "@credova/elements-react": "file:../react-sdk",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@credova/elements-js": "file:../js-sdk",
     "@playwright/test": "^1.44.1",
     "@types/node": "^20",
     "@types/react": "^18",

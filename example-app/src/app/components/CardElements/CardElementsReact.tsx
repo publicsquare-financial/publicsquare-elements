@@ -1,5 +1,4 @@
 'use client'
-import { PropsWithChildren, useEffect, useState } from 'react'
 import {
   CredovaProvider,
   CardElement,
@@ -11,12 +10,12 @@ import {
 export default function CredovaContextWrapper() {
   return (
     <CredovaProvider>
-      <CardElementsJs />
+      <CardElements />
     </CredovaProvider>
   )
 }
 
-function CardElementsJs() {
+function CardElements() {
   return (
     <div className="space-y-4 w-full">
       <h3 className="text-lg font-bold">Credova React Elements</h3>

@@ -1,9 +1,10 @@
 import React from 'react'
+import CredovaElement from './element'
 
 type CardElementProps = {
   id: string
 }
 
 export function CardExpirationDateElement(props: CardElementProps) {
-  return <div {...props} />
+  return <CredovaElement type="cardExpirationDate" {...props} />
 }

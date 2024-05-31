@@ -7,13 +7,13 @@ import React, {
 } from 'react'
 import { Credova } from '@credova/elements-js'
 import {
-  CreateCardElementOptions,
+  CreateElementOptions,
   ElementType
 } from '@credova/elements-js/dist/types/sdk'
 
 type CredovaProviderValue = {
   credova?: Credova
-  createElement(type: ElementType, options: CreateCardElementOptions): any
+  createElement(type: ElementType, options: CreateElementOptions): any
 }
 
 const CredovaContext = createContext<CredovaProviderValue>({} as any)

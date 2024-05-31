@@ -4,9 +4,13 @@ import {
   CreateCardElementOptions,
   ElementTypeEnum,
   CredovaInitOptions,
-  BasisTheoryInstance
+  BasisTheoryInstance,
+  CreateElementOptions
 } from './types/sdk'
-import { ELEMENTS_INIT_ERROR_MESSAGE } from './constants'
+import {
+  ELEMENTS_INIT_ERROR_MESSAGE,
+  ELEMENTS_TYPE_NOT_SUPPORTED
+} from './constants'
 import {
   CreateCardExpirationDateElementOptions,
   CreateCardNumberElementOptions,
@@ -44,14 +48,7 @@ export class Credova {
     return this
   }
 
-  private _createElement(
-    type: ElementTypeEnum,
-    options:
-      | CreateCardElementOptions
-      | CreateCardNumberElementOptions
-      | CreateCardExpirationDateElementOptions
-      | CreateCardVerificationCodeElementOptions
-  ) {
+  private _createElement(type: ElementTypeEnum, options: CreateElementOptions) {
     if (!this._bt) {
       throw new Error(ELEMENTS_INIT_ERROR_MESSAGE)
     }
@@ -66,8 +63,25 @@ export class Credova {
    * @param options CreateCardElementOptions see [docs](https://docs.credova.com)
    * @returns created element
    */
-  public createElement(type: ElementType, options: CreateCardElementOptions) {
-    return this._createElement(type as ElementTypeEnum, options)
+  public createElement(type: ElementType, options: CreateElementOptions) {
+    switch (type) {
+      case 'card':
+        return this.createCardElement(options as CreateCardElementOptions)
+      case 'cardExpirationDate':
+        return this.createCardExpirationDateElement(
+          options as CreateCardExpirationDateElementOptions
+        )
+      case 'cardNumber':
+        return this.createCardNumberElement(
+          options as CreateCardNumberElementOptions
+        )
+      case 'cardVerificationCode':
+        return this.createCardVerificationCodeElement(
+          options as CreateCardVerificationCodeElementOptions
+        )
+      default:
+        throw new Error(ELEMENTS_TYPE_NOT_SUPPORTED)
+    }
   }
 
   public createCardElement(options: CreateCardElementOptions) {
