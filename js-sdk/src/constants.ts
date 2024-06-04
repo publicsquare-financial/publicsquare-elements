@@ -34,7 +34,13 @@ const CARD_ICON_POSITIONS = ['left', 'right', 'none'] as const
 const AUTOCOMPLETE_VALUES = ['off', 'on'] as const
 
 const API_ENDPOINTS = {
-  COLLECT_CARD: 'https://collect.psqpay.com'
+  BASE_URL: 'https://collect.psqpay.com',
+  /**
+   * Endpoint to save new cards to
+   */
+  get COLLECT_CARD() {
+    return `${this.BASE_URL}/cards`
+  }
 }
 
 export {

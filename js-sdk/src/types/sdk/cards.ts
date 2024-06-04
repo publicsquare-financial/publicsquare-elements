@@ -6,3 +6,7 @@ export type CardsCreateInput = {
     cvc: string
   }
 }
+
+export type ValidatedCardsCreateInput = {
+  validated: CardsCreateInput
+}
