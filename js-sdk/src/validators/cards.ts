@@ -10,7 +10,7 @@ function assertTypeofObjectValues(
   message: string
 ) {
   Object.entries(value).forEach(([_, value]) =>
-    assert(typeof value === type, message)
+    console.assert(typeof value === type, message)
   )
 }
 
