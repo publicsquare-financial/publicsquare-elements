@@ -13,6 +13,9 @@ const ELEMENTS_SCRIPT_LOAD_ERROR_MESSAGE =
 const ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE =
   'There was an unknown error when loading Credova Elements. Check the console for details.'
 
+const ELEMENTS_CREDOVA_CARDS_NO_POINTER_MESSAGE =
+  'CredovaCards requires credovaPointer when initializing'
+
 const CARD_BRANDS = [
   'visa',
   'mastercard',
@@ -49,6 +52,7 @@ export {
   ELEMENTS_NOM_DOM_ERROR_MESSAGE,
   ELEMENTS_SCRIPT_LOAD_ERROR_MESSAGE,
   ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE,
+  ELEMENTS_CREDOVA_CARDS_NO_POINTER_MESSAGE,
   CARD_BRANDS,
   CARD_ICON_POSITIONS,
   AUTOCOMPLETE_VALUES,

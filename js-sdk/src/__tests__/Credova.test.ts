@@ -1,9 +1,9 @@
-import { Credova } from '../src'
+import { Credova } from '../'
 import {
   ELEMENTS_INIT_ERROR_MESSAGE,
   ELEMENTS_TYPE_NOT_SUPPORTED
-} from '../src/constants'
-import { getError } from './utils'
+} from '@/constants'
+import { getError } from '@/tests/utils'
 
 describe('Credova', () => {
   let credova: Credova
