@@ -15,7 +15,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@basis-theory/basis-theory-js": "^4.4.0"
+    "@basis-theory/basis-theory-js": "^4.6.2"
   },
   "scripts": {
     "analyze": "size-limit --why",

@@ -37,12 +37,12 @@ const CARD_ICON_POSITIONS = ['left', 'right', 'none'] as const
 const AUTOCOMPLETE_VALUES = ['off', 'on'] as const
 
 const API_ENDPOINTS = {
-  BASE_URL: 'https://collect.psqpay.com',
+  BASE_URL: 'https://collect-staging.credova.com',
   /**
    * Endpoint to save new cards to
    */
   get COLLECT_CARD() {
-    return `${this.BASE_URL}/cards`
+    return `${this.BASE_URL}`
   }
 }
 

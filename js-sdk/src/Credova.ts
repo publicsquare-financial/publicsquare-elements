@@ -5,7 +5,10 @@ import {
   ElementTypeEnum,
   CredovaInitOptions,
   BasisTheoryInstance,
-  CreateElementOptions
+  CreateElementOptions,
+  CardExpirationDateElement,
+  CardNumberElement,
+  CardVerificationCodeElement
 } from './types/sdk'
 import {
   ELEMENTS_INIT_ERROR_MESSAGE,
@@ -20,6 +23,7 @@ import {
 import { CredovaCards } from './cards'
 
 export class Credova {
+  _apiKey?: string
   protected _bt?: BasisTheoryInstance
 
   get bt(): BasisTheoryInstance | undefined {
@@ -37,6 +41,7 @@ export class Credova {
    * @returns class Credova
    */
   public async init(apiKey: string, options: CredovaInitOptions) {
+    this._apiKey = apiKey
     const bt = await new BasisTheory().init(
       (Math.random() + 1).toString(36).substring(7),
       { elements: true }
@@ -94,7 +99,7 @@ export class Credova {
     return this._createElement(ElementTypeEnum.CardExpirationDate, {
       ...options,
       targetId: 'elementTypesCardExpirationDateElement'
-    })
+    }) as CardExpirationDateElement
   }
 
   public createCardNumberElement(
@@ -103,7 +108,7 @@ export class Credova {
     return this._createElement(ElementTypeEnum.CardNumber, {
       ...options,
       targetId: 'elementTypesCardNumberElement'
-    })
+    }) as CardNumberElement
   }
 
   public createCardVerificationCodeElement(
@@ -112,6 +117,6 @@ export class Credova {
     return this._createElement(ElementTypeEnum.CardVerificationCode, {
       ...options,
       targetId: 'elementTypesCardVerificationCodeElement'
-    })
+    }) as CardVerificationCodeElement
   }
 }

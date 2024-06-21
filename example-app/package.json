@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@credova/elements-react": "file:../react-sdk",
+    "@headlessui/react": "^2.1.0",
+    "@heroicons/react": "^2.1.4",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18"
