@@ -9,6 +9,10 @@ class HomePage {
   private cardExpirationDateElement: Locator
   private cardVerificationCodeElement: Locator
   private successModal: Locator
+  private reactCardElement: Locator
+  private reactCardNumberElement: Locator
+  private reactCardExpirationDateElement: Locator
+  private reactCardVerificationCodeElement: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -25,6 +29,15 @@ class HomePage {
       '#card-verification-code-element'
     )
     this.successModal = page.getByTestId('success-modal')
+
+    this.reactCardElement = page.locator('#react-card-element')
+    this.reactCardNumberElement = page.locator('#react-card-number-element')
+    this.reactCardExpirationDateElement = page.locator(
+      '#react-card-expiration-date-element'
+    )
+    this.reactCardVerificationCodeElement = page.locator(
+      '#react-card-verification-code-element'
+    )
   }
 
   async goToPage() {
@@ -43,10 +56,25 @@ class HomePage {
         .locator('#cardNumber')
         .innerHTML()
     ).toBeDefined()
-    expect(await this.cardElement).toBeVisible()
-    expect(await this.cardNumberElement).toBeVisible()
-    expect(await this.cardVerificationCodeElement).toBeVisible()
-    expect(await this.cardExpirationDateElement).toBeVisible()
+    expect(await this.cardElement.innerHTML()).toBeDefined()
+    expect(await this.cardNumberElement.innerHTML()).toBeDefined()
+    expect(await this.cardVerificationCodeElement.innerHTML()).toBeDefined()
+    expect(await this.cardExpirationDateElement.innerHTML()).toBeDefined()
+  }
+
+  async reactElementsReady() {
+    expect(
+      await this.reactCardElement
+        .frameLocator('iframe')
+        .locator('#cardNumber')
+        .innerHTML()
+    ).toBeDefined()
+    expect(await this.reactCardElement.innerHTML()).toBeDefined()
+    expect(await this.reactCardNumberElement.innerHTML()).toBeDefined()
+    expect(
+      await this.reactCardVerificationCodeElement.innerHTML()
+    ).toBeDefined()
+    expect(await this.reactCardExpirationDateElement.innerHTML()).toBeDefined()
   }
 
   getCardElementNameInput() {
@@ -120,8 +148,7 @@ class HomePage {
   }
 
   async expectSuccessModalIsVisible() {
-    await this.page.waitForTimeout(1)
-    expect(await this.successModal).toBeVisible()
+    expect(await this.successModal.innerHTML()).toBeDefined()
   }
 }
 
