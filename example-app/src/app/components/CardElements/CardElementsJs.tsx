@@ -88,20 +88,22 @@ export default function CardElementsJs() {
     card: CardsCreateInput['card']
   ) {
     e.preventDefault()
+    if (!process.env.NEXT_PUBLIC_PROXY_KEY) {
+      throw new Error('process.env.PROXY_KEY is undefined')
+    }
     const formData = new FormData(e.currentTarget)
     const formProps = Object.fromEntries(formData)
     if (loading) return
     if (formProps.cardholder_name && card) {
       setLoading(true)
       try {
-        console.log({
-          cardholder_name: formProps.cardholder_name as string,
-          card
-        })
-        const response = await credova?.cards.create({
-          cardholder_name: formProps.cardholder_name as string,
-          card
-        })
+        const response = await credova?.cards.create(
+          {
+            cardholder_name: formProps.cardholder_name as string,
+            card
+          },
+          process.env.NEXT_PUBLIC_PROXY_KEY
+        )
         if (response) {
           setJsCardSuccessMessage(response)
         }
@@ -115,7 +117,7 @@ export default function CardElementsJs() {
   return (
     <div className="space-y-4 w-full">
       <h3 className="text-lg font-bold">Javascript: All-in-one Card Element</h3>
-      <form onSubmit={onSubmitCardElement}>
+      <form onSubmit={onSubmitCardElement} name="form-1">
         <div className="w-full max-w-md space-y-4">
           <NameInput />
           <div className="space-y-2">
@@ -130,7 +132,7 @@ export default function CardElementsJs() {
         </div>
       </form>
       <h3 className="text-lg font-bold">Javascript: Individual Elements</h3>
-      <form onSubmit={onSubmitCardElements}>
+      <form onSubmit={onSubmitCardElements} name="form-2">
         <div className="w-full max-w-md space-y-4">
           <NameInput />
           <div className="space-y-2">

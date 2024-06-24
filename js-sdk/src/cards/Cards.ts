@@ -14,7 +14,10 @@ export class CredovaCards {
     this._credova = credovaPointer
   }
 
-  public create(input: CardsCreateInput): Promise<CardCreateResponse> {
+  public create(
+    input: CardsCreateInput,
+    proxyKey: string
+  ): Promise<CardCreateResponse> {
     if (!this._credova._apiKey) {
       throw new Error('apiKey must be sent at initialization')
     }
@@ -27,7 +30,7 @@ export class CredovaCards {
           headers: {
             'Content-Type': 'application/json',
             // 'BT-PROXY-URL': API_ENDPOINTS.COLLECT_CARD,
-            'BT-PROXY-KEY': 'input_proxy_key_here',
+            'BT-PROXY-KEY': proxyKey,
             'X-Api-Key': this._credova._apiKey
           }
         }

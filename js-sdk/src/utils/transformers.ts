@@ -13,10 +13,10 @@ export function transformCreateCardInput({
     ...(validated.card.cvc
       ? {
           card: {
-            pan: validated.card.number,
-            cvv: validated.card.cvc,
-            exp_month: validated.card.expirationMonth,
-            exp_year: validated.card.expirationYear
+            number: validated.card.number,
+            cvc: validated.card.cvc,
+            expiration_month: validated.card.expirationMonth,
+            expiration_year: validated.card.expirationYear
           }
         }
       : { card: validated.card })
