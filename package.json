@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:ui": "yarn playwright test --ui"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

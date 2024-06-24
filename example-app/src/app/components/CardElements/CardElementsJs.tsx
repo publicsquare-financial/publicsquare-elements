@@ -117,7 +117,7 @@ export default function CardElementsJs() {
   return (
     <div className="space-y-4 w-full">
       <h3 className="text-lg font-bold">Javascript: All-in-one Card Element</h3>
-      <form onSubmit={onSubmitCardElement} name="form-1">
+      <form onSubmit={onSubmitCardElement} name="js-form-cardelement">
         <div className="w-full max-w-md space-y-4">
           <NameInput />
           <div className="space-y-2">
@@ -132,7 +132,7 @@ export default function CardElementsJs() {
         </div>
       </form>
       <h3 className="text-lg font-bold">Javascript: Individual Elements</h3>
-      <form onSubmit={onSubmitCardElements} name="form-2">
+      <form onSubmit={onSubmitCardElements} name="js-form-cardelements">
         <div className="w-full max-w-md space-y-4">
           <NameInput />
           <div className="space-y-2">
