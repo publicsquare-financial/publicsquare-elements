@@ -30,7 +30,7 @@ export default function CardElementsJs() {
      * Step 1: Init the Credova sdk
      */
     new Credova()
-      .init('pk_test_8BYhRsiqTen4got2mRXadG', {})
+      .init(process.env.NEXT_PUBLIC_CREDOVA_KEY!, {})
       .then((_credova) => setCredova(_credova))
   }, [])
 

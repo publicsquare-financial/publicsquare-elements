@@ -31,9 +31,11 @@ export const CredovaProvider = ({
   let init = false
   useEffect(() => {
     if (!init) {
-      new Credova().init('', {}).then((_credova) => {
-        setCredova(_credova)
-      })
+      new Credova()
+        .init(process.env.NEXT_PUBLIC_CREDOVA_KEY!)
+        .then((_credova) => {
+          setCredova(_credova)
+        })
     }
   }, [])
 

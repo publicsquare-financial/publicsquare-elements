@@ -40,7 +40,7 @@ export class Credova {
    * @param options CredovaInitOptions see [docs](https://docs.credova.com)
    * @returns class Credova
    */
-  public async init(apiKey: string, options: CredovaInitOptions) {
+  public async init(apiKey: string, options?: CredovaInitOptions) {
     this._apiKey = apiKey
     const bt = await new BasisTheory().init(
       (Math.random() + 1).toString(36).substring(7),

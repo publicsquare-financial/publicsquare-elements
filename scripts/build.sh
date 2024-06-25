@@ -5,6 +5,8 @@ current_directory="$PWD"
 
 cd $(dirname $0)/..
 
+yarn
+
 cd js-sdk
 
 yarn && yarn build
