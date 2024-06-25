@@ -44,36 +44,40 @@ class HomePage {
   }
 
   async isVisible() {
-    expect(await this.cardElementForm).toBeVisible()
-    expect(await this.cardElementsForm).toBeVisible()
+    await expect(await this.cardElementForm).toBeVisible()
+    await expect(await this.cardElementsForm).toBeVisible()
   }
 
   async jsElementsReady() {
-    expect(
+    await expect(
       await this.cardElement
         .frameLocator('iframe')
         .locator('#cardNumber')
         .innerHTML()
     ).toBeDefined()
-    expect(await this.cardElement.innerHTML()).toBeDefined()
-    expect(await this.cardNumberElement.innerHTML()).toBeDefined()
-    expect(await this.cardVerificationCodeElement.innerHTML()).toBeDefined()
-    expect(await this.cardExpirationDateElement.innerHTML()).toBeDefined()
+    await expect(await this.cardElement.innerHTML()).toBeDefined()
+    await expect(await this.cardNumberElement.innerHTML()).toBeDefined()
+    await expect(
+      await this.cardVerificationCodeElement.innerHTML()
+    ).toBeDefined()
+    await expect(await this.cardExpirationDateElement.innerHTML()).toBeDefined()
   }
 
   async reactElementsReady() {
-    expect(
+    await expect(
       await this.reactCardElement
         .frameLocator('iframe')
         .locator('#cardNumber')
         .innerHTML()
     ).toBeDefined()
-    expect(await this.reactCardElement.innerHTML()).toBeDefined()
-    expect(await this.reactCardNumberElement.innerHTML()).toBeDefined()
-    expect(
+    await expect(await this.reactCardElement.innerHTML()).toBeDefined()
+    await expect(await this.reactCardNumberElement.innerHTML()).toBeDefined()
+    await expect(
       await this.reactCardVerificationCodeElement.innerHTML()
     ).toBeDefined()
-    expect(await this.reactCardExpirationDateElement.innerHTML()).toBeDefined()
+    await expect(
+      await this.reactCardExpirationDateElement.innerHTML()
+    ).toBeDefined()
   }
 
   getCardElementNameInput() {
@@ -83,7 +87,7 @@ class HomePage {
   async fillCardElementNameInput(value: string) {
     const input = await this.getCardElementNameInput()
     await input.fill(value)
-    expect(await input.inputValue()).toEqual(value)
+    await expect(await input.inputValue()).toEqual(value)
   }
 
   getCardElementsNameInput() {
@@ -93,7 +97,7 @@ class HomePage {
   async fillCardElementsNameInput(value: string) {
     const input = await this.getCardElementsNameInput()
     await input.fill(value)
-    expect(await input.inputValue()).toEqual(value)
+    await expect(await input.inputValue()).toEqual(value)
   }
 
   async fillCardElementInput(input: {
@@ -147,7 +151,7 @@ class HomePage {
   }
 
   async expectSuccessModalIsVisible() {
-    expect(await this.successModal).toBeVisible()
+    await expect(await this.successModal).toBeVisible()
   }
 }
 
