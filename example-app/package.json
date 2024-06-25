@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@credova/elements-js": "file:../js-sdk",
     "@credova/elements-react": "file:../react-sdk",
     "@headlessui/react": "^2.1.0",
     "@heroicons/react": "^2.1.4",
@@ -17,7 +18,6 @@
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@credova/elements-js": "file:../js-sdk",
     "@playwright/test": "^1.44.1",
     "@types/node": "^20",
     "@types/react": "^18",

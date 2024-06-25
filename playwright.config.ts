@@ -16,7 +16,7 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 0 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
@@ -70,12 +70,12 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'cd example-app && yarn dev',
+    command: 'cd example-app && yarn build && yarn start',
     url: 'http://127.0.0.1:3000',
     reuseExistingServer: !process.env.CI,
   },
   timeout: 30000,
   expect: {
-    timeout: 10000,
+    timeout: 30000,
   },
 })

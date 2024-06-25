@@ -29,7 +29,6 @@ class HomePage {
       '#card-verification-code-element'
     )
     this.successModal = page.getByTestId('success-modal')
-
     this.reactCardElement = page.locator('#react-card-element')
     this.reactCardNumberElement = page.locator('#react-card-number-element')
     this.reactCardExpirationDateElement = page.locator(
@@ -148,7 +147,7 @@ class HomePage {
   }
 
   async expectSuccessModalIsVisible() {
-    expect(await this.successModal.innerHTML()).toBeDefined()
+    expect(await this.successModal).toBeVisible()
   }
 }
 

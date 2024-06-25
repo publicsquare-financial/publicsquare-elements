@@ -3,30 +3,21 @@ import type {
   ValidatedCardsCreateInput
 } from '@/types/sdk/cards'
 
-function assertTypeofObjectValues(
-  value: object,
-  type: string,
-  message: string
-) {
-  Object.entries(value).forEach(([_, value]) =>
-    console.assert(typeof value === type, message)
-  )
-}
-
 export function validateCreateCardInput(
   input: CardsCreateInput
 ): ValidatedCardsCreateInput {
-  if (input.card) {
-    assertTypeofObjectValues(input.card, 'string', 'Value type not allowed')
+  if (typeof input.card !== 'object') {
+    throw new Error('card is required')
   }
-  console.assert(
-    typeof input.cardholder_name === 'string',
-    'cardholder_name is required'
-  )
-  console.assert(
-    ['string', 'undefined'].includes(typeof input.customer_id),
-    'customer_id must be a string if included'
-  )
+  if (typeof input.cardholder_name !== 'string') {
+    throw new Error('cardholder_name is required')
+  }
+  if (!['string', 'undefined'].includes(typeof input.customer_id)) {
+    throw new Error('customer_id must be a string if included')
+  }
+  if (!['object', 'undefined'].includes(typeof input.billing_details)) {
+    throw new Error('billing_details must be an object if included')
+  }
   return {
     validated: {
       cardholder_name: input.cardholder_name,

@@ -14,16 +14,18 @@ export class CredovaCards {
     this._credova = credovaPointer
   }
 
-  public create(
+  public async create(
     input: CardsCreateInput,
     proxyKey: string
   ): Promise<CardCreateResponse> {
     if (!this._credova._apiKey) {
       throw new Error('apiKey must be sent at initialization')
-    }
-    const validatedInput = validateCreateCardInput(input)
-    return this._credova
-      .bt!.client!.post(
+    } else if (!this._credova.bt || !this._credova.bt.client) {
+      throw new Error('Credova JS has not be initialized yet')
+    } else {
+      const validatedInput = validateCreateCardInput(input)
+      console.log('> proxy')
+      const response = await this._credova.bt.client.post(
         'https://api.basistheory.com/proxy',
         transformCreateCardInput(validatedInput),
         {
@@ -35,6 +37,7 @@ export class CredovaCards {
           }
         }
       )
-      .then((res) => res as CardCreateResponse)
+      return response as CardCreateResponse
+    }
   }
 }
