@@ -1,10 +1,10 @@
 import React from 'react'
-import { CardVerificationCodeElement as BTCardVerificationCodeElement } from '@basis-theory/basis-theory-react'
+import CredovaElement from './element'
 
 type CardElementProps = {
   id: string
 }
 
 export function CardVerifcationCodeElement(props: CardElementProps) {
-  return <BTCardVerificationCodeElement {...props} />
+  return <CredovaElement type="cardVerificationCode" {...props} />
 }

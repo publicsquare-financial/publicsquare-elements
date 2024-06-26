@@ -20,7 +20,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: 'list',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -73,5 +73,9 @@ export default defineConfig({
     command: 'cd example-app && yarn dev',
     url: 'http://127.0.0.1:3000',
     reuseExistingServer: !process.env.CI,
+  },
+  timeout: 30000,
+  expect: {
+    timeout: 10000,
   },
 })

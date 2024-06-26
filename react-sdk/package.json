@@ -22,8 +22,7 @@
     "prepare": "yarn build",
     "release": "semantic-release",
     "test": "jest",
-    "test:cov": "jest --coverage",
-    "postinstall": "husky install"
+    "test:cov": "jest --coverage"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.15",
@@ -31,12 +30,10 @@
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.21.5",
-    "@basis-theory/basis-theory-react": "^1.18.1",
-    "@basis-theory/eslint-config": "^1.0.13",
+    "@credova/elements-js": "file:../js-sdk",
     "@types/react": "^18.3.3",
     "concurrently": "^8.2.0",
     "eslint": "^9.3.0",
-    "husky": "^9.0.11",
     "prettier": "^3.2.5",
     "react": "^18.3.1",
     "rimraf": "^5.0.7",

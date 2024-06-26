@@ -1,10 +1,10 @@
 import React from 'react'
-import { CardExpirationDateElement as BTCardExpirationDateElement } from '@basis-theory/basis-theory-react'
+import CredovaElement from './element'
 
 type CardElementProps = {
   id: string
 }
 
 export function CardExpirationDateElement(props: CardElementProps) {
-  return <BTCardExpirationDateElement {...props} />
+  return <CredovaElement type="cardExpirationDate" {...props} />
 }

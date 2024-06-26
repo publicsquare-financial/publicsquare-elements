@@ -1,26 +1,55 @@
-import React, { PropsWithChildren, createContext, useContext } from 'react'
+import React, {
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
+import { Credova } from '@credova/elements-js'
 import {
-  BasisTheoryProvider,
-  useBasisTheory
-} from '@basis-theory/basis-theory-react'
+  CreateElementOptions,
+  ElementType
+} from '@credova/elements-js/dist/types/sdk'
 
-type CredovaProviderValue = {}
+type CredovaProviderValue = {
+  credova?: Credova
+  createElement(type: ElementType, options: CreateElementOptions): any
+}
 
-const CredovaContext = createContext<CredovaProviderValue>({})
+const CredovaContext = createContext<CredovaProviderValue>({} as any)
 
 type CredovaProviderProps = {
   apiKey?: string
 }
 
 export const CredovaProvider = ({
-  children,
-  apiKey = 'api_key'
+  children
 }: PropsWithChildren<CredovaProviderProps>) => {
-  const { bt } = useBasisTheory(apiKey, { elements: true })
+  const [credova, setCredova] = useState<Credova>()
+
+  let init = false
+  useEffect(() => {
+    if (!init) {
+      new Credova()
+        .init(process.env.NEXT_PUBLIC_CREDOVA_KEY!)
+        .then((_credova) => {
+          setCredova(_credova)
+        })
+    }
+  }, [])
+
+  const createElement: CredovaProviderValue['createElement'] = (...args) =>
+    credova?.createElement(...args)
+
   return (
-    <BasisTheoryProvider bt={bt}>
-      <CredovaContext.Provider value={{}}>{children}</CredovaContext.Provider>
-    </BasisTheoryProvider>
+    <CredovaContext.Provider
+      value={{
+        credova,
+        createElement
+      }}
+    >
+      {children}
+    </CredovaContext.Provider>
   )
 }
 

@@ -3,17 +3,37 @@ import {
   ElementType,
   CreateCardElementOptions,
   ElementTypeEnum,
-  CredovaInitOptions
+  CredovaInitOptions,
+  BasisTheoryInstance,
+  CreateElementOptions,
+  CardExpirationDateElement,
+  CardNumberElement,
+  CardVerificationCodeElement
 } from './types/sdk'
-import { ELEMENTS_INIT_ERROR_MESSAGE } from './constants'
+import {
+  ELEMENTS_INIT_ERROR_MESSAGE,
+  ELEMENTS_TYPE_NOT_SUPPORTED
+} from './constants'
 import {
   CreateCardExpirationDateElementOptions,
   CreateCardNumberElementOptions,
-  CreateCardVerificationCodeElementOptions
+  CreateCardVerificationCodeElementOptions,
+  ElementValue
 } from '@basis-theory/basis-theory-js/types/elements'
+import { CredovaCards } from './cards'
 
 export class Credova {
-  private _bt?: any
+  _apiKey?: string
+  _proxyKey: string = 'key_test_us_proxy_FrL4kJFRXU1AwuYVnMbTnP'
+  protected _bt?: BasisTheoryInstance
+
+  get bt(): BasisTheoryInstance | undefined {
+    return this._bt
+  }
+
+  private _elements: ElementValue[] = []
+
+  public cards = new CredovaCards(this)
 
   /**
    * Initialize the Credova sdk. (REQUIRED before calling `createElement`)
@@ -21,26 +41,26 @@ export class Credova {
    * @param options CredovaInitOptions see [docs](https://docs.credova.com)
    * @returns class Credova
    */
-  public async init(apiKey: string, options: CredovaInitOptions) {
-    this._bt = await new BasisTheory().init(
+  public async init(apiKey: string, options?: CredovaInitOptions) {
+    this._apiKey = apiKey
+    const bt = await new BasisTheory().init(
       (Math.random() + 1).toString(36).substring(7),
       { elements: true }
     )
+    if (!bt) {
+      throw new Error(ELEMENTS_INIT_ERROR_MESSAGE)
+    }
+    this._bt = bt
     return this
   }
 
-  private _createElement(
-    type: ElementTypeEnum,
-    options:
-      | CreateCardElementOptions
-      | CreateCardNumberElementOptions
-      | CreateCardExpirationDateElementOptions
-      | CreateCardVerificationCodeElementOptions
-  ) {
+  private _createElement(type: ElementTypeEnum, options: CreateElementOptions) {
     if (!this._bt) {
       throw new Error(ELEMENTS_INIT_ERROR_MESSAGE)
     }
-    return this._bt.createElement(type, options)
+    const element = this._bt.createElement(type as any, options as any)
+    this._elements.push(element)
+    return element
   }
 
   /**
@@ -49,8 +69,25 @@ export class Credova {
    * @param options CreateCardElementOptions see [docs](https://docs.credova.com)
    * @returns created element
    */
-  public createElement(type: ElementType, options: CreateCardElementOptions) {
-    return this._createElement(type as ElementTypeEnum, options)
+  public createElement(type: ElementType, options: CreateElementOptions) {
+    switch (type) {
+      case 'card':
+        return this.createCardElement(options as CreateCardElementOptions)
+      case 'cardExpirationDate':
+        return this.createCardExpirationDateElement(
+          options as CreateCardExpirationDateElementOptions
+        )
+      case 'cardNumber':
+        return this.createCardNumberElement(
+          options as CreateCardNumberElementOptions
+        )
+      case 'cardVerificationCode':
+        return this.createCardVerificationCodeElement(
+          options as CreateCardVerificationCodeElementOptions
+        )
+      default:
+        throw new Error(ELEMENTS_TYPE_NOT_SUPPORTED)
+    }
   }
 
   public createCardElement(options: CreateCardElementOptions) {
@@ -63,7 +100,7 @@ export class Credova {
     return this._createElement(ElementTypeEnum.CardExpirationDate, {
       ...options,
       targetId: 'elementTypesCardExpirationDateElement'
-    })
+    }) as CardExpirationDateElement
   }
 
   public createCardNumberElement(
@@ -72,7 +109,7 @@ export class Credova {
     return this._createElement(ElementTypeEnum.CardNumber, {
       ...options,
       targetId: 'elementTypesCardNumberElement'
-    })
+    }) as CardNumberElement
   }
 
   public createCardVerificationCodeElement(
@@ -81,6 +118,6 @@ export class Credova {
     return this._createElement(ElementTypeEnum.CardVerificationCode, {
       ...options,
       targetId: 'elementTypesCardVerificationCodeElement'
-    })
+    }) as CardVerificationCodeElement
   }
 }
