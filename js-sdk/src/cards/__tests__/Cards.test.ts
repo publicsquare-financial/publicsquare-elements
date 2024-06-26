@@ -26,13 +26,13 @@ describe('Credova', () => {
 
   test('create() works', async () => {
     const input = generateCardCreateInput()
-    const result = await cards.create(input, 'some_key')
+    const result = await cards.create(input)
     expect(result).toBe(undefined)
   })
 
   test('create() fails with invalid input', async () => {
     const input = generateCardCreateInput()
-    const result = await cards.create({ card: {} } as any, 'some_key')
+    const result = await cards.create({ card: {} } as any)
     expect(result).toBe(undefined)
   })
 })

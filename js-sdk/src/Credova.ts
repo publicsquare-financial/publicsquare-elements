@@ -24,6 +24,7 @@ import { CredovaCards } from './cards'
 
 export class Credova {
   _apiKey?: string
+  _proxyKey: string = 'key_test_us_proxy_FrL4kJFRXU1AwuYVnMbTnP'
   protected _bt?: BasisTheoryInstance
 
   get bt(): BasisTheoryInstance | undefined {

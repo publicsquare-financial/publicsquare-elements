@@ -97,13 +97,10 @@ export default function CardElementsJs() {
     if (formProps.cardholder_name && card) {
       setLoading(true)
       try {
-        const response = await credova?.cards.create(
-          {
-            cardholder_name: formProps.cardholder_name as string,
-            card
-          },
-          process.env.NEXT_PUBLIC_PROXY_KEY
-        )
+        const response = await credova?.cards.create({
+          cardholder_name: formProps.cardholder_name as string,
+          card
+        })
         if (response) {
           setJsCardSuccessMessage(response)
         }
