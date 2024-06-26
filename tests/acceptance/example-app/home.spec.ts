@@ -1,5 +1,15 @@
 import test from '@playwright/test'
-import { HomePage } from '../pages/home.page'
+import { HomePageJS, HomePageReact } from '../pages/home.page'
+
+const fakeCardInputData = {
+  cardholder_name: 'Test Person',
+  card: {
+    number: '4242424242424242',
+    expiration_month: '12',
+    expiration_year: `${new Date().getFullYear() + 1}`,
+    cvc: '123',
+  },
+}
 
 const fakeCard = (data) => ({
   id: 'card_Nv2w5mjHFSVQcbq3caHAhE',
@@ -16,42 +26,37 @@ const fakeCard = (data) => ({
 
 test.describe('home', () => {
   test.beforeEach(async ({ page }) => {
-    const homePage = new HomePage(page)
+    const homePage = new HomePageJS(page)
+    const homePageReact = new HomePageReact(page)
     await homePage.goToPage()
 
     await homePage.isVisible()
+    await homePageReact.isVisible()
 
-    await homePage.jsElementsReady()
+    await homePage.elementsReady()
+    await homePageReact.elementsReady()
   })
 
   test('should show 4 js elements', async ({ page }) => {
-    const homePage = new HomePage(page)
+    const homePage = new HomePageJS(page)
 
-    await homePage.jsElementsReady()
+    await homePage.elementsReady()
   })
 
   test('should show 4 react elements', async ({ page }) => {
-    const homePage = new HomePage(page)
+    const homePage = new HomePageReact(page)
 
-    await homePage.reactElementsReady()
+    await homePage.elementsReady()
   })
 
   test('should submit the JS CardElement form', async ({ page }) => {
-    const data = {
-      cardholder_name: 'Test Person',
-      card: {
-        number: '4242424242424242',
-        expiration_month: '12',
-        expiration_year: `${new Date().getFullYear() + 1}`,
-        cvc: '123',
-      },
-    }
+    const data = fakeCardInputData
     await page.route('https://api.basistheory.com/proxy', async (route) => {
       const json = fakeCard(data)
       await route.fulfill({ json })
     })
 
-    const homePage = new HomePage(page)
+    const homePage = new HomePageJS(page)
 
     await homePage.fillCardElementNameInput(data.cardholder_name)
 
@@ -63,21 +68,49 @@ test.describe('home', () => {
   })
 
   test('should submit the JS CardElements form', async ({ page }) => {
-    const data = {
-      cardholder_name: 'Test Person',
-      card: {
-        number: '4242424242424242',
-        expiration_month: '12',
-        expiration_year: `${new Date().getFullYear() + 1}`,
-        cvc: '123',
-      },
-    }
+    const data = fakeCardInputData
     await page.route('https://api.basistheory.com/proxy', async (route) => {
       const json = fakeCard(data)
       await route.fulfill({ json })
     })
 
-    const homePage = new HomePage(page)
+    const homePage = new HomePageJS(page)
+
+    await homePage.fillCardElementsNameInput(data.cardholder_name)
+
+    await homePage.fillCardElementsInput(data.card)
+
+    await homePage.submitCardElementsForm()
+
+    await homePage.expectSuccessModalIsVisible()
+  })
+
+  test('should submit the React CardElement form', async ({ page }) => {
+    const data = fakeCardInputData
+    await page.route('https://api.basistheory.com/proxy', async (route) => {
+      const json = fakeCard(data)
+      await route.fulfill({ json })
+    })
+
+    const homePage = new HomePageReact(page)
+
+    await homePage.fillCardElementNameInput(data.cardholder_name)
+
+    await homePage.fillCardElementInput(data.card)
+
+    await homePage.submitCardElementForm()
+
+    await homePage.expectSuccessModalIsVisible()
+  })
+
+  test('should submit the React CardElements form', async ({ page }) => {
+    const data = fakeCardInputData
+    await page.route('https://api.basistheory.com/proxy', async (route) => {
+      const json = fakeCard(data)
+      await route.fulfill({ json })
+    })
+
+    const homePage = new HomePageReact(page)
 
     await homePage.fillCardElementsNameInput(data.cardholder_name)
 
