@@ -23,8 +23,7 @@ type CredovaProviderProps = {
 }
 
 export const CredovaProvider = ({
-  children,
-  apiKey = 'api_key'
+  children
 }: PropsWithChildren<CredovaProviderProps>) => {
   const [credova, setCredova] = useState<Credova>()
 
