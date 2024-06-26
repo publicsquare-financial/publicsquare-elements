@@ -13,34 +13,35 @@ import {
 
 type CredovaProviderValue = {
   credova?: Credova
-  createElement(type: ElementType, options: CreateElementOptions): any
+  createElement(
+    type: ElementType,
+    options: CreateElementOptions
+  ): ReturnType<InstanceType<typeof Credova>['createElement']>
 }
 
 const CredovaContext = createContext<CredovaProviderValue>({} as any)
 
 type CredovaProviderProps = {
-  apiKey?: string
+  apiKey: string
 }
 
 export const CredovaProvider = ({
   children,
-  apiKey = 'api_key'
+  apiKey
 }: PropsWithChildren<CredovaProviderProps>) => {
   const [credova, setCredova] = useState<Credova>()
 
   let init = false
   useEffect(() => {
     if (!init) {
-      new Credova()
-        .init(process.env.NEXT_PUBLIC_CREDOVA_KEY!)
-        .then((_credova) => {
-          setCredova(_credova)
-        })
+      new Credova().init(apiKey).then((_credova) => {
+        setCredova(_credova)
+      })
     }
   }, [])
 
   const createElement: CredovaProviderValue['createElement'] = (...args) =>
-    credova?.createElement(...args)
+    credova!.createElement(...args)
 
   return (
     <CredovaContext.Provider
