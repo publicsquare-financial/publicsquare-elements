@@ -34,8 +34,10 @@
   dependencies:
     "@basis-theory/basis-theory-js" "^4.6.2"
 
-"@credova/elements-react@file:../react-sdk":
+"@credova/elements-react@^0.0.1":
   version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@credova/elements-react/-/elements-react-0.0.1.tgz#f30acabe182742eb7f2916b101fc82284246f1ab"
+  integrity sha512-2TdM0RA69chDhrOcQ6DHilMWwTk0Iic75kuSuLYGf6nax+EgbGCN4dkA2X/+YRN8+kOKimrjMw1b28ZEkkXTug==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"

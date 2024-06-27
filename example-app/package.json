@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@credova/elements-js": "^0.0.1",
-    "@credova/elements-react": "file:../react-sdk",
+    "@credova/elements-react": "^0.0.1",
     "@headlessui/react": "^2.1.0",
     "@heroicons/react": "^2.1.4",
     "next": "14.2.3",
