@@ -1,6 +1,6 @@
 {
   "name": "@credova/elements-js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Credova Card Elements for JS",
   "main": "dist/index.js",
   "module": "dist/index.js",
