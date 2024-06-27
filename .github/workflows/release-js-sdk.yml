@@ -4,20 +4,23 @@ on:
   push:
     branches: [ master, next, beta ]
 
-defaults:
-  run:
-    working-directory: js-sdk
-
 jobs:
   build-release:
     runs-on: ${{ matrix.os }}
+
+    defaults:
+      run:
+        working-directory: ./js-sdk
+
     strategy:
       matrix:
         node: [ '14.x' ]
         os: [ ubuntu-latest ]
+
     env:
       CI: 1 # prevents extra Cypress installation progress messages
       HUSKY: 0 # disables husky hooks
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
