@@ -32,15 +32,14 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: "yarn"
-          cache-dependency-path: "app"
+          cache-dependency-path: "js-sdk"
 
       - name: Install deps (with cache)
         uses: bahmutov/npm-install@v1
         env:
           CYPRESS_INSTALL_BINARY: 0
         with:
-          cache: "yarn"
-          cache-dependency-path: "app"
+          working-directory: ./js-sdk
 
       - name: Build
         run: make build
