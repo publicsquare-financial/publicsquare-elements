@@ -28,22 +28,25 @@ jobs:
           token: ${{ secrets.SEMANTIC_RELEASE_PAT }}
 
       - name: Use Node ${{ matrix.node }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+          cache: "yarn"
+          cache-dependency-path: "app"
 
       - name: Install deps (with cache)
         uses: bahmutov/npm-install@v1
         env:
           CYPRESS_INSTALL_BINARY: 0
+        working-directory: ./js-sdk
 
       - name: Build
-        run: make js-sdk-build
+        run: make build
         env:
           SKIP_INSTALL: 1 # install with cache was done already
 
       - name: Release
-        run: make js-sdk-release
+        run: make release
         env:
           ENVIRONMENT: prod
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
