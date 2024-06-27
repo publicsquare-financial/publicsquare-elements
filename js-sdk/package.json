@@ -24,7 +24,8 @@
     "build:declarations": "tsc && tsc-alias",
     "build:module": "babel src --extensions .ts --out-dir dist",
     "build:package": "node prepare.js",
-    "test": "jest"
+    "test": "jest",
+    "release": "semantic-release"
   },
   "keywords": [
     "typescript",

@@ -4,6 +4,10 @@ on:
   push:
     branches: [ master, next, beta ]
 
+defaults:
+  run:
+    working-directory: js-sdk
+
 jobs:
   build-release:
     runs-on: ${{ matrix.os }}
