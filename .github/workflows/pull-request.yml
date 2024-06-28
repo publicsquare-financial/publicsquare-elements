@@ -9,10 +9,6 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
 
-    env:
-      NEXT_PUBLIC_CREDOVA_KEY: pk_test_your_key
-      NEXT_PUBLIC_PROXY_KEY: key_test_your_key
-
     steps:
     - uses: actions/checkout@v4
 
