@@ -23,12 +23,13 @@ export class CredovaCards {
       const validatedInput = validateCreateCardInput(input)
       return this._credova.bt.client
         .post(
-          this._credova._apiUrl,
+          'https://api.basistheory.com/proxy',
           transformCreateCardInput(validatedInput),
           {
             headers: {
               'Content-Type': 'application/json',
-              'X-API-KEY': this._credova._apiKey
+              'X-API-KEY': this._credova._apiKey,
+              'BT-PROXY-KEY': this._credova._proxyKey,
             }
           }
         )

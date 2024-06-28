@@ -24,7 +24,7 @@ import { CredovaCards } from './cards'
 
 export class Credova {
   _apiKey?: string;
-  _apiUrl: string = 'https://api.basistheory.com/proxy?bt-proxy-key=key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP';
+  _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP';
   protected _bt?: BasisTheoryInstance
 
   get bt(): BasisTheoryInstance | undefined {
@@ -43,7 +43,7 @@ export class Credova {
    */
   public async init(apiKey: string, options?: CredovaInitOptions) {
     this._apiKey = apiKey;
-    if (options?.apiBaseUrl) this._apiUrl = options?.apiBaseUrl;
+    if (options?.apiBaseUrl) this._proxyKey = options?.apiBaseUrl;
 
     const bt = await new BasisTheory().init(
       (Math.random() + 1).toString(36).substring(7),
