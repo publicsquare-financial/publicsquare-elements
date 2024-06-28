@@ -19,7 +19,6 @@
     "lint:fix": "eslint . --fix --ignore-path .gitignore",
     "clean": "rimraf dist",
     "prepare": "yarn build",
-    "release": "semantic-release",
     "test": "jest",
     "test:cov": "jest --coverage"
   },
