@@ -1,0 +1,102 @@
+name: Release
+
+on:
+  push:
+    branches: [ master, next, beta ]
+
+jobs:
+  js-sdk-build-release:
+    runs-on: ${{ matrix.os }}
+
+    defaults:
+      run:
+        working-directory: ./js-sdk
+
+    strategy:
+      matrix:
+        node: [ '20.x' ]
+        os: [ ubuntu-latest ]
+
+    env:
+      CI: 1 # prevents extra Cypress installation progress messages
+      HUSKY: 0 # disables husky hooks
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.SEMANTIC_RELEASE_PAT }}
+
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "yarn"
+          cache-dependency-path: "js-sdk"
+
+      - name: Install deps (with cache)
+        uses: bahmutov/npm-install@v1
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+        with:
+          working-directory: ./js-sdk
+
+      - name: Build
+        run: make build
+        env:
+          SKIP_INSTALL: 1 # install with cache was done already
+
+      - name: Release
+        run: make release
+        env:
+          ENVIRONMENT: prod
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
+          NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN }}
+
+  react-sdk-build-release:
+    runs-on: ${{ matrix.os }}
+
+    defaults:
+      run:
+        working-directory: ./react-sdk
+
+    strategy:
+      matrix:
+        node: [ '20.x' ]
+        os: [ ubuntu-latest ]
+
+    env:
+      CI: 1 # prevents extra Cypress installation progress messages
+      HUSKY: 0 # disables husky hooks
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.SEMANTIC_RELEASE_PAT }}
+
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "yarn"
+          cache-dependency-path: "react-sdk"
+
+      - name: Install deps (with cache)
+        uses: bahmutov/npm-install@v1
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+        with:
+          working-directory: ./react-sdk
+
+      - name: Build
+        run: make build
+        env:
+          SKIP_INSTALL: 1 # install with cache was done already
+
+      - name: Release
+        run: make release
+        env:
+          ENVIRONMENT: prod
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
+          NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN }}
