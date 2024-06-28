@@ -42,7 +42,7 @@ export class Credova {
    * @returns class Credova
    */
   public async init(apiKey: string, options?: CredovaInitOptions) {
-    this._apiKey = apiKey
+    this._apiKey = apiKey;
     if (options?.apiBaseUrl) this._apiUrl = options?.apiBaseUrl;
 
     const bt = await new BasisTheory().init(

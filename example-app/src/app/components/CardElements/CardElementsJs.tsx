@@ -6,7 +6,8 @@ import {
   CardElement,
   CardExpirationDateElement,
   CardNumberElement,
-  CardVerificationCodeElement
+  CardVerificationCodeElement,
+  CredovaInitOptions
 } from '@credova/elements-js/dist/types/sdk'
 import NameInput from '@/components/NameInput'
 import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
@@ -30,7 +31,7 @@ export default function CardElementsJs() {
      * Step 1: Init the Credova sdk
      */
     const apiKey = process.env.NEXT_PUBLIC_CREDOVA_KEY!;
-    const options = {
+    const options: CredovaInitOptions = {
       apiBaseUrl: process.env.NEXT_PUBLIC_CAPTURE_URL,
     };
     

@@ -2,7 +2,7 @@
 import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
 import NameInput from '@/components/NameInput'
 import SubmitButton from '@/components/SubmitButton'
-import CredovaTypes from '@credova/elements-react/dist/types/sdk'
+import CredovaTypes, { CredovaInitOptions } from '@credova/elements-react/dist/types/sdk'
 import {
   CredovaProvider,
   CardElement,
@@ -15,7 +15,7 @@ import { FormEvent, useRef, useState } from 'react'
 
 export default function CredovaContextWrapper() {
   const apiKey = process.env.NEXT_PUBLIC_CREDOVA_KEY!;
-  const options = {
+  const options: CredovaInitOptions = {
     apiBaseUrl: process.env.NEXT_PUBLIC_CAPTURE_URL,
   };
 
