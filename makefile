@@ -12,5 +12,8 @@ dev:
 lint:
 	cd example-app && yarn lint
 
+release:
+	./scripts/release.sh
+
 acceptance-test:
 	./scripts/acceptance-test.sh

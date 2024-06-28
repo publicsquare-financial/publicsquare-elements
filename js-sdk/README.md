@@ -1,21 +1,11 @@
-# Credova Elements JS
+# Credova Elements JavaScript
 
-Contained within is the official **Credova** Javascript and React SDK's.
+Contained within is the official Credova Elements JavaScript SDK.
 
 ## Quickstart
 
 ### Install the JS SDK:
 
 ```bash
-$ bun i @credova/elements-js
+$ yarn add @credova/elements-js
 ```
-
-Or
-
-### Install the React SDK
-
-```bash
-$ bun i @credova/elements-react
-```
-
-The React SDK is packaged separately at: https://www.npmjs.com/package/@credova/elements-react
