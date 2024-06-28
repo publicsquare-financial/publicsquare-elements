@@ -23,13 +23,15 @@
     "test": "jest",
     "test:cov": "jest --coverage"
   },
+  "dependencies": {
+    "@credova/elements-js": "file:../js-sdk"
+  },
   "devDependencies": {
     "@babel/cli": "^7.22.15",
     "@babel/core": "^7.22.20",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.21.5",
-    "@credova/elements-js": "file:../js-sdk",
     "@types/react": "^18.3.3",
     "concurrently": "^8.2.0",
     "eslint": "^9.3.0",
