@@ -6,7 +6,8 @@ import {
   CardElement,
   CardExpirationDateElement,
   CardNumberElement,
-  CardVerificationCodeElement
+  CardVerificationCodeElement,
+  CredovaInitOptions
 } from '@credova/elements-js/dist/types/sdk'
 import NameInput from '@/components/NameInput'
 import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
@@ -29,10 +30,14 @@ export default function CardElementsJs() {
     /**
      * Step 1: Init the Credova sdk
      */
-    new Credova()
-      .init(process.env.NEXT_PUBLIC_CREDOVA_KEY!, {})
-      .then((_credova) => setCredova(_credova))
-  }, [])
+    const apiKey = process.env.NEXT_PUBLIC_CREDOVA_KEY!;
+    const options: CredovaInitOptions = {
+      apiBaseUrl: process.env.NEXT_PUBLIC_CAPTURE_URL,
+    };
+    
+    new Credova().init(apiKey, options)
+      .then((_credova) => setCredova(_credova));
+  }, []);
 
   useEffect(() => {
     if (credova) {
@@ -88,9 +93,7 @@ export default function CardElementsJs() {
     card: CardsCreateInput['card']
   ) {
     e.preventDefault()
-    if (!process.env.NEXT_PUBLIC_PROXY_KEY) {
-      throw new Error('process.env.NEXT_PUBLIC_PROXY_KEY is undefined')
-    }
+
     const formData = new FormData(e.currentTarget)
     const formProps = Object.fromEntries(formData)
     if (loading) return

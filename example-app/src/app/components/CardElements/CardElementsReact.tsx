@@ -2,7 +2,7 @@
 import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
 import NameInput from '@/components/NameInput'
 import SubmitButton from '@/components/SubmitButton'
-import CredovaTypes from '@credova/elements-react/dist/types/sdk'
+import CredovaTypes, { CredovaInitOptions } from '@credova/elements-react/dist/types/sdk'
 import {
   CredovaProvider,
   CardElement,
@@ -14,8 +14,13 @@ import {
 import { FormEvent, useRef, useState } from 'react'
 
 export default function CredovaContextWrapper() {
+  const apiKey = process.env.NEXT_PUBLIC_CREDOVA_KEY!;
+  const options: CredovaInitOptions = {
+    apiBaseUrl: process.env.NEXT_PUBLIC_CAPTURE_URL,
+  };
+
   return (
-    <CredovaProvider apiKey={process.env.NEXT_PUBLIC_CREDOVA_KEY!}>
+    <CredovaProvider apiKey={apiKey} options={options}>
       <CardElements />
     </CredovaProvider>
   )
@@ -58,9 +63,6 @@ function CardElements() {
     card: CredovaTypes.CardsCreateInput['card']
   ) {
     e.preventDefault()
-    if (!process.env.NEXT_PUBLIC_PROXY_KEY) {
-      throw new Error('process.env.NEXT_PUBLIC_PROXY_KEY is undefined')
-    }
     const formData = new FormData(e.currentTarget)
     const formProps = Object.fromEntries(formData)
     if (loading) return

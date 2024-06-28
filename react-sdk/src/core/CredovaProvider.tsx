@@ -8,40 +8,43 @@ import React, {
 import { Credova } from '@credova/elements-js'
 import {
   CreateElementOptions,
+  CredovaInitOptions,
   ElementType
 } from '@credova/elements-js/dist/types/sdk'
 
 type CredovaProviderValue = {
-  credova?: Credova
+  credova?: Credova;
   createElement(
     type: ElementType,
     options: CreateElementOptions
-  ): ReturnType<InstanceType<typeof Credova>['createElement']>
-}
+  ): ReturnType<InstanceType<typeof Credova>['createElement']>;
+};
 
-const CredovaContext = createContext<CredovaProviderValue>({} as any)
+const CredovaContext = createContext<CredovaProviderValue>({} as any);
 
 type CredovaProviderProps = {
   apiKey: string
-}
+  options?: CredovaInitOptions,
+};
 
 export const CredovaProvider = ({
   children,
-  apiKey
+  apiKey,
+  options,
 }: PropsWithChildren<CredovaProviderProps>) => {
   const [credova, setCredova] = useState<Credova>()
 
-  let init = false
+  let init = false;
   useEffect(() => {
     if (!init) {
-      new Credova().init(apiKey).then((_credova) => {
-        setCredova(_credova)
-      })
+      new Credova().init(apiKey, options).then((_credova) => {
+        setCredova(_credova);
+      });
     }
-  }, [])
+  }, []);
 
   const createElement: CredovaProviderValue['createElement'] = (...args) =>
-    credova!.createElement(...args)
+    credova!.createElement(...args);
 
   return (
     <CredovaContext.Provider

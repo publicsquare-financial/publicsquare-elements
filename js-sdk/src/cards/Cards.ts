@@ -28,8 +28,8 @@ export class CredovaCards {
           {
             headers: {
               'Content-Type': 'application/json',
+              'X-API-KEY': this._credova._apiKey,
               'BT-PROXY-KEY': this._credova._proxyKey,
-              'X-Api-Key': this._credova._apiKey
             }
           }
         )

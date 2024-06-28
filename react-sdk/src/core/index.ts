@@ -1,1 +1,1 @@
-export * from './CredovaProvider'
+export * from './CredovaProvider';
