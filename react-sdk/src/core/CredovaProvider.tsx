@@ -8,6 +8,7 @@ import React, {
 import { Credova } from '@credova/elements-js'
 import {
   CreateElementOptions,
+  CredovaInitOptions,
   ElementType
 } from '@credova/elements-js/dist/types/sdk'
 
@@ -23,18 +24,20 @@ const CredovaContext = createContext<CredovaProviderValue>({} as any)
 
 type CredovaProviderProps = {
   apiKey: string
+  options?: CredovaInitOptions,
 }
 
 export const CredovaProvider = ({
   children,
-  apiKey
+  apiKey,
+  options,
 }: PropsWithChildren<CredovaProviderProps>) => {
   const [credova, setCredova] = useState<Credova>()
 
   let init = false
   useEffect(() => {
     if (!init) {
-      new Credova().init(apiKey).then((_credova) => {
+      new Credova().init(apiKey, options).then((_credova) => {
         setCredova(_credova)
       })
     }
