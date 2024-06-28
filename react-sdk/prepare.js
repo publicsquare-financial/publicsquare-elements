@@ -19,7 +19,6 @@ libPackage.files = ['*'];
 
 fs.mkdirSync('./dist', { recursive: true });
 fs.copyFileSync('./README.md', './dist/README.md');
-// fs.copyFileSync('./LICENSE', './dist/LICENSE');
 fs.writeFileSync(
   './dist/package.json',
   JSON.stringify(libPackage, undefined, 2)

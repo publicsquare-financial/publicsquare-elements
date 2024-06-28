@@ -1,37 +1,27 @@
 {
   "name": "@credova/elements-js",
-  "version": "1.0.0",
-  "description": "Credova Card Elements for JS",
+  "version": "0.0.0",
+  "description": "Credova JavaScript Elements",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PSQ-Payments/psq-payments-elements"
-  },
+  "repository": "https://github.com/psq-payments/psq-payments-elements",
   "license": "MIT",
-  "dependencies": {
-    "@basis-theory/basis-theory-js": "^4.6.2"
-  },
   "scripts": {
-    "analyze": "size-limit --why",
-    "build": "concurrently 'yarn build:bundle' 'yarn build:module' 'yarn build:declarations' 'yarn build:package' -n 'bundle,module,declarations,package' -c 'yellow,magenta,blue,green' --kill-others-on-fail -g",
+    "build": "yarn clean && concurrently 'yarn build:bundle' 'yarn build:module' 'yarn build:declarations' 'yarn build:package' -n 'bundle,module,declarations,package' -c 'yellow,magenta,blue,green' --kill-others-on-fail -g",
     "build:bundle": "webpack --config webpack.prod.js",
     "build:declarations": "tsc && tsc-alias",
     "build:module": "babel src --extensions .ts --out-dir dist",
     "build:package": "node prepare.js",
-    "test": "jest",
-    "release": "semantic-release"
+    "clean": "rimraf dist",
+    "test": "jest"
   },
-  "keywords": [
-    "typescript",
-    "npm",
-    "template",
-    "ts"
-  ],
+  "dependencies": {
+    "@basis-theory/basis-theory-js": "^4.6.2"
+  },
   "devDependencies": {
     "@babel/cli": "^7.22.15",
     "@babel/core": "^7.15.8",
@@ -40,13 +30,6 @@
     "@babel/plugin-transform-runtime": "^7.22.15",
     "@babel/preset-env": "^7.16.5",
     "@babel/preset-typescript": "^7.12.13",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^13.0.0",
-    "@semantic-release/exec": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^10.0.6",
-    "@semantic-release/npm": "^12.0.1",
-    "@semantic-release/release-notes-generator": "^14.0.1",
     "@types/jest": "^29.5.12",
     "babel-loader": "^8.2.2",
     "babel-plugin-inline-dotenv": "^1.1.0",
@@ -58,7 +41,6 @@
     "jest": "^29.7.0",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.7",
-    "semantic-release": "^24.0.0",
     "ts-jest": "^29.1.4",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths-webpack-plugin": "^4.1.0",

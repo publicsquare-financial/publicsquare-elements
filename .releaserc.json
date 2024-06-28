@@ -1,5 +1,5 @@
 {
-  "branches": ["master", "next"],
+  "branches": ["master"],
   "plugins": [
     [
       "@semantic-release/commit-analyzer",
@@ -12,14 +12,27 @@
     [
       "@semantic-release/npm",
       {
-        "pkgRoot": "dist"
+        "pkgRoot": "react-sdk/dist"
+      }
+    ],
+    [
+      "@semantic-release/npm",
+      {
+        "pkgRoot": "js-sdk/dist"
+      }
+    ],
+    [
+      "@semantic-release/npm",
+      {
+        "npmPublish": false,
+        "pkgRoot": "./"
       }
     ],
     "@semantic-release/github",
     [
       "@semantic-release/git",
       {
-        "assets": ["package.json", "CHANGELOG.md"],
+        "assets": ["package.json", "CHANGELOG.md", "react-sdk/package.json", "js-sdk/package.json"],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ],

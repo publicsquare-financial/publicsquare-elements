@@ -1,14 +1,14 @@
 {
   "name": "@credova/elements-react",
-  "version": "0.0.1",
-  "description": "Credova Card Elements for React",
+  "version": "0.0.0",
+  "description": "Credova React Elements",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/PSQ-Payments/psq-payments-elements",
+  "repository": "https://github.com/psq-payments/psq-payments-elements",
   "license": "MIT",
   "scripts": {
     "build": "yarn clean && concurrently 'yarn build:module' 'yarn build:declarations' 'yarn build:package' --kill-others-on-fail",
@@ -23,27 +23,21 @@
     "test": "jest",
     "test:cov": "jest --coverage"
   },
+  "dependencies": {
+    "@credova/elements-js": "file:../js-sdk"
+  },
   "devDependencies": {
     "@babel/cli": "^7.22.15",
     "@babel/core": "^7.22.20",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.21.5",
-    "@credova/elements-js": "^0.0.1",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^13.0.0",
-    "@semantic-release/exec": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^10.0.6",
-    "@semantic-release/npm": "^12.0.1",
-    "@semantic-release/release-notes-generator": "^14.0.1",
     "@types/react": "^18.3.3",
     "concurrently": "^8.2.0",
     "eslint": "^9.3.0",
     "prettier": "^3.2.5",
     "react": "^18.3.1",
     "rimraf": "^5.0.7",
-    "semantic-release": "^24.0.0",
     "typescript": "^5.4.5"
   }
 }

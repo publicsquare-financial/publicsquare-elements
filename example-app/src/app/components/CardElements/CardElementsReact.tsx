@@ -59,7 +59,7 @@ function CardElements() {
   ) {
     e.preventDefault()
     if (!process.env.NEXT_PUBLIC_PROXY_KEY) {
-      throw new Error('process.env.PROXY_KEY is undefined')
+      throw new Error('process.env.NEXT_PUBLIC_PROXY_KEY is undefined')
     }
     const formData = new FormData(e.currentTarget)
     const formProps = Object.fromEntries(formData)

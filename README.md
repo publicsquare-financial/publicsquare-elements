@@ -7,7 +7,7 @@ Contained within is the official **PSQ Payments** Javascript and React SDK's.
 ### Install the JS SDK:
 
 ```bash
-$ bun i @credova/elements-js
+$ yarn add @credova/elements-js
 ```
 
 Or
@@ -15,7 +15,7 @@ Or
 ### Install the React SDK
 
 ```bash
-$ bun i @credova/elements-react
+$ yarn add @credova/elements-react
 ```
 
 ## Running the example app (`/example-app`)

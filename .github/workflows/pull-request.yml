@@ -1,29 +1,30 @@
-name: Playwright Tests
+name: Pull Request
+
 on:
-  push:
-    branches: [ main, master ]
   pull_request:
-    branches: [ main, master ]
+    branches: [master]
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
 
-    env:
-      NEXT_PUBLIC_CREDOVA_KEY: pk_test_your_key
-      NEXT_PUBLIC_PROXY_KEY: key_test_your_key
-
     steps:
     - uses: actions/checkout@v4
+
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+
     - name: Install dependencies
       run: make build
+
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+
     - name: Run Playwright tests
       run: make acceptance-test
+
     - uses: actions/upload-artifact@v4
       if: always()
       with:
