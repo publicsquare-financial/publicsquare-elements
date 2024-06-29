@@ -1,6 +1,6 @@
-# PSQ Payments SDK (JS & React)
+# Credova Elements SDK
 
-Contained within is the official **PSQ Payments** Javascript and React SDK's.
+Contained within is the official **Credova** Elements Javascript and React SDK's.
 
 ## Quickstart
 
@@ -26,8 +26,8 @@ To use it, simply:
 
 ```bash
 $ cd example-app
-$ bun i
-$ bun dev
+$ yarn
+$ yarn dev
 ```
 
 Then open [http://localhost:3000](http://localhost:3000)
