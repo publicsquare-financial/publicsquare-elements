@@ -7,5 +7,5 @@ Contained within is the official Credova Elements React SDK.
 ### Install the React SDK
 
 ```bash
-$ yarn i @credova/elements-react
+$ yarn add @credova/elements-react
 ```

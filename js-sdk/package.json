@@ -8,7 +8,7 @@
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/psq-payments/psq-payments-elements",
+  "repository": "https://github.com/credova-financial/credova-elements",
   "license": "MIT",
   "scripts": {
     "build": "yarn clean && concurrently 'yarn build:bundle' 'yarn build:module' 'yarn build:declarations' 'yarn build:package' -n 'bundle,module,declarations,package' -c 'yellow,magenta,blue,green' --kill-others-on-fail -g",
