@@ -1,21 +1,17 @@
 # Credova Elements SDK
 
+[![Verify](https://github.com/credova-financial/credova-elements/actions/workflows/release-sdk.yml/badge.svg)](https://github.com/credova-financial/credova-elements/actions/workflows/release-sdk.yml)
+
 Contained within is the official **Credova** Elements Javascript and React SDK's.
 
 ## Quickstart
 
-### Install the JS SDK:
+### Build the SDK and run Tests
 
-```bash
-$ yarn add @credova/elements-js
-```
+Run the following command from the root of the project:
 
-Or
-
-### Install the React SDK
-
-```bash
-$ yarn add @credova/elements-react
+```sh
+make verify
 ```
 
 ## Running the example app (`/example-app`)
