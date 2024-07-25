@@ -4,13 +4,13 @@ on:
   push:
     branches: [master, release-sdk]
 
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-
 jobs:
   release-sdk:
     runs-on: 'ubuntu-latest'
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
 
     env:
       HUSKY: 0 # disables husky hooks
