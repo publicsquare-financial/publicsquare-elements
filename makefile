@@ -15,5 +15,8 @@ lint:
 release:
 	./scripts/release.sh
 
+release:
+	./scripts/release-cdn.sh
+
 acceptance-test:
 	./scripts/acceptance-test.sh

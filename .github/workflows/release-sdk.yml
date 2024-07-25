@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    branches: [master]
+    branches: [master, release-sdk]
 
 jobs:
   release-sdk:
@@ -31,3 +31,19 @@ jobs:
           ENVIRONMENT: prod
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
           NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN }}
+
+      - id: login-to-gcp
+        name: Authenticate to GCP
+        uses: 'google-github-actions/auth@v2'
+        with:
+          project_id: psqpayments-shd-operations
+          workload_identity_provider: projects/6883124133/locations/global/workloadIdentityPools/credova/providers/credova-github
+
+      - name: Release CDN
+        run: make release-cdn
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.JS_AWS_ACCESS_KEY }}
+          AWS_REGION: us-east-2
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.JS_AWS_SECRET_ACCESS_KEY }}
+          ENVIRONMENT: dev
+          IS_PR_WORKFLOW: true
