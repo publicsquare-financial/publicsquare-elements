@@ -29,26 +29,21 @@ VERSIONED_JS_NAME=$(cat package.json | jq -r '.version')
 
 echo "Uploading bundle to $JS_HOST/$INDEX_JS_NAME"
 
-# if [[ -z ${AWS} ]]; then
-#   JS_BUCKET_NAME=$(aws s3 cp s3://basis-theory-tf-state/basistheory-cloudflare/$ENVIRONMENT/terraform.tfstate - | jq -r .outputs.js_bucket_name.value)
-# else
-#   JS_BUCKET_NAME="${ENVIRONMENT}-${JS_HOST}"
-# fi
 JS_BUCKET_NAME="psqpayments-prd-web-elements-js"
 
 # Upload Content
-aws s3 cp --acl public-read "$BUNDLE_PATH" s3://"${JS_BUCKET_NAME}"/"${INDEX_JS_NAME}"
+gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/"${INDEX_JS_NAME}"
 
 if [ "$IS_PR_WORKFLOW" = true ] ; then
   BLOB_NAME=$BLOB_DIR/$(git rev-parse HEAD).js
 
   echo "Uploading bundle to $JS_HOST/$BLOB_NAME"
 
-  aws s3 cp --acl public-read "$BUNDLE_PATH" s3://"${JS_BUCKET_NAME}"/"${BLOB_NAME}"
+  gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/"${BLOB_NAME}"
 else
   echo "Uploading bundle to $JS_HOST/$VERSIONED_JS_NAME"
 
-  aws s3 cp --acl public-read "$BUNDLE_PATH" s3://"${JS_BUCKET_NAME}"/"${VERSIONED_JS_NAME}"
+  gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/"${VERSIONED_JS_NAME}"
 fi
 
 result=$?

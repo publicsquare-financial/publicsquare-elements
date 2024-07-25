@@ -42,12 +42,12 @@ jobs:
         with:
           project_id: psqpayments-shd-operations
           workload_identity_provider: projects/6883124133/locations/global/workloadIdentityPools/credova/providers/credova-github
+      
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v2'
 
       - name: Release CDN
         run: make release-cdn
         env:
-          # AWS_ACCESS_KEY_ID: ${{ secrets.JS_AWS_ACCESS_KEY }}
-          # AWS_REGION: us-east-2
-          # AWS_SECRET_ACCESS_KEY: ${{ secrets.JS_AWS_SECRET_ACCESS_KEY }}
           ENVIRONMENT: production
           IS_PR_WORKFLOW: true
