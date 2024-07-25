@@ -4,6 +4,10 @@ on:
   push:
     branches: [master, release-sdk]
 
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
 jobs:
   release-sdk:
     runs-on: 'ubuntu-latest'
@@ -42,8 +46,8 @@ jobs:
       - name: Release CDN
         run: make release-cdn
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.JS_AWS_ACCESS_KEY }}
-          AWS_REGION: us-east-2
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.JS_AWS_SECRET_ACCESS_KEY }}
-          ENVIRONMENT: dev
+          # AWS_ACCESS_KEY_ID: ${{ secrets.JS_AWS_ACCESS_KEY }}
+          # AWS_REGION: us-east-2
+          # AWS_SECRET_ACCESS_KEY: ${{ secrets.JS_AWS_SECRET_ACCESS_KEY }}
+          ENVIRONMENT: production
           IS_PR_WORKFLOW: true
