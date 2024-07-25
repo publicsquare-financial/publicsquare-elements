@@ -32,19 +32,8 @@ echo "Uploading bundle to $JS_HOST/$INDEX_JS_NAME"
 JS_BUCKET_NAME="psqpayments-prd-web-elements-js"
 
 # Upload Content
+gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/index.js"
 gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/"${INDEX_JS_NAME}"
-
-if [ "$IS_PR_WORKFLOW" = true ] ; then
-  BLOB_NAME=$BLOB_DIR/$(git rev-parse HEAD).js
-
-  echo "Uploading bundle to $JS_HOST/$BLOB_NAME"
-
-  gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/"${BLOB_NAME}"
-else
-  echo "Uploading bundle to $JS_HOST/$VERSIONED_JS_NAME"
-
-  gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/"${VERSIONED_JS_NAME}"
-fi
 
 result=$?
 
