@@ -10,17 +10,7 @@ dist_directory="$PWD"/dist
 # back to script directory
 cd $script_directory
 
-if [[ -z "${ENVIRONMENT}" ]]; then
-    echo "environment variable is not set"
-    exit 1
-fi
-
-if [ "${ENVIRONMENT}" = dev  ]; then
-    JS_HOST="js-dev.credova.com"
-else
-    JS_HOST="js.credova.com"
-fi
-
+JS_HOST="js.credova.com"
 MAJOR_VERSION=$(node -p -e "require('./package.json').version")
 BUNDLE_PATH=$dist_directory/credova-js.bundle.js
 BLOB_DIR=v$MAJOR_VERSION

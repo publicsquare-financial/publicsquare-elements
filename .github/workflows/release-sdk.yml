@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    branches: [master, release-sdk]
+    branches: [master]
 
 jobs:
   release-sdk:
@@ -48,6 +48,3 @@ jobs:
 
       - name: Release CDN
         run: make release-cdn
-        env:
-          ENVIRONMENT: production
-          IS_PR_WORKFLOW: true
