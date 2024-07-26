@@ -8,6 +8,10 @@ jobs:
   release-sdk:
     runs-on: 'ubuntu-latest'
 
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
     env:
       HUSKY: 0 # disables husky hooks
 
@@ -31,3 +35,16 @@ jobs:
           ENVIRONMENT: prod
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
           NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN }}
+
+      - id: login-to-gcp
+        name: Authenticate to GCP
+        uses: 'google-github-actions/auth@v2'
+        with:
+          project_id: psqpayments-shd-operations
+          workload_identity_provider: projects/6883124133/locations/global/workloadIdentityPools/credova/providers/credova-github
+      
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v2'
+
+      - name: Release CDN
+        run: make release-cdn
