@@ -23,7 +23,7 @@
     "test:cov": "jest --coverage"
   },
   "dependencies": {
-    "@credova/elements-js": "file:../js-sdk"
+    "@credova/elements-js": "0.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.15",
