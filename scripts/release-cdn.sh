@@ -22,7 +22,7 @@ echo "Uploading bundle to $JS_HOST/$INDEX_JS_NAME"
 JS_BUCKET_NAME="psqpayments-prd-web-elements-js"
 
 # Upload Content
-# gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/index.js
+gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/index.js
 gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/"${INDEX_JS_NAME}"
 
 result=$?
