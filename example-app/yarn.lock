@@ -27,13 +27,15 @@
     snake-case "^3.0.4"
     snakecase-keys "^3.2.1"
 
-"@credova/elements-js@file:../js-sdk":
-  version "0.0.0"
+"@credova/elements-js@^1.1.1", "@credova/elements-js@file:../js-sdk":
+  version "1.1.1"
   dependencies:
     "@basis-theory/basis-theory-js" "^4.6.2"
 
 "@credova/elements-react@file:../react-sdk":
-  version "0.0.0"
+  version "1.1.1"
+  dependencies:
+    "@credova/elements-js" "^1.1.1"
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
