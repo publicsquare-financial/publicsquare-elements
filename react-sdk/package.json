@@ -1,6 +1,6 @@
 {
   "name": "@credova/elements-react",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Credova React Elements",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -23,7 +23,7 @@
     "test:cov": "jest --coverage"
   },
   "dependencies": {
-    "@credova/elements-js": "file:../js-sdk"
+    "@credova/elements-js": "^1.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.15",

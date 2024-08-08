@@ -41,7 +41,7 @@ const base = {
 const umd = merge(base, {
   output: {
     filename: 'credova-js.bundle.js',
-    library: 'CredovaElementsJs',
+    library: 'Credova',
     libraryTarget: 'umd',
     libraryExport: '_instance',
   },
