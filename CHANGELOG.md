@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/credova-financial/credova-elements/compare/v1.1.1...v1.1.2) (2024-08-08)
+
+
+### Bug Fixes
+
+* type export error, bump versions ([#26](https://github.com/credova-financial/credova-elements/issues/26)) ([c730497](https://github.com/credova-financial/credova-elements/commit/c730497540f2c98da556984ae9f1b78a3449dc86))
+
 ## [1.1.1](https://github.com/credova-financial/credova-elements/compare/v1.1.0...v1.1.1) (2024-08-08)
 
 
