@@ -20,7 +20,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@basis-theory/basis-theory-js": "^4.6.2"
+    "@basis-theory/basis-theory-js": "^4.7.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.15",

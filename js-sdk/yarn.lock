@@ -1028,12 +1028,12 @@
     "@babel/helper-validator-identifier" "^7.24.6"
     to-fast-properties "^2.0.0"
 
-"@basis-theory/basis-theory-js@^4.6.2":
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/@basis-theory/basis-theory-js/-/basis-theory-js-4.6.2.tgz#c96b6dead3ab43c9ae0d639c5660f4ee4a6c9443"
-  integrity sha512-l7WR1tFW7NWd+nD3KLB0ZbnhdH12TxHfrIcX/2P3bD43nFQmJEw7if0meeGGoyUwR+IBZOCfkr1RAMvEfTWNdA==
+"@basis-theory/basis-theory-js@^4.7.1":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@basis-theory/basis-theory-js/-/basis-theory-js-4.7.1.tgz#7f7f4a43e4ebbb0e1f12ac16fdf42001af516ad3"
+  integrity sha512-H+DsWljniSa14cBEhOZZdIPHaWXp+9t8ynP6Sj/v+dOq/yC7b9kAKETh/EvV6GILmxtqi17O7N6RSbR/kLrmsg==
   dependencies:
-    axios "^1.6.4"
+    axios "^1.7.4"
     camelcase-keys "^6.2.2"
     csstype "^3.0.11"
     os "^0.1.2"
@@ -1730,10 +1730,10 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
-axios@^1.6.4:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.2.tgz#b625db8a7051fbea61c35a3cbb3a1daa7b9c7621"
-  integrity sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==
+axios@^1.7.4:
+  version "1.7.7"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.7.tgz#2f554296f9892a72ac8d8e4c5b79c14a91d0a47f"
+  integrity sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"
