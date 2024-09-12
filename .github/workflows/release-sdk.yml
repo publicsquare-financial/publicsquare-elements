@@ -41,7 +41,7 @@ jobs:
         uses: 'google-github-actions/auth@v2'
         with:
           project_id: psqpayments-shd-operations
-          workload_identity_provider: projects/6883124133/locations/global/workloadIdentityPools/credova/providers/credova-github
+          workload_identity_provider: projects/6883124133/locations/global/workloadIdentityPools/psqfinancial/providers/psqfinancial-github
       
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v2'
