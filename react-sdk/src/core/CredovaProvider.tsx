@@ -10,7 +10,7 @@ import {
   CreateElementOptions,
   CredovaInitOptions,
   ElementType
-} from '@credova/elements-js/dist/types/sdk'
+} from '@credova/elements-js/types/sdk'
 
 type CredovaProviderValue = {
   credova?: Credova;
