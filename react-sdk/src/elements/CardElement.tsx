@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import CredovaElement from './element'
-import Types from '@credova/elements-js/dist/types/sdk'
+import Types from '@credova/elements-js/types/sdk'
 
 type CardElementProps = {
   id: string;

@@ -3,7 +3,7 @@ import { useCredova } from '../core/CredovaProvider'
 import {
   CreateElementOptions,
   ElementType
-} from '@credova/elements-js/dist/types/sdk'
+} from '@credova/elements-js/types/sdk'
 
 type ElementProps = {
   id: string
