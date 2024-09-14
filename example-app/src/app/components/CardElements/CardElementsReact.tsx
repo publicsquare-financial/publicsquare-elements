@@ -2,7 +2,7 @@
 import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
 import NameInput from '@/components/NameInput'
 import SubmitButton from '@/components/SubmitButton'
-import PublicSquareTypes, { CredovaInitOptions } from '@publicsquare/elements-react/dist/types/sdk'
+import PublicSquareTypes, { PublicSquareInitOptions } from '@publicsquare/elements-react/dist/types/sdk'
 import {
   PublicSquareProvider,
   CardElement,
@@ -15,7 +15,7 @@ import { FormEvent, useRef, useState } from 'react'
 
 export default function PublicSquareContextWrapper() {
   const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
-  const options: CredovaInitOptions = {
+  const options: PublicSquareInitOptions = {
     apiBaseUrl: process.env.NEXT_PUBLIC_CAPTURE_URL,
   };
 

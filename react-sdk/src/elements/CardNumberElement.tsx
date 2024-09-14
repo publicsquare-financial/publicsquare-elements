@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import PublicSquareElement from './element'
-import Types from '@credova/elements-js/types/sdk'
+import Types from '@publicsquare/elements-js/types/sdk'
 
 type CardElementProps = {
   id: string

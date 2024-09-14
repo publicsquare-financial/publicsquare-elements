@@ -1,1 +1,1 @@
-export * from '../../node_modules/@credova/elements-js/types/sdk'
+export * from '../../node_modules/@publicsquare/elements-js/types/sdk'
