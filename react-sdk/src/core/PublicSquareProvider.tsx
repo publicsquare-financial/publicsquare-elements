@@ -5,12 +5,12 @@ import React, {
   useEffect,
   useState
 } from 'react'
-import { Credova as PublicSquare } from '@credova/elements-js'
+import { PublicSquare } from '@publicsquare/elements-js'
 import {
   CreateElementOptions,
-  CredovaInitOptions as PublicSquareInitOptions,
+  PublicSquareInitOptions,
   ElementType
-} from '@credova/elements-js/types/sdk'
+} from '@publicsquare/elements-js/types/sdk'
 
 type PublicSquareProviderValue = {
   publicsquare?: PublicSquare;

@@ -3,7 +3,7 @@ import { usePublicSquare } from '../core/PublicSquareProvider'
 import {
   CreateElementOptions,
   ElementType
-} from '@credova/elements-js/types/sdk'
+} from '@publicsquare/elements-js/types/sdk'
 
 type ElementProps = {
   id: string
