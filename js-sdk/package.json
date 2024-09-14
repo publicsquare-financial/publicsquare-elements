@@ -8,6 +8,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "https://github.com/publicsquare-financial/publicsquare-elements",
   "license": "MIT",
   "scripts": {
