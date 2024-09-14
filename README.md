@@ -1,8 +1,8 @@
-# Credova Elements SDK
+# PublicSquare Elements SDK
 
-[![Verify](https://github.com/credova-financial/credova-elements/actions/workflows/release-sdk.yml/badge.svg)](https://github.com/credova-financial/credova-elements/actions/workflows/release-sdk.yml)
+[![Verify](https://github.com/publicsquare-financial/publicsquare-elements/actions/workflows/release-sdk.yml/badge.svg)](https://github.com/publicsquare-financial/publicsquare-elements/actions/workflows/release-sdk.yml)
 
-Contained within is the official **Credova** Elements Javascript and React SDK's.
+Contained within is the official **PublicSquare** Elements Javascript and React SDK's.
 
 ## Quickstart
 

@@ -1,4 +1,4 @@
-For additional support or to discuss issues/features, please reach out to us via email at [info@credova.com](mailto:info@credova.com)
+For additional support or to discuss issues/features, please reach out to us via email at [info@publicsquare.com](mailto:info@publicsquare.com)
 
 ## Expected Behavior
 -

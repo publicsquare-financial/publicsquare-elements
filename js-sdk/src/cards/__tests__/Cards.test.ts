@@ -1,27 +1,27 @@
-import { Credova } from '@/index'
-import { CredovaCards } from '../'
+import { PublicSquare } from '@/index'
+import { PublicSquareCards } from '../'
 import { getError } from '@/tests/utils'
-import { ELEMENTS_CREDOVA_CARDS_NO_POINTER_MESSAGE } from '@/constants'
+import { ELEMENTS_CARDS_NO_POINTER_MESSAGE } from '@/constants'
 import { generateCardCreateInput } from '@/tests/factories/cards'
 
 jest.mock('@basis-theory/basis-theory-js', () => {
   BasisTheory: jest.fn()
 })
 
-describe('Credova', () => {
-  let credova: Credova
-  let cards: CredovaCards
+describe('PublicSquare', () => {
+  let publicsquare: PublicSquare
+  let cards: PublicSquareCards
   beforeAll(() => {
-    credova = new Credova()
-    cards = new CredovaCards(credova)
+    publicsquare = new PublicSquare()
+    cards = new PublicSquareCards(publicsquare)
   })
 
   test('constructs', async () => {
     expect(cards).toBeDefined()
     const error = await getError<{ message: string }>(
-      () => new (CredovaCards as any)()
+      () => new (PublicSquareCards as any)()
     )
-    expect(error.message).toEqual(ELEMENTS_CREDOVA_CARDS_NO_POINTER_MESSAGE)
+    expect(error.message).toEqual(ELEMENTS_CARDS_NO_POINTER_MESSAGE)
   })
 
   test('create() works', async () => {

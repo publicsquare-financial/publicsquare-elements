@@ -1,14 +1,14 @@
 {
-  "name": "@credova/elements-react",
+  "name": "@publicsquare/elements-react",
   "version": "1.1.2",
-  "description": "Credova React Elements",
+  "description": "PublicSquare React Elements",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/credova-financial/credova-elements",
+  "repository": "https://github.com/publicsquare-financial/publicsquare-elements",
   "license": "MIT",
   "scripts": {
     "build": "yarn clean && concurrently 'yarn build:module' 'yarn build:declarations' 'yarn build:package' --kill-others-on-fail",

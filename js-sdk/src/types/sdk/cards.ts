@@ -3,7 +3,7 @@ import {
   CardExpirationDateElement,
   CardNumberElement,
   CardVerificationCodeElement
-} from './credova'
+} from './publicsquare'
 
 export type Card = {
   number: CardNumberElement

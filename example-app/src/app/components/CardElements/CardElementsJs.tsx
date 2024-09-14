@@ -1,20 +1,20 @@
 'use client'
-import { FormEvent, ReactNode, useEffect, useRef, useState } from 'react'
-import { Credova } from '@credova/elements-js'
+import { FormEvent, useEffect, useRef, useState } from 'react'
+import { PublicSquare } from '@publicsquare/elements-js'
 import SubmitButton from '@/components/SubmitButton'
 import {
   CardElement,
   CardExpirationDateElement,
   CardNumberElement,
   CardVerificationCodeElement,
-  CredovaInitOptions
-} from '@credova/elements-js/dist/types/sdk'
+  PublicSquareInitOptions
+} from '@publicsquare/elements-js/dist/types/sdk'
 import NameInput from '@/components/NameInput'
 import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
-import { CardsCreateInput } from '@credova/elements-js/dist/types/sdk/cards'
+import { CardsCreateInput } from '@publicsquare/elements-js/dist/types/sdk/cards'
 
 export default function CardElementsJs() {
-  const [credova, setCredova] = useState<Credova>()
+  const [publicsquare, setPublicSquare] = useState<PublicSquare>()
   const cardRef = useRef(null)
   const [cardElement, setCardElement] = useState<CardElement>()
   const [cardNumberElement, setCardNumberElement] =
@@ -28,44 +28,44 @@ export default function CardElementsJs() {
 
   useEffect(() => {
     /**
-     * Step 1: Init the Credova sdk
+     * Step 1: Init the PublicSquare sdk
      */
-    const apiKey = process.env.NEXT_PUBLIC_CREDOVA_KEY!;
-    const options: CredovaInitOptions = {
+    const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
+    const options: PublicSquareInitOptions = {
       apiBaseUrl: process.env.NEXT_PUBLIC_CAPTURE_URL,
     };
     
-    new Credova().init(apiKey, options)
-      .then((_credova) => setCredova(_credova));
+    new PublicSquare().init(apiKey, options)
+      .then((_publicsquare) => setPublicSquare(_publicsquare));
   }, []);
 
   useEffect(() => {
-    if (credova) {
+    if (publicsquare) {
       /**
        * Step 2: Initialize the elements you want to use
        */
       // The whole card
-      const cardElement = credova.createCardElement({})
+      const cardElement = publicsquare.createCardElement({})
       cardElement.mount('#card-element')
       cardElement.focus()
       setCardElement(cardElement)
       // Just the number
-      const cardNumberElement = credova.createCardNumberElement({})
+      const cardNumberElement = publicsquare.createCardNumberElement({})
       cardNumberElement.mount('#card-number-element')
       setCardNumberElement(cardNumberElement)
       // Just the expiration date
-      const cardExpirationDateElement = credova.createCardExpirationDateElement(
+      const cardExpirationDateElement = publicsquare.createCardExpirationDateElement(
         {}
       )
       cardExpirationDateElement.mount('#card-expiration-date-element')
       setCardExpirationDateElement(cardExpirationDateElement)
       // Just the verification code
       const cardVerificationCodeElement =
-        credova.createCardVerificationCodeElement({})
+        publicsquare.createCardVerificationCodeElement({})
       cardVerificationCodeElement.mount('#card-verification-code-element')
       setCardVerificationCodeElement(cardVerificationCodeElement)
     }
-  }, [credova])
+  }, [publicsquare])
 
   function onSubmitCardElement(e: FormEvent<HTMLFormElement>) {
     if (cardElement) {
@@ -100,7 +100,7 @@ export default function CardElementsJs() {
     if (formProps.cardholder_name && card) {
       setLoading(true)
       try {
-        const response = await credova?.cards.create({
+        const response = await publicsquare?.cards.create({
           cardholder_name: formProps.cardholder_name as string,
           card
         })

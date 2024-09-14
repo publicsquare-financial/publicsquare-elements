@@ -2,40 +2,40 @@
 import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
 import NameInput from '@/components/NameInput'
 import SubmitButton from '@/components/SubmitButton'
-import CredovaTypes, { CredovaInitOptions } from '@credova/elements-react/dist/types/sdk'
+import PublicSquareTypes, { CredovaInitOptions } from '@publicsquare/elements-react/dist/types/sdk'
 import {
-  CredovaProvider,
+  PublicSquareProvider,
   CardElement,
   CardNumberElement,
   CardExpirationDateElement,
   CardVerifcationCodeElement,
-  useCredova
-} from '@credova/elements-react'
+  usePublicSquare
+} from '@publicsquare/elements-react'
 import { FormEvent, useRef, useState } from 'react'
 
-export default function CredovaContextWrapper() {
-  const apiKey = process.env.NEXT_PUBLIC_CREDOVA_KEY!;
+export default function PublicSquareContextWrapper() {
+  const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
   const options: CredovaInitOptions = {
     apiBaseUrl: process.env.NEXT_PUBLIC_CAPTURE_URL,
   };
 
   return (
-    <CredovaProvider apiKey={apiKey} options={options}>
+    <PublicSquareProvider apiKey={apiKey} options={options}>
       <CardElements />
-    </CredovaProvider>
+    </PublicSquareProvider>
   )
 }
 
 function CardElements() {
-  const { credova } = useCredova()
+  const { publicsquare } = usePublicSquare()
   const [loading, setLoading] = useState(false)
   const [cardSuccessMessage, setCardSuccessMessage] = useState<object>()
-  const cardElement = useRef<CredovaTypes.CardElement>(null)
-  const cardNumberElement = useRef<CredovaTypes.CardNumberElement>(null)
+  const cardElement = useRef<PublicSquareTypes.CardElement>(null)
+  const cardNumberElement = useRef<PublicSquareTypes.CardNumberElement>(null)
   const cardExpirationDateElement =
-    useRef<CredovaTypes.CardExpirationDateElement>(null)
+    useRef<PublicSquareTypes.CardExpirationDateElement>(null)
   const cardVerificationCodeElement =
-    useRef<CredovaTypes.CardVerificationCodeElement>(null)
+    useRef<PublicSquareTypes.CardVerificationCodeElement>(null)
 
   function onSubmitCardElement(e: FormEvent<HTMLFormElement>) {
     if (cardElement.current) {
@@ -60,16 +60,16 @@ function CardElements() {
 
   async function onSubmit(
     e: FormEvent<HTMLFormElement>,
-    card: CredovaTypes.CardsCreateInput['card']
+    card: PublicSquareTypes.CardsCreateInput['card']
   ) {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const formProps = Object.fromEntries(formData)
     if (loading) return
-    if (formProps.cardholder_name && card && credova) {
+    if (formProps.cardholder_name && card && publicsquare) {
       setLoading(true)
       try {
-        const response = await credova.cards.create({
+        const response = await publicsquare.cards.create({
           cardholder_name: formProps.cardholder_name as string,
           card
         })
