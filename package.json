@@ -1,11 +1,11 @@
 {
-  "name": "credova-elements",
+  "name": "publicsquare-elements",
   "version": "1.1.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "release": "semantic-release",
-    "test:ui": "NEXT_PUBLIC_CREDOVA_KEY=pk_test_your_key yarn playwright test --ui"
+    "test:ui": "NEXT_PUBLIC_PUBLICSQUARE_KEY=pk_test_your_key yarn playwright test --ui"
   },
   "keywords": [],
   "author": "",

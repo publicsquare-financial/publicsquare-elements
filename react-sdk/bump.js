@@ -10,7 +10,7 @@ fs.writeFileSync(
   `${JSON.stringify(libPackage, undefined, 2)}\n`
 );
 
-distPackage.dependencies["@credova/elements-js"] = distPackage.version;
+distPackage.dependencies["@publicsquare/elements-js"] = distPackage.version;
 
 // removes dist package scripts before publish
 delete distPackage.scripts;

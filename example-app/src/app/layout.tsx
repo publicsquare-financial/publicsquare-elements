@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Credova Payments Examples',
-  description: 'Explore Credova Payments examples'
+  title: 'PublicSquare Payments Examples',
+  description: 'Explore PublicSquare Payments examples'
 }
 
 export default function RootLayout({

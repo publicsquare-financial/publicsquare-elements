@@ -14,7 +14,7 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
-"@basis-theory/basis-theory-js@^4.8.0":
+"@basis-theory/basis-theory-js@^4.6.2", "@basis-theory/basis-theory-js@^4.8.0":
   version "4.8.0"
   resolved "https://registry.yarnpkg.com/@basis-theory/basis-theory-js/-/basis-theory-js-4.8.0.tgz#76d1fb33ce3bf32b648b49b7bb11d005621623c1"
   integrity sha512-pTMNjFcZCHLMPoLAq2oxCqyEcQnpzw8Blk/nXyz8K4y3OpD4jhgJWJWlNFynlvo2pwVoeRdkf5+PdlV8xKUZLw==
@@ -27,15 +27,12 @@
     snake-case "^3.0.4"
     snakecase-keys "^3.2.1"
 
-"@credova/elements-js@1.1.2", "@credova/elements-js@file:../js-sdk":
+"@credova/elements-js@1.1.2":
   version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@credova/elements-js/-/elements-js-1.1.2.tgz#dcd500bb26ef586bd17a0e5e08dffb561cbcddfc"
+  integrity sha512-cru4GaRcjaLfXNtRU8xt7sFcd40ycnn4uf3myeZBvXO/z0qIcgskjQ43b1s0h8sm51soFrZWejakxeWWHSdVWg==
   dependencies:
-    "@basis-theory/basis-theory-js" "^4.8.0"
-
-"@credova/elements-react@file:../react-sdk":
-  version "1.1.2"
-  dependencies:
-    "@credova/elements-js" "1.1.2"
+    "@basis-theory/basis-theory-js" "^4.6.2"
 
 "@eslint-community/eslint-utils@^4.2.0", "@eslint-community/eslint-utils@^4.4.0":
   version "4.4.0"
@@ -284,6 +281,16 @@
   integrity sha512-SgAdlSwYVpToI4e/IH19IHHWvoijAYH5hu2MWSXptRypLSnzj51PcGD+rsOXFayde4P9ZLi+loXVwArg6IUkCA==
   dependencies:
     playwright "1.47.0"
+
+"@publicsquare/elements-js@file:../js-sdk":
+  version "1.1.2"
+  dependencies:
+    "@basis-theory/basis-theory-js" "^4.8.0"
+
+"@publicsquare/elements-react@file:../react-sdk":
+  version "1.1.2"
+  dependencies:
+    "@credova/elements-js" "1.1.2"
 
 "@react-aria/focus@^3.17.1":
   version "3.17.1"

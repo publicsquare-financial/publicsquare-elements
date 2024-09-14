@@ -1,6 +1,6 @@
-import { Credova } from './Credova'
+import { PublicSquare } from './PublicSquare'
 
-export const _instance = new Credova()
+export const _instance = new PublicSquare()
 
-export * from './Credova'
+export * from './PublicSquare'
 export * from './cards'

@@ -7,7 +7,7 @@ cd $(dirname $0)/..
 
 echo "Building project..."
 
-export NEXT_PUBLIC_CREDOVA_KEY=pk_test_your_key
+export NEXT_PUBLIC_PUBLICSQUARE_KEY=pk_test_your_key
 
 yarn
 yarn playwright test
