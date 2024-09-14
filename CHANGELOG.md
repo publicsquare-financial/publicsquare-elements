@@ -1,10 +1,3 @@
-# [1.2.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.1.2...v1.2.0) (2024-09-14)
-
-
-### Features
-
-* rename elements ([a946cea](https://github.com/publicsquare-financial/publicsquare-elements/commit/a946cea7b38c7e6a7ffd9a4c1991882f08bdbf0f))
-
 ## [1.1.2](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.1.1...v1.1.2) (2024-08-08)
 
 
