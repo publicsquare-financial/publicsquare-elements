@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.2.0...v1.2.1) (2024-09-14)
+
+
+### Bug Fixes
+
+* bump dependencies and js elements reference ([2ace4f7](https://github.com/publicsquare-financial/publicsquare-elements/commit/2ace4f7e3478453fc321d4c31402a61b992c2bd1))
+
 # [1.2.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.1.2...v1.2.0) (2024-09-14)
 
 
