@@ -9,25 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@credova/elements-js": "file:../js-sdk",
-    "@credova/elements-react": "file:../react-sdk",
-    "@headlessui/react": "^2.1.0",
-    "@heroicons/react": "^2.1.4",
-    "next": "14.2.3",
+    "@publicsquare/elements-js": "file:../js-sdk",
+    "@publicsquare/elements-react": "file:../react-sdk",
+    "@headlessui/react": "^2.1.8",
+    "@heroicons/react": "^2.1.5",
+    "next": "14.2.10",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@playwright/test": "^1.44.1",
-    "@types/node": "^20",
-    "@types/react": "^18",
+    "@playwright/test": "^1.47.0",
+    "@types/node": "^22.5.4",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3",
-    "postcss": "^8",
-    "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.14",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "eslint": "^9.10.0",
+    "eslint-config-next": "14.2.10",
+    "postcss": "^8.4.45",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.6.2"
   }
 }

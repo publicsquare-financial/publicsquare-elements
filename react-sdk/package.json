@@ -1,14 +1,17 @@
 {
-  "name": "@credova/elements-react",
-  "version": "1.1.1",
-  "description": "Credova React Elements",
+  "name": "@publicsquare/elements-react",
+  "version": "1.2.1",
+  "description": "PublicSquare React Elements",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/credova-financial/credova-elements",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/publicsquare-financial/publicsquare-elements",
   "license": "MIT",
   "scripts": {
     "build": "yarn clean && concurrently 'yarn build:module' 'yarn build:declarations' 'yarn build:package' --kill-others-on-fail",
@@ -23,20 +26,20 @@
     "test:cov": "jest --coverage"
   },
   "dependencies": {
-    "@credova/elements-js": "^1.1.1"
+    "@publicsquare/elements-js": "1.2.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.22.15",
-    "@babel/core": "^7.22.20",
-    "@babel/preset-env": "^7.18.2",
-    "@babel/preset-react": "^7.22.5",
-    "@babel/preset-typescript": "^7.21.5",
-    "@types/react": "^18.3.3",
-    "concurrently": "^8.2.0",
-    "eslint": "^9.3.0",
-    "prettier": "^3.2.5",
+    "@babel/cli": "^7.25.6",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@types/react": "^18.3.5",
+    "concurrently": "^9.0.1",
+    "eslint": "^9.10.0",
+    "prettier": "^3.3.3",
     "react": "^18.3.1",
-    "rimraf": "^5.0.7",
-    "typescript": "^5.4.5"
+    "rimraf": "^6.0.1",
+    "typescript": "^5.6.2"
   }
 }

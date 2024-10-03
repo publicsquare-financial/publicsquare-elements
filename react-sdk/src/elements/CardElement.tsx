@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
-import CredovaElement from './element'
-import Types from '@credova/elements-js/dist/types/sdk'
+import PublicSquareElement from './element'
+import Types from '@publicsquare/elements-js/types/sdk'
 
 type CardElementProps = {
   id: string;
@@ -8,6 +8,6 @@ type CardElementProps = {
 
 export const CardElement = forwardRef<Types.CardElement, CardElementProps>(
   function Component(props, ref) {
-    return <CredovaElement type="card" {...props} ref={ref} />
+    return <PublicSquareElement type="card" {...props} ref={ref} />
   }
 );

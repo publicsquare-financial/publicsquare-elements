@@ -3,7 +3,7 @@ import {
   ElementType,
   CreateCardElementOptions,
   ElementTypeEnum,
-  CredovaInitOptions,
+  PublicSquareInitOptions,
   BasisTheoryInstance,
   CreateElementOptions,
   CardExpirationDateElement,
@@ -20,10 +20,10 @@ import {
   CreateCardVerificationCodeElementOptions,
   ElementValue
 } from '@basis-theory/basis-theory-js/types/elements'
-import { CredovaCards } from './cards'
+import { PublicSquareCards } from './cards'
 import PublicSquareACH from './ach/ACH'
 
-export class Credova {
+export class PublicSquare {
   _apiKey?: string
   _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP'
   protected _bt?: BasisTheoryInstance
@@ -34,17 +34,17 @@ export class Credova {
 
   _elements: ElementValue[] = []
 
-  public cards = new CredovaCards(this)
+  public cards = new PublicSquareCards(this)
 
   public ach = new PublicSquareACH(this)
 
   /**
-   * Initialize the Credova sdk. (REQUIRED before calling `createElement`)
-   * @param apiKey your Credova public key
-   * @param options CredovaInitOptions see [docs](https://docs.credova.com)
-   * @returns class Credova
+   * Initialize the PublicSquare sdk. (REQUIRED before calling `createElement`)
+   * @param apiKey your PublicSquare public key
+   * @param options PublicSquareInitOptions see [docs](https://developers.publicsquare.com)
+   * @returns class PublicSquare
    */
-  public async init(apiKey: string, options?: CredovaInitOptions) {
+  public async init(apiKey: string, options?: PublicSquareInitOptions) {
     this._apiKey = apiKey
     if (options?.apiBaseUrl) this._proxyKey = options?.apiBaseUrl
 
@@ -69,9 +69,9 @@ export class Credova {
   }
 
   /**
-   * Initialize a Credova element.
+   * Initialize a PublicSquare element.
    * @param type 'card' | 'cardExpirationDate' | 'cardNumber' | 'cardVerificationCode'
-   * @param options CreateCardElementOptions see [docs](https://docs.credova.com)
+   * @param options CreateCardElementOptions see [docs](https://developers.publicsquare.com)
    * @returns created element
    */
   public createElement(type: ElementType, options: CreateElementOptions) {

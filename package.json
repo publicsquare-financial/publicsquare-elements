@@ -1,25 +1,25 @@
 {
-  "name": "credova-elements",
-  "version": "1.1.1",
+  "name": "publicsquare-elements",
+  "version": "1.2.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "release": "semantic-release",
-    "test:ui": "NEXT_PUBLIC_CREDOVA_KEY=pk_test_your_key yarn playwright test --ui"
+    "test:ui": "NEXT_PUBLIC_PUBLICSQUARE_KEY=pk_test_your_key yarn playwright test --ui"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.45.2",
+    "@playwright/test": "^1.47.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.0",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^10.1.1",
+    "@semantic-release/github": "^10.3.3",
     "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^14.0.1",
-    "@types/node": "^20.14.11",
-    "semantic-release": "^24.0.0"
+    "@types/node": "^22.5.5",
+    "semantic-release": "^24.1.1"
   }
 }

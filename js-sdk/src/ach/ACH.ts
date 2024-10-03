@@ -3,13 +3,13 @@ import {
   ELEMENTS_PUBLICSQUARE_ACH_NO_POINTER_MESSAGE,
   ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE
 } from '@/constants'
-import { Credova } from '..'
+import { PublicSquare } from '@/PublicSquare'
 import { CreateElementOptions } from '@/types/sdk'
 
 export default class PublicSquareACH {
-  private _publicSquare: Credova
+  private _publicSquare: PublicSquare
 
-  constructor(psqPointer: Credova) {
+  constructor(psqPointer: PublicSquare) {
     if (!psqPointer) {
       throw Error(ELEMENTS_PUBLICSQUARE_ACH_NO_POINTER_MESSAGE)
     }

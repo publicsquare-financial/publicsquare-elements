@@ -16,7 +16,7 @@ export interface ApplicationInfo {
   url?: string
 }
 
-export interface CredovaInitOptions {
+export interface PublicSquareInitOptions {
   apiBaseUrl?: string
   appInfo?: ApplicationInfo
 }

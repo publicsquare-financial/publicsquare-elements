@@ -1,9 +1,9 @@
 import React, { forwardRef, useEffect, useState } from 'react'
-import { useCredova } from '../core/CredovaProvider'
+import { usePublicSquare } from '../core/PublicSquareProvider'
 import {
   CreateElementOptions,
   ElementType
-} from '@credova/elements-js/dist/types/sdk'
+} from '@publicsquare/elements-js/types/sdk'
 
 type ElementProps = {
   id: string
@@ -11,12 +11,12 @@ type ElementProps = {
   options?: CreateElementOptions
 }
 
-const CredovaElement = forwardRef<any, ElementProps>(function Component(
+const PublicSquareElement = forwardRef<any, ElementProps>(function Component(
   { id, type, options = {} },
   ref
 ) {
   const [elementId, setElementId] = useState(id)
-  const { credova, createElement } = useCredova()
+  const { publicsquare, createElement } = usePublicSquare()
   const [element, setElement] = useState()
 
   function setRef(element: ReturnType<typeof createElement>) {
@@ -29,20 +29,20 @@ const CredovaElement = forwardRef<any, ElementProps>(function Component(
 
   let init = false
   useEffect(() => {
-    if (!init && credova && !element) {
+    if (!init && publicsquare && !element) {
       init = true
       const element = createElement(type, options)
       element.mount(`#${id}`)
       setRef(element)
     }
-  }, [credova, element])
+  }, [publicsquare, element])
 
   if (!id || !type || !ref) {
-    console.error(`Credova element requires an id, type, & ref!`)
+    console.error(`PublicSquare element requires an id, type, & ref!`)
     return null
   } else {
     return <div id={elementId} />
   }
 })
 
-export default CredovaElement
+export default PublicSquareElement

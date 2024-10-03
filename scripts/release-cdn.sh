@@ -10,9 +10,9 @@ dist_directory="$PWD"/dist
 # back to script directory
 cd $script_directory
 
-JS_HOST="js.credova.com"
+JS_HOST="js.publicsquare.com"
 MAJOR_VERSION=$(node -p -e "require('./package.json').version")
-BUNDLE_PATH=$dist_directory/credova-js.bundle.js
+BUNDLE_PATH=$dist_directory/publicsquare-js.bundle.js
 BLOB_DIR=v$MAJOR_VERSION
 INDEX_JS_NAME=$BLOB_DIR/index.js
 VERSIONED_JS_NAME=$(cat package.json | jq -r '.version')
