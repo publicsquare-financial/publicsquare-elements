@@ -5,7 +5,7 @@ const ELEMENTS_TYPE_NOT_SUPPORTED =
   'Credova Elements does not support the type of element specified.'
 
 const ELEMENTS_NOM_DOM_ERROR_MESSAGE =
-  'Tried to load Credova Elements in a non-DOM environment.'
+  'PublicSquare requires access to the DOM (Client-side only support).'
 
 const ELEMENTS_SCRIPT_LOAD_ERROR_MESSAGE =
   'Credova Elements did not load properly.'
@@ -15,6 +15,9 @@ const ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE =
 
 const ELEMENTS_CREDOVA_CARDS_NO_POINTER_MESSAGE =
   'CredovaCards requires credovaPointer when initializing'
+
+const ELEMENTS_PUBLICSQUARE_ACH_NO_POINTER_MESSAGE =
+  'PublicSquareACH requires psqPointer when initializing'
 
 const CARD_BRANDS = [
   'visa',
@@ -53,6 +56,7 @@ export {
   ELEMENTS_SCRIPT_LOAD_ERROR_MESSAGE,
   ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE,
   ELEMENTS_CREDOVA_CARDS_NO_POINTER_MESSAGE,
+  ELEMENTS_PUBLICSQUARE_ACH_NO_POINTER_MESSAGE,
   CARD_BRANDS,
   CARD_ICON_POSITIONS,
   AUTOCOMPLETE_VALUES,

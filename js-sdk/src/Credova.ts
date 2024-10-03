@@ -21,19 +21,22 @@ import {
   ElementValue
 } from '@basis-theory/basis-theory-js/types/elements'
 import { CredovaCards } from './cards'
+import PublicSquareACH from './ach/ACH'
 
 export class Credova {
-  _apiKey?: string;
-  _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP';
+  _apiKey?: string
+  _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP'
   protected _bt?: BasisTheoryInstance
 
   get bt(): BasisTheoryInstance | undefined {
     return this._bt
   }
 
-  private _elements: ElementValue[] = []
+  _elements: ElementValue[] = []
 
   public cards = new CredovaCards(this)
+
+  public ach = new PublicSquareACH(this)
 
   /**
    * Initialize the Credova sdk. (REQUIRED before calling `createElement`)
@@ -42,8 +45,8 @@ export class Credova {
    * @returns class Credova
    */
   public async init(apiKey: string, options?: CredovaInitOptions) {
-    this._apiKey = apiKey;
-    if (options?.apiBaseUrl) this._proxyKey = options?.apiBaseUrl;
+    this._apiKey = apiKey
+    if (options?.apiBaseUrl) this._proxyKey = options?.apiBaseUrl
 
     const bt = await new BasisTheory().init(
       (Math.random() + 1).toString(36).substring(7),
@@ -87,6 +90,8 @@ export class Credova {
         return this.createCardVerificationCodeElement(
           options as CreateCardVerificationCodeElementOptions
         )
+      case 'ach':
+        return this.createACHElement(options)
       default:
         throw new Error(ELEMENTS_TYPE_NOT_SUPPORTED)
     }
@@ -121,5 +126,9 @@ export class Credova {
       ...options,
       targetId: 'elementTypesCardVerificationCodeElement'
     }) as CardVerificationCodeElement
+  }
+
+  public createACHElement(options: CreateElementOptions) {
+    return new PublicSquareACH(this).createElement(options)
   }
 }

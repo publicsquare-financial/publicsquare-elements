@@ -21,13 +21,14 @@ export interface CredovaInitOptions {
   appInfo?: ApplicationInfo
 }
 
-export type ElementType = BTElementType
+export type ElementType = BTElementType & 'ach'
 
 export enum ElementTypeEnum {
   Card = 'card',
   CardExpirationDate = 'cardExpirationDate',
   CardNumber = 'cardNumber',
-  CardVerificationCode = 'cardVerificationCode'
+  CardVerificationCode = 'cardVerificationCode',
+  ACH = 'ach'
 }
 
 export type CreateElementOptions =
