@@ -21,7 +21,7 @@ import {
   ElementValue
 } from '@basis-theory/basis-theory-js/types/elements'
 import { PublicSquareCards } from './cards'
-import PublicSquareACH from './ach/ACH'
+import { PublicSquareACH } from './ach/ACH'
 
 export class PublicSquare {
   _apiKey?: string
@@ -70,7 +70,7 @@ export class PublicSquare {
 
   /**
    * Initialize a PublicSquare element.
-   * @param type 'card' | 'cardExpirationDate' | 'cardNumber' | 'cardVerificationCode'
+   * @param type {ElementType} 'card' | 'cardExpirationDate' | 'cardNumber' | 'cardVerificationCode' | 'ach'
    * @param options CreateCardElementOptions see [docs](https://developers.publicsquare.com)
    * @returns created element
    */

@@ -6,7 +6,6 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-  --color-base: #323856;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,7 +17,7 @@
 }
 
 body {
-  color: rgb(var(--color-base));
+  @apply text-slate-900;
   background: linear-gradient(
       to bottom,
       transparent,
@@ -31,4 +30,12 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+label {
+  @apply text-slate-900;
+}
+
+p {
+  @apply text-slate-500;
 }

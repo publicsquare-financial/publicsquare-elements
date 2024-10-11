@@ -4,9 +4,15 @@ import {
   ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE
 } from '@/constants'
 import { PublicSquare } from '@/PublicSquare'
-import { CreateElementOptions } from '@/types/sdk'
+import {
+  BankAccountCreateInput,
+  BankAccountCreateResponse,
+  CreateElementOptions
+} from '@/types/sdk'
+import { transformCreateBankAccountInput } from '@/utils'
+import { validateCreateBankAccountInput } from '@/validators/ach'
 
-export default class PublicSquareACH {
+export class PublicSquareACH {
   private _publicSquare: PublicSquare
 
   constructor(psqPointer: PublicSquare) {
@@ -16,19 +22,55 @@ export default class PublicSquareACH {
     this._publicSquare = psqPointer
   }
 
+  public create(
+    input: BankAccountCreateInput
+  ): Promise<BankAccountCreateResponse> {
+    if (!this._publicSquare._apiKey) {
+      throw new Error('apiKey must be sent at initialization')
+    } else if (!this._publicSquare.bt || !this._publicSquare.bt.client) {
+      throw new Error('PublicSquare JS has not be initialized yet')
+    } else {
+      const validatedInput = validateCreateBankAccountInput(input)
+      return this._publicSquare.bt.client
+        .post(
+          'https://api.basistheory.com/proxy',
+          transformCreateBankAccountInput(validatedInput),
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'X-API-KEY': this._publicSquare._apiKey,
+              'BT-PROXY-KEY': this._publicSquare._proxyKey
+            }
+          }
+        )
+        .then((res) => res as BankAccountCreateResponse)
+    }
+  }
+
   public createElement(options: CreateElementOptions): any {
     if (typeof window === 'undefined') {
       throw Error(ELEMENTS_NOM_DOM_ERROR_MESSAGE)
     }
     const container = document.createElement('div')
     container.id = 'psq-ach-container'
+    container.style.display = 'flex'
+
+    const routingNumberContainer = document.createElement('div')
+    routingNumberContainer.id = 'psq-ach-routing-number-container'
+    routingNumberContainer.style.width = '100%'
+    container.appendChild(routingNumberContainer)
     const routingNumber = this._publicSquare.bt?.createElement('text', {
-      targetId: container.id,
-      placeholder: 'Enter bank routing #...'
+      targetId: 'psq-ach-routing-number',
+      placeholder: 'Routing Number'
     })
+
+    const accountNumberContainer = document.createElement('div')
+    accountNumberContainer.id = 'psq-ach-account-number-container'
+    accountNumberContainer.style.width = '100%'
+    container.appendChild(accountNumberContainer)
     const accountNumber = this._publicSquare.bt?.createElement('text', {
-      targetId: container.id,
-      placeholder: 'Enter bank account #...'
+      targetId: 'psq-ach-account-number',
+      placeholder: 'Account Number'
     })
 
     return {
@@ -37,11 +79,16 @@ export default class PublicSquareACH {
         if (!routingNumber || !accountNumber) {
           throw new Error(ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE)
         } else {
-          routingNumber.mount(container.id)
-          this._publicSquare._elements.push(routingNumber)
+          const target = document.querySelector(id)
+          if (target) {
+            target.appendChild(container)
 
-          accountNumber.mount(container.id)
-          this._publicSquare._elements.push(accountNumber)
+            routingNumber.mount(`#${routingNumberContainer.id}`)
+            this._publicSquare._elements.push(routingNumber)
+
+            accountNumber.mount(`#${accountNumberContainer.id}`)
+            this._publicSquare._elements.push(accountNumber)
+          }
         }
         return this
       }

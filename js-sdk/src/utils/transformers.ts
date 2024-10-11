@@ -1,4 +1,7 @@
-import type { ValidatedCardsCreateInput } from '@/types/sdk/cards'
+import type {
+  ValidatedBankAccountCreateInput,
+  ValidatedCardsCreateInput
+} from '@/types/sdk'
 
 /**
  * Transform input from the sdk to the proxy input format
@@ -21,4 +24,15 @@ export function transformCreateCardInput({
         }
       : { card: validated.card })
   }
+}
+
+/**
+ * Transform input from the sdk to the proxy input format
+ * @param {ValidatedBankAccountCreateInput} input
+ * @returns {BankAccountCreateInput} API input
+ */
+export function transformCreateBankAccountInput({
+  validated
+}: ValidatedBankAccountCreateInput) {
+  return validated
 }

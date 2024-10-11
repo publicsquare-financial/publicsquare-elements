@@ -84,10 +84,10 @@ function CardElements() {
   }
 
   return (
-    <div className="space-y-4 w-full">
-      <h3 className="text-lg font-bold">React: All-in-one Card Element</h3>
+    <div className="space-y-4 w-full max-w-md">
+      <h3 className="text-lg font-medium">All-in-one Card Element</h3>
       <form onSubmit={onSubmitCardElement} name="react-form-cardelement">
-        <div className="w-full max-w-md space-y-4">
+        <div className="w-full space-y-4">
           <NameInput />
           <div className="space-y-2">
             <label>Card element</label>
@@ -96,11 +96,11 @@ function CardElements() {
             </div>
           </div>
           <div className="flex justify-end">
-            <SubmitButton loading={loading} />
+            <SubmitButton loading={loading} elementType="card" />
           </div>
         </div>
       </form>
-      <h3 className="text-lg font-bold">React: Individual Elements</h3>
+      <h3 className="text-lg font-medium">Individual Elements</h3>
       <form onSubmit={onSubmitCardElements} name="react-form-cardelements">
         <div className="w-full max-w-md space-y-4">
           <NameInput />
@@ -134,7 +134,7 @@ function CardElements() {
             </div>
           </div>
           <div className="flex justify-end">
-            <SubmitButton loading={loading} />
+            <SubmitButton loading={loading} elementType="card" />
           </div>
         </div>
       </form>

@@ -21,7 +21,9 @@ export interface PublicSquareInitOptions {
   appInfo?: ApplicationInfo
 }
 
-export type ElementType = BTElementType & 'ach'
+export type Environment = 'test' | 'production'
+
+export type ElementType = BTElementType | 'ach'
 
 export enum ElementTypeEnum {
   Card = 'card',
