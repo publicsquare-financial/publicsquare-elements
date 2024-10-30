@@ -7,6 +7,7 @@ import type {
   BasisTheoryElements
 } from '@basis-theory/basis-theory-js/types/elements'
 import { BasisTheory as IBasisTheory } from '@basis-theory/basis-theory-js/types/sdk'
+import {PublicSquareBankAccounts} from "@/bankaccounts";
 export { ElementWrapper } from '@basis-theory/basis-theory-js/types/elements'
 export * from '@basis-theory/basis-theory-js/types/elements'
 
@@ -21,13 +22,16 @@ export interface PublicSquareInitOptions {
   appInfo?: ApplicationInfo
 }
 
-export type ElementType = BTElementType
+export type Environment = 'test' | 'production'
+
+export type ElementType = BTElementType | 'bankaccount'
 
 export enum ElementTypeEnum {
   Card = 'card',
   CardExpirationDate = 'cardExpirationDate',
   CardNumber = 'cardNumber',
-  CardVerificationCode = 'cardVerificationCode'
+  CardVerificationCode = 'cardVerificationCode',
+  BankAccount = 'bankaccount'
 }
 
 export type CreateElementOptions =

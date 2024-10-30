@@ -18,7 +18,7 @@
 }
 
 body {
-  color: rgb(var(--color-base));
+  @apply text-slate-900
   background: linear-gradient(
       to bottom,
       transparent,
@@ -31,4 +31,12 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+label {
+  @apply text-slate-900;
+}
+
+p {
+  @apply text-slate-500;
 }

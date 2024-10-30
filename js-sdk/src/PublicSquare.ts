@@ -21,20 +21,22 @@ import {
   ElementValue
 } from '@basis-theory/basis-theory-js/types/elements'
 import { PublicSquareCards } from './cards'
+import { PublicSquareBankAccounts } from "./bankaccounts";
 
 export class PublicSquare {
-  _apiKey?: string;
-  _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP';
+  _apiKey?: string
+  _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP'
   protected _bt?: BasisTheoryInstance
 
   get bt(): BasisTheoryInstance | undefined {
     return this._bt
   }
 
-  private _elements: ElementValue[] = []
+  _elements: ElementValue[] = []
 
   public cards = new PublicSquareCards(this)
 
+  public bankAccounts = new PublicSquareBankAccounts(this)
   /**
    * Initialize the PublicSquare sdk. (REQUIRED before calling `createElement`)
    * @param apiKey your PublicSquare public key
@@ -42,8 +44,8 @@ export class PublicSquare {
    * @returns class PublicSquare
    */
   public async init(apiKey: string, options?: PublicSquareInitOptions) {
-    this._apiKey = apiKey;
-    if (options?.apiBaseUrl) this._proxyKey = options?.apiBaseUrl;
+    this._apiKey = apiKey
+    if (options?.apiBaseUrl) this._proxyKey = options?.apiBaseUrl
 
     const bt = await new BasisTheory().init(
       (Math.random() + 1).toString(36).substring(7),
@@ -67,7 +69,7 @@ export class PublicSquare {
 
   /**
    * Initialize a PublicSquare element.
-   * @param type 'card' | 'cardExpirationDate' | 'cardNumber' | 'cardVerificationCode'
+   * @param type {ElementType} 'card' | 'cardExpirationDate' | 'cardNumber' | 'cardVerificationCode' | bankaccount
    * @param options CreateCardElementOptions see [docs](https://developers.publicsquare.com)
    * @returns created element
    */
@@ -87,6 +89,8 @@ export class PublicSquare {
         return this.createCardVerificationCodeElement(
           options as CreateCardVerificationCodeElementOptions
         )
+      case 'bankaccount':
+        return this.createBankAccountElement(options)
       default:
         throw new Error(ELEMENTS_TYPE_NOT_SUPPORTED)
     }
@@ -121,5 +125,9 @@ export class PublicSquare {
       ...options,
       targetId: 'elementTypesCardVerificationCodeElement'
     }) as CardVerificationCodeElement
+  }
+  
+  public createBankAccountElement(options: CreateElementOptions){
+    return this._createElement(ElementTypeEnum.BankAccount, options)
   }
 }

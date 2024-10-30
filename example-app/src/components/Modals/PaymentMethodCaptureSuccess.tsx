@@ -11,7 +11,7 @@ type Props = {
   onClose: () => void
 }
 
-export default function CardCaptureSuccess({ message, onClose }: Props) {
+export default function PaymentMethodCaptureSuccess({ message, onClose }: Props) {
   return (
     <Dialog className="relative z-10" open={!!message} onClose={onClose}>
       <DialogBackdrop
@@ -40,7 +40,7 @@ export default function CardCaptureSuccess({ message, onClose }: Props) {
                   as="h3"
                   className="text-base font-semibold leading-6 text-gray-900"
                 >
-                  Card capture successful
+                  Capture successful
                 </DialogTitle>
                 <div className="mt-2 text-left space-y-1">
                   <p>Response data:</p>
