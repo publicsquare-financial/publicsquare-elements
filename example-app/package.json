@@ -9,10 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@publicsquare/elements-js": "file:../js-sdk",
-    "@publicsquare/elements-react": "file:../react-sdk",
     "@headlessui/react": "^2.1.8",
     "@heroicons/react": "^2.1.5",
+    "@publicsquare/elements-js": "../js-sdk",
+    "@publicsquare/elements-react": "file:../react-sdk",
     "next": "14.2.10",
     "react": "^18",
     "react-dom": "^18"
