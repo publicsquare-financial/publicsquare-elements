@@ -1187,10 +1187,10 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@publicsquare/elements-js@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.2.0.tgz#ced43f0e4e68d0b23930b62d52b9148c058e3828"
-  integrity sha512-YP2AggpI+Iu3vdEZcb5JcCXBXcdSd2aZajwmqYquCc/JH2YGIkPenvBMbHaIvn4vvpDtV49l0agT99DVp3pNjw==
+"@publicsquare/elements-js@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.2.1.tgz#e331c7a1d947e0654b408360302d2a9b2c45193f"
+  integrity sha512-AvWv+0e63j/86Ywlxqz/5KYNeWbznlUhRqABnO+m59D6Gp+aWoUuVsT9j/ueh0qzTH4xBqxw01/IZiRmohveWA==
   dependencies:
     "@basis-theory/basis-theory-js" "^4.8.0"
 
