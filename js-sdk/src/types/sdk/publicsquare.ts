@@ -23,7 +23,7 @@ export interface PublicSquareInitOptions {
 
 export type Environment = 'test' | 'production'
 
-export type ElementType = BTElementType | 'ach'
+export type ElementType = BTElementType | 'bankAccount'
 
 export enum ElementTypeEnum {
   Card = 'card',

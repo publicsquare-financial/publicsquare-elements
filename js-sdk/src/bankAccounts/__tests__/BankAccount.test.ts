@@ -1,5 +1,5 @@
 import { PublicSquare } from '@/index'
-import { PublicSquareACH } from '../'
+import { PublicSquareBankAccount } from '../'
 import { getError } from '@/tests/utils'
 import { generateCardCreateInput } from '@/tests/factories/cards'
 
@@ -9,16 +9,16 @@ jest.mock('@basis-theory/basis-theory-js', () => {
 
 describe('PublicSquare', () => {
   let publicSquare: PublicSquare
-  let ach: PublicSquareACH
+  let bankAccount: PublicSquareBankAccount
   beforeAll(() => {
     publicSquare = new PublicSquare()
-    ach = new PublicSquareACH(publicSquare)
+    bankAccount = new PublicSquareBankAccount(publicSquare)
   })
 
   test('constructs', async () => {
-    expect(ach).toBeDefined()
+    expect(bankAccount).toBeDefined()
     const error = await getError<{ message: string }>(
-      () => new (PublicSquareACH as any)(publicSquare)
+      () => new (PublicSquareBankAccount as any)(publicSquare)
     )
     // expect(error.message).toEqual(ELEMENTS_CREDOVA_CARDS_NO_POINTER_MESSAGE)
   })

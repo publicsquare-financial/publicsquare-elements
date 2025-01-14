@@ -6,10 +6,10 @@ import {
 export function validateCreateBankAccountInput(
   input: BankAccountCreateInput
 ): ValidatedBankAccountCreateInput {
-  if (typeof input.routing_number !== 'string') {
+  if (!['string', 'object'].includes(typeof input.routing_number)) {
     throw new Error('routing_number is required')
   }
-  if (typeof input.account_number !== 'string') {
+  if (!['string', 'object'].includes(typeof input.account_number)) {
     throw new Error('account_number is required')
   }
   if (typeof input.country !== 'string') {

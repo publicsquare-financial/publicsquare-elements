@@ -1,4 +1,5 @@
 import { Environment } from './publicsquare'
+import { PSQTextElement } from './elements'
 
 export type BankAccountHolderType = 'individual' | 'company'
 
@@ -30,4 +31,14 @@ export type BankAccountCreateResponse = {
   customer_id?: string
   created_at?: string
   modified_at?: string
+}
+
+export type RoutingNumberElement = PSQTextElement
+
+export type AccountNumberElement = PSQTextElement
+
+export type BankAccountElement = {
+  mount: (targetId: string) => void
+  accountNumber: AccountNumberElement
+  routingNumber: RoutingNumberElement
 }

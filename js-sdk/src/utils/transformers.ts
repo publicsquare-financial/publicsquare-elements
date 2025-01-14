@@ -1,4 +1,5 @@
 import type {
+  BankAccountCreateInput,
   ValidatedBankAccountCreateInput,
   ValidatedCardsCreateInput
 } from '@/types/sdk'
@@ -33,6 +34,6 @@ export function transformCreateCardInput({
  */
 export function transformCreateBankAccountInput({
   validated
-}: ValidatedBankAccountCreateInput) {
+}: ValidatedBankAccountCreateInput): BankAccountCreateInput {
   return validated
 }
