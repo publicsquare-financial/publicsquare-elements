@@ -22,7 +22,8 @@ import { validateCreateBankAccountInput } from '@/validators/bankAccounts'
 function createInputElement({
   placeholder,
   value,
-  className
+  className,
+  required = true
 }: InputElementOptions): PSQTextElement {
   const input = document.createElement('input')
   input.type = 'text'
@@ -32,6 +33,7 @@ function createInputElement({
     'publicsquare-element-input',
     ...(className?.split(' ') ?? [])
   ].join(' ')
+  input.required = required
 
   return {
     el: input,

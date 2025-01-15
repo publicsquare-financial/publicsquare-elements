@@ -12,7 +12,7 @@ import {
 import NameInput from '@/components/NameInput'
 import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
 
-export default function ACHElementsJs() {
+export default function ACHElementsJs({ allInOne }: { allInOne: boolean }) {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>()
   const achRef = useRef(null)
   const [bankAccountElement, setBankAccountElement] =
@@ -40,42 +40,44 @@ export default function ACHElementsJs() {
 
   useEffect(() => {
     if (publicsquare) {
-      /**
-       * Step 2: Initialize the elements you want to use
-       */
-      // The whole card
-      const bankAccountElement = publicsquare.createBankAccountElement({
-        routingNumberOptions: {
-          className:
-            'block w-full border-0 px-4 py-3 placeholder:text-gray-400 focus:outline-none'
-        },
-        accountNumberOptions: {
-          className:
-            'block w-full border-0 px-4 py-3 placeholder:text-gray-400 focus:outline-none'
-        }
-      })
-      bankAccountElement.mount('#bank-account-element')
-      setBankAccountElement(bankAccountElement)
-
-      const routingNumberElement =
-        publicsquare.createBankAccountRoutingNumberElement({
-          placeholder: 'Routing number',
-          className:
-            'block w-full border-0 px-4 py-3 placeholder:text-gray-400 rounded-lg bg-white shadow focus:outline-none'
+      if (allInOne) {
+        /**
+         * Step 2: Initialize the elements you want to use
+         */
+        // The whole card
+        const bankAccountElement = publicsquare.createBankAccountElement({
+          routingNumberOptions: {
+            className:
+              'block w-full border-0 px-4 py-3 placeholder:text-gray-400 focus:outline-none'
+          },
+          accountNumberOptions: {
+            className:
+              'block w-full border-0 px-4 py-3 placeholder:text-gray-400 focus:outline-none'
+          }
         })
-      routingNumberElement.mount('#routing-number-element')
-      setRoutingNumberElement(routingNumberElement)
+        bankAccountElement.mount('#bank-account-element')
+        setBankAccountElement(bankAccountElement)
+      } else {
+        const routingNumberElement =
+          publicsquare.createBankAccountRoutingNumberElement({
+            placeholder: 'Routing number',
+            className:
+              'block w-full border-0 px-4 py-3 placeholder:text-gray-400 rounded-lg bg-white shadow focus:outline-none'
+          })
+        routingNumberElement.mount('#routing-number-element')
+        setRoutingNumberElement(routingNumberElement)
 
-      const accountNumberElement =
-        publicsquare.createBankAccountAccountNumberElement({
-          placeholder: 'Account number',
-          className:
-            'block w-full border-0 px-4 py-3 placeholder:text-gray-400 rounded-lg bg-white shadow focus:outline-none'
-        })
-      accountNumberElement.mount('#account-number-element')
-      setAccountNumberElement(accountNumberElement)
+        const accountNumberElement =
+          publicsquare.createBankAccountAccountNumberElement({
+            placeholder: 'Account number',
+            className:
+              'block w-full border-0 px-4 py-3 placeholder:text-gray-400 rounded-lg bg-white shadow focus:outline-none'
+          })
+        accountNumberElement.mount('#account-number-element')
+        setAccountNumberElement(accountNumberElement)
+      }
     }
-  }, [publicsquare])
+  }, [publicsquare, allInOne])
 
   function onSubmitCardElement(e: FormEvent<HTMLFormElement>) {
     if (bankAccountElement) {
@@ -110,8 +112,11 @@ export default function ACHElementsJs() {
       setLoading(true)
       try {
         const response = await publicsquare?.bankAccounts.create(
-          data,
-          process.env.NEXT_PUBLIC_PUBLICSQUARE_SECRET_KEY!
+          {
+            ...data,
+            account_holder_name: formProps.name as string
+          },
+          process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
         )
         if (response) {
           setJsCardSuccessMessage(response)
@@ -125,33 +130,33 @@ export default function ACHElementsJs() {
 
   return (
     <div className="space-y-4 w-full max-w-md">
-      <h3 className="text-lg font-medium">All-in-one ACH Element</h3>
-      <form onSubmit={onSubmitCardElement} name="js-form-cardelement">
+      <form
+        onSubmit={(e) =>
+          allInOne ? onSubmitCardElement(e) : onSubmitCardElements(e)
+        }
+        name="js-form-cardelement"
+      >
         <div className="w-full space-y-4">
-          <NameInput />
-          <div className="space-y-2">
-            <label>ACH element</label>
-            <div className="w-full max-w-md rounded-lg bg-white shadow overflow-hidden">
-              <div id="bank-account-element" ref={achRef}></div>
+          <NameInput required />
+          {allInOne ? (
+            <div className="space-y-2">
+              <label>ACH element</label>
+              <div className="w-full max-w-md rounded-lg bg-white shadow overflow-hidden">
+                <div id="bank-account-element" ref={achRef}></div>
+              </div>
             </div>
-          </div>
-          <div className="flex justify-end">
-            <SubmitButton loading={loading} elementType="ach" />
-          </div>
-        </div>
-      </form>
-      <h3 className="text-lg font-medium">Individual Elements</h3>
-      <form onSubmit={onSubmitCardElements} name="js-form-cardelements">
-        <div className="w-full max-w-md space-y-4">
-          <NameInput />
-          <div className="space-y-2">
-            <label>ACH routing number element</label>
-            <div id="routing-number-element"></div>
-          </div>
-          <div className="space-y-2">
-            <label>ACH account number element</label>
-            <div id="account-number-element"></div>
-          </div>
+          ) : (
+            <>
+              <div className="space-y-2">
+                <label>ACH routing number element</label>
+                <div id="routing-number-element"></div>
+              </div>
+              <div className="space-y-2">
+                <label>ACH account number element</label>
+                <div id="account-number-element"></div>
+              </div>
+            </>
+          )}
           <div className="flex justify-end">
             <SubmitButton loading={loading} elementType="ach" />
           </div>
