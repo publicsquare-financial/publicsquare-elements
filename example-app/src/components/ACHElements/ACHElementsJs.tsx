@@ -129,7 +129,7 @@ export default function ACHElementsJs({ allInOne }: { allInOne: boolean }) {
   }
 
   return (
-    <div className="space-y-4 w-full max-w-md">
+    <div className="space-y-4 w-full">
       <form
         onSubmit={(e) =>
           allInOne ? onSubmitCardElement(e) : onSubmitCardElements(e)
@@ -141,7 +141,7 @@ export default function ACHElementsJs({ allInOne }: { allInOne: boolean }) {
           {allInOne ? (
             <div className="space-y-2">
               <label>ACH element</label>
-              <div className="w-full max-w-md rounded-lg bg-white shadow overflow-hidden">
+              <div className="w-full rounded-lg bg-white shadow overflow-hidden">
                 <div id="bank-account-element" ref={achRef}></div>
               </div>
             </div>

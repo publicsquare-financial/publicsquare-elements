@@ -6,7 +6,8 @@
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "publishConfig": {
     "access": "public"
@@ -17,7 +18,7 @@
     "build": "yarn clean && concurrently 'yarn build:bundle' 'yarn build:module' 'yarn build:declarations' 'yarn build:package' -n 'bundle,module,declarations,package' -c 'yellow,magenta,blue,green' --kill-others-on-fail -g",
     "build:bundle": "webpack --config webpack.prod.js",
     "build:declarations": "tsc && tsc-alias",
-    "build:module": "babel src --extensions .ts --out-dir dist",
+    "build:module": "babel src --extensions .ts --out-dir .",
     "build:package": "node prepare.js",
     "clean": "rimraf dist",
     "test": "jest"
@@ -34,7 +35,7 @@
     "@babel/preset-env": "^7.25.4",
     "@babel/preset-typescript": "^7.24.7",
     "@types/jest": "^29.5.13",
-    "babel-loader": "^9.1.3",
+    "babel-loader": "^9.2.1",
     "babel-plugin-inline-dotenv": "^1.1.0",
     "babel-plugin-transform-builtin-extend": "^1.1.2",
     "babel-plugin-tsconfig-paths-module-resolver": "^1.0.3",

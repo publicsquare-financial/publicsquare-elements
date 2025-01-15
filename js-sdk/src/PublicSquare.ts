@@ -1,10 +1,13 @@
 import { BasisTheory } from '@basis-theory/basis-theory-js'
-import * as Types from './types/sdk'
 import {
   ELEMENTS_INIT_ERROR_MESSAGE,
   ELEMENTS_TYPE_NOT_SUPPORTED
 } from './constants'
 import {
+  CardElement,
+  CardExpirationDateElement,
+  CardNumberElement,
+  CardVerificationCodeElement,
   CreateCardExpirationDateElementOptions,
   CreateCardNumberElementOptions,
   CreateCardVerificationCodeElementOptions,
@@ -12,17 +15,27 @@ import {
 } from '@basis-theory/basis-theory-js/types/elements'
 import { PublicSquareCards } from './cards'
 import { PublicSquareBankAccount } from './bankAccounts'
+import {
+  BasisTheoryInstance,
+  CreateCardElementOptions,
+  CreateElementOptions,
+  ElementType,
+  ElementTypeEnum,
+  InputElementOptions,
+  PSQTextElement,
+  PublicSquareInitOptions
+} from './types'
 
 export class PublicSquare {
   _apiKey?: string
   _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP'
-  protected _bt?: Types.BasisTheoryInstance
+  protected _bt?: BasisTheoryInstance
 
-  get bt(): Types.BasisTheoryInstance | undefined {
+  get bt(): BasisTheoryInstance | undefined {
     return this._bt
   }
 
-  _elements: (ElementValue | Types.PSQTextElement)[] = []
+  _elements: (ElementValue | PSQTextElement)[] = []
 
   public cards = new PublicSquareCards(this)
 
@@ -34,7 +47,7 @@ export class PublicSquare {
    * @param options PublicSquareInitOptions see [docs](https://developers.publicsquare.com)
    * @returns class PublicSquare
    */
-  public async init(apiKey: string, options?: Types.PublicSquareInitOptions) {
+  public async init(apiKey: string, options?: PublicSquareInitOptions) {
     this._apiKey = apiKey
     if (options?.apiBaseUrl) this._proxyKey = options?.apiBaseUrl
 
@@ -50,9 +63,13 @@ export class PublicSquare {
   }
 
   private _createElement(
-    type: Types.ElementTypeEnum,
-    options: Types.CreateElementOptions
-  ) {
+    type: ElementTypeEnum,
+    options: CreateElementOptions
+  ):
+    | CardElement
+    | CardExpirationDateElement
+    | CardNumberElement
+    | CardVerificationCodeElement {
     if (!this._bt) {
       throw new Error(ELEMENTS_INIT_ERROR_MESSAGE)
     }
@@ -67,13 +84,10 @@ export class PublicSquare {
    * @param options CreateCardElementOptions see [docs](https://developers.publicsquare.com)
    * @returns created element
    */
-  public createElement(
-    type: Types.ElementType,
-    options: Types.CreateElementOptions
-  ) {
+  public createElement(type: ElementType, options: CreateElementOptions) {
     switch (type) {
       case 'card':
-        return this.createCardElement(options as Types.CreateCardElementOptions)
+        return this.createCardElement(options as CreateCardElementOptions)
       case 'cardExpirationDate':
         return this.createCardExpirationDateElement(
           options as CreateCardExpirationDateElementOptions
@@ -93,52 +107,52 @@ export class PublicSquare {
     }
   }
 
-  public createCardElement(options: Types.CreateCardElementOptions) {
-    return this._createElement(Types.ElementTypeEnum.Card, options)
+  public createCardElement(options: CreateCardElementOptions) {
+    return this._createElement(ElementTypeEnum.Card, options)
   }
 
   public createCardExpirationDateElement(
-    options: Omit<Types.CreateCardExpirationDateElementOptions, 'targetId'>
+    options: Omit<CreateCardExpirationDateElementOptions, 'targetId'>
   ) {
-    return this._createElement(Types.ElementTypeEnum.CardExpirationDate, {
+    return this._createElement(ElementTypeEnum.CardExpirationDate, {
       ...options,
       targetId: 'elementTypesCardExpirationDateElement'
-    }) as Types.CardExpirationDateElement
+    }) as CardExpirationDateElement
   }
 
   public createCardNumberElement(
-    options: Omit<Types.CreateCardNumberElementOptions, 'targetId'>
+    options: Omit<CreateCardNumberElementOptions, 'targetId'>
   ) {
-    return this._createElement(Types.ElementTypeEnum.CardNumber, {
+    return this._createElement(ElementTypeEnum.CardNumber, {
       ...options,
       targetId: 'elementTypesCardNumberElement'
-    }) as Types.CardNumberElement
+    }) as CardNumberElement
   }
 
   public createCardVerificationCodeElement(
-    options: Omit<Types.CreateCardVerificationCodeElementOptions, 'targetId'>
+    options: Omit<CreateCardVerificationCodeElementOptions, 'targetId'>
   ) {
-    return this._createElement(Types.ElementTypeEnum.CardVerificationCode, {
+    return this._createElement(ElementTypeEnum.CardVerificationCode, {
       ...options,
       targetId: 'elementTypesCardVerificationCodeElement'
-    }) as Types.CardVerificationCodeElement
+    }) as CardVerificationCodeElement
   }
 
   public createBankAccountElement(options?: {
-    routingNumberOptions?: Types.InputElementOptions
-    accountNumberOptions?: Types.InputElementOptions
+    routingNumberOptions?: InputElementOptions
+    accountNumberOptions?: InputElementOptions
   }) {
     return new PublicSquareBankAccount(this).createElement(options)
   }
 
   public createBankAccountRoutingNumberElement(
-    options: Types.InputElementOptions = {}
+    options: InputElementOptions = {}
   ) {
     return new PublicSquareBankAccount(this).createRoutingNumberElement(options)
   }
 
   public createBankAccountAccountNumberElement(
-    options: Types.InputElementOptions = {}
+    options: InputElementOptions = {}
   ) {
     return new PublicSquareBankAccount(this).createAccountNumberElement(options)
   }

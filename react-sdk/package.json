@@ -26,7 +26,7 @@
     "test:cov": "jest --coverage"
   },
   "dependencies": {
-    "@publicsquare/elements-js": "1.2.0"
+    "@publicsquare/elements-js": "file:../js-sdk"
   },
   "devDependencies": {
     "@babel/cli": "^7.25.6",
