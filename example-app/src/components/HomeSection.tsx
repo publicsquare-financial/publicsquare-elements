@@ -22,7 +22,7 @@ export default function HomeSection({
   rightColumn: (type: Technology, allInOne: boolean) => JSX.Element
 }) {
   const [selected, setSelected] = useState<Technology>('react')
-  const [allInOne, setAllInOne] = useState(false)
+  const [allInOne, setAllInOne] = useState(true)
 
   const memoizedRightColumn = useMemo(() => {
     return rightColumn(selected, allInOne)

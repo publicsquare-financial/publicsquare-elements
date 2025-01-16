@@ -44,17 +44,23 @@ export default function Header() {
         <div className="hidden lg:flex lg:gap-x-12">
           <Link
             href="/debit-credit-cards"
-            className={cx('text-sm/6 font-semibold text-gray-900', {
-              'text-blue-500': pathname === '/debit-credit-cards'
-            })}
+            className={cx(
+              'text-sm/6 font-semibold',
+              pathname === '/debit-credit-cards'
+                ? 'text-indigo-500 border-b-2 border-indigo-500'
+                : 'text-gray-900 border-b-2 border-transparent'
+            )}
           >
             Debit/Credit Cards
           </Link>
           <Link
             href="/bank-accounts"
-            className={cx('text-sm/6 font-semibold text-gray-900', {
-              'text-blue-500': pathname === '/bank-accounts'
-            })}
+            className={cx(
+              'text-sm/6 font-semibold',
+              pathname === '/bank-accounts'
+                ? 'text-indigo-500 border-b-2 border-indigo-500'
+                : 'text-gray-900 border-b-2 border-transparent'
+            )}
           >
             Bank Accounts
           </Link>
@@ -102,10 +108,10 @@ export default function Header() {
                 <Link
                   href="/debit-credit-cards"
                   className={cx(
-                    '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50',
-                    {
-                      'text-blue-500': pathname === '/debit-credit-cards'
-                    }
+                    '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold',
+                    pathname === '/debit-credit-cards'
+                      ? 'text-indigo-500 border-b-2 border-indigo-500'
+                      : 'text-gray-900 border-b-2 border-transparent'
                   )}
                 >
                   Debit/Credit Cards
@@ -113,10 +119,10 @@ export default function Header() {
                 <Link
                   href="/bank-accounts"
                   className={cx(
-                    '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50',
-                    {
-                      'text-blue-500': pathname === '/bank-accounts'
-                    }
+                    '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold',
+                    pathname === '/bank-accounts'
+                      ? 'text-indigo-500 border-b-2 border-indigo-500'
+                      : 'text-gray-900 border-b-2 border-transparent'
                   )}
                 >
                   Bank Accounts

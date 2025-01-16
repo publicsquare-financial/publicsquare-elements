@@ -41,3 +41,7 @@ label {
 p {
   @apply text-slate-500;
 }
+
+select {
+  border-right: 1em solid transparent
+}

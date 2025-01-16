@@ -1,8 +1,10 @@
 'use client'
 import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
-import NameInput from '@/components/NameInput'
+import NameInput from '@/components/Form/NameInput'
 import SubmitButton from '@/components/SubmitButton'
-import PublicSquareTypes, { PublicSquareInitOptions } from '@publicsquare/elements-react/dist/types/sdk'
+import PublicSquareTypes, {
+  PublicSquareInitOptions
+} from '@publicsquare/elements-react/dist/types/sdk'
 import {
   PublicSquareProvider,
   CardElement,
@@ -13,11 +15,7 @@ import {
 } from '@publicsquare/elements-react'
 import { FormEvent, useRef, useState } from 'react'
 
-export default function PublicSquareContextWrapper({
-  allInOne
-}: {
-  allInOne: boolean
-}) {
+export default function CardElementsReact({ allInOne }: { allInOne: boolean }) {
   const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
   const options: PublicSquareInitOptions = {
     apiBaseUrl: process.env.NEXT_PUBLIC_CAPTURE_URL
@@ -25,12 +23,12 @@ export default function PublicSquareContextWrapper({
 
   return (
     <PublicSquareProvider apiKey={apiKey} options={options}>
-      <CardElements allInOne={allInOne} />
+      <Elements allInOne={allInOne} />
     </PublicSquareProvider>
   )
 }
 
-function CardElements({ allInOne }: { allInOne: boolean }) {
+function Elements({ allInOne }: { allInOne: boolean }) {
   const { publicsquare } = usePublicSquare()
   const [loading, setLoading] = useState(false)
   const [cardSuccessMessage, setCardSuccessMessage] = useState<object>()
@@ -98,15 +96,15 @@ function CardElements({ allInOne }: { allInOne: boolean }) {
         <div className="w-full space-y-4">
           <NameInput />
           {allInOne ? (
-            <div className="space-y-2">
+            <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
               <label>Card element</label>
               <div className="w-full rounded-lg bg-white p-2 shadow">
                 <CardElement id="react-card-element" ref={cardElement} />
               </div>
             </div>
           ) : (
-            <>
-              <div className="space-y-2">
+            <div className="grid grid-cols-2 gap-4 items-start border-2 border-dashed border-gray-300 rounded-lg p-4">
+              <div>
                 <label>Card number element</label>
                 <div className="w-full rounded-lg bg-white p-2 shadow">
                   <CardNumberElement
@@ -117,7 +115,7 @@ function CardElements({ allInOne }: { allInOne: boolean }) {
               </div>
               <div className="grid grid-cols-2 gap-4 items-start">
                 <div>
-                  <label>Expiration element</label>
+                  <label>Expiration</label>
                   <div className="w-full rounded-lg bg-white p-2 shadow">
                     <CardExpirationDateElement
                       id="react-card-expiration-date-element"
@@ -126,7 +124,7 @@ function CardElements({ allInOne }: { allInOne: boolean }) {
                   </div>
                 </div>
                 <div>
-                  <label>CVC element</label>
+                  <label>CVC</label>
                   <div className="w-full rounded-lg bg-white p-2 shadow">
                     <CardVerifcationCodeElement
                       id="react-card-verification-code-element"
@@ -135,7 +133,7 @@ function CardElements({ allInOne }: { allInOne: boolean }) {
                   </div>
                 </div>
               </div>
-            </>
+            </div>
           )}
           <div className="flex justify-end">
             <SubmitButton loading={loading} elementType="card" />

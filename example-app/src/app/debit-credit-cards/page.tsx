@@ -8,7 +8,7 @@ export default function Page() {
     <div className="container mx-auto">
       <HomeSection
         title="Debit/Credit Card Element"
-        description="This example shows how the PublicSquare Card Elements Javascript SDK looks."
+        description="This example shows how the PublicSquare Card Elements look and operate."
         getStarted={{
           href: 'https://www.npmjs.com/package/@publicsquare/elements-js',
           label: 'Get Started'

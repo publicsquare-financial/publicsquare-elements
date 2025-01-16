@@ -11,7 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^2.1.8",
     "@heroicons/react": "^2.1.5",
-    "@publicsquare/elements-js": "file:../js-sdk",
+    "@publicsquare/elements-js": "file:../js-sdk/dist",
     "@publicsquare/elements-react": "file:../react-sdk",
     "next": "^14.2.15",
     "react": "^18.3.1",

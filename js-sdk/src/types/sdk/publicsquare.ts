@@ -7,6 +7,11 @@ import type {
   BasisTheoryElements
 } from '@basis-theory/basis-theory-js/types/elements'
 import { BasisTheory as IBasisTheory } from '@basis-theory/basis-theory-js/types/sdk'
+import {
+  CreateBankAccountAccountNumberElementOptions,
+  CreateBankAccountElementOptions,
+  CreateBankAccountRoutingNumberElementOptions
+} from './bankAccounts'
 export { ElementWrapper } from '@basis-theory/basis-theory-js/types/elements'
 export * from '@basis-theory/basis-theory-js/types/elements'
 
@@ -23,14 +28,21 @@ export interface PublicSquareInitOptions {
 
 export type Environment = 'test' | 'production'
 
-export type ElementType = BTElementType | 'bankAccount'
+export type BankAccountElementTypes =
+  | 'bankAccount'
+  | 'bankAccountRoutingNumber'
+  | 'bankAccountAccountNumber'
+
+export type ElementType = BTElementType | BankAccountElementTypes
 
 export enum ElementTypeEnum {
   Card = 'card',
   CardExpirationDate = 'cardExpirationDate',
   CardNumber = 'cardNumber',
   CardVerificationCode = 'cardVerificationCode',
-  ACH = 'ach'
+  BankAccount = 'bankAccount',
+  BankAccountRoutingNumber = 'bankAccountRoutingNumber',
+  BankAccountAccountNumber = 'bankAccountAccountNumber'
 }
 
 export type CreateElementOptions =
@@ -38,6 +50,9 @@ export type CreateElementOptions =
   | CreateCardExpirationDateElementOptions
   | CreateCardNumberElementOptions
   | CreateCardVerificationCodeElementOptions
+  | CreateBankAccountElementOptions
+  | CreateBankAccountRoutingNumberElementOptions
+  | CreateBankAccountAccountNumberElementOptions
 
 export type CreateCardElementOptions = BTCreateCardElementOptions
 

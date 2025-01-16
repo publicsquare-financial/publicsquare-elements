@@ -1,5 +1,5 @@
 import { Environment } from './publicsquare'
-import { PSQTextElement } from './elements'
+import { InputElementOptions, PSQTextElement } from './elements'
 
 export type BankAccountHolderType = 'individual' | 'company'
 
@@ -7,8 +7,8 @@ export type BankAccountType = 'checking' | 'savings'
 
 export type BankAccountCreateInput = {
   account_holder_name?: string
-  account_holder_type?: BankAccountHolderType
-  account_type?: BankAccountType
+  account_holder_type?: BankAccountHolderType | string
+  account_type?: BankAccountType | string
   routing_number: string
   account_number: string
   country: string
@@ -33,12 +33,22 @@ export type BankAccountCreateResponse = {
   modified_at?: string
 }
 
-export type RoutingNumberElement = PSQTextElement
+export type BankAccountRoutingNumberElement = PSQTextElement
 
-export type AccountNumberElement = PSQTextElement
+export type BankAccountAccountNumberElement = PSQTextElement
 
 export type BankAccountElement = {
   mount: (targetId: string) => void
-  accountNumber: AccountNumberElement
-  routingNumber: RoutingNumberElement
+  accountNumber: BankAccountAccountNumberElement
+  routingNumber: BankAccountRoutingNumberElement
 }
+
+export type CreateBankAccountElementOptions = {
+  routingNumberOptions?: InputElementOptions
+  accountNumberOptions?: InputElementOptions
+  className?: string
+}
+
+export type CreateBankAccountRoutingNumberElementOptions = InputElementOptions
+
+export type CreateBankAccountAccountNumberElementOptions = InputElementOptions

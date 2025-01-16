@@ -6,21 +6,25 @@ import {
   BankAccountCreateInput,
   PublicSquareInitOptions,
   BankAccountElement,
-  RoutingNumberElement,
-  AccountNumberElement
-} from '@publicsquare/elements-js/dist/types/sdk'
-import NameInput from '@/components/NameInput'
+  BankAccountRoutingNumberElement,
+  BankAccountAccountNumberElement
+} from '@publicsquare/elements-js/types/sdk'
+import NameInput from '@/components/Form/NameInput'
 import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
 
-export default function ACHElementsJs({ allInOne }: { allInOne: boolean }) {
+export default function BankAccountElementsJs({
+  allInOne
+}: {
+  allInOne: boolean
+}) {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>()
   const achRef = useRef(null)
   const [bankAccountElement, setBankAccountElement] =
     useState<BankAccountElement>()
   const [routingNumberElement, setRoutingNumberElement] =
-    useState<RoutingNumberElement>()
+    useState<BankAccountRoutingNumberElement>()
   const [accountNumberElement, setAccountNumberElement] =
-    useState<AccountNumberElement>()
+    useState<BankAccountAccountNumberElement>()
   const [jsCardSuccessMessage, setJsCardSuccessMessage] = useState<object>()
   const [loading, setLoading] = useState(false)
 
@@ -139,14 +143,14 @@ export default function ACHElementsJs({ allInOne }: { allInOne: boolean }) {
         <div className="w-full space-y-4">
           <NameInput required />
           {allInOne ? (
-            <div className="space-y-2">
+            <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
               <label>ACH element</label>
               <div className="w-full rounded-lg bg-white shadow overflow-hidden">
                 <div id="bank-account-element" ref={achRef}></div>
               </div>
             </div>
           ) : (
-            <>
+            <div className="grid grid-cols-2 gap-4 items-start border-2 border-dashed border-gray-300 rounded-lg p-4">
               <div className="space-y-2">
                 <label>ACH routing number element</label>
                 <div id="routing-number-element"></div>
@@ -155,10 +159,10 @@ export default function ACHElementsJs({ allInOne }: { allInOne: boolean }) {
                 <label>ACH account number element</label>
                 <div id="account-number-element"></div>
               </div>
-            </>
+            </div>
           )}
           <div className="flex justify-end">
-            <SubmitButton loading={loading} elementType="ach" />
+            <SubmitButton loading={loading} elementType="bankAccount" />
           </div>
         </div>
       </form>

@@ -10,7 +10,7 @@ import {
   CreateElementOptions,
   PublicSquareInitOptions,
   ElementType
-} from '@publicsquare/elements-js/dist/types/sdk'
+} from '@publicsquare/elements-js/types/sdk'
 
 type PublicSquareProviderValue = {
   publicsquare?: PublicSquare;

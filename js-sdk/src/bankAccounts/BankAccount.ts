@@ -7,14 +7,16 @@ import {
 } from '@/constants'
 import { PublicSquare } from '@/PublicSquare'
 import {
-  AccountNumberElement,
+  BankAccountAccountNumberElement,
   BankAccountCreateInput,
   BankAccountCreateResponse,
   BankAccountElement,
-  CreateElementOptions,
+  BankAccountRoutingNumberElement,
+  CreateBankAccountAccountNumberElementOptions,
+  CreateBankAccountElementOptions,
+  CreateBankAccountRoutingNumberElementOptions,
   InputElementOptions,
-  PSQTextElement,
-  RoutingNumberElement
+  PSQTextElement
 } from '@/types/sdk'
 import { transformCreateBankAccountInput } from '@/utils'
 import { validateCreateBankAccountInput } from '@/validators/bankAccounts'
@@ -56,10 +58,15 @@ export class PublicSquareBankAccount {
     this._publicSquare = psqPointer
   }
 
+  /**
+   * Create a bank account
+   * @param input - The bank account input
+   * @param publicKey - The PublicSquare public key
+   * @returns The bank account create response
+   */
   public create(
     input: BankAccountCreateInput,
-    // TODO: DO NOT LET ME COMMIT THIS TO GITHUB
-    secretKey: string
+    publicKey: string
   ): Promise<BankAccountCreateResponse> {
     if (!this._publicSquare._apiKey) {
       throw new Error('apiKey must be sent at initialization')
@@ -73,7 +80,7 @@ export class PublicSquareBankAccount {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'X-API-KEY': secretKey
+            'X-API-KEY': publicKey
           },
           body: JSON.stringify(transformCreateBankAccountInput(validatedInput))
         }
@@ -84,31 +91,29 @@ export class PublicSquareBankAccount {
   }
 
   public createRoutingNumberElement(
-    options: InputElementOptions
-  ): RoutingNumberElement {
+    options: CreateBankAccountRoutingNumberElementOptions
+  ): BankAccountRoutingNumberElement {
     return createInputElement(options)
   }
 
   public createAccountNumberElement(
-    options: InputElementOptions
-  ): AccountNumberElement {
+    options: CreateBankAccountAccountNumberElementOptions
+  ): BankAccountAccountNumberElement {
     return createInputElement(options)
   }
 
   public createElement({
     routingNumberOptions,
-    accountNumberOptions
-  }: {
-    routingNumberOptions?: InputElementOptions
-    accountNumberOptions?: InputElementOptions
-  } = {}): BankAccountElement {
+    accountNumberOptions,
+    className
+  }: CreateBankAccountElementOptions = {}): BankAccountElement {
     if (typeof window === 'undefined') {
       throw Error(ELEMENTS_NOM_DOM_ERROR_MESSAGE)
     }
     const container = document.createElement('div')
     container.id = 'psq-bank-account-container'
     container.style.display = 'flex'
-
+    container.className = className ?? ''
     const routingNumberContainer = document.createElement('div')
     routingNumberContainer.id = 'psq-ach-routing-number-container'
     routingNumberContainer.style.width = '100%'

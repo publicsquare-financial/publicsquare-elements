@@ -7,11 +7,11 @@ import {
   CardExpirationDateElement,
   CardNumberElement,
   CardVerificationCodeElement,
+  CardsCreateInput,
   PublicSquareInitOptions
-} from '@publicsquare/elements-js/dist/types/sdk'
-import NameInput from '@/components/NameInput'
+} from '@publicsquare/elements-js/types'
+import NameInput from '@/components/Form/NameInput'
 import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
-import { CardsCreateInput } from '@publicsquare/elements-js/dist/types/sdk/cards'
 
 export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>()
@@ -128,15 +128,15 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
         <div className="w-full space-y-4">
           <NameInput />
           {allInOne ? (
-            <div className="space-y-2">
+            <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
               <label>Card element</label>
               <div className="w-full rounded-lg bg-white p-2 shadow">
                 <div id="card-element" ref={cardRef}></div>
               </div>
             </div>
           ) : (
-            <>
-              <div className="space-y-2">
+            <div className="grid grid-cols-2 gap-4 items-start border-2 border-dashed border-gray-300 rounded-lg p-4">
+              <div>
                 <label>Card number element</label>
                 <div className="w-full rounded-lg bg-white p-2 shadow">
                   <div id="card-number-element"></div>
@@ -144,19 +144,19 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
               </div>
               <div className="grid grid-cols-2 gap-4 items-start">
                 <div>
-                  <label>Expiration element</label>
+                  <label>Expiration</label>
                   <div className="w-full rounded-lg bg-white p-2 shadow">
                     <div id="card-expiration-date-element"></div>
                   </div>
                 </div>
                 <div>
-                  <label>CVC element</label>
+                  <label>CVC</label>
                   <div className="w-full rounded-lg bg-white p-2 shadow">
                     <div id="card-verification-code-element"></div>
                   </div>
                 </div>
               </div>
-            </>
+            </div>
           )}
           <div className="flex justify-end">
             <SubmitButton loading={loading} elementType="card" />

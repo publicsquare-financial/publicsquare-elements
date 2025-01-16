@@ -15,9 +15,7 @@ const PublicSquareElement = forwardRef<any, ElementProps>(function Component(
   { id, type, options = {} },
   ref
 ) {
-  const [elementId, setElementId] = useState(id)
   const { publicsquare, createElement } = usePublicSquare()
-  const [element, setElement] = useState()
 
   function setRef(element: ReturnType<typeof createElement>) {
     if (typeof ref === 'function') {
@@ -29,19 +27,19 @@ const PublicSquareElement = forwardRef<any, ElementProps>(function Component(
 
   let init = false
   useEffect(() => {
-    if (!init && publicsquare && !element) {
+    if (!init && publicsquare) {
       init = true
       const element = createElement(type, options)
       element.mount(`#${id}`)
       setRef(element)
     }
-  }, [publicsquare, element])
+  }, [publicsquare])
 
   if (!id || !type || !ref) {
     console.error(`PublicSquare element requires an id, type, & ref!`)
     return null
   } else {
-    return <div id={elementId} />
+    return <div id={id} />
   }
 })
 

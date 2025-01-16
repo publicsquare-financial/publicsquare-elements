@@ -5,7 +5,7 @@ export default function SubmitButton({
   elementType
 }: {
   loading?: boolean
-  elementType?: 'card' | 'ach'
+  elementType?: 'card' | 'bankAccount'
 }) {
   return (
     <button
@@ -14,10 +14,10 @@ export default function SubmitButton({
     >
       {loading ? (
         <Loader />
-      ) : elementType === 'ach' ? (
-        'Capture ACH'
+      ) : elementType === 'bankAccount' ? (
+        'Create bank account'
       ) : (
-        'Capture card'
+        'Create card'
       )}
     </button>
   )

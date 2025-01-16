@@ -17,11 +17,13 @@ import { PublicSquareCards } from './cards'
 import { PublicSquareBankAccount } from './bankAccounts'
 import {
   BasisTheoryInstance,
+  CreateBankAccountAccountNumberElementOptions,
+  CreateBankAccountElementOptions,
+  CreateBankAccountRoutingNumberElementOptions,
   CreateCardElementOptions,
   CreateElementOptions,
   ElementType,
   ElementTypeEnum,
-  InputElementOptions,
   PSQTextElement,
   PublicSquareInitOptions
 } from './types'
@@ -86,29 +88,39 @@ export class PublicSquare {
    */
   public createElement(type: ElementType, options: CreateElementOptions) {
     switch (type) {
-      case 'card':
+      case ElementTypeEnum.Card:
         return this.createCardElement(options as CreateCardElementOptions)
-      case 'cardExpirationDate':
+      case ElementTypeEnum.CardExpirationDate:
         return this.createCardExpirationDateElement(
           options as CreateCardExpirationDateElementOptions
         )
-      case 'cardNumber':
+      case ElementTypeEnum.CardNumber:
         return this.createCardNumberElement(
           options as CreateCardNumberElementOptions
         )
-      case 'cardVerificationCode':
+      case ElementTypeEnum.CardVerificationCode:
         return this.createCardVerificationCodeElement(
           options as CreateCardVerificationCodeElementOptions
         )
-      case 'bankAccount':
-        return this.createBankAccountElement()
+      case ElementTypeEnum.BankAccount:
+        return this.createBankAccountElement(
+          options as CreateBankAccountElementOptions
+        )
+      case ElementTypeEnum.BankAccountRoutingNumber:
+        return this.createBankAccountRoutingNumberElement(
+          options as CreateBankAccountRoutingNumberElementOptions
+        )
+      case ElementTypeEnum.BankAccountAccountNumber:
+        return this.createBankAccountAccountNumberElement(
+          options as CreateBankAccountAccountNumberElementOptions
+        )
       default:
         throw new Error(ELEMENTS_TYPE_NOT_SUPPORTED)
     }
   }
 
   public createCardElement(options: CreateCardElementOptions) {
-    return this._createElement(ElementTypeEnum.Card, options)
+    return this._createElement(ElementTypeEnum.Card, options) as CardElement
   }
 
   public createCardExpirationDateElement(
@@ -138,21 +150,26 @@ export class PublicSquare {
     }) as CardVerificationCodeElement
   }
 
-  public createBankAccountElement(options?: {
-    routingNumberOptions?: InputElementOptions
-    accountNumberOptions?: InputElementOptions
-  }) {
+  public createBankAccountElement(
+    options?: Parameters<
+      typeof PublicSquareBankAccount.prototype.createElement
+    >[0]
+  ) {
     return new PublicSquareBankAccount(this).createElement(options)
   }
 
   public createBankAccountRoutingNumberElement(
-    options: InputElementOptions = {}
+    options: Parameters<
+      typeof PublicSquareBankAccount.prototype.createRoutingNumberElement
+    >[0] = {}
   ) {
     return new PublicSquareBankAccount(this).createRoutingNumberElement(options)
   }
 
   public createBankAccountAccountNumberElement(
-    options: InputElementOptions = {}
+    options: Parameters<
+      typeof PublicSquareBankAccount.prototype.createAccountNumberElement
+    >[0] = {}
   ) {
     return new PublicSquareBankAccount(this).createAccountNumberElement(options)
   }

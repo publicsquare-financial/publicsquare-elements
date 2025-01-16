@@ -12,7 +12,7 @@ export default function AllInOneToggle({
   return (
     <Field className="flex items-center text-sm space-x-4">
       <Label as="span">
-        <span className="font-medium text-gray-900">All in one input</span>{' '}
+        <span className="font-medium text-gray-900">Individual inputs</span>{' '}
       </Label>
       <Switch
         checked={value}
@@ -27,7 +27,7 @@ export default function AllInOneToggle({
         />
       </Switch>
       <Label as="span">
-        <span className="font-medium text-gray-900">Individual inputs</span>{' '}
+        <span className="font-medium text-gray-900">All in one input</span>{' '}
       </Label>
     </Field>
   )
