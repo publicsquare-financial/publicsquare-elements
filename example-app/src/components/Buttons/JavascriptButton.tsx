@@ -6,6 +6,7 @@ export default function JavascriptButton(
 ) {
   return (
     <button
+      data-testid="js-type-button"
       className={cx(
         'space-x-2 bg-yellow-300 border border-yellow-300 hover:border-yellow-500 px-2 rounded-md inline-flex items-center transition-all',
         props.selected

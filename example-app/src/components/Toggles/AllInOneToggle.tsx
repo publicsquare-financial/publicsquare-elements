@@ -15,6 +15,7 @@ export default function AllInOneToggle({
         <span className="font-medium text-gray-900">Individual inputs</span>{' '}
       </Label>
       <Switch
+        data-testid="all-in-one-toggle"
         checked={value}
         onChange={(checked) => {
           onChange(checked)

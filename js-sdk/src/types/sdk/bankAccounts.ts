@@ -31,6 +31,18 @@ export type BankAccountCreateResponse = {
   customer_id?: string
   created_at?: string
   modified_at?: string
+  error?: BankAccountCreateErrorResponse
+}
+
+export type BankAccountCreateErrorResponse = {
+  errors: {
+    [field: string]: string
+  }
+  type: string
+  title: string
+  status: number
+  detail: string
+  instance: string
 }
 
 export type BankAccountRoutingNumberElement = PSQTextElement

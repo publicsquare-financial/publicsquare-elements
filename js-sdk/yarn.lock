@@ -953,12 +953,11 @@
     "@babel/helper-string-parser" "^7.25.9"
     "@babel/helper-validator-identifier" "^7.25.9"
 
-"@basis-theory/basis-theory-js@^4.8.0":
-  version "4.21.2"
-  resolved "https://registry.yarnpkg.com/@basis-theory/basis-theory-js/-/basis-theory-js-4.21.2.tgz#a2ffc5e1bb2caac7435584bb2566ce9836bb0b9f"
-  integrity sha512-GkJUAsiDjfp+mxyKAyOTzGa0K+sP+MTPk7/kGij06zsB1QpSzRTbpVxmqJiExch/NGNNGnbOQQ6FpGfejeZ5vQ==
+"@basis-theory/basis-theory-js@^4.22.1":
+  version "4.22.1"
+  resolved "https://registry.yarnpkg.com/@basis-theory/basis-theory-js/-/basis-theory-js-4.22.1.tgz#262c7559e1eb86e33446022550aeaa8bd971b75e"
+  integrity sha512-mbiCcqCSmwooClEWZgP749Q3lkFXhv5vorYFN/kEeiXifLklvbDmQa9xC7z2klgLx6LloBPqUVoIQCB2dEgo+Q==
   dependencies:
-    "@datadog/browser-logs" "^5.35.0"
     axios "^1.7.4"
     camelcase-keys "^6.2.2"
     csstype "^3.0.11"
@@ -971,18 +970,6 @@
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
-
-"@datadog/browser-core@5.35.0":
-  version "5.35.0"
-  resolved "https://registry.yarnpkg.com/@datadog/browser-core/-/browser-core-5.35.0.tgz#50f07fff9002f34babe8d24b4f377d5aa077de09"
-  integrity sha512-m4KxWufXsQ7nFiMumMZjlub4jJdvXQXrQcTR6Dg2MFER82rIl3npPfups3n4RaAbekFYtgKpo/JMnaxZJSq96g==
-
-"@datadog/browser-logs@^5.35.0":
-  version "5.35.0"
-  resolved "https://registry.yarnpkg.com/@datadog/browser-logs/-/browser-logs-5.35.0.tgz#fdec6ab3b01a1dcce3bc7303fe606f3c3a5cc5f3"
-  integrity sha512-TNcqTk1TP4pYzeHFNsA4Fn/JmY54hxsbjBQaiuYmLBBWiVzwEIs64CybHecRlflPzvjOV955wEs7VU+2MTg/zw==
-  dependencies:
-    "@datadog/browser-core" "5.35.0"
 
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.7"

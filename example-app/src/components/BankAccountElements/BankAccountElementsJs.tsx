@@ -10,22 +10,27 @@ import {
   BankAccountAccountNumberElement
 } from '@publicsquare/elements-js/types/sdk'
 import NameInput from '@/components/Form/NameInput'
-import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
+import CaptureModal from '@/components/Modals/CaptureModal'
 
 export default function BankAccountElementsJs({
   allInOne
 }: {
   allInOne: boolean
 }) {
-  const [publicsquare, setPublicSquare] = useState<PublicSquare>()
-  const achRef = useRef(null)
+  const [publicsquare, setPublicSquare] = useState<PublicSquare>(
+    new PublicSquare()
+  )
+  const achRef = useRef<HTMLDivElement>(null)
   const [bankAccountElement, setBankAccountElement] =
     useState<BankAccountElement>()
   const [routingNumberElement, setRoutingNumberElement] =
     useState<BankAccountRoutingNumberElement>()
   const [accountNumberElement, setAccountNumberElement] =
     useState<BankAccountAccountNumberElement>()
-  const [jsCardSuccessMessage, setJsCardSuccessMessage] = useState<object>()
+  const [message, setMessage] = useState<{
+    message?: object
+    error?: boolean
+  }>()
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -37,14 +42,14 @@ export default function BankAccountElementsJs({
       apiBaseUrl: process.env.NEXT_PUBLIC_CAPTURE_URL
     }
 
-    new PublicSquare()
+    publicsquare
       .init(apiKey, options)
       .then((_publicsquare) => setPublicSquare(_publicsquare))
   }, [])
 
   useEffect(() => {
     if (publicsquare) {
-      if (allInOne) {
+      if (allInOne && !achRef.current?.children.length) {
         /**
          * Step 2: Initialize the elements you want to use
          */
@@ -61,7 +66,7 @@ export default function BankAccountElementsJs({
         })
         bankAccountElement.mount('#bank-account-element')
         setBankAccountElement(bankAccountElement)
-      } else {
+      } else if (!allInOne) {
         const routingNumberElement =
           publicsquare.createBankAccountRoutingNumberElement({
             placeholder: 'Routing number',
@@ -115,16 +120,17 @@ export default function BankAccountElementsJs({
     if (data.account_number && data.routing_number) {
       setLoading(true)
       try {
-        const response = await publicsquare?.bankAccounts.create(
+        const response = await publicsquare.bankAccounts.create(
           {
             ...data,
             account_holder_name: formProps.name as string
           },
           process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
         )
-        if (response) {
-          setJsCardSuccessMessage(response)
-        }
+        setMessage({
+          message: response.error ? response.error : response,
+          error: !!response.error
+        })
       } catch (error) {
         console.log(error)
       }
@@ -138,7 +144,7 @@ export default function BankAccountElementsJs({
         onSubmit={(e) =>
           allInOne ? onSubmitCardElement(e) : onSubmitCardElements(e)
         }
-        name="js-form-cardelement"
+        name="js-form-bank-account-element"
       >
         <div className="w-full space-y-4">
           <NameInput required />
@@ -166,9 +172,10 @@ export default function BankAccountElementsJs({
           </div>
         </div>
       </form>
-      <CardCaptureSuccess
-        message={jsCardSuccessMessage}
-        onClose={() => setJsCardSuccessMessage(undefined)}
+      <CaptureModal
+        message={message?.message}
+        onClose={() => setMessage(undefined)}
+        error={message?.error}
       />
     </div>
   )

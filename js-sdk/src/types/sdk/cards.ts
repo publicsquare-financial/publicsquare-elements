@@ -50,6 +50,7 @@ export type CardCreateResponse = {
   last4: string
   modified_at: string
   billing_details?: CardBillingDetails
+  error?: CardCreateErrorResponse
 }
 
 export type CardCreateErrorResponse = {

@@ -29,11 +29,17 @@ export class PublicSquareCards {
             headers: {
               'Content-Type': 'application/json',
               'X-API-KEY': this._publicSquare._apiKey,
-              'BT-PROXY-KEY': this._publicSquare._proxyKey,
+              'BT-PROXY-KEY': this._publicSquare._proxyKey
             }
           }
         )
-        .then((res) => res as CardCreateResponse)
+        .then((res: any) =>
+          res.error
+            ? {
+                error: res.error
+              }
+            : res
+        )
     }
   }
 }

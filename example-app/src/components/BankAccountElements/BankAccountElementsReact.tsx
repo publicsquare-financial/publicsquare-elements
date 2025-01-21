@@ -1,6 +1,6 @@
 'use client'
 
-import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
+import CaptureModal from '@/components/Modals/CaptureModal'
 import NameInput from '@/components/Form/NameInput'
 import SubmitButton from '@/components/SubmitButton'
 import PublicSquareTypes, {
@@ -37,7 +37,10 @@ export default function BankAccountElementsReact({
 function Elements({ allInOne }: { allInOne: boolean }) {
   const { publicsquare } = usePublicSquare()
   const [loading, setLoading] = useState(false)
-  const [cardSuccessMessage, setCardSuccessMessage] = useState<object>()
+  const [message, setMessage] = useState<{
+    message?: object
+    error?: boolean
+  }>()
   const bankAccountElement = useRef<PublicSquareTypes.BankAccountElement>(null)
   const bankRoutingNumberElement =
     useRef<PublicSquareTypes.BankAccountRoutingNumberElement>(null)
@@ -70,29 +73,31 @@ function Elements({ allInOne }: { allInOne: boolean }) {
   ) {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
-    const formProps = Object.fromEntries(formData)
+    const { cardholder_name, account_holder_type, account_type } =
+      Object.fromEntries(formData)
     if (loading) return
-    if (
-      formProps.cardholder_name &&
-      data.routing_number &&
-      data.account_number
-    ) {
+    if (publicsquare && data.routing_number && data.account_number) {
       setLoading(true)
       try {
-        const response = await publicsquare?.bankAccounts.create(
+        const response = await publicsquare.bankAccounts.create(
           {
-            account_holder_name: formProps.cardholder_name as string,
-            account_holder_type: formProps.account_holder_type as string,
-            account_type: formProps.account_type as string,
+            ...(cardholder_name && {
+              account_holder_name: cardholder_name as string
+            }),
+            ...(account_holder_type && {
+              account_holder_type: account_holder_type as string
+            }),
+            ...(account_type && { account_type: account_type as string }),
             routing_number: data.routing_number,
             account_number: data.account_number,
             country: 'US'
           },
           process.env.NEXT_PUBLIC_PUBLICSQUARE_SECRET_KEY!
         )
-        if (response) {
-          setCardSuccessMessage(response)
-        }
+        setMessage({
+          message: response,
+          error: !!response.error
+        })
       } catch (error) {
         console.log(error)
       }
@@ -160,9 +165,10 @@ function Elements({ allInOne }: { allInOne: boolean }) {
           </div>
         </div>
       </form>
-      <CardCaptureSuccess
-        message={cardSuccessMessage}
-        onClose={() => setCardSuccessMessage(undefined)}
+      <CaptureModal
+        message={message?.message}
+        onClose={() => setMessage(undefined)}
+        error={message?.error}
       />
     </div>
   )

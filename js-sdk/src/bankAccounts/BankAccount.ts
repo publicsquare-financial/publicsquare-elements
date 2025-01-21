@@ -19,13 +19,19 @@ import {
   PSQTextElement
 } from '@/types/sdk'
 import { transformCreateBankAccountInput } from '@/utils'
-import { validateCreateBankAccountInput } from '@/validators/bankAccounts'
+import {
+  validateCreateBankAccountInput,
+  validateRoutingNumber
+} from '@/validators/bankAccounts'
 
 function createInputElement({
   placeholder,
   value,
   className,
-  required = true
+  required = true,
+  pattern,
+  patternError,
+  onValidate
 }: InputElementOptions): PSQTextElement {
   const input = document.createElement('input')
   input.type = 'text'
@@ -36,6 +42,23 @@ function createInputElement({
     ...(className?.split(' ') ?? [])
   ].join(' ')
   input.required = required
+  if (pattern) {
+    input.pattern = pattern
+  }
+  let reportedValidity = false
+
+  input.addEventListener('invalid', (e) => {
+    if (onValidate && !onValidate(input.value)) {
+      if (patternError) {
+        input.setCustomValidity(patternError)
+      }
+      reportedValidity = true
+    }
+  })
+
+  input.addEventListener('input', () => {
+    input.setCustomValidity('')
+  })
 
   return {
     el: input,
@@ -86,20 +109,35 @@ export class PublicSquareBankAccount {
         }
       )
         .then((res) => res.json())
-        .then((res) => res as BankAccountCreateResponse)
+        .then((res) =>
+          res.errors
+            ? {
+                error: res
+              }
+            : res
+        )
     }
   }
 
   public createRoutingNumberElement(
     options: CreateBankAccountRoutingNumberElementOptions
   ): BankAccountRoutingNumberElement {
-    return createInputElement(options)
+    return createInputElement({
+      ...options,
+      pattern: '[0-9]{9}',
+      patternError: 'Routing number must be 9 digits',
+      onValidate: validateRoutingNumber
+    })
   }
 
   public createAccountNumberElement(
     options: CreateBankAccountAccountNumberElementOptions
   ): BankAccountAccountNumberElement {
-    return createInputElement(options)
+    return createInputElement({
+      ...options,
+      pattern: '[0-9]{4,17}',
+      patternError: 'Account number must be between 4 and 17 digits'
+    })
   }
 
   public createElement({

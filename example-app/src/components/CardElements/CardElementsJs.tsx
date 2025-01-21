@@ -25,6 +25,23 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
     useState<CardVerificationCodeElement>()
   const [jsCardSuccessMessage, setJsCardSuccessMessage] = useState<object>()
   const [loading, setLoading] = useState(false)
+  const cardElementForm = useRef<HTMLDivElement>(null)
+  const cardElementsForm = useRef<HTMLDivElement>(null)
+
+  function unmountElements() {
+    try {
+      cardElement?.unmount()
+    } catch {}
+    try {
+      cardNumberElement?.unmount()
+    } catch {}
+    try {
+      cardExpirationDateElement?.unmount()
+    } catch {}
+    try {
+      cardVerificationCodeElement?.unmount()
+    } catch {}
+  }
 
   useEffect(() => {
     /**
@@ -42,31 +59,34 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
 
   useEffect(() => {
     if (publicsquare) {
-      if (allInOne) {
-        /**
-         * Step 2: Initialize the elements you want to use
-         */
-        // The whole card
-        const cardElement = publicsquare.createCardElement({})
-        cardElement.mount('#card-element')
-        cardElement.focus()
-        setCardElement(cardElement)
-      } else {
-        // Just the number
-        const cardNumberElement = publicsquare.createCardNumberElement({})
-        cardNumberElement.mount('#card-number-element')
-        setCardNumberElement(cardNumberElement)
-        // Just the expiration date
-        const cardExpirationDateElement =
-          publicsquare.createCardExpirationDateElement({})
-        cardExpirationDateElement.mount('#card-expiration-date-element')
-        setCardExpirationDateElement(cardExpirationDateElement)
-        // Just the verification code
-        const cardVerificationCodeElement =
-          publicsquare.createCardVerificationCodeElement({})
-        cardVerificationCodeElement.mount('#card-verification-code-element')
-        setCardVerificationCodeElement(cardVerificationCodeElement)
-      }
+      // This is to make sure the DOM is updated before we mount the elements
+      requestAnimationFrame(() => {
+        unmountElements()
+        if (allInOne) {
+          /**
+           * Step 2: Initialize the elements you want to use
+           */
+          // The whole card
+          const cardElement = publicsquare.createCardElement({})
+          cardElement.mount('#card-element')
+          setCardElement(cardElement)
+        } else {
+          // Just the number
+          const cardNumberElement = publicsquare.createCardNumberElement({})
+          cardNumberElement.mount('#card-number-element')
+          setCardNumberElement(cardNumberElement)
+          // Just the expiration date
+          const cardExpirationDateElement =
+            publicsquare.createCardExpirationDateElement({})
+          cardExpirationDateElement.mount('#card-expiration-date-element')
+          setCardExpirationDateElement(cardExpirationDateElement)
+          // Just the verification code
+          const cardVerificationCodeElement =
+            publicsquare.createCardVerificationCodeElement({})
+          cardVerificationCodeElement.mount('#card-verification-code-element')
+          setCardVerificationCodeElement(cardVerificationCodeElement)
+        }
+      })
     }
   }, [publicsquare, allInOne])
 
@@ -130,30 +150,34 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
           {allInOne ? (
             <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
               <label>Card element</label>
-              <div className="w-full rounded-lg bg-white p-2 shadow">
-                <div id="card-element" ref={cardRef}></div>
-              </div>
+              <div
+                className="w-full rounded-lg bg-white p-2 shadow"
+                id="card-element"
+              ></div>
             </div>
           ) : (
             <div className="grid grid-cols-2 gap-4 items-start border-2 border-dashed border-gray-300 rounded-lg p-4">
               <div>
                 <label>Card number element</label>
-                <div className="w-full rounded-lg bg-white p-2 shadow">
-                  <div id="card-number-element"></div>
-                </div>
+                <div
+                  className="w-full rounded-lg bg-white p-2 shadow"
+                  id="card-number-element"
+                ></div>
               </div>
               <div className="grid grid-cols-2 gap-4 items-start">
                 <div>
                   <label>Expiration</label>
-                  <div className="w-full rounded-lg bg-white p-2 shadow">
-                    <div id="card-expiration-date-element"></div>
-                  </div>
+                  <div
+                    className="w-full rounded-lg bg-white p-2 shadow"
+                    id="card-expiration-date-element"
+                  ></div>
                 </div>
                 <div>
                   <label>CVC</label>
-                  <div className="w-full rounded-lg bg-white p-2 shadow">
-                    <div id="card-verification-code-element"></div>
-                  </div>
+                  <div
+                    className="w-full rounded-lg bg-white p-2 shadow"
+                    id="card-verification-code-element"
+                  ></div>
                 </div>
               </div>
             </div>

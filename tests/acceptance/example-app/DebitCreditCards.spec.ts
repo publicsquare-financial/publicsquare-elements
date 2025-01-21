@@ -1,5 +1,8 @@
 import test from '@playwright/test'
-import { HomePageJS, HomePageReact } from '../pages/home.page'
+import {
+  DebitCreditCardsJSPage,
+  DebitCreditCardsReactPage,
+} from '../pages/DebitCreditCards.page'
 
 const fakeCardInputData = {
   cardholder_name: 'Test Person',
@@ -24,29 +27,20 @@ const fakeCard = (data) => ({
   modified_at: '2024-06-24T13:51:24.9801189+00:00',
 })
 
-test.describe('home', () => {
+test.describe('js', () => {
   test.beforeEach(async ({ page }) => {
-    const homePage = new HomePageJS(page)
-    const homePageReact = new HomePageReact(page)
+    const homePage = new DebitCreditCardsJSPage(page)
     await homePage.goToPage()
 
     await homePage.isVisible()
-    await homePageReact.isVisible()
 
-    await homePage.elementsReady()
-    await homePageReact.elementsReady()
+    await homePage.elementsAllInOneReady()
   })
 
   test('should show 4 js elements', async ({ page }) => {
-    const homePage = new HomePageJS(page)
+    const homePage = new DebitCreditCardsJSPage(page)
 
-    await homePage.elementsReady()
-  })
-
-  test('should show 4 react elements', async ({ page }) => {
-    const homePage = new HomePageReact(page)
-
-    await homePage.elementsReady()
+    await homePage.elementsAllInOneReady()
   })
 
   test('should submit the JS CardElement form', async ({ page }) => {
@@ -56,7 +50,7 @@ test.describe('home', () => {
       await route.fulfill({ json })
     })
 
-    const homePage = new HomePageJS(page)
+    const homePage = new DebitCreditCardsJSPage(page)
 
     await homePage.fillCardElementNameInput(data.cardholder_name)
 
@@ -74,7 +68,9 @@ test.describe('home', () => {
       await route.fulfill({ json })
     })
 
-    const homePage = new HomePageJS(page)
+    const homePage = new DebitCreditCardsJSPage(page)
+
+    await homePage.toggleAllInOne()
 
     await homePage.fillCardElementsNameInput(data.cardholder_name)
 
@@ -84,6 +80,23 @@ test.describe('home', () => {
 
     await homePage.expectSuccessModalIsVisible()
   })
+})
+
+test.describe('react', () => {
+  test.beforeEach(async ({ page }) => {
+    const homePageReact = new DebitCreditCardsReactPage(page)
+    await homePageReact.goToPage()
+
+    await homePageReact.isVisible()
+
+    await homePageReact.elementsAllInOneReady()
+  })
+
+  test('should show 4 react elements', async ({ page }) => {
+    const homePage = new DebitCreditCardsReactPage(page)
+
+    await homePage.elementsAllInOneReady()
+  })
 
   test('should submit the React CardElement form', async ({ page }) => {
     const data = fakeCardInputData
@@ -92,7 +105,7 @@ test.describe('home', () => {
       await route.fulfill({ json })
     })
 
-    const homePage = new HomePageReact(page)
+    const homePage = new DebitCreditCardsReactPage(page)
 
     await homePage.fillCardElementNameInput(data.cardholder_name)
 
@@ -110,7 +123,9 @@ test.describe('home', () => {
       await route.fulfill({ json })
     })
 
-    const homePage = new HomePageReact(page)
+    const homePage = new DebitCreditCardsReactPage(page)
+
+    await homePage.toggleAllInOne()
 
     await homePage.fillCardElementsNameInput(data.cardholder_name)
 

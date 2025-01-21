@@ -8,6 +8,7 @@ export default function ReactButton(
 ) {
   return (
     <button
+      data-testid="react-type-button"
       className={cx(
         'space-x-2 bg-cyan-300 border border-cyan-300 hover:border-cyan-500 px-2 rounded-md inline-flex items-center transition-all',
         props.selected
