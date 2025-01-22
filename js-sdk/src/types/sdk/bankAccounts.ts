@@ -1,5 +1,6 @@
 import { Environment } from './publicsquare'
 import { InputElementOptions, PSQTextElement } from './elements'
+import { CardBillingDetails } from './cards'
 
 export type BankAccountHolderType = 'individual' | 'company'
 
@@ -11,8 +12,8 @@ export type BankAccountCreateInput = {
   account_type?: BankAccountType | string
   routing_number: string
   account_number: string
-  country: string
   customer_id?: string
+  billing_details?: CardBillingDetails
 }
 
 export type ValidatedBankAccountCreateInput = {

@@ -36,6 +36,7 @@ export type BankAccountElementTypes =
 export type ElementType = BTElementType | BankAccountElementTypes
 
 export enum ElementTypeEnum {
+  Text = 'text',
   Card = 'card',
   CardExpirationDate = 'cardExpirationDate',
   CardNumber = 'cardNumber',

@@ -1,3 +1,4 @@
+import { Indexable } from '@/types'
 import {
   BankAccountCreateInput,
   ValidatedBankAccountCreateInput
@@ -12,11 +13,26 @@ export function validateCreateBankAccountInput(
   if (!['string', 'object'].includes(typeof input.account_number)) {
     throw new Error('account_number is required')
   }
-  if (typeof input.country !== 'string') {
-    throw new Error('country is required')
+  if (input.billing_details && typeof input.billing_details !== 'object') {
+    throw new Error('billing_details must be an object')
   }
   return {
-    validated: input
+    validated: [
+      'account_holder_name',
+      'account_holder_type',
+      'account_type',
+      'customer_id',
+      'billing_details'
+    ].reduce(
+      (acc, key) => {
+        ;(acc as Indexable)[key] = (input as Indexable)[key]
+        return acc
+      },
+      {
+        routing_number: input.routing_number,
+        account_number: input.account_number
+      }
+    )
   }
 }
 

@@ -88,6 +88,8 @@ export class PublicSquare {
    */
   public createElement(type: ElementType, options: CreateElementOptions) {
     switch (type) {
+      case ElementTypeEnum.Text:
+        return this._createElement(ElementTypeEnum.Text, options)
       case ElementTypeEnum.Card:
         return this.createCardElement(options as CreateCardElementOptions)
       case ElementTypeEnum.CardExpirationDate:

@@ -96,6 +96,8 @@ class BankAccountsReactPage {
   private elementForm: Locator
   private routingNumberElement: Locator
   private accountNumberElement: Locator
+  private separateRoutingNumberElement: Locator
+  private separateAccountNumberElement: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -105,10 +107,16 @@ class BankAccountsReactPage {
       'form[name="react-form-bank-account-element"]'
     )
     this.routingNumberElement = page.locator(
-      '#routing-number-container>.publicsquare-element-input'
+      '#psq-ach-routing-number-container>.publicsquare-element-input'
     )
     this.accountNumberElement = page.locator(
-      '#account-number-container>.publicsquare-element-input'
+      '#psq-ach-account-number-container>.publicsquare-element-input'
+    )
+    this.separateRoutingNumberElement = page.locator(
+      '#react-bank-account-routing-number-element>.publicsquare-element-input'
+    )
+    this.separateAccountNumberElement = page.locator(
+      '#react-bank-account-account-number-element>.publicsquare-element-input'
     )
     this.successModal = page.getByTestId('capture-modal')
   }
@@ -133,8 +141,12 @@ class BankAccountsReactPage {
   }
 
   async elementsIndividualReady() {
-    await expect(await this.routingNumberElement.innerHTML()).toBeDefined()
-    await expect(await this.accountNumberElement.innerHTML()).toBeDefined()
+    await expect(
+      await this.separateRoutingNumberElement.innerHTML()
+    ).toBeDefined()
+    await expect(
+      await this.separateAccountNumberElement.innerHTML()
+    ).toBeDefined()
   }
 
   getElementNameInput() {
@@ -173,8 +185,8 @@ class BankAccountsReactPage {
     routing_number: string
     account_number: string
   }) {
-    await this.routingNumberElement.fill(input.routing_number)
-    await this.accountNumberElement.fill(input.account_number)
+    await this.separateRoutingNumberElement.fill(input.routing_number)
+    await this.separateAccountNumberElement.fill(input.account_number)
   }
 
   async submitElementsForm() {
