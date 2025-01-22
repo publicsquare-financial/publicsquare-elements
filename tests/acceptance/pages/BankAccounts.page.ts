@@ -8,6 +8,8 @@ class BankAccountsJSPage {
   private elementForm: Locator
   private routingNumberElement: Locator
   private accountNumberElement: Locator
+  private separateRoutingNumberElement: Locator
+  private separateAccountNumberElement: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -20,7 +22,13 @@ class BankAccountsJSPage {
     this.accountNumberElement = page.locator(
       '#psq-ach-account-number-container>.publicsquare-element-input'
     )
-    this.successModal = page.getByTestId('success-modal')
+    this.separateRoutingNumberElement = page.locator(
+      '#routing-number-element>.publicsquare-element-input'
+    )
+    this.separateAccountNumberElement = page.locator(
+      '#account-number-element>.publicsquare-element-input'
+    )
+    this.successModal = page.getByTestId('capture-modal')
   }
 
   async goToPage() {
@@ -43,8 +51,12 @@ class BankAccountsJSPage {
   }
 
   async elementsIndividualReady() {
-    await expect(await this.routingNumberElement.innerHTML()).toBeDefined()
-    await expect(await this.accountNumberElement.innerHTML()).toBeDefined()
+    await expect(
+      await this.separateRoutingNumberElement.innerHTML()
+    ).toBeDefined()
+    await expect(
+      await this.separateAccountNumberElement.innerHTML()
+    ).toBeDefined()
   }
 
   async fillElementInput(input: {
@@ -63,8 +75,8 @@ class BankAccountsJSPage {
     routing_number: string
     account_number: string
   }) {
-    await this.routingNumberElement.fill(input.routing_number)
-    await this.accountNumberElement.fill(input.account_number)
+    await this.separateRoutingNumberElement.fill(input.routing_number)
+    await this.separateAccountNumberElement.fill(input.account_number)
   }
 
   async submitElementsForm() {
@@ -93,12 +105,12 @@ class BankAccountsReactPage {
       'form[name="react-form-bank-account-element"]'
     )
     this.routingNumberElement = page.locator(
-      '#psq-ach-routing-number-container>.publicsquare-element-input'
+      '#routing-number-container>.publicsquare-element-input'
     )
     this.accountNumberElement = page.locator(
-      '#psq-ach-account-number-container>.publicsquare-element-input'
+      '#account-number-container>.publicsquare-element-input'
     )
-    this.successModal = page.getByTestId('success-modal')
+    this.successModal = page.getByTestId('capture-modal')
   }
 
   async goToPage() {

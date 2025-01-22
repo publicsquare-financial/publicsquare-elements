@@ -1,5 +1,5 @@
 'use client'
-import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
+import CaptureModal from '@/components/Modals/CaptureModal'
 import NameInput from '@/components/Form/NameInput'
 import SubmitButton from '@/components/SubmitButton'
 import PublicSquareTypes, {
@@ -31,7 +31,10 @@ export default function CardElementsReact({ allInOne }: { allInOne: boolean }) {
 function Elements({ allInOne }: { allInOne: boolean }) {
   const { publicsquare } = usePublicSquare()
   const [loading, setLoading] = useState(false)
-  const [cardSuccessMessage, setCardSuccessMessage] = useState<object>()
+  const [message, setMessage] = useState<{
+      message?: object
+      error?: boolean
+    }>()
   const cardElement = useRef<PublicSquareTypes.CardElement>(null)
   const cardNumberElement = useRef<PublicSquareTypes.CardNumberElement>(null)
   const cardExpirationDateElement =
@@ -76,7 +79,10 @@ function Elements({ allInOne }: { allInOne: boolean }) {
           card
         })
         if (response) {
-          setCardSuccessMessage(response)
+          setMessage({
+            message: response,
+            error: !!response.error
+          })
         }
       } catch (error) {
         console.log(error)
@@ -140,9 +146,10 @@ function Elements({ allInOne }: { allInOne: boolean }) {
           </div>
         </div>
       </form>
-      <CardCaptureSuccess
-        message={cardSuccessMessage}
-        onClose={() => setCardSuccessMessage(undefined)}
+      <CaptureModal
+        message={message?.message}
+        onClose={() => setMessage(undefined)}
+        error={message?.error}
       />
     </div>
   )

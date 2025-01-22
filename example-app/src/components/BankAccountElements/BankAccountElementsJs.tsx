@@ -17,9 +17,7 @@ export default function BankAccountElementsJs({
 }: {
   allInOne: boolean
 }) {
-  const [publicsquare, setPublicSquare] = useState<PublicSquare>(
-    new PublicSquare()
-  )
+  const [publicsquare, setPublicSquare] = useState<PublicSquare>()
   const achRef = useRef<HTMLDivElement>(null)
   const [bankAccountElement, setBankAccountElement] =
     useState<BankAccountElement>()
@@ -42,7 +40,7 @@ export default function BankAccountElementsJs({
       apiBaseUrl: process.env.NEXT_PUBLIC_CAPTURE_URL
     }
 
-    publicsquare
+    new PublicSquare()
       .init(apiKey, options)
       .then((_publicsquare) => setPublicSquare(_publicsquare))
   }, [])
@@ -117,7 +115,7 @@ export default function BankAccountElementsJs({
     const formData = new FormData(e.currentTarget)
     const formProps = Object.fromEntries(formData)
     if (loading) return
-    if (data.account_number && data.routing_number) {
+    if (publicsquare && data.account_number && data.routing_number) {
       setLoading(true)
       try {
         const response = await publicsquare.bankAccounts.create(
@@ -147,7 +145,7 @@ export default function BankAccountElementsJs({
         name="js-form-bank-account-element"
       >
         <div className="w-full space-y-4">
-          <NameInput required />
+          <NameInput />
           {allInOne ? (
             <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
               <label>ACH element</label>

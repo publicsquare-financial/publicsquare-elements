@@ -48,7 +48,7 @@ export default function CaptureModal({ message, error, onClose }: Props) {
               </div>
               <div
                 className="mt-3 text-center sm:mt-5"
-                data-testid="success-modal"
+                data-testid="capture-modal"
               >
                 <DialogTitle
                   as="h3"

@@ -88,7 +88,7 @@ test.describe('js', () => {
 
     await homePage.toggleAllInOne()
 
-    await homePage.fillElementInput({
+    await homePage.fillElementsInput({
       routing_number: data.routing_number,
       account_number: data.account_number,
     })

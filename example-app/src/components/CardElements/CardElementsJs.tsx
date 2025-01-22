@@ -11,7 +11,7 @@ import {
   PublicSquareInitOptions
 } from '@publicsquare/elements-js/types'
 import NameInput from '@/components/Form/NameInput'
-import CardCaptureSuccess from '@/components/Modals/CardCaptureSuccess'
+import CaptureModal from '@/components/Modals/CaptureModal'
 
 export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>()
@@ -23,7 +23,10 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
     useState<CardExpirationDateElement>()
   const [cardVerificationCodeElement, setCardVerificationCodeElement] =
     useState<CardVerificationCodeElement>()
-  const [jsCardSuccessMessage, setJsCardSuccessMessage] = useState<object>()
+  const [message, setMessage] = useState<{
+    message?: object
+    error?: boolean
+  }>()
   const [loading, setLoading] = useState(false)
   const cardElementForm = useRef<HTMLDivElement>(null)
   const cardElementsForm = useRef<HTMLDivElement>(null)
@@ -128,7 +131,10 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
           card
         })
         if (response) {
-          setJsCardSuccessMessage(response)
+          setMessage({
+            message: response,
+            error: !!response.error
+          })
         }
       } catch (error) {
         console.log(error)
@@ -187,9 +193,10 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
           </div>
         </div>
       </form>
-      <CardCaptureSuccess
-        message={jsCardSuccessMessage}
-        onClose={() => setJsCardSuccessMessage(undefined)}
+      <CaptureModal
+        message={message?.message}
+        onClose={() => setMessage(undefined)}
+        error={message?.error}
       />
     </div>
   )

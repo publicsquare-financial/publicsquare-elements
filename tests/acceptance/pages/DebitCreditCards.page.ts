@@ -26,7 +26,7 @@ class DebitCreditCardsJSPage {
     this.cardVerificationCodeElement = this.cardElementForm.locator(
       '#card-verification-code-element'
     )
-    this.successModal = page.getByTestId('success-modal')
+    this.successModal = page.getByTestId('capture-modal')
   }
 
   async goToPage() {
@@ -167,7 +167,7 @@ class DebitCreditCardsReactPage {
     this.cardVerificationCodeElement = page.locator(
       '#react-card-verification-code-element'
     )
-    this.successModal = page.getByTestId('success-modal')
+    this.successModal = page.getByTestId('capture-modal')
   }
 
   async goToPage() {
