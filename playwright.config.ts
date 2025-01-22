@@ -1,8 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv'
 
-if (process.env.NODE_ENV === 'development') {
-  require('dotenv').config({ path: 'example-app/.env' })
-}
+dotenv.config()
 
 /**
  * Read environment variables from file.
