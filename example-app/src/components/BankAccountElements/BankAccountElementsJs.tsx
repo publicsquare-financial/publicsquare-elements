@@ -90,8 +90,7 @@ export default function BankAccountElementsJs({
     if (bankAccountElement) {
       onSubmit(e, {
         account_number: bankAccountElement.accountNumber.el.value,
-        routing_number: bankAccountElement.routingNumber.el.value,
-        country: 'US'
+        routing_number: bankAccountElement.routingNumber.el.value
       })
     }
   }
@@ -100,8 +99,7 @@ export default function BankAccountElementsJs({
     if (accountNumberElement && routingNumberElement) {
       onSubmit(e, {
         account_number: accountNumberElement.el.value,
-        routing_number: routingNumberElement.el.value,
-        country: 'US'
+        routing_number: routingNumberElement.el.value
       })
     }
   }

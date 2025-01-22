@@ -51,8 +51,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
     if (bankAccountElement.current) {
       onSubmit(e, {
         routing_number: bankAccountElement.current.routingNumber.el.value,
-        account_number: bankAccountElement.current.accountNumber.el.value,
-        country: 'US'
+        account_number: bankAccountElement.current.accountNumber.el.value
       })
     }
   }
@@ -61,8 +60,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
     if (bankRoutingNumberElement.current && bankAccountNumberElement.current) {
       onSubmit(e, {
         routing_number: bankRoutingNumberElement.current.el.value,
-        account_number: bankAccountNumberElement.current.el.value,
-        country: 'US'
+        account_number: bankAccountNumberElement.current.el.value
       })
     }
   }
@@ -89,8 +87,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
             }),
             ...(account_type && { account_type: account_type as string }),
             routing_number: data.routing_number,
-            account_number: data.account_number,
-            country: 'US'
+            account_number: data.account_number
           },
           process.env.NEXT_PUBLIC_PUBLICSQUARE_SECRET_KEY!
         )
