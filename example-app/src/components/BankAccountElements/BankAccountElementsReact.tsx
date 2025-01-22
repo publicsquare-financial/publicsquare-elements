@@ -89,7 +89,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
             routing_number: data.routing_number,
             account_number: data.account_number
           },
-          process.env.NEXT_PUBLIC_PUBLICSQUARE_SECRET_KEY!
+          process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
         )
         setMessage({
           message: response,
