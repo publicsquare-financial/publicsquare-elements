@@ -273,20 +273,13 @@
   dependencies:
     playwright "1.47.1"
 
-"@publicsquare/elements-js@1.2.0":
+"@publicsquare/elements-js@1.2.0", "@publicsquare/elements-js@file:../js-sdk":
   version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.2.0.tgz#ced43f0e4e68d0b23930b62d52b9148c058e3828"
-  integrity sha512-YP2AggpI+Iu3vdEZcb5JcCXBXcdSd2aZajwmqYquCc/JH2YGIkPenvBMbHaIvn4vvpDtV49l0agT99DVp3pNjw==
-  dependencies:
-    "@basis-theory/basis-theory-js" "^4.8.0"
-
-"@publicsquare/elements-js@file:../js-sdk":
-  version "1.2.1"
   dependencies:
     "@basis-theory/basis-theory-js" "^4.8.0"
 
 "@publicsquare/elements-react@file:../react-sdk":
-  version "1.2.1"
+  version "1.2.0"
   dependencies:
     "@publicsquare/elements-js" "1.2.0"
 
