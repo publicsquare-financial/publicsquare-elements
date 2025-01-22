@@ -1,7 +1,6 @@
 import { PublicSquare } from '@/index'
 import { PublicSquareBankAccount } from '..'
 import { getError } from '@/tests/utils'
-import { generateCardCreateInput } from '@/tests/factories/cards'
 import { ELEMENTS_PUBLICSQUARE_ACH_NO_POINTER_MESSAGE } from '@/constants'
 import { BankAccountCreateInput } from '@/types'
 
