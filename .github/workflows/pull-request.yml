@@ -21,8 +21,13 @@ jobs:
 
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    
+    - name: Print name
+      run: echo "NEXT_PUBLIC_PUBLICSQUARE_KEY=${{ vars.NEXT_PUBLIC_PUBLICSQUARE_KEY }}"
 
     - name: Run Playwright tests
+      env:
+        NEXT_PUBLIC_PUBLICSQUARE_KEY: ${{ vars.NEXT_PUBLIC_PUBLICSQUARE_KEY }}
       run: make acceptance-test
 
     - uses: actions/upload-artifact@v4
