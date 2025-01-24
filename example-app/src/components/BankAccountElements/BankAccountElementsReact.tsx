@@ -5,7 +5,7 @@ import NameInput from '@/components/Form/NameInput'
 import SubmitButton from '@/components/SubmitButton'
 import PublicSquareTypes, {
   PublicSquareInitOptions
-} from '@publicsquare/elements-react/dist/types/sdk'
+} from '@publicsquare/elements-react/types/sdk'
 import {
   BankAccountAccountNumberElement,
   BankAccountElement,
@@ -77,20 +77,17 @@ function Elements({ allInOne }: { allInOne: boolean }) {
     if (publicsquare && data.routing_number && data.account_number) {
       setLoading(true)
       try {
-        const response = await publicsquare.bankAccounts.create(
-          {
-            ...(cardholder_name && {
-              account_holder_name: cardholder_name as string
-            }),
-            ...(account_holder_type && {
-              account_holder_type: account_holder_type as string
-            }),
-            ...(account_type && { account_type: account_type as string }),
-            routing_number: data.routing_number,
-            account_number: data.account_number
-          },
-          process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-        )
+        const response = await publicsquare.bankAccounts.create({
+          ...(cardholder_name && {
+            account_holder_name: cardholder_name as string
+          }),
+          ...(account_holder_type && {
+            account_holder_type: account_holder_type as string
+          }),
+          ...(account_type && { account_type: account_type as string }),
+          routing_number: data.routing_number,
+          account_number: data.account_number
+        })
         setMessage({
           message: response,
           error: !!response.error

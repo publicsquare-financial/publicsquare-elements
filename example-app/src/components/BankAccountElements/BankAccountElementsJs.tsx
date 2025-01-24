@@ -116,13 +116,10 @@ export default function BankAccountElementsJs({
     if (publicsquare && data.account_number && data.routing_number) {
       setLoading(true)
       try {
-        const response = await publicsquare.bankAccounts.create(
-          {
-            ...data,
-            account_holder_name: formProps.name as string
-          },
-          process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-        )
+        const response = await publicsquare.bankAccounts.create({
+          ...data,
+          account_holder_name: formProps.name as string
+        })
         setMessage({
           message: response.error ? response.error : response,
           error: !!response.error

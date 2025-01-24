@@ -6,45 +6,31 @@ import React, {
   useState
 } from 'react'
 import { PublicSquare } from '@publicsquare/elements-js'
-import {
-  CreateElementOptions,
-  PublicSquareInitOptions,
-  ElementType
-} from '@publicsquare/elements-js/types/sdk'
+import * as Types from '../types'
 
-type PublicSquareProviderValue = {
-  publicsquare?: PublicSquare;
-  createElement(
-    type: ElementType,
-    options: CreateElementOptions
-  ): ReturnType<InstanceType<typeof PublicSquare>['createElement']>;
-};
-
-const PublicSquareContext = createContext<PublicSquareProviderValue>({} as any);
-
-type PublicSquareProviderProps = {
-  apiKey: string
-  options?: PublicSquareInitOptions,
-};
+const PublicSquareContext = createContext<Types.PublicSquareProviderValue>(
+  {} as any
+)
 
 export const PublicSquareProvider = ({
   children,
   apiKey,
-  options,
-}: PropsWithChildren<PublicSquareProviderProps>) => {
+  options
+}: PropsWithChildren<Types.PublicSquareProviderProps>) => {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>()
 
-  let init = false;
+  let init = false
   useEffect(() => {
     if (!init) {
       new PublicSquare().init(apiKey, options).then((_publicsquare) => {
-        setPublicSquare(_publicsquare);
-      });
+        setPublicSquare(_publicsquare)
+      })
     }
-  }, []);
+  }, [])
 
-  const createElement: PublicSquareProviderValue['createElement'] = (...args) =>
-    publicsquare!.createElement(...args);
+  const createElement: Types.PublicSquareProviderValue['createElement'] = (
+    ...args
+  ) => publicsquare!.createElement(...args)
 
   return (
     <PublicSquareContext.Provider
@@ -58,4 +44,5 @@ export const PublicSquareProvider = ({
   )
 }
 
-export const usePublicSquare = (): PublicSquareProviderValue => useContext(PublicSquareContext)
+export const usePublicSquare = (): Types.PublicSquareProviderValue =>
+  useContext(PublicSquareContext)

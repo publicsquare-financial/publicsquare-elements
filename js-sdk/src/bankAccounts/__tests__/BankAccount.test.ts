@@ -71,17 +71,14 @@ describe('BankAccounts', () => {
       })
     )
 
-    const result = await bankAccount.create(
-      validBankAccountCreateInput,
-      'public_key'
-    )
+    const result = await bankAccount.create(validBankAccountCreateInput)
     expect(global.fetch).toHaveBeenCalledWith(
       'https://api.publicsquare.com/payment-methods/bank-accounts',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-API-KEY': 'public_key'
+          'X-API-KEY': 'api_key'
         },
         body: JSON.stringify(validBankAccountCreateInput)
       }
@@ -104,14 +101,14 @@ describe('BankAccounts', () => {
       routing_number: '123456789',
       account_number: '987654321'
     }
-    const result = await bankAccount.create(input, 'public_key')
+    const result = await bankAccount.create(input)
     expect(global.fetch).toHaveBeenCalledWith(
       'https://api.publicsquare.com/payment-methods/bank-accounts',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-API-KEY': 'public_key'
+          'X-API-KEY': 'api_key'
         },
         body: JSON.stringify(input)
       }
@@ -121,14 +118,14 @@ describe('BankAccounts', () => {
 
   test('create() fails with invalid routing number', async () => {
     const error = await getError<{ message: string }>(() =>
-      bankAccount.create({ card: {} } as any, 'public_key')
+      bankAccount.create({ card: {} } as any)
     )
     expect(error.message).toEqual('routing_number is required')
   })
 
   test('create() fails with invalid account number', async () => {
     const error = await getError<{ message: string }>(() =>
-      bankAccount.create({ routing_number: '123456789' } as any, 'public_key')
+      bankAccount.create({ routing_number: '123456789' } as any)
     )
     expect(error.message).toEqual('account_number is required')
   })
@@ -149,14 +146,14 @@ describe('BankAccounts', () => {
       account_number: '987654321',
       invalid_key: 'invalid_value'
     }
-    await bankAccount.create(input, 'public_key')
+    await bankAccount.create(input)
     expect(global.fetch).toHaveBeenCalledWith(
       'https://api.publicsquare.com/payment-methods/bank-accounts',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-API-KEY': 'public_key'
+          'X-API-KEY': 'api_key'
         },
         body: JSON.stringify({
           routing_number: '123456789',

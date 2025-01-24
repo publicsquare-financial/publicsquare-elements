@@ -4,7 +4,7 @@ import NameInput from '@/components/Form/NameInput'
 import SubmitButton from '@/components/SubmitButton'
 import PublicSquareTypes, {
   PublicSquareInitOptions
-} from '@publicsquare/elements-react/dist/types/sdk'
+} from '@publicsquare/elements-react/types/sdk'
 import {
   PublicSquareProvider,
   CardElement,

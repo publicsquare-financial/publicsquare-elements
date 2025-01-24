@@ -88,8 +88,7 @@ export class PublicSquareBankAccount {
    * @returns The bank account create response
    */
   public create(
-    input: BankAccountCreateInput,
-    publicKey: string
+    input: BankAccountCreateInput
   ): Promise<BankAccountCreateResponse> {
     if (!this._publicSquare._apiKey) {
       throw new Error('apiKey must be sent at initialization')
@@ -103,7 +102,7 @@ export class PublicSquareBankAccount {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'X-API-KEY': publicKey
+            'X-API-KEY': this._publicSquare._apiKey
           },
           body: JSON.stringify(transformCreateBankAccountInput(validatedInput))
         }

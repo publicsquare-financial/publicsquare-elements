@@ -1,14 +1,10 @@
 import React, { forwardRef } from 'react'
 import PublicSquareElement from './element'
-import Types from '@publicsquare/elements-js/types/sdk'
-
-type CardElementProps = {
-  id: string
-}
+import * as Types from '../types'
 
 export const CardExpirationDateElement = forwardRef<
   Types.CardExpirationDateElement,
-  CardElementProps
+  Types.CardExpirationDateElementProps
 >(function Component(props, ref) {
   return <PublicSquareElement type="cardExpirationDate" {...props} ref={ref} />
 })

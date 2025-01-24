@@ -291,15 +291,15 @@
   dependencies:
     playwright "1.48.0"
 
-"@publicsquare/elements-js@file:../js-sdk/dist":
-  version "1.3.0"
+"@publicsquare/elements-js@^1.3.0-beta.3", "@publicsquare/elements-js@file:../js-sdk/dist":
+  version "1.3.0-beta.3"
   dependencies:
     "@basis-theory/basis-theory-js" "^4.22.1"
 
-"@publicsquare/elements-react@file:../react-sdk":
-  version "1.3.0"
+"@publicsquare/elements-react@file:../react-sdk/dist":
+  version "1.3.0-beta.3"
   dependencies:
-    "@publicsquare/elements-js" "file:../../../../Library/Caches/Yarn/v6/npm-@publicsquare-elements-react-1.3.0-48e37782-c85f-405e-ac08-6665064eaf69-1737479124654/node_modules/@publicsquare/js-sdk/dist"
+    "@publicsquare/elements-js" "^1.3.0-beta.3"
 
 "@react-aria/focus@^3.17.1":
   version "3.18.3"
