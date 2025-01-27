@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.2.1...v1.3.0) (2025-01-27)
+
+
+### Features
+
+* dont push beta version to default js.publicsquare.com ([#67](https://github.com/publicsquare-financial/publicsquare-elements/issues/67)) ([6f994a8](https://github.com/publicsquare-financial/publicsquare-elements/commit/6f994a822a9509cc24affb457bd7c22a9dc50bb8))
+
 ## [1.2.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.2.0...v1.2.1) (2024-09-14)
 
 
