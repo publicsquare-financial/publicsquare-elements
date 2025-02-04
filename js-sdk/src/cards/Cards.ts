@@ -23,7 +23,7 @@ export class PublicSquareCards {
       const validatedInput = validateCreateCardInput(input)
       return this._publicSquare.bt.client
         .post(
-          'https://api.basistheory.com/proxy',
+          this._publicSquare._cardCreateUrl,
           transformCreateCardInput(validatedInput),
           {
             headers: {

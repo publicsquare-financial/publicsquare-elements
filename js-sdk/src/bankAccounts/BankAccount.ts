@@ -96,17 +96,14 @@ export class PublicSquareBankAccount {
       throw new Error('PublicSquare JS has not be initialized yet')
     } else {
       const validatedInput = validateCreateBankAccountInput(input)
-      return fetch(
-        'https://api.publicsquare.com/payment-methods/bank-accounts',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-API-KEY': this._publicSquare._apiKey
-          },
-          body: JSON.stringify(transformCreateBankAccountInput(validatedInput))
-        }
-      )
+      return fetch(this._publicSquare._bankAccountCreateUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-KEY': this._publicSquare._apiKey
+        },
+        body: JSON.stringify(transformCreateBankAccountInput(validatedInput))
+      })
         .then((res) => res.json())
         .then((res) =>
           res.errors

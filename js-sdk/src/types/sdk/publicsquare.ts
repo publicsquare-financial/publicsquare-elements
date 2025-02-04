@@ -22,7 +22,9 @@ export interface ApplicationInfo {
 }
 
 export interface PublicSquareInitOptions {
-  apiBaseUrl?: string
+  cardCreateUrl?: string
+  bankAccountCreateUrl?: string
+  proxyKey?: string
   appInfo?: ApplicationInfo
 }
 

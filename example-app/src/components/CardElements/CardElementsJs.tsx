@@ -51,9 +51,7 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
      * Step 1: Init the PublicSquare sdk
      */
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-    const options: PublicSquareInitOptions = {
-      apiBaseUrl: process.env.NEXT_PUBLIC_CAPTURE_URL
-    }
+    const options: PublicSquareInitOptions = {}
 
     new PublicSquare()
       .init(apiKey, options)

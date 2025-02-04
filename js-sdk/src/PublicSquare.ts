@@ -31,6 +31,9 @@ import {
 export class PublicSquare {
   _apiKey?: string
   _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP'
+  _cardCreateUrl: string = 'https://api.basistheory.com/proxy'
+  _bankAccountCreateUrl: string =
+    'https://api.publicsquare.com/payment-methods/bank-accounts'
   protected _bt?: BasisTheoryInstance
 
   get bt(): BasisTheoryInstance | undefined {
@@ -51,7 +54,10 @@ export class PublicSquare {
    */
   public async init(apiKey: string, options?: PublicSquareInitOptions) {
     this._apiKey = apiKey
-    if (options?.apiBaseUrl) this._proxyKey = options?.apiBaseUrl
+    if (options?.proxyKey) this._proxyKey = options?.proxyKey
+    if (options?.cardCreateUrl) this._cardCreateUrl = options?.cardCreateUrl
+    if (options?.bankAccountCreateUrl)
+      this._bankAccountCreateUrl = options?.bankAccountCreateUrl
 
     const bt = await new BasisTheory().init(
       (Math.random() + 1).toString(36).substring(7),

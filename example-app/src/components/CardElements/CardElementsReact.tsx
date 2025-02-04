@@ -17,9 +17,7 @@ import { FormEvent, useRef, useState } from 'react'
 
 export default function CardElementsReact({ allInOne }: { allInOne: boolean }) {
   const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-  const options: PublicSquareInitOptions = {
-    apiBaseUrl: process.env.NEXT_PUBLIC_CAPTURE_URL
-  }
+  const options: PublicSquareInitOptions = {}
 
   return (
     <PublicSquareProvider apiKey={apiKey} options={options}>
