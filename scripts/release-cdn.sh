@@ -22,7 +22,10 @@ echo "Uploading bundle to $JS_HOST/$INDEX_JS_NAME"
 JS_BUCKET_NAME="psqpayments-prd-web-elements-js"
 
 # Upload Content
-gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/index.js
+if [[ ! $VERSIONED_JS_NAME =~ "beta" ]]; then
+  echo "Uploading new default version"
+  gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/index.js
+fi
 gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/"${INDEX_JS_NAME}"
 
 result=$?
