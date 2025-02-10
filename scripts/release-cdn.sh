@@ -17,15 +17,17 @@ BLOB_DIR=v$MAJOR_VERSION
 INDEX_JS_NAME=$BLOB_DIR/index.js
 VERSIONED_JS_NAME=$(cat package.json | jq -r '.version')
 
-echo "Uploading bundle to $JS_HOST/$INDEX_JS_NAME"
-
 JS_BUCKET_NAME="psqpayments-prd-web-elements-js"
 
 # Upload Content
 if [[ ! $VERSIONED_JS_NAME =~ "beta" ]]; then
-  echo "Uploading new default version"
+  echo "Uploading new default version to $JS_BUCKET_NAME/$INDEX_JS_NAME"
   gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/index.js
+elif [[ $VERSIONED_JS_NAME =~ "beta" ]]; then
+  echo "Uploading new beta version to $JS_BUCKET_NAME/beta/index.js"
+  gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/beta/index.js
 fi
+echo "Uploading bundle to $JS_HOST/$INDEX_JS_NAME"
 gsutil cp "$BUNDLE_PATH" gs://"${JS_BUCKET_NAME}"/"${INDEX_JS_NAME}"
 
 result=$?

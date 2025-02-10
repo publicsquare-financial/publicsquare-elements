@@ -1,6 +1,6 @@
 {
   "name": "@publicsquare/elements-react",
-  "version": "1.3.0",
+  "version": "1.3.0-beta.5",
   "description": "PublicSquare React Elements",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -11,7 +11,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/publicsquare-financial/publicsquare-elements",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/publicsquare-financial/publicsquare-elements.git"
+  },
   "license": "MIT",
   "scripts": {
     "build": "yarn clean && concurrently 'yarn build:module' 'yarn build:declarations' 'yarn build:package' --kill-others-on-fail",
@@ -23,10 +26,12 @@
     "clean": "rimraf dist",
     "prepare": "yarn build",
     "test": "jest",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --coverage",
+    "publish": "npm publish ./dist",
+    "publish:beta": "npm publish ./dist --tag beta"
   },
   "dependencies": {
-    "@publicsquare/elements-js": "1.2.0"
+    "@publicsquare/elements-js": "1.3.0-beta.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.25.6",

@@ -1,9 +1,10 @@
 import { expect, type Page, type Locator } from '@playwright/test'
 
-class HomePageJS {
+class DebitCreditCardsJSPage {
   private page: Page
+  private technologyToggle: Locator
+  private allInOneToggle: Locator
   private cardElementForm: Locator
-  private cardElementsForm: Locator
   private cardElement: Locator
   private cardNumberElement: Locator
   private cardExpirationDateElement: Locator
@@ -12,31 +13,47 @@ class HomePageJS {
 
   constructor(page: Page) {
     this.page = page
+    this.technologyToggle = page.getByTestId('js-type-button')
+    this.allInOneToggle = page.getByTestId('all-in-one-toggle')
     this.cardElementForm = page.locator('form[name="js-form-cardelement"]')
-    this.cardElementsForm = page.locator('form[name="js-form-cardelements"]')
     this.cardElement = this.cardElementForm.locator('#card-element')
-    this.cardNumberElement = this.cardElementsForm.locator(
+    this.cardNumberElement = this.cardElementForm.locator(
       '#card-number-element'
     )
-    this.cardExpirationDateElement = this.cardElementsForm.locator(
+    this.cardExpirationDateElement = this.cardElementForm.locator(
       '#card-expiration-date-element'
     )
-    this.cardVerificationCodeElement = this.cardElementsForm.locator(
+    this.cardVerificationCodeElement = this.cardElementForm.locator(
       '#card-verification-code-element'
     )
-    this.successModal = page.getByTestId('success-modal')
+    this.successModal = page.getByTestId('capture-modal')
   }
 
   async goToPage() {
-    await this.page.goto('/')
+    await this.page.goto('/debit-credit-cards')
+    await this.technologyToggle.click()
   }
 
   async isVisible() {
     await expect(await this.cardElementForm).toBeVisible()
-    await expect(await this.cardElementsForm).toBeVisible()
   }
 
-  async elementsReady() {
+  async toggleAllInOne() {
+    await this.allInOneToggle.click()
+    await expect(await this.cardElementForm).toBeVisible()
+  }
+
+  async elementsAllInOneReady() {
+    await expect(
+      await this.cardElement
+        .frameLocator('iframe')
+        .locator('#cardNumber')
+        .innerHTML()
+    ).toBeDefined()
+    await expect(await this.cardElement.innerHTML()).toBeDefined()
+  }
+
+  async elementsIndividualReady() {
     await expect(
       await this.cardElement
         .frameLocator('iframe')
@@ -62,7 +79,7 @@ class HomePageJS {
   }
 
   getCardElementsNameInput() {
-    return this.cardElementsForm.locator('input[name="cardholder_name"]')
+    return this.cardElementForm.locator('input[name="cardholder_name"]')
   }
 
   async fillCardElementsNameInput(value: string) {
@@ -118,7 +135,7 @@ class HomePageJS {
   }
 
   async submitCardElementsForm() {
-    await this.cardElementsForm.locator('button[type="submit"]').click()
+    await this.cardElementForm.locator('button[type="submit"]').click()
   }
 
   async expectSuccessModalIsVisible() {
@@ -126,11 +143,12 @@ class HomePageJS {
   }
 }
 
-class HomePageReact {
+class DebitCreditCardsReactPage {
   private page: Page
+  private technologyToggle: Locator
+  private allInOneToggle: Locator
   private successModal: Locator
   private cardElementForm: Locator
-  private cardElementsForm: Locator
   private cardElement: Locator
   private cardNumberElement: Locator
   private cardExpirationDateElement: Locator
@@ -138,8 +156,9 @@ class HomePageReact {
 
   constructor(page: Page) {
     this.page = page
+    this.technologyToggle = page.getByTestId('react-type-button')
+    this.allInOneToggle = page.getByTestId('all-in-one-toggle')
     this.cardElementForm = page.locator('form[name="react-form-cardelement"]')
-    this.cardElementsForm = page.locator('form[name="react-form-cardelements"]')
     this.cardElement = page.locator('#react-card-element')
     this.cardNumberElement = page.locator('#react-card-number-element')
     this.cardExpirationDateElement = page.locator(
@@ -148,19 +167,34 @@ class HomePageReact {
     this.cardVerificationCodeElement = page.locator(
       '#react-card-verification-code-element'
     )
-    this.successModal = page.getByTestId('success-modal')
+    this.successModal = page.getByTestId('capture-modal')
   }
 
   async goToPage() {
-    await this.page.goto('/')
+    await this.page.goto('/debit-credit-cards')
+    await this.technologyToggle.click()
   }
 
   async isVisible() {
     await expect(await this.cardElementForm).toBeVisible()
-    await expect(await this.cardElementsForm).toBeVisible()
   }
 
-  async elementsReady() {
+  async toggleAllInOne() {
+    await this.allInOneToggle.click()
+    await expect(await this.cardElementForm).toBeVisible()
+  }
+
+  async elementsAllInOneReady() {
+    await expect(
+      await this.cardElement
+        .frameLocator('iframe')
+        .locator('#cardNumber')
+        .innerHTML()
+    ).toBeDefined()
+    await expect(await this.cardElement.innerHTML()).toBeDefined()
+  }
+
+  async elementsIndividualReady() {
     await expect(
       await this.cardElement
         .frameLocator('iframe')
@@ -186,7 +220,7 @@ class HomePageReact {
   }
 
   getCardElementsNameInput() {
-    return this.cardElementsForm.locator('input[name="cardholder_name"]')
+    return this.cardElementForm.locator('input[name="cardholder_name"]')
   }
 
   async fillCardElementsNameInput(value: string) {
@@ -242,7 +276,7 @@ class HomePageReact {
   }
 
   async submitCardElementsForm() {
-    await this.cardElementsForm.locator('button[type="submit"]').click()
+    await this.cardElementForm.locator('button[type="submit"]').click()
   }
 
   async expectSuccessModalIsVisible() {
@@ -250,4 +284,4 @@ class HomePageReact {
   }
 }
 
-export { HomePageJS, HomePageReact }
+export { DebitCreditCardsJSPage, DebitCreditCardsReactPage }

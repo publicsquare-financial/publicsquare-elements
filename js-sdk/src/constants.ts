@@ -5,7 +5,7 @@ const ELEMENTS_TYPE_NOT_SUPPORTED =
   'PublicSquare Elements does not support the type of element specified.'
 
 const ELEMENTS_NOM_DOM_ERROR_MESSAGE =
-  'Tried to load PublicSquare Elements in a non-DOM environment.'
+  'Tried to load PublicSquare Elements in a non-DOM environment. Only client-side environments are supported.'
 
 const ELEMENTS_SCRIPT_LOAD_ERROR_MESSAGE =
   'PublicSquare Elements did not load properly.'
@@ -15,6 +15,15 @@ const ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE =
 
 const ELEMENTS_CARDS_NO_POINTER_MESSAGE =
   'PublicSquareCards requires publicSquarePointer when initializing'
+
+const ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE =
+  'PublicSquareBankAccount requires psqPointer when initializing'
+
+const ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ROUTING_NUMBER_LOAD_ERROR_MESSAGE =
+  'PublicSquare Elements did not load the routing number element properly.'
+
+const ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ACCOUNT_NUMBER_LOAD_ERROR_MESSAGE =
+  'PublicSquare Elements did not load the account number element properly.'
 
 const CARD_BRANDS = [
   'visa',
@@ -53,6 +62,9 @@ export {
   ELEMENTS_SCRIPT_LOAD_ERROR_MESSAGE,
   ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE,
   ELEMENTS_CARDS_NO_POINTER_MESSAGE,
+  ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE,
+  ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ROUTING_NUMBER_LOAD_ERROR_MESSAGE,
+  ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ACCOUNT_NUMBER_LOAD_ERROR_MESSAGE,
   CARD_BRANDS,
   CARD_ICON_POSITIONS,
   AUTOCOMPLETE_VALUES,

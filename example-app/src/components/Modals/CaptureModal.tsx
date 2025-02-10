@@ -4,14 +4,16 @@ import {
   DialogPanel,
   DialogTitle
 } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/24/outline'
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import cx from 'classnames'
 
 type Props = {
   message?: object
   onClose: () => void
+  error?: boolean
 }
 
-export default function CardCaptureSuccess({ message, onClose }: Props) {
+export default function CaptureModal({ message, error, onClose }: Props) {
   return (
     <Dialog className="relative z-10" open={!!message} onClose={onClose}>
       <DialogBackdrop
@@ -26,21 +28,33 @@ export default function CardCaptureSuccess({ message, onClose }: Props) {
             className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-xl sm:p-6 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
           >
             <div>
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                <CheckIcon
-                  className="h-6 w-6 text-green-600"
-                  aria-hidden="true"
-                />
+              <div
+                className={cx(
+                  'mx-auto flex h-12 w-12 items-center justify-center rounded-full',
+                  error ? 'bg-red-100' : 'bg-green-100'
+                )}
+              >
+                {error ? (
+                  <XMarkIcon
+                    className="h-6 w-6 text-red-600"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <CheckIcon
+                    className="h-6 w-6 text-green-600"
+                    aria-hidden="true"
+                  />
+                )}
               </div>
               <div
                 className="mt-3 text-center sm:mt-5"
-                data-testid="success-modal"
+                data-testid="capture-modal"
               >
                 <DialogTitle
                   as="h3"
                   className="text-base font-semibold leading-6 text-gray-900"
                 >
-                  Card capture successful
+                  {error ? 'Capture failed' : 'Capture successful'}
                 </DialogTitle>
                 <div className="mt-2 text-left space-y-1">
                   <p>Response data:</p>
@@ -52,7 +66,11 @@ export default function CardCaptureSuccess({ message, onClose }: Props) {
                       >
                         <b>{key}</b>
                         <div className="mx-4 flex-grow border-4 border-b border-dotted border-gray-100" />
-                        <span className="text-gray-700 text-sm">{value}</span>
+                        <span className="text-gray-700 text-sm">
+                          {typeof value === 'object'
+                            ? JSON.stringify(value)
+                            : value}
+                        </span>
                       </div>
                     ))}
                 </div>

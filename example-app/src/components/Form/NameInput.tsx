@@ -1,8 +1,12 @@
-export default function NameInput() {
+export default function NameInput({
+  required = false
+}: {
+  required?: boolean
+}) {
   return (
     <div>
       <label htmlFor="name" className="block">
-        Full Name
+        Full Name {required ? '' : '(Optional)'}
       </label>
       <div className="mt-2">
         <input
@@ -11,6 +15,7 @@ export default function NameInput() {
           id="name"
           className="block w-full border-0 px-4 py-3 placeholder:text-gray-400 rounded-lg bg-white shadow focus:outline-none"
           placeholder="Jane Doe"
+          required={required}
         />
       </div>
     </div>

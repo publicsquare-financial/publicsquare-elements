@@ -2,7 +2,8 @@ import {
   CardElement,
   CardExpirationDateElement,
   CardNumberElement,
-  CardVerificationCodeElement
+  CardVerificationCodeElement,
+  Environment
 } from './publicsquare'
 
 export type Card = {
@@ -41,7 +42,7 @@ export type CardCreateResponse = {
   account_id: string
   cardholder_name: string
   created_at: string
-  environment: 'test' | 'production'
+  environment: Environment
   exp_month: string
   exp_year: string
   fingerprint: string
@@ -49,6 +50,7 @@ export type CardCreateResponse = {
   last4: string
   modified_at: string
   billing_details?: CardBillingDetails
+  error?: CardCreateErrorResponse
 }
 
 export type CardCreateErrorResponse = {
