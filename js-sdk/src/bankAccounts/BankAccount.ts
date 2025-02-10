@@ -1,6 +1,6 @@
 import {
   ELEMENTS_NOM_DOM_ERROR_MESSAGE,
-  ELEMENTS_PUBLICSQUARE_ACH_NO_POINTER_MESSAGE,
+  ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE,
   ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ROUTING_NUMBER_LOAD_ERROR_MESSAGE,
   ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ACCOUNT_NUMBER_LOAD_ERROR_MESSAGE,
   ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE
@@ -76,7 +76,7 @@ export class PublicSquareBankAccount {
 
   constructor(psqPointer: PublicSquare) {
     if (!psqPointer) {
-      throw Error(ELEMENTS_PUBLICSQUARE_ACH_NO_POINTER_MESSAGE)
+      throw Error(ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE)
     }
     this._publicSquare = psqPointer
   }
@@ -149,7 +149,7 @@ export class PublicSquareBankAccount {
     container.style.display = 'flex'
     container.className = className ?? ''
     const routingNumberContainer = document.createElement('div')
-    routingNumberContainer.id = 'psq-ach-routing-number-container'
+    routingNumberContainer.id = 'psq-bank-account-routing-number-container'
     routingNumberContainer.style.width = '100%'
     container.appendChild(routingNumberContainer)
     let routingNumberValue = ''
@@ -160,7 +160,7 @@ export class PublicSquareBankAccount {
     })
 
     const accountNumberContainer = document.createElement('div')
-    accountNumberContainer.id = 'psq-ach-account-number-container'
+    accountNumberContainer.id = 'psq-bank-account-account-number-container'
     accountNumberContainer.style.width = '100%'
     container.appendChild(accountNumberContainer)
     let accountNumberValue = ''

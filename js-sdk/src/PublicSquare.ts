@@ -88,7 +88,7 @@ export class PublicSquare {
 
   /**
    * Initialize a PublicSquare element.
-   * @param type {ElementType} 'card' | 'cardExpirationDate' | 'cardNumber' | 'cardVerificationCode' | 'ach'
+   * @param type {ElementType} 'card' | 'cardExpirationDate' | 'cardNumber' | 'cardVerificationCode' | 'bankAccount' | 'bankAccountRoutingNumber' | 'bankAccountAccountNumber'
    * @param options CreateCardElementOptions see [docs](https://developers.publicsquare.com)
    * @returns created element
    */

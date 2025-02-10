@@ -17,10 +17,10 @@ class BankAccountsJSPage {
     this.allInOneToggle = page.getByTestId('all-in-one-toggle')
     this.elementForm = page.locator('form[name="js-form-bank-account-element"]')
     this.routingNumberElement = page.locator(
-      '#psq-ach-routing-number-container>.publicsquare-element-input'
+      '#psq-bank-account-routing-number-container>.publicsquare-element-input'
     )
     this.accountNumberElement = page.locator(
-      '#psq-ach-account-number-container>.publicsquare-element-input'
+      '#psq-bank-account-account-number-container>.publicsquare-element-input'
     )
     this.separateRoutingNumberElement = page.locator(
       '#routing-number-element>.publicsquare-element-input'
@@ -107,10 +107,10 @@ class BankAccountsReactPage {
       'form[name="react-form-bank-account-element"]'
     )
     this.routingNumberElement = page.locator(
-      '#psq-ach-routing-number-container>.publicsquare-element-input'
+      '#psq-bank-account-routing-number-container>.publicsquare-element-input'
     )
     this.accountNumberElement = page.locator(
-      '#psq-ach-account-number-container>.publicsquare-element-input'
+      '#psq-bank-account-account-number-container>.publicsquare-element-input'
     )
     this.separateRoutingNumberElement = page.locator(
       '#react-bank-account-routing-number-element>.publicsquare-element-input'

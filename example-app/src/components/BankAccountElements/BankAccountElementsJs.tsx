@@ -18,7 +18,7 @@ export default function BankAccountElementsJs({
   allInOne: boolean
 }) {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>()
-  const achRef = useRef<HTMLDivElement>(null)
+  const bankAccountRef = useRef<HTMLDivElement>(null)
   const [bankAccountElement, setBankAccountElement] =
     useState<BankAccountElement>()
   const [routingNumberElement, setRoutingNumberElement] =
@@ -45,7 +45,7 @@ export default function BankAccountElementsJs({
 
   useEffect(() => {
     if (publicsquare) {
-      if (allInOne && !achRef.current?.children.length) {
+      if (allInOne && !bankAccountRef.current?.children.length) {
         /**
          * Step 2: Initialize the elements you want to use
          */
@@ -141,19 +141,19 @@ export default function BankAccountElementsJs({
           <NameInput />
           {allInOne ? (
             <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
-              <label>ACH element</label>
+              <label>Bank Account element</label>
               <div className="w-full rounded-lg bg-white shadow overflow-hidden">
-                <div id="bank-account-element" ref={achRef}></div>
+                <div id="bank-account-element" ref={bankAccountRef}></div>
               </div>
             </div>
           ) : (
             <div className="grid grid-cols-2 gap-4 items-start border-2 border-dashed border-gray-300 rounded-lg p-4">
               <div className="space-y-2">
-                <label>ACH routing number element</label>
+                <label>Bank Account routing number element</label>
                 <div id="routing-number-element"></div>
               </div>
               <div className="space-y-2">
-                <label>ACH account number element</label>
+                <label>Bank Account account number element</label>
                 <div id="account-number-element"></div>
               </div>
             </div>
