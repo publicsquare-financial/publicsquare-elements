@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.3.0...v1.4.0) (2025-02-10)
+
+
+### Features
+
+* add bank account elements ([4a35512](https://github.com/publicsquare-financial/publicsquare-elements/commit/4a355121a632e5737df4ccde9f003a6f148ed330))
+
 # [1.3.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.2.1...v1.3.0) (2025-01-27)
 
 
