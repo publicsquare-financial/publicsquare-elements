@@ -11,6 +11,7 @@ import {
 } from '@publicsquare/elements-js/types/sdk'
 import NameInput from '@/components/Form/NameInput'
 import CaptureModal from '@/components/Modals/CaptureModal'
+import Button from '../Buttons/Button'
 
 export default function BankAccountElementsJs({
   allInOne
@@ -129,6 +130,12 @@ export default function BankAccountElementsJs({
     }
   }
 
+  async function onConnectBankAccountWithVerification() {
+    const response = await publicsquare?.bankAccounts.create({
+      verification: true
+    })
+  }
+
   return (
     <div className="space-y-4 w-full">
       <form
@@ -158,6 +165,14 @@ export default function BankAccountElementsJs({
               </div>
             </div>
           )}
+          <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
+            <label>Connect Bank Account</label>
+            <div className="">
+              <Button onClick={onConnectBankAccountWithVerification}>
+                Connect Bank Account
+              </Button>
+            </div>
+          </div>
           <div className="flex justify-end">
             <SubmitButton loading={loading} elementType="bankAccount" />
           </div>

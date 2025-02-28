@@ -6,15 +6,19 @@ export type BankAccountHolderType = 'individual' | 'company'
 
 export type BankAccountType = 'checking' | 'savings'
 
-export type BankAccountCreateInput = {
-  account_holder_name?: string
-  account_holder_type?: BankAccountHolderType | string
-  account_type?: BankAccountType | string
-  routing_number: string
-  account_number: string
-  customer_id?: string
-  billing_details?: CardBillingDetails
-}
+export type BankAccountCreateInput =
+  | {
+      account_holder_name?: string
+      account_holder_type?: BankAccountHolderType | string
+      account_type?: BankAccountType | string
+      routing_number: string
+      account_number: string
+      customer_id?: string
+      billing_details?: CardBillingDetails
+    }
+  | {
+      verification: boolean
+    }
 
 export type ValidatedBankAccountCreateInput = {
   validated: BankAccountCreateInput

@@ -23,6 +23,7 @@ import {
   validateCreateBankAccountInput,
   validateRoutingNumber
 } from '@/validators/bankAccounts'
+import { VerificationWidget } from './VerificationWidget'
 
 function createInputElement({
   placeholder,
@@ -81,15 +82,7 @@ export class PublicSquareBankAccount {
     this._publicSquare = psqPointer
   }
 
-  /**
-   * Create a bank account
-   * @param input - The bank account input
-   * @param publicKey - The PublicSquare public key
-   * @returns The bank account create response
-   */
-  public create(
-    input: BankAccountCreateInput
-  ): Promise<BankAccountCreateResponse> {
+  private createBankAccount(input: BankAccountCreateInput) {
     if (!this._publicSquare._apiKey) {
       throw new Error('apiKey must be sent at initialization')
     } else if (!this._publicSquare.bt || !this._publicSquare.bt.client) {
@@ -113,6 +106,40 @@ export class PublicSquareBankAccount {
             : res
         )
     }
+  }
+
+  /**
+   * Create a bank account
+   * @param input - The bank account input
+   * @param publicKey - The PublicSquare public key
+   * @returns The bank account create response
+   */
+  public create(
+    input: BankAccountCreateInput
+  ): Promise<BankAccountCreateResponse> {
+    return 'verification' in input && input.verification
+      ? this.openVerification()
+      : this.createBankAccount(input)
+  }
+
+  public openVerification(): Promise<BankAccountCreateResponse> {
+    return new Promise((resolve, reject) => {
+      const widget = new VerificationWidget({
+        firstName: 'Ryan',
+        lastName: 'Frahm',
+        email: 'ryan.frahm@publicsq.com',
+        phone: '1234567890',
+        accountType: 'checking'
+      })
+      widget
+        .open()
+        .then((res) => {
+          resolve({})
+        })
+        .catch((err) => {
+          reject(err)
+        })
+    })
   }
 
   public createRoutingNumberElement(

@@ -7,6 +7,7 @@ import {
 export function validateCreateBankAccountInput(
   input: BankAccountCreateInput
 ): ValidatedBankAccountCreateInput {
+  if ('verification' in input) throw new Error('verification is not supported')
   if (!['string', 'object'].includes(typeof input.routing_number)) {
     throw new Error('routing_number is required')
   }
