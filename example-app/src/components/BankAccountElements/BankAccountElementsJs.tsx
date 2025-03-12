@@ -112,7 +112,7 @@ export default function BankAccountElementsJs({
     const formData = new FormData(e.currentTarget)
     const formProps = Object.fromEntries(formData)
     if (loading) return
-    if (publicsquare && data.account_number && data.routing_number) {
+    if (publicsquare && 'account_number' in data && 'routing_number' in data) {
       setLoading(true)
       try {
         const response = await publicsquare.bankAccounts.create({
