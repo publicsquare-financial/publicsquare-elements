@@ -101,12 +101,15 @@ test.describe('js', () => {
 
 test.describe('react', () => {
   test.beforeEach(async ({ page }) => {
+
     const homePageReact = new BankAccountsReactPage(page)
+
     await homePageReact.goToPage()
 
     await homePageReact.isVisible()
 
     await homePageReact.elementsAllInOneReady()
+
   })
 
   test('should show 4 react elements', async ({ page }) => {

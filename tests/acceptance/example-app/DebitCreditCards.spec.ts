@@ -45,6 +45,7 @@ test.describe('js', () => {
 
   test('should submit the JS CardElement form', async ({ page }) => {
     const data = fakeCardInputData
+
     await page.route('https://api.basistheory.com/proxy', async (route) => {
       const json = fakeCard(data)
       await route.fulfill({ json })

@@ -6,6 +6,12 @@ Contained within is the official **PublicSquare** Elements Javascript and React 
 
 ## Quickstart
 
+### Create your local .env file
+Create your .env file and paste in your pk_test_key you obtained from your account.
+See (/example-app/env.example)
+
+NEXT_PUBLIC_PUBLICSQUARE_KEY={your_pk_test_key_here}
+
 ### Build the SDK and run Tests
 
 Run the following command from the root of the project:

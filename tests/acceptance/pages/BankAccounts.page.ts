@@ -107,10 +107,10 @@ class BankAccountsReactPage {
       'form[name="react-form-bank-account-element"]'
     )
     this.routingNumberElement = page.locator(
-      '#psq-bank-account-routing-number-container>.publicsquare-element-input'
+      '#psq-ach-routing-number-container>.publicsquare-element-input'
     )
     this.accountNumberElement = page.locator(
-      '#psq-bank-account-account-number-container>.publicsquare-element-input'
+      '#psq-ach-account-number-container>.publicsquare-element-input'
     )
     this.separateRoutingNumberElement = page.locator(
       '#react-bank-account-routing-number-element>.publicsquare-element-input'
