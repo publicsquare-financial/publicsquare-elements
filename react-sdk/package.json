@@ -31,7 +31,8 @@
     "publish:beta": "npm publish ./dist --tag beta"
   },
   "dependencies": {
-    "@publicsquare/elements-js": "1.3.0-beta.4"
+    "@publicsquare/elements-js": "../js-sdk",
+    "@publicsquare/elements-react": "file:"
   },
   "devDependencies": {
     "@babel/cli": "^7.25.6",

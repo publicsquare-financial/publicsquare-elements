@@ -9,7 +9,7 @@ import {
   CardVerificationCodeElement,
   CardsCreateInput,
   PublicSquareInitOptions
-} from '@publicsquare/elements-js/types'
+} from '@publicsquare/elements-js/types/sdk'
 import NameInput from '@/components/Form/NameInput'
 import CaptureModal from '@/components/Modals/CaptureModal'
 

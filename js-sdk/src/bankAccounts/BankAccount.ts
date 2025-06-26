@@ -24,6 +24,7 @@ import {
   validateRoutingNumber
 } from '@/validators/bankAccounts'
 import { VerificationWidget } from './VerificationWidget'
+import { BankVerificationIdResponse } from '@/types/sdk/verificationWidget'
 
 function createInputElement({
   placeholder,
@@ -122,19 +123,15 @@ export class PublicSquareBankAccount {
       : this.createBankAccount(input)
   }
 
-  public openVerification(): Promise<BankAccountCreateResponse> {
+  public openVerification(): Promise<BankVerificationIdResponse> {
     return new Promise((resolve, reject) => {
-      const widget = new VerificationWidget({
-        firstName: 'Ryan',
-        lastName: 'Frahm',
-        email: 'ryan.frahm@publicsq.com',
-        phone: '1234567890',
-        accountType: 'checking'
-      })
+      const widget = new VerificationWidget(this._publicSquare)
       widget
         .open()
         .then((res) => {
-          resolve({})
+          resolve({
+            bank_account_verification_id: res.bank_account_verification_id
+          })
         })
         .catch((err) => {
           reject(err)

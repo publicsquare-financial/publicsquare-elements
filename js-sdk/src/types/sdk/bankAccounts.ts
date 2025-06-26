@@ -1,6 +1,7 @@
 import { Environment } from './publicsquare'
 import { InputElementOptions, PSQTextElement } from './elements'
 import { CardBillingDetails } from './cards'
+import { BankVerificationIdResponse } from './verificationWidget'
 
 export type BankAccountHolderType = 'individual' | 'company'
 
@@ -26,6 +27,7 @@ export type ValidatedBankAccountCreateInput = {
 
 export type BankAccountCreateResponse = {
   id?: string
+  bank_account_verification_id?: string
   account_id?: string
   environment?: Environment
   account_holder_name?: string

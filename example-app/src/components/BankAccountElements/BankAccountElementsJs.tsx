@@ -39,6 +39,11 @@ export default function BankAccountElementsJs({
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
     const options: PublicSquareInitOptions = {}
 
+    console.log('BankAccountElementsJs', {
+      apiKey,
+      options
+    })
+
     new PublicSquare()
       .init(apiKey, options)
       .then((_publicsquare) => setPublicSquare(_publicsquare))
@@ -132,9 +137,8 @@ export default function BankAccountElementsJs({
   }
 
   async function onConnectBankAccountWithVerification() {
-    const response = await publicsquare?.bankAccounts.create({
-      verification: true
-    })
+    const response = await publicsquare?.bankAccounts.openVerification()
+    console.log('response', response)
   }
 
   return (

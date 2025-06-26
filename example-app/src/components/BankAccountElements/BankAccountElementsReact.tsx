@@ -72,7 +72,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
     const { cardholder_name, account_holder_type, account_type } =
       Object.fromEntries(formData)
     if (loading) return
-    if (publicsquare && data.routing_number && data.account_number) {
+    if (publicsquare && 'routing_number' in data && 'account_number' in data) {
       setLoading(true)
       try {
         const response = await publicsquare.bankAccounts.create({
