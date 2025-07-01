@@ -20,18 +20,15 @@ export class VerificationWidget {
       throw Error(ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE)
     }
     this._publicSquare = psqPointer
-    console.log('VerificationWidget constructor', {
-      psqPointer
-    })
   }
 
-  public open(): Promise<BankVerificationIdResponse> {
+  public open(target?: string): Promise<BankVerificationIdResponse> {
     // 1. Install script
     // 2. Make api requests
     // 3. Open widget
     // 4. Wait for response
     return this._getAuthorizationUrl().then((response) => {
-      this._buildContainer(response.authorization_url)
+      this._buildContainer(response.authorization_url, target)
       return this._setupMessageListener()
     })
   }
@@ -40,7 +37,6 @@ export class VerificationWidget {
     return new Promise((resolve, reject) => {
       this._messageHandler = (e: MessageEvent) => {
         const data = e.data
-        console.log('data', data)
         if (data && typeof data === 'object') {
           if (data.step === 'APP_MOUNTED') {
             // Handle app mounted event
@@ -95,7 +91,14 @@ export class VerificationWidget {
       )
   }
 
-  private _buildContainer(url: string) {
+  private _buildContainer(url: string, target?: string) {
+    console.log('buildContainer', url, target)
+    const targetContainer = target
+      ? document.querySelector(target)
+      : document.body
+    if (!targetContainer) {
+      throw Error('Target container not found')
+    }
     const container = document.createElement('div')
     container.id = 'publicsquare-verification-widget'
     container.style.display = 'flex'
@@ -103,7 +106,7 @@ export class VerificationWidget {
     container.style.alignItems = 'center'
     container.style.height = '100%'
     container.style.width = '100%'
-    document.body.appendChild(container)
+    targetContainer.appendChild(container)
     const iframe = document.createElement('iframe')
     iframe.src = url
     iframe.style.width = '100%'

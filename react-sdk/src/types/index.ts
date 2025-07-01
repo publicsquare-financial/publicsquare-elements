@@ -3,6 +3,7 @@ import {
   CreateBankAccountAccountNumberElementOptions,
   BankAccountAccountNumberElement,
   BankAccountElement,
+  BankAccountVerificationElement,
   CreateBankAccountElementOptions,
   BankAccountRoutingNumberElement,
   CreateBankAccountRoutingNumberElementOptions,
@@ -24,8 +25,10 @@ import {
   BankAccountCreateErrorResponse,
   BankAccountCreateResponse,
   BankAccountCreateInput,
-  BankAccountHolderType
+  BankAccountHolderType,
+  CreateBankAccountVerificationElementOptions
 } from '@publicsquare/elements-js/dist/types'
+import { BankVerificationIdResponse } from '@publicsquare/elements-js/dist/types/sdk/verificationWidget'
 import { PublicSquare } from '@publicsquare/elements-js'
 
 export type PublicSquareProviderValue = {
@@ -67,6 +70,11 @@ export type BankAccountElementProps = {
   id: string
 } & CreateBankAccountElementOptions
 
+export type BankAccountVerificationElementProps = {
+  id: string
+  onVerificationComplete?: (result: BankVerificationIdResponse) => void
+} & CreateBankAccountVerificationElementOptions
+
 export type BankAccountRoutingNumberElementProps = {
   id: string
 } & CreateBankAccountRoutingNumberElementOptions
@@ -80,6 +88,7 @@ export {
   CreateBankAccountAccountNumberElementOptions,
   BankAccountAccountNumberElement,
   BankAccountElement,
+  BankAccountVerificationElement,
   CreateBankAccountElementOptions,
   BankAccountRoutingNumberElement,
   CreateBankAccountRoutingNumberElementOptions,
@@ -101,5 +110,6 @@ export {
   BankAccountCreateErrorResponse,
   BankAccountCreateResponse,
   BankAccountCreateInput,
-  BankAccountHolderType
+  BankAccountHolderType,
+  CreateBankAccountVerificationElementOptions
 }

@@ -62,6 +62,10 @@ export type BankAccountElement = {
   routingNumber: BankAccountRoutingNumberElement
 }
 
+export type BankAccountVerificationElement = {
+  mount: (targetId: string) => void
+}
+
 export type CreateBankAccountElementOptions = {
   routingNumberOptions?: InputElementOptions
   accountNumberOptions?: InputElementOptions
@@ -71,3 +75,9 @@ export type CreateBankAccountElementOptions = {
 export type CreateBankAccountRoutingNumberElementOptions = InputElementOptions
 
 export type CreateBankAccountAccountNumberElementOptions = InputElementOptions
+
+export type CreateBankAccountVerificationElementOptions = {
+  className?: string
+  target?: string
+  onVerificationComplete?: (result: BankVerificationIdResponse) => void
+}

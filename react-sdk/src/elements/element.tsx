@@ -19,7 +19,20 @@ const PublicSquareElement = forwardRef<any, Types.ElementProps>(
       if (!init && publicsquare) {
         init = true
         const element = createElement(type, options)
-        element.mount(`#${id}`)
+        const mountResult = element.mount(`#${id}`)
+
+        // Handle both synchronous and asynchronous mount functions
+        // Only check for Promise if the mount result is not undefined/void
+        if (mountResult !== undefined && mountResult !== null) {
+          const result = mountResult as any
+          if (typeof result.then === 'function') {
+            // It's a Promise, handle it asynchronously
+            result.catch((error: any) => {
+              console.error('Failed to mount element:', error)
+            })
+          }
+        }
+
         setRef(element)
       }
     }, [publicsquare])

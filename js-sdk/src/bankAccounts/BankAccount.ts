@@ -12,9 +12,11 @@ import {
   BankAccountCreateResponse,
   BankAccountElement,
   BankAccountRoutingNumberElement,
+  BankAccountVerificationElement,
   CreateBankAccountAccountNumberElementOptions,
   CreateBankAccountElementOptions,
   CreateBankAccountRoutingNumberElementOptions,
+  CreateBankAccountVerificationElementOptions,
   InputElementOptions,
   PSQTextElement
 } from '@/types/sdk'
@@ -25,6 +27,7 @@ import {
 } from '@/validators/bankAccounts'
 import { VerificationWidget } from './VerificationWidget'
 import { BankVerificationIdResponse } from '@/types/sdk/verificationWidget'
+import { log } from 'console'
 
 function createInputElement({
   placeholder,
@@ -118,16 +121,16 @@ export class PublicSquareBankAccount {
   public create(
     input: BankAccountCreateInput
   ): Promise<BankAccountCreateResponse> {
-    return 'verification' in input && input.verification
-      ? this.openVerification()
-      : this.createBankAccount(input)
+    return this.createBankAccount(input)
   }
 
-  public openVerification(): Promise<BankVerificationIdResponse> {
+  public openVerification(
+    target?: string
+  ): Promise<BankVerificationIdResponse> {
     return new Promise((resolve, reject) => {
       const widget = new VerificationWidget(this._publicSquare)
       widget
-        .open()
+        .open(target)
         .then((res) => {
           resolve({
             bank_account_verification_id: res.bank_account_verification_id
@@ -137,6 +140,39 @@ export class PublicSquareBankAccount {
           reject(err)
         })
     })
+  }
+
+  public createVerificationElement(
+    options: CreateBankAccountVerificationElementOptions
+  ): BankAccountVerificationElement {
+    const { className, onVerificationComplete } = options
+    if (typeof window === 'undefined') {
+      throw Error(ELEMENTS_NOM_DOM_ERROR_MESSAGE)
+    }
+
+    // Set up message listener for verification result
+    if (onVerificationComplete) {
+      const messageHandler = (e: MessageEvent) => {
+        const data = e.data
+        if (data && typeof data === 'object') {
+          if (data.step === 'REDIRECT' && data.loginId && data.requestId) {
+            // Call the callback with the verification result
+            onVerificationComplete({
+              bank_account_verification_id: data.loginId
+            })
+            // Clean up the listener
+            window.removeEventListener('message', messageHandler)
+          }
+        }
+      }
+      window.addEventListener('message', messageHandler)
+    }
+
+    return {
+      mount: (id: string) => {
+        this.openVerification(id)
+      }
+    }
   }
 
   public createRoutingNumberElement(
@@ -168,6 +204,7 @@ export class PublicSquareBankAccount {
     if (typeof window === 'undefined') {
       throw Error(ELEMENTS_NOM_DOM_ERROR_MESSAGE)
     }
+
     const container = document.createElement('div')
     container.id = 'psq-bank-account-container'
     container.style.display = 'flex'
