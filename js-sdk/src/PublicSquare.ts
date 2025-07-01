@@ -37,7 +37,7 @@ export class PublicSquare {
     'https://staging.api.publicsquare.com/payment-methods/bank-accounts'
   protected _bt?: BasisTheoryInstance
   _bankAccountVerificationUrl: string =
-    'https://staging.api.publicsquare.com/payment-methods/bank-account/verification'
+    'https://staging.api.publicsquare.com/payment-methods/bank-accounts/verification'
 
   get bt(): BasisTheoryInstance | undefined {
     return this._bt
