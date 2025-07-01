@@ -26,7 +26,6 @@ const PublicSquareElement = forwardRef<any, Types.ElementProps>(
         if (mountResult !== undefined && mountResult !== null) {
           const result = mountResult as any
           if (typeof result.then === 'function') {
-            // It's a Promise, handle it asynchronously
             result.catch((error: any) => {
               console.error('Failed to mount element:', error)
             })
