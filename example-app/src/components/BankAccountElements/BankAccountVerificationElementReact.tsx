@@ -7,94 +7,66 @@ import PublicSquareTypes, {
   PublicSquareInitOptions
 } from '@publicsquare/elements-react/types/sdk'
 import {
+  BankAccountVerificationElement,
   PublicSquareProvider,
   usePublicSquare
 } from '@publicsquare/elements-react'
 import { FormEvent, useEffect, useRef, useState } from 'react'
 import AccountHolderTypeSelect from '../Form/AccountHolderTypeSelect'
 import AccountTypeSelect from '../Form/AccountTypeSelect'
-import { BankVerificationIdResponse } from '@publicsquare/elements-js/types/sdk/verificationWidget'
 
-// Try to import the component with error handling
-let BankAccountVerificationElement: any = null
-try {
-  const module = require('@publicsquare/elements-react')
-  BankAccountVerificationElement = module.BankAccountVerificationElement
-} catch (error) {
-  console.error('Failed to import BankAccountVerificationElement:', error)
-}
-
-export default function BankAccountVerificationElementReact({
-  onVerificationComplete
-}: {
-  onVerificationComplete?: (result: BankVerificationIdResponse) => void
-}) {
+export default function BankAccountVerificationElementReact() {
   const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
   const options: PublicSquareInitOptions = {}
 
   return (
     <PublicSquareProvider apiKey={apiKey} options={options}>
-      <Elements onVerificationComplete={onVerificationComplete} />
+      <Elements />
     </PublicSquareProvider>
   )
 }
 
-function Elements({
-  onVerificationComplete
-}: {
-  onVerificationComplete?: (result: BankVerificationIdResponse) => void
-}) {
+function Elements() {
   const [loading, setLoading] = useState(false)
+  const [bankAccountVerificationId, setBankAccountVerificationId] =
+    useState<string>()
   const [message, setMessage] = useState<{
     message?: object
     error?: boolean
   }>()
 
+  const { publicsquare } = usePublicSquare()
+
   const bankAccountVerificationElement =
     useRef<PublicSquareTypes.BankAccountVerificationElement>(null)
-
-  async function onSubmitForm(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    console.log('data', bankAccountVerificationElement.current)
-  }
-
-  const handleVerificationComplete = (result: BankVerificationIdResponse) => {
-    console.log('Verification completed:', result)
-    setMessage({
-      message: result,
-      error: false
-    })
-    if (onVerificationComplete) {
-      onVerificationComplete(result)
-    }
-  }
-
-  useEffect(() => {
-    const handleMessage = (e: MessageEvent) => {
-      const data = e.data
-      if (data && typeof data === 'object') {
-        console.log('data', data)
-      }
-    }
-    window.addEventListener('message', handleMessage)
-    return () => window.removeEventListener('message', handleMessage)
-  }, [])
-
-  // Check if component is available
-  if (!BankAccountVerificationElement) {
-    return (
-      <div className="space-y-4 w-full">
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-          Error: BankAccountVerificationElement is not available
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="space-y-4 w-full">
       <form
-        onSubmit={(e) => onSubmitForm(e)}
+        onSubmit={async (e) => {
+          setLoading(true)
+          e.preventDefault()
+          try {
+            if (!bankAccountVerificationId) {
+              throw new Error('No bank account verification ID available')
+            }
+            const bankAccount = await publicsquare?.bankAccounts.create({
+              bank_account_verification_id: bankAccountVerificationId
+            })
+            setMessage({
+              message: bankAccount,
+              error: false
+            })
+          } catch (error) {
+            console.error('Error creating bank account:', error)
+            setMessage({
+              message: error as object,
+              error: true
+            })
+          } finally {
+            setLoading(false)
+          }
+        }}
         name="react-form-bank-account-verification-element"
       >
         <div className="w-full space-y-4">
@@ -107,7 +79,11 @@ function Elements({
               ref={bankAccountVerificationElement}
               id="react-bank-account-verification-element"
               className="space-x-4"
-              onVerificationComplete={handleVerificationComplete}
+              onVerificationComplete={(result) => {
+                setBankAccountVerificationId(
+                  result.bank_account_verification_id
+                )
+              }}
             />
           </div>
           <div className="flex justify-end">

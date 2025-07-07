@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { ReactNode, useMemo, useState } from 'react'
 import ReactButton from './Buttons/ReactButton'
 import JavascriptButton from './Buttons/JavascriptButton'
@@ -18,11 +19,11 @@ export default function HomeSection({
     href: string
     label: string
   }
-  rightColumn: (type: Technology) => JSX.Element
+  rightColumn: (type: Technology) => React.ReactElement
 }) {
-  const [selected, setSelected] = useState<Technology>('react')
+  const [selected, setSelected] = React.useState<Technology>('react')
 
-  const memoizedRightColumn = useMemo(() => {
+  const memoizedRightColumn = React.useMemo(() => {
     return rightColumn(selected)
   }, [selected])
 

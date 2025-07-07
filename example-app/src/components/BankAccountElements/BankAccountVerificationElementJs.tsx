@@ -1,14 +1,8 @@
 'use client'
-import { FormEvent, useEffect, useRef, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { PublicSquare } from '@publicsquare/elements-js'
 import SubmitButton from '@/components/SubmitButton'
-import {
-  BankAccountCreateInput,
-  PublicSquareInitOptions,
-  BankAccountElement,
-  BankAccountRoutingNumberElement,
-  BankAccountAccountNumberElement
-} from '@publicsquare/elements-js/types/sdk'
+import { PublicSquareInitOptions } from '@publicsquare/elements-js/types/sdk'
 import NameInput from '@/components/Form/NameInput'
 import CaptureModal from '@/components/Modals/CaptureModal'
 import Button from '../Buttons/Button'
@@ -16,6 +10,7 @@ import { BankVerificationIdResponse } from '@publicsquare/elements-js/types/sdk/
 
 export default function BankAccountVerificationElementJs() {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>()
+  const [data, setData] = useState<BankVerificationIdResponse>()
   const [message, setMessage] = useState<{
     message?: object
     error?: boolean
@@ -29,11 +24,6 @@ export default function BankAccountVerificationElementJs() {
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
     const options: PublicSquareInitOptions = {}
 
-    console.log('BankAccountVerificationElementJs', {
-      apiKey,
-      options
-    })
-
     new PublicSquare()
       .init(apiKey, options)
       .then((_publicsquare) => setPublicSquare(_publicsquare))
@@ -43,20 +33,34 @@ export default function BankAccountVerificationElementJs() {
     const response = await publicsquare?.bankAccounts.openVerification(
       `#${'bank-account-verification-element'}`
     )
-    console.log('response', response)
+    setData(response)
   }
 
-  async function onSubmit(
-    e: FormEvent<HTMLFormElement>,
-    data: BankVerificationIdResponse
-  ) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    console.log('data', data)
+    try {
+      setLoading(true)
+      const bankAccount = await publicsquare?.bankAccounts.create({
+        bank_account_verification_id: data?.bank_account_verification_id
+      })
+      setMessage({
+        message: bankAccount,
+        error: false
+      })
+    } catch (error) {
+      console.error('Error creating bank account:', error)
+      setMessage({
+        message: error as object,
+        error: true
+      })
+    } finally {
+      setLoading(false)
+    }
   }
   return (
     <div className="space-y-4 w-full">
       <form
-        onSubmit={(e) => console.log('e', e)}
+        onSubmit={(e) => onSubmit(e)}
         name="js-form-bank-account-verification-element"
       >
         <div className="w-full space-y-4">

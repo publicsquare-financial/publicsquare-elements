@@ -91,7 +91,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
           error: !!response.error
         })
       } catch (error) {
-        console.log(error)
+        console.error('Error creating bank account:', error)
       }
       setLoading(false)
     }

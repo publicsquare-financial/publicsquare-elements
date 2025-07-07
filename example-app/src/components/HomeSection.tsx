@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useMemo, useState } from 'react'
+import React from 'react'
 import ReactButton from './Buttons/ReactButton'
 import JavascriptButton from './Buttons/JavascriptButton'
 import AllInOneToggle from './Toggles/AllInOneToggle'
@@ -19,12 +19,12 @@ export default function HomeSection({
     href: string
     label: string
   }
-  rightColumn: (type: Technology, allInOne: boolean) => JSX.Element
+  rightColumn: (type: Technology, allInOne: boolean) => React.ReactElement
 }) {
-  const [selected, setSelected] = useState<Technology>('react')
-  const [allInOne, setAllInOne] = useState(true)
+  const [selected, setSelected] = React.useState<Technology>('react')
+  const [allInOne, setAllInOne] = React.useState(true)
 
-  const memoizedRightColumn = useMemo(() => {
+  const memoizedRightColumn = React.useMemo(() => {
     return rightColumn(selected, allInOne)
   }, [selected, allInOne])
 

@@ -38,11 +38,6 @@ export default function BankAccountElementsJs({
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
     const options: PublicSquareInitOptions = {}
 
-    console.log('BankAccountElementsJs', {
-      apiKey,
-      options
-    })
-
     new PublicSquare()
       .init(apiKey, options)
       .then((_publicsquare) => setPublicSquare(_publicsquare))
@@ -129,7 +124,7 @@ export default function BankAccountElementsJs({
           error: !!response.error
         })
       } catch (error) {
-        console.log(error)
+        console.error('Error creating bank account:', error)
       }
       setLoading(false)
     }
