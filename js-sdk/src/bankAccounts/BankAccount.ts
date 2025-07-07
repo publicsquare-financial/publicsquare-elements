@@ -27,7 +27,6 @@ import {
 } from '@/validators/bankAccounts'
 import { VerificationWidget } from './VerificationWidget'
 import { BankVerificationIdResponse } from '@/types/sdk/verificationWidget'
-import { log } from 'console'
 
 function createInputElement({
   placeholder,
@@ -156,12 +155,24 @@ export class PublicSquareBankAccount {
         const data = e.data
         if (data && typeof data === 'object') {
           if (data.step === 'REDIRECT' && data.loginId && data.requestId) {
-            // Call the callback with the verification result
-            onVerificationComplete({
-              bank_account_verification_id: data.loginId
-            })
-            // Clean up the listener
-            window.removeEventListener('message', messageHandler)
+            // Save the bank account verification and then call the callback with the result
+            const widget = new VerificationWidget(this._publicSquare)
+            widget
+              .saveBankAccountVerification({
+                verification_code: data.loginId,
+                request_id: data.requestId
+              })
+              .then((result) => {
+                onVerificationComplete(result)
+              })
+              .catch((error) => {
+                console.error('Error saving bank account verification:', error)
+                // Don't call onVerificationComplete with error, just log it
+              })
+              .finally(() => {
+                // Clean up the listener
+                window.removeEventListener('message', messageHandler)
+              })
           }
         }
       }

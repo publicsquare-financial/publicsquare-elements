@@ -5,10 +5,7 @@ import {
   BankVerificationIdResponse
 } from '@/types/sdk/verificationWidget'
 import { PublicSquare } from '../PublicSquare'
-import {
-  ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE,
-  ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_VERIFICATION_SAVE_ERROR_MESSAGE
-} from '../constants'
+import { ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE } from '../constants'
 declare const ChirpLink: any
 
 export class VerificationWidget {
@@ -47,7 +44,7 @@ export class VerificationWidget {
             data.requestId
           ) {
             // Handle redirect event with loginId and requestId
-            this._saveBankAccountVerification({
+            this.saveBankAccountVerification({
               verification_code: data.loginId,
               request_id: data.requestId
             })
@@ -67,7 +64,7 @@ export class VerificationWidget {
     }
   }
 
-  private _saveBankAccountVerification(
+  public saveBankAccountVerification(
     request: BankVerificationIdRequest
   ): Promise<BankVerificationIdResponse> {
     return fetch(this._publicSquare._bankAccountVerificationUrl, {
