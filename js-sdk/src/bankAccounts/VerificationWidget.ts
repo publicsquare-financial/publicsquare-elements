@@ -1,12 +1,10 @@
 import {
-  BankVerificationRequestBody,
   BankVerificationUrlResponse,
   BankVerificationIdRequest,
   BankVerificationIdResponse
 } from '@/types/sdk/verificationWidget'
 import { PublicSquare } from '../PublicSquare'
 import { ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE } from '../constants'
-declare const ChirpLink: any
 
 export class VerificationWidget {
   private _publicSquare: PublicSquare
@@ -35,14 +33,7 @@ export class VerificationWidget {
       this._messageHandler = (e: MessageEvent) => {
         const data = e.data
         if (data && typeof data === 'object') {
-          if (data.step === 'APP_MOUNTED') {
-            // Handle app mounted event
-            console.log('Verification widget mounted')
-          } else if (
-            data.step === 'REDIRECT' &&
-            data.loginId &&
-            data.requestId
-          ) {
+          if (data.step === 'REDIRECT' && data.loginId && data.requestId) {
             // Handle redirect event with loginId and requestId
             this.saveBankAccountVerification({
               verification_code: data.loginId,
@@ -76,7 +67,6 @@ export class VerificationWidget {
       body: JSON.stringify(request)
     })
       .then((res) => {
-        console.log('res', res)
         return res.json()
       })
       .then((res) =>
@@ -89,7 +79,6 @@ export class VerificationWidget {
   }
 
   private _buildContainer(url: string, target?: string) {
-    console.log('buildContainer', url, target)
     const targetContainer = target
       ? document.querySelector(target)
       : document.body

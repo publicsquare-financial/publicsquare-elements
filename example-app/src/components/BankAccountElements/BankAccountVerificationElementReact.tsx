@@ -40,39 +40,38 @@ function Elements() {
   const bankAccountVerificationElement =
     useRef<PublicSquareTypes.BankAccountVerificationElement>(null)
 
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
+      if (!bankAccountVerificationId) {
+        throw new Error('No bank account verification ID available')
+      }
+      const bankAccount = await publicsquare?.bankAccounts.create({
+        bank_account_verification_id: bankAccountVerificationId
+      })
+      setMessage({
+        message: bankAccount,
+        error: false
+      })
+    } catch (error) {
+      console.error('Error creating bank account:', error)
+      setMessage({
+        message: error as object,
+        error: true
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="space-y-4 w-full">
       <form
-        onSubmit={async (e) => {
-          setLoading(true)
-          e.preventDefault()
-          try {
-            if (!bankAccountVerificationId) {
-              throw new Error('No bank account verification ID available')
-            }
-            const bankAccount = await publicsquare?.bankAccounts.create({
-              bank_account_verification_id: bankAccountVerificationId
-            })
-            setMessage({
-              message: bankAccount,
-              error: false
-            })
-          } catch (error) {
-            console.error('Error creating bank account:', error)
-            setMessage({
-              message: error as object,
-              error: true
-            })
-          } finally {
-            setLoading(false)
-          }
-        }}
+        onSubmit={handleSubmit}
         name="react-form-bank-account-verification-element"
       >
         <div className="w-full space-y-4">
-          <NameInput />
-          <AccountHolderTypeSelect />
-          <AccountTypeSelect />
           <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
             <label>Bank account verification element</label>
             <BankAccountVerificationElement
