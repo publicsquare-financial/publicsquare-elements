@@ -34,10 +34,10 @@ export class PublicSquare {
   _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP'
   _cardCreateUrl: string = 'https://api.basistheory.com/proxy'
   _bankAccountCreateUrl: string =
-    'https://staging.api.publicsquare.com/payment-methods/bank-accounts'
+    'https://api.publicsquare.com/payment-methods/bank-accounts'
   protected _bt?: BasisTheoryInstance
   _bankAccountVerificationUrl: string =
-    'https://staging.api.publicsquare.com/payment-methods/bank-accounts/verification'
+    'https://api.publicsquare.com/payment-methods/bank-accounts/verification'
 
   get bt(): BasisTheoryInstance | undefined {
     return this._bt
