@@ -1,22 +1,7 @@
 // this Babel configuration is used in webpack library bundle
 module.exports = {
+  targets: "defaults",
   presets: [
-    [
-      '@babel/preset-env',
-      {
-        targets: '>0.25%',
-      },
-    ],
-    '@babel/typescript',
-  ],
-  plugins: [
-    '@babel/proposal-class-properties',
-    '@babel/plugin-transform-runtime',
-    [
-      'babel-plugin-transform-builtin-extend',
-      {
-        globals: ['Error'],
-      },
-    ],
-  ],
+    ['@babel/preset-env']
+  ]
 };

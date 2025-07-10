@@ -144,7 +144,7 @@ export class PublicSquareBankAccount {
   public createVerificationElement(
     options: CreateBankAccountVerificationElementOptions
   ): BankAccountVerificationElement {
-    const { className, onVerificationComplete } = options
+    const { onVerificationComplete } = options
     if (typeof window === 'undefined') {
       throw Error(ELEMENTS_NOM_DOM_ERROR_MESSAGE)
     }
