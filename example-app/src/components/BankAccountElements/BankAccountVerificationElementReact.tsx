@@ -1,7 +1,5 @@
 'use client'
-
 import CaptureModal from '@/components/Modals/CaptureModal'
-import NameInput from '@/components/Form/NameInput'
 import SubmitButton from '@/components/SubmitButton'
 import PublicSquareTypes, {
   PublicSquareInitOptions
@@ -11,9 +9,7 @@ import {
   PublicSquareProvider,
   usePublicSquare
 } from '@publicsquare/elements-react'
-import { FormEvent, useEffect, useRef, useState } from 'react'
-import AccountHolderTypeSelect from '../Form/AccountHolderTypeSelect'
-import AccountTypeSelect from '../Form/AccountTypeSelect'
+import { FormEvent, useRef, useState } from 'react'
 
 export default function BankAccountVerificationElementReact() {
   const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!

@@ -1,6 +1,4 @@
 'use client'
-
-import BankAccountVerificationElementReact from '@/components/BankAccountElements/BankAccountVerificationElementReact'
 import BankAccountFormColumn from '@/components/BankAccountFormColumn'
 import BankAccountVerificationFormColumn from '@/components/BankAccountVerificationFormColumn'
 import HomeSection from '@/components/HomeSection'

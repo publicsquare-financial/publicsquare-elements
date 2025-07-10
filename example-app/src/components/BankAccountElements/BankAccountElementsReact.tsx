@@ -1,5 +1,4 @@
 'use client'
-
 import CaptureModal from '@/components/Modals/CaptureModal'
 import NameInput from '@/components/Form/NameInput'
 import SubmitButton from '@/components/SubmitButton'
