@@ -15,8 +15,8 @@
     "@publicsquare/elements-react": "../react-sdk/dist",
     "example-app": "file:",
     "next": "^15.3.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.48.0",
