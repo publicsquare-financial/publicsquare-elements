@@ -1063,17 +1063,11 @@
   dependencies:
     "@basis-theory/basis-theory-js" "^4.22.1"
 
-"@publicsquare/elements-react@file:":
-  version "1.4.0"
-  dependencies:
-    "@publicsquare/elements-js" "../js-sdk"
-    "@publicsquare/elements-react" "file:../../../../Library/Caches/Yarn/v6/npm-@publicsquare-elements-react-1.4.0-3f9d4c4e-02b5-4595-9be1-c5a19916a16e-1751854417687/node_modules/@publicsquare/elements-react"
-
 "@publicsquare/elements-react@file:.":
   version "1.4.0"
   dependencies:
     "@publicsquare/elements-js" "../js-sdk"
-    "@publicsquare/elements-react" "file:../../../../Library/Caches/Yarn/v6/npm-@publicsquare-elements-react-1.4.0-cc027337-3654-4818-99b3-52d2b437ec45-1751854411154/node_modules/@publicsquare/elements-react"
+    "@publicsquare/elements-react" "file:../../../../Library/Caches/Yarn/v6/npm-@publicsquare-elements-react-1.4.0-53d8d6fa-59f1-401e-8935-05690963c435-1752182982226/node_modules/@publicsquare/elements-react"
 
 "@types/estree@^1.0.6":
   version "1.0.8"

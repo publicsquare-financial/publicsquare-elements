@@ -3,8 +3,6 @@
 import { Technology } from './HomeSection'
 import BankAccountVerificationElementJs from './BankAccountElements/BankAccountVerificationElementJs'
 import BankAccountVerificationElementReact from './BankAccountElements/BankAccountVerificationElementReact'
-import { BankVerificationIdResponse } from '@publicsquare/elements-js/types/sdk/verificationWidget'
-import { useState } from 'react'
 
 export default function BankAccountVerificationFormColumn({
   type
