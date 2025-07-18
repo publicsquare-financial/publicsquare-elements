@@ -7,9 +7,9 @@ import {
   CardExpirationDateElement,
   CardNumberElement,
   CardVerificationCodeElement,
-  CardCreateInput,
+  CardsCreateInput,
   PublicSquareInitOptions
-} from '@publicsquare/elements-js'
+} from '@publicsquare/elements-js/types'
 import NameInput from '@/components/Form/NameInput'
 import CaptureModal from '@/components/Modals/CaptureModal'
 
@@ -111,7 +111,7 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
 
   async function onSubmit(
     e: FormEvent<HTMLFormElement>,
-    card: CardCreateInput['card']
+    card: CardsCreateInput['card']
   ) {
     e.preventDefault()
 

@@ -1281,15 +1281,11 @@
     "@pnpm/network.ca-file" "^1.0.1"
     config-chain "^1.1.11"
 
-"@publicsquare/elements-js@file:js-sdk":
-  version "1.5.0"
-  dependencies:
-    "@basis-theory/basis-theory-js" "^4.22.1"
+"@publicsquare/elements-js@file:js-sdk/dist":
+  version "0.0.0"
 
-"@publicsquare/elements-react@file:react-sdk":
-  version "1.5.0"
-  dependencies:
-    "@publicsquare/elements-js" "file:../../../Library/Caches/Yarn/v6/npm-@publicsquare-elements-react-1.5.0-54911716-48c8-4685-b1c7-16f46d877a76-1752850743321/node_modules/@publicsquare/js-sdk"
+"@publicsquare/elements-react@file:react-sdk/dist":
+  version "0.0.0"
 
 "@react-aria/focus@^3.20.2":
   version "3.20.5"

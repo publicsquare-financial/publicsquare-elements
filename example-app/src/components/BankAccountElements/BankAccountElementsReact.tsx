@@ -3,14 +3,15 @@ import CaptureModal from '@/components/Modals/CaptureModal'
 import NameInput from '@/components/Form/NameInput'
 import SubmitButton from '@/components/SubmitButton'
 import {
-  PublicSquareTypes,
-  PublicSquareInitOptions,
   BankAccountAccountNumberElement,
   BankAccountRoutingNumberElement,
   PublicSquareProvider,
   usePublicSquare,
   BankAccountElement
 } from '@publicsquare/elements-react'
+import PublicSquareTypes, {
+  PublicSquareInitOptions
+} from '@publicsquare/elements-react/types/sdk'
 import { FormEvent, useRef, useState } from 'react'
 import AccountHolderTypeSelect from '../Form/AccountHolderTypeSelect'
 import AccountTypeSelect from '../Form/AccountTypeSelect'

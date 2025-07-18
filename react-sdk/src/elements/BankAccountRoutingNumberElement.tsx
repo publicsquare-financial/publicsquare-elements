@@ -1,11 +1,10 @@
 import React, { forwardRef } from 'react'
 import PublicSquareElement from './PublicSquareElement'
-import { BankAccountRoutingNumberElement as BankAccountRoutingNumberElementJs } from '@publicsquare/elements-js'
-import { BankAccountRoutingNumberElementProps } from '@/types'
+import * as Types from '../types'
 
 export const BankAccountRoutingNumberElement = forwardRef<
-  BankAccountRoutingNumberElementJs,
-  BankAccountRoutingNumberElementProps
+  Types.BankAccountRoutingNumberElement,
+  Types.BankAccountRoutingNumberElementProps
 >(function Component({ id, ...options }, ref) {
   return (
     <PublicSquareElement

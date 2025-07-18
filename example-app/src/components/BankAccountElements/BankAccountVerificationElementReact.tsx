@@ -2,12 +2,13 @@
 import CaptureModal from '@/components/Modals/CaptureModal'
 import SubmitButton from '@/components/SubmitButton'
 import {
-  PublicSquareTypes,
-  PublicSquareInitOptions,
   BankAccountVerificationElement,
   PublicSquareProvider,
   usePublicSquare
 } from '@publicsquare/elements-react'
+import PublicSquareTypes, {
+  PublicSquareInitOptions
+} from '@publicsquare/elements-react/types/sdk'
 import { FormEvent, useRef, useState } from 'react'
 
 export default function BankAccountVerificationElementReact() {

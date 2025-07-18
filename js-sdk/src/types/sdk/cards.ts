@@ -29,6 +29,8 @@ export type CardCreateInput = {
   billing_details?: CardBillingDetails
 }
 
+export { CardCreateInput as CardsCreateInput };
+
 export type ValidatedCardsCreateInput = {
   validated: {
     cardholder_name: string

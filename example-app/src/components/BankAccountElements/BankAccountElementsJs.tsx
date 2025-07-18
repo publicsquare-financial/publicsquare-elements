@@ -1,14 +1,14 @@
 'use client'
 import { FormEvent, useEffect, useRef, useState } from 'react'
 import SubmitButton from '@/components/SubmitButton'
+import { PublicSquare } from '@publicsquare/elements-js'
 import {
-  PublicSquare,
   BankAccountCreateInput,
   PublicSquareInitOptions,
   BankAccountElement,
   BankAccountRoutingNumberElement,
   BankAccountAccountNumberElement
-} from '@publicsquare/elements-js'
+} from '@publicsquare/elements-js/types/sdk'
 import NameInput from '@/components/Form/NameInput'
 import CaptureModal from '@/components/Modals/CaptureModal'
 

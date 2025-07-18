@@ -5,7 +5,7 @@ import SubmitButton from '@/components/SubmitButton'
 import {
   PublicSquareInitOptions,
   BankAccountVerificationIdResponse
-} from '@publicsquare/elements-js'
+} from '@publicsquare/elements-js/types'
 import NameInput from '@/components/Form/NameInput'
 import CaptureModal from '@/components/Modals/CaptureModal'
 import Button from '../Buttons/Button'
