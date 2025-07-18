@@ -7,11 +7,6 @@
     "test": "yarn playwright test",
     "test:ui": "yarn playwright test --ui"
   },
-  "workspaces": [
-    "example-app",
-    "js-sdk",
-    "react-sdk"
-  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
