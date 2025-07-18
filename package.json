@@ -1,13 +1,17 @@
 {
   "name": "publicsquare-elements",
-  "version": "1.4.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.5.0",
+  "private": true,
   "scripts": {
     "release": "semantic-release",
     "test": "yarn playwright test",
     "test:ui": "yarn playwright test --ui"
   },
+  "workspaces": [
+    "example-app",
+    "js-sdk",
+    "react-sdk"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -22,6 +26,7 @@
     "@semantic-release/release-notes-generator": "^14.0.3",
     "@types/node": "^24.0.13",
     "dotenv": "^17.2.0",
-    "semantic-release": "^24.2.1"
+    "semantic-release": "^24.2.1",
+    "typescript": ">=3.0.0"
   }
 }

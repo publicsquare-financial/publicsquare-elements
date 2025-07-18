@@ -4,8 +4,8 @@ import {
   ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ROUTING_NUMBER_LOAD_ERROR_MESSAGE,
   ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ACCOUNT_NUMBER_LOAD_ERROR_MESSAGE,
   ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE
-} from '@/constants'
-import { PublicSquare } from '@/PublicSquare'
+} from '../constants'
+import { PublicSquare } from '../PublicSquare'
 import {
   BankAccountAccountNumberElement,
   BankAccountCreateInput,
@@ -13,20 +13,20 @@ import {
   BankAccountElement,
   BankAccountRoutingNumberElement,
   BankAccountVerificationElement,
+  BankAccountVerificationIdResponse,
   CreateBankAccountAccountNumberElementOptions,
   CreateBankAccountElementOptions,
   CreateBankAccountRoutingNumberElementOptions,
   CreateBankAccountVerificationElementOptions,
   InputElementOptions,
   PSQTextElement
-} from '@/types/sdk'
-import { transformCreateBankAccountInput } from '@/utils'
+} from '../types/sdk'
+import { transformCreateBankAccountInput } from '../utils'
 import {
   validateCreateBankAccountInput,
   validateRoutingNumber
-} from '@/validators/bankAccounts'
+} from '../validators'
 import { VerificationWidget } from './VerificationWidget'
-import { BankVerificationIdResponse } from '@/types/sdk/verificationWidget'
 
 function createInputElement({
   placeholder,
@@ -123,7 +123,7 @@ export class PublicSquareBankAccount {
 
   public openVerification(
     target?: string
-  ): Promise<BankVerificationIdResponse> {
+  ): Promise<BankAccountVerificationIdResponse> {
     return new Promise((resolve, reject) => {
       const widget = new VerificationWidget(this._publicSquare)
       widget

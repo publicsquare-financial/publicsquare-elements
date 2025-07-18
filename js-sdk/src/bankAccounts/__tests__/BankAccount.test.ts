@@ -1,8 +1,8 @@
-import { PublicSquare } from '@/index'
+import { PublicSquare } from '../../index'
 import { PublicSquareBankAccount } from '..'
-import { getError } from '@/tests/utils'
-import { ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE } from '@/constants'
-import { BankAccountCreateInput } from '@/types'
+import { getError } from '../../tests/utils'
+import { ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE } from '../../constants'
+import { BankAccountCreateInput } from '../../types'
 
 jest.mock('@basis-theory/basis-theory-js', () => ({
   BasisTheory: jest.fn().mockImplementation(() => ({

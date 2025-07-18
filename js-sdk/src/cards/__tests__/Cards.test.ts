@@ -1,8 +1,8 @@
-import { PublicSquare } from '@/index'
+import { PublicSquare } from '../../index'
 import { PublicSquareCards } from '..'
-import { getError } from '@/tests/utils'
-import { ELEMENTS_CARDS_NO_POINTER_MESSAGE } from '@/constants'
-import { generateCardCreateInput } from '@/tests/factories/cards'
+import { getError } from '../../tests/utils'
+import { ELEMENTS_CARDS_NO_POINTER_MESSAGE } from '../../constants'
+import { generateCardCreateInput } from '../../tests/factories/cards'
 
 jest.mock('@basis-theory/basis-theory-js', () => ({
   BasisTheory: jest.fn().mockImplementation(() => ({

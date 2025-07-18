@@ -1,5 +1,5 @@
 'use client'
-import { FormEvent, useEffect, useRef, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { PublicSquare } from '@publicsquare/elements-js'
 import SubmitButton from '@/components/SubmitButton'
 import {
@@ -7,15 +7,14 @@ import {
   CardExpirationDateElement,
   CardNumberElement,
   CardVerificationCodeElement,
-  CardsCreateInput,
+  CardCreateInput,
   PublicSquareInitOptions
-} from '@publicsquare/elements-js/types/sdk'
+} from '@publicsquare/elements-js'
 import NameInput from '@/components/Form/NameInput'
 import CaptureModal from '@/components/Modals/CaptureModal'
 
 export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>()
-  const cardRef = useRef(null)
   const [cardElement, setCardElement] = useState<CardElement>()
   const [cardNumberElement, setCardNumberElement] =
     useState<CardNumberElement>()
@@ -28,8 +27,6 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
     error?: boolean
   }>()
   const [loading, setLoading] = useState(false)
-  const cardElementForm = useRef<HTMLDivElement>(null)
-  const cardElementsForm = useRef<HTMLDivElement>(null)
 
   function unmountElements() {
     try {
@@ -114,7 +111,7 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
 
   async function onSubmit(
     e: FormEvent<HTMLFormElement>,
-    card: CardsCreateInput['card']
+    card: CardCreateInput['card']
   ) {
     e.preventDefault()
 

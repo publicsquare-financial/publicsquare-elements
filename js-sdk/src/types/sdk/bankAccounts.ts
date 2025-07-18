@@ -1,7 +1,7 @@
 import { Environment } from './publicsquare'
 import { InputElementOptions, PSQTextElement } from './elements'
 import { CardBillingDetails } from './cards'
-import { BankVerificationIdResponse } from './verificationWidget'
+import { BankAccountVerificationIdResponse } from './verificationWidget'
 
 export type BankAccountHolderType = 'individual' | 'company'
 
@@ -76,5 +76,5 @@ export type CreateBankAccountAccountNumberElementOptions = InputElementOptions
 export type CreateBankAccountVerificationElementOptions = {
   className?: string
   target?: string
-  onVerificationComplete?: (result: BankVerificationIdResponse) => void
+  onVerificationComplete?: (result: BankAccountVerificationIdResponse) => void
 }

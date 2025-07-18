@@ -1,6 +1,4 @@
-import { BankAccountCreateErrorResponse } from './bankAccounts'
-
-export type BankVerificationRequestBody = {
+export type BankAccountVerificationRequestBody = {
   firstName: string
   lastName: string
   email: string
@@ -8,20 +6,20 @@ export type BankVerificationRequestBody = {
   accountType: string
 }
 
-export type BankVerificationRequestToken = {
+export type BankAccountVerificationRequestToken = {
   token?: string
   requestCode?: string
 }
 
-export type BankVerificationUrlResponse = {
+export type BankAccountVerificationUrlResponse = {
   authorization_url: string
 }
 
-export type BankVerificationIdRequest = {
+export type BankAccountVerificationIdRequest = {
   verification_code: string
   request_id: string
 }
 
-export type BankVerificationIdResponse = {
+export type BankAccountVerificationIdResponse = {
   bank_account_verification_id: string
 }

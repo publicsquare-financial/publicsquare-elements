@@ -1,34 +1,34 @@
 import {
-  CardElement,
-  CreateBankAccountAccountNumberElementOptions,
   BankAccountAccountNumberElement,
-  BankAccountElement,
-  BankAccountVerificationElement,
-  CreateBankAccountElementOptions,
-  BankAccountRoutingNumberElement,
-  CreateBankAccountRoutingNumberElementOptions,
-  CardExpirationDateElement,
-  CreateCardExpirationDateElementOptions,
-  CardNumberElement,
-  CreateCardNumberElementOptions,
-  CardVerificationCodeElement,
-  CreateCardVerificationCodeElementOptions,
-  ElementType,
-  CreateElementOptions,
-  PublicSquareInitOptions,
-  Card,
-  CardsCreateInput,
-  CardCreateResponse,
-  CardBillingDetails,
-  ValidatedCardsCreateInput,
-  CardCreateErrorResponse,
   BankAccountCreateErrorResponse,
   BankAccountCreateResponse,
   BankAccountCreateInput,
+  BankAccountElement,
   BankAccountHolderType,
-  CreateBankAccountVerificationElementOptions
+  BankAccountRoutingNumberElement,
+  BankAccountVerificationElement,
+  BankAccountVerificationIdResponse,
+  Card,
+  CardBillingDetails,
+  CardCreateErrorResponse,
+  CardCreateInput,
+  CardCreateResponse,
+  CardElement,
+  CardExpirationDateElement,
+  CardNumberElement,
+  CardVerificationCodeElement,
+  CreateBankAccountAccountNumberElementOptions,
+  CreateBankAccountElementOptions,
+  CreateBankAccountRoutingNumberElementOptions,
+  CreateBankAccountVerificationElementOptions,
+  CreateCardExpirationDateElementOptions,
+  CreateCardNumberElementOptions,
+  CreateCardVerificationCodeElementOptions,
+  CreateElementOptions,
+  ElementType,
+  PublicSquareInitOptions,
+  ValidatedCardsCreateInput
 } from '@publicsquare/elements-js/dist/types'
-import { BankVerificationIdResponse } from '@publicsquare/elements-js/dist/types/sdk/verificationWidget'
 import { PublicSquare } from '@publicsquare/elements-js'
 
 export type PublicSquareProviderValue = {
@@ -72,7 +72,7 @@ export type BankAccountElementProps = {
 
 export type BankAccountVerificationElementProps = {
   id: string
-  onVerificationComplete?: (result: BankVerificationIdResponse) => void
+  onVerificationComplete?: (result: BankAccountVerificationIdResponse) => void
 } & CreateBankAccountVerificationElementOptions
 
 export type BankAccountRoutingNumberElementProps = {
@@ -102,7 +102,7 @@ export {
   CreateElementOptions,
   PublicSquareInitOptions,
   Card,
-  CardsCreateInput,
+  CardCreateInput,
   CardCreateResponse,
   CardBillingDetails,
   ValidatedCardsCreateInput,

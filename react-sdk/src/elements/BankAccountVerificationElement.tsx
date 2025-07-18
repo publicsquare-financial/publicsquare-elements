@@ -1,10 +1,11 @@
 import React, { forwardRef } from 'react'
-import PublicSquareElement from './element'
-import * as Types from '../types'
+import PublicSquareElement from './PublicSquareElement'
+import { BankAccountVerificationElement as BankAccountVerificationElementJs } from '@publicsquare/elements-js'
+import { BankAccountVerificationElementProps } from '@/types'
 
 export const BankAccountVerificationElement = forwardRef<
-  Types.BankAccountVerificationElement,
-  Types.BankAccountVerificationElementProps
+  BankAccountVerificationElementJs,
+  BankAccountVerificationElementProps
 >(function Component({ id, onVerificationComplete, ...options }, ref) {
   return (
     <PublicSquareElement

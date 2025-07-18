@@ -1,8 +1,8 @@
-import { Indexable } from '@/types'
+import { Indexable } from '../types'
 import {
   BankAccountCreateInput,
   ValidatedBankAccountCreateInput
-} from '@/types/sdk'
+} from '../types/sdk'
 
 export function validateCreateBankAccountInput(
   input: BankAccountCreateInput

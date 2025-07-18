@@ -73,7 +73,7 @@ export class PublicSquare {
     return this
   }
 
-  private _createElement(
+  private createElementPr(
     type: ElementTypeEnum,
     options: CreateElementOptions
   ):
@@ -98,7 +98,7 @@ export class PublicSquare {
   public createElement(type: ElementType, options: CreateElementOptions) {
     switch (type) {
       case ElementTypeEnum.Text:
-        return this._createElement(ElementTypeEnum.Text, options)
+        return this.createElementPr(ElementTypeEnum.Text, options)
       case ElementTypeEnum.Card:
         return this.createCardElement(options as CreateCardElementOptions)
       case ElementTypeEnum.CardExpirationDate:
@@ -135,13 +135,13 @@ export class PublicSquare {
   }
 
   public createCardElement(options: CreateCardElementOptions) {
-    return this._createElement(ElementTypeEnum.Card, options) as CardElement
+    return this.createElementPr(ElementTypeEnum.Card, options) as CardElement
   }
 
   public createCardExpirationDateElement(
     options: Omit<CreateCardExpirationDateElementOptions, 'targetId'>
   ) {
-    return this._createElement(ElementTypeEnum.CardExpirationDate, {
+    return this.createElementPr(ElementTypeEnum.CardExpirationDate, {
       ...options,
       targetId: 'elementTypesCardExpirationDateElement'
     }) as CardExpirationDateElement
@@ -150,7 +150,7 @@ export class PublicSquare {
   public createCardNumberElement(
     options: Omit<CreateCardNumberElementOptions, 'targetId'>
   ) {
-    return this._createElement(ElementTypeEnum.CardNumber, {
+    return this.createElementPr(ElementTypeEnum.CardNumber, {
       ...options,
       targetId: 'elementTypesCardNumberElement'
     }) as CardNumberElement
@@ -159,7 +159,7 @@ export class PublicSquare {
   public createCardVerificationCodeElement(
     options: Omit<CreateCardVerificationCodeElementOptions, 'targetId'>
   ) {
-    return this._createElement(ElementTypeEnum.CardVerificationCode, {
+    return this.createElementPr(ElementTypeEnum.CardVerificationCode, {
       ...options,
       targetId: 'elementTypesCardVerificationCodeElement'
     }) as CardVerificationCodeElement

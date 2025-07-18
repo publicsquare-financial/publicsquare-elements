@@ -1,10 +1,9 @@
 'use client'
 import CaptureModal from '@/components/Modals/CaptureModal'
 import SubmitButton from '@/components/SubmitButton'
-import PublicSquareTypes, {
-  PublicSquareInitOptions
-} from '@publicsquare/elements-react/types/sdk'
 import {
+  PublicSquareTypes,
+  PublicSquareInitOptions,
   BankAccountVerificationElement,
   PublicSquareProvider,
   usePublicSquare

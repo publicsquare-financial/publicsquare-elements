@@ -1,9 +1,9 @@
 {
   "name": "example-app",
-  "version": "1.3.0-beta.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,9 +11,8 @@
   "dependencies": {
     "@headlessui/react": "^2.1.8",
     "@heroicons/react": "^2.1.5",
-    "@publicsquare/elements-js": "../js-sdk/dist",
-    "@publicsquare/elements-react": "../react-sdk/dist",
-    "example-app": "file:",
+    "@publicsquare/elements-js": "file:../js-sdk",
+    "@publicsquare/elements-react": "file:../react-sdk",
     "next": "^15.3.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

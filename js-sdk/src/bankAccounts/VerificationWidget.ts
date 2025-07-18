@@ -1,10 +1,13 @@
 import {
-  BankVerificationUrlResponse,
-  BankVerificationIdRequest,
-  BankVerificationIdResponse
-} from '@/types/sdk/verificationWidget'
+  BankAccountVerificationUrlResponse,
+  BankAccountVerificationIdRequest,
+  BankAccountVerificationIdResponse,
+} from '../types'
 import { PublicSquare } from '../PublicSquare'
-import { ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE } from '../constants'
+import {
+  ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE,
+  ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_VERIFICATION_NOT_ENABLED
+} from '../constants'
 
 export class VerificationWidget {
   private _publicSquare: PublicSquare
@@ -17,18 +20,23 @@ export class VerificationWidget {
     this._publicSquare = psqPointer
   }
 
-  public open(target?: string): Promise<BankVerificationIdResponse> {
+  public open(target?: string): Promise<BankAccountVerificationIdResponse> {
     // 1. Install script
     // 2. Make api requests
     // 3. Open widget
     // 4. Wait for response
-    return this._getAuthorizationUrl().then((response) => {
-      this._buildContainer(response.authorization_url, target)
-      return this._setupMessageListener()
-    })
+    return this.getAuthorizationUrl()
+      .then((response) => {
+        this.buildContainer(response.authorization_url, target)
+        return this._setupMessageListener()
+      })
+      .catch((err) => {
+        this.buildErrorContainer(err.message, target)
+        throw err
+      })
   }
 
-  private _setupMessageListener(): Promise<BankVerificationIdResponse> {
+  private _setupMessageListener(): Promise<BankAccountVerificationIdResponse> {
     return new Promise((resolve, reject) => {
       this._messageHandler = (e: MessageEvent) => {
         const data = e.data
@@ -55,9 +63,9 @@ export class VerificationWidget {
     }
   }
 
-  public saveBankAccountVerification(
-    request: BankVerificationIdRequest
-  ): Promise<BankVerificationIdResponse> {
+  public async saveBankAccountVerification(
+    request: BankAccountVerificationIdRequest
+  ): Promise<BankAccountVerificationIdResponse> {
     return fetch(this._publicSquare._bankAccountVerificationUrl, {
       method: 'POST',
       headers: {
@@ -78,13 +86,14 @@ export class VerificationWidget {
       )
   }
 
-  private _buildContainer(url: string, target?: string) {
+  private buildContainer(url: string, target?: string) {
     const targetContainer = target
       ? document.querySelector(target)
       : document.body
     if (!targetContainer) {
       throw Error('Target container not found')
     }
+
     const container = document.createElement('div')
     container.id = 'publicsquare-verification-widget'
     container.style.display = 'flex'
@@ -93,6 +102,7 @@ export class VerificationWidget {
     container.style.height = '100%'
     container.style.width = '100%'
     targetContainer.appendChild(container)
+
     const iframe = document.createElement('iframe')
     iframe.src = url
     iframe.style.width = '100%'
@@ -102,21 +112,38 @@ export class VerificationWidget {
     container.appendChild(iframe)
   }
 
-  private _getAuthorizationUrl(): Promise<BankVerificationUrlResponse> {
-    return fetch(this._publicSquare._bankAccountVerificationUrl, {
+  private buildErrorContainer(error: string, target?: string) {
+    const targetContainer = target
+      ? document.querySelector(target)
+      : document.body
+    if (!targetContainer) {
+      throw Error('Target container not found')
+    }
+
+    const container = document.createElement('div')
+    container.id = 'publicsquare-verification-widget'
+    container.style.display = 'flex'
+    container.style.justifyContent = 'center'
+    container.style.alignItems = 'center'
+    container.style.height = '100%'
+    container.style.width = '100%'
+    container.textContent = error
+    targetContainer.appendChild(container)
+  }
+
+  private async getAuthorizationUrl(): Promise<BankAccountVerificationUrlResponse> {
+    const res = await fetch(this._publicSquare._bankAccountVerificationUrl, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'X-API-KEY': this._publicSquare._apiKey!
       }
     })
-      .then((res) => res.json())
-      .then((res) =>
-        res.errors
-          ? {
-              error: res
-            }
-          : res
-      )
+
+    if (!res.ok) {
+      throw Error(ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_VERIFICATION_NOT_ENABLED)
+    }
+
+    return await res.json()
   }
 }

@@ -1,10 +1,11 @@
 import React, { forwardRef } from 'react'
-import PublicSquareElement from './element'
-import * as Types from '../types'
+import PublicSquareElement from './PublicSquareElement'
+import { CardVerificationCodeElement as CardVerificationCodeElementJs } from '@publicsquare/elements-js'
+import { CardVerificationCodeElementProps } from '@/types'
 
 export const CardVerifcationCodeElement = forwardRef<
-  Types.CardVerificationCodeElement,
-  Types.CardVerificationCodeElementProps
+  CardVerificationCodeElementJs,
+  CardVerificationCodeElementProps
 >(function Component(props, ref) {
   return (
     <PublicSquareElement type="cardVerificationCode" {...props} ref={ref} />

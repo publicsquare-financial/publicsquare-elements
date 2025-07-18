@@ -2,15 +2,17 @@
 import { FormEvent, useEffect, useState } from 'react'
 import { PublicSquare } from '@publicsquare/elements-js'
 import SubmitButton from '@/components/SubmitButton'
-import { PublicSquareInitOptions } from '@publicsquare/elements-js/types/sdk'
+import {
+  PublicSquareInitOptions,
+  BankAccountVerificationIdResponse
+} from '@publicsquare/elements-js'
 import NameInput from '@/components/Form/NameInput'
 import CaptureModal from '@/components/Modals/CaptureModal'
 import Button from '../Buttons/Button'
-import { BankVerificationIdResponse } from '@publicsquare/elements-js/types/sdk/verificationWidget'
 
 export default function BankAccountVerificationElementJs() {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>()
-  const [data, setData] = useState<BankVerificationIdResponse>()
+  const [data, setData] = useState<BankAccountVerificationIdResponse>()
   const [message, setMessage] = useState<{
     message?: object
     error?: boolean
@@ -38,6 +40,7 @@ export default function BankAccountVerificationElementJs() {
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+
     try {
       setLoading(true)
       const bankAccount = await publicsquare?.bankAccounts.create({
@@ -84,6 +87,7 @@ export default function BankAccountVerificationElementJs() {
           </div>
         </div>
       </form>
+
       <CaptureModal
         message={message?.message}
         onClose={() => setMessage(undefined)}

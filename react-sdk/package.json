@@ -1,12 +1,12 @@
 {
   "name": "@publicsquare/elements-react",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "PublicSquare React Elements",
   "main": "dist/index.js",
-  "module": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "publishConfig": {
     "access": "public"
@@ -17,35 +17,25 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "yarn clean && concurrently 'yarn build:module' 'yarn build:declarations' 'yarn build:package' --kill-others-on-fail",
-    "build:declarations": "tsc",
-    "build:module": "babel src --extensions .ts,.tsx --out-dir dist",
-    "build:package": "node prepare.js",
-    "lint": "eslint . --quiet --ignore-path .gitignore",
-    "lint:fix": "eslint . --fix --ignore-path .gitignore",
+    "build": "yarn clean && yarn build:types",
+    "build:types": "tsc",
     "clean": "rimraf dist",
-    "prepare": "yarn build",
     "test": "jest",
     "test:cov": "jest --coverage",
     "publish": "npm publish ./dist",
     "publish:beta": "npm publish ./dist --tag beta"
   },
   "dependencies": {
-    "@publicsquare/elements-js": "../js-sdk",
-    "@publicsquare/elements-react": "file:"
+    "@publicsquare/elements-js": "file:../js-sdk"
   },
   "devDependencies": {
-    "@babel/cli": "^7.25.6",
-    "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.4",
-    "@babel/preset-react": "^7.24.7",
-    "@babel/preset-typescript": "^7.24.7",
     "@types/react": "^19.1.8",
-    "concurrently": "^9.0.1",
-    "eslint": "^9.10.0",
-    "prettier": "^3.3.3",
+    "jest": "^30.0.4",
     "react": "^19.1.0",
     "rimraf": "^6.0.1",
     "typescript": "^5.6.2"
+  },
+  "engines": {
+    "node": ">=10.12.0"
   }
 }

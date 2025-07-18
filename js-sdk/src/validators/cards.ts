@@ -1,10 +1,10 @@
 import type {
-  CardsCreateInput,
+  CardCreateInput,
   ValidatedCardsCreateInput
-} from '@/types/sdk/cards'
+} from '../types/sdk/cards'
 
 export function validateCreateCardInput(
-  input: CardsCreateInput
+  input: CardCreateInput
 ): ValidatedCardsCreateInput {
   if (typeof input.card !== 'object') {
     throw new Error('card is required')

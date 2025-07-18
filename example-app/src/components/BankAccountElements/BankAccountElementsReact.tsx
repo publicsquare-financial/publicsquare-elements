@@ -2,15 +2,14 @@
 import CaptureModal from '@/components/Modals/CaptureModal'
 import NameInput from '@/components/Form/NameInput'
 import SubmitButton from '@/components/SubmitButton'
-import PublicSquareTypes, {
-  PublicSquareInitOptions
-} from '@publicsquare/elements-react/types/sdk'
 import {
+  PublicSquareTypes,
+  PublicSquareInitOptions,
   BankAccountAccountNumberElement,
-  BankAccountElement,
   BankAccountRoutingNumberElement,
   PublicSquareProvider,
-  usePublicSquare
+  usePublicSquare,
+  BankAccountElement
 } from '@publicsquare/elements-react'
 import { FormEvent, useRef, useState } from 'react'
 import AccountHolderTypeSelect from '../Form/AccountHolderTypeSelect'
@@ -44,7 +43,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
   const bankAccountNumberElement =
     useRef<PublicSquareTypes.BankAccountAccountNumberElement>(null)
 
-  function onSubmitCardElement(e: FormEvent<HTMLFormElement>) {
+  function onSubmitBankAccountElement(e: FormEvent<HTMLFormElement>) {
     if (bankAccountElement.current) {
       onSubmit(e, {
         routing_number: bankAccountElement.current.routingNumber.el.value,
@@ -53,7 +52,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
     }
   }
 
-  function onSubmitCardElements(e: FormEvent<HTMLFormElement>) {
+  function onSubmitBankAccountElements(e: FormEvent<HTMLFormElement>) {
     if (bankRoutingNumberElement.current && bankAccountNumberElement.current) {
       onSubmit(e, {
         routing_number: bankRoutingNumberElement.current.el.value,
@@ -100,7 +99,9 @@ function Elements({ allInOne }: { allInOne: boolean }) {
     <div className="space-y-4 w-full">
       <form
         onSubmit={(e) =>
-          allInOne ? onSubmitCardElement(e) : onSubmitCardElements(e)
+          allInOne
+            ? onSubmitBankAccountElement(e)
+            : onSubmitBankAccountElements(e)
         }
         name="react-form-bank-account-element"
       >

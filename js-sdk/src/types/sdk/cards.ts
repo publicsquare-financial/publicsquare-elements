@@ -22,7 +22,7 @@ export type CardBillingDetails = {
   country: string
 }
 
-export type CardsCreateInput = {
+export type CardCreateInput = {
   cardholder_name: string
   card: Card | CardElement
   customer_id?: string

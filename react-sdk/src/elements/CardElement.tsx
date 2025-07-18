@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react'
-import PublicSquareElement from './element'
-import * as Types from '../types'
+import PublicSquareElement from './PublicSquareElement'
+import { CardElementProps } from '@/types'
+import { CardElement as CardElementJs } from '@publicsquare/elements-js'
 
-export const CardElement = forwardRef<
-  Types.CardElement,
-  Types.CardElementProps
->(function Component(props, ref) {
-  return <PublicSquareElement type="card" {...props} ref={ref} />
-})
+export const CardElement = forwardRef<CardElementJs, CardElementProps>(
+  function Component(props, ref) {
+    return <PublicSquareElement type="card" {...props} ref={ref} />
+  }
+)
