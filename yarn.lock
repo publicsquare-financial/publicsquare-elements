@@ -943,11 +943,6 @@
     "@pnpm/network.ca-file" "^1.0.1"
     config-chain "^1.1.11"
 
-"@publicsquare/elements-js@file:js-sdk":
-  version "1.5.0"
-  dependencies:
-    "@basis-theory/basis-theory-js" "^4.22.1"
-
 "@sec-ant/readable-stream@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@sec-ant/readable-stream/-/readable-stream-0.4.1.tgz#60de891bb126abfdc5410fdc6166aca065f10a0c"
