@@ -13,6 +13,7 @@ import {
   CreateBankAccountRoutingNumberElementOptions,
   CreateBankAccountVerificationElementOptions
 } from './bankAccounts'
+
 export { ElementWrapper } from '@basis-theory/basis-theory-js/types/elements'
 export * from '@basis-theory/basis-theory-js/types/elements'
 
@@ -50,8 +51,10 @@ export enum ElementTypeEnum {
   BankAccountVerification = 'bankAccountVerification'
 }
 
+export type CreateCardElementOptions = BTCreateCardElementOptions
+
 export type CreateElementOptions =
-  | BTCreateCardElementOptions
+  | CreateCardElementOptions
   | CreateCardExpirationDateElementOptions
   | CreateCardNumberElementOptions
   | CreateCardVerificationCodeElementOptions
@@ -59,7 +62,5 @@ export type CreateElementOptions =
   | CreateBankAccountRoutingNumberElementOptions
   | CreateBankAccountAccountNumberElementOptions
   | CreateBankAccountVerificationElementOptions
-
-export type CreateCardElementOptions = BTCreateCardElementOptions
 
 export type BasisTheoryInstance = IBasisTheory & BasisTheoryElements

@@ -29,7 +29,7 @@ import {
   PublicSquareInitOptions,
   ValidatedCardsCreateInput,
   CardsCreateInput
-} from '@publicsquare/elements-js/types'
+} from '@publicsquare/elements-js/dist/types'
 import { PublicSquare } from '@publicsquare/elements-js'
 
 export type PublicSquareProviderValue = {
