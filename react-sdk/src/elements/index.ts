@@ -1,3 +1,4 @@
+export * from './ApplePayButtonElement'
 export * from './CardElement'
 export * from './CardExpirationDateElement'
 export * from './CardNumberElement'

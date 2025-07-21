@@ -84,6 +84,40 @@ export type BankAccountAccountNumberElementProps = {
   id: string
 } & CreateBankAccountAccountNumberElementOptions
 
+export type ApplePayButtonElement = React.Ref<HTMLDivElement>
+
+export type ApplePayButtonElementProps = {
+  id: string
+  buttonStyle?: 'black' | 'white' | 'white-outline'
+  type?:
+    | 'plain'
+    | 'add-money'
+    | 'book'
+    | 'buy'
+    | 'check-out'
+    | 'continue'
+    | 'contribute'
+    | 'donate'
+    | 'order'
+    | 'pay'
+    | 'reload'
+    | 'rent'
+    | 'set-up'
+    | 'subscribe'
+    | 'support'
+    | 'tip'
+    | 'top-up'
+  locale?: string
+  onClick?: () => void
+  style?: {
+    width?: string
+    height?: string
+    borderRadius?: string
+    padding?: string
+  }
+  disabled?: boolean
+}
+
 export {
   CardElement,
   CreateBankAccountAccountNumberElementOptions,
