@@ -3,10 +3,10 @@
   "version": "1.4.0",
   "description": "PublicSquare React Elements",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "README.md"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -17,8 +17,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "yarn clean && yarn build:types",
+    "build": "yarn clean && concurrently 'yarn build:module' 'yarn build:types' 'yarn build:package' --kill-others-on-fail",
+    "build:module": "babel src --extensions .ts,.tsx --out-dir dist",
     "build:types": "tsc",
+    "build:package": "node prepare.js",
     "clean": "rimraf dist",
     "test": "jest",
     "test:cov": "jest --coverage",
@@ -29,7 +31,13 @@
     "@publicsquare/elements-js": "1.4.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.25.6",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
     "@types/react": "^19.1.8",
+    "concurrently": "^9.0.1",
     "jest": "^30.0.4",
     "react": "^19.1.0",
     "rimraf": "^6.0.1",
