@@ -1,31 +1,35 @@
 import {
-  CardElement,
-  CreateBankAccountAccountNumberElementOptions,
   BankAccountAccountNumberElement,
-  BankAccountElement,
-  CreateBankAccountElementOptions,
-  BankAccountRoutingNumberElement,
-  CreateBankAccountRoutingNumberElementOptions,
-  CardExpirationDateElement,
-  CreateCardExpirationDateElementOptions,
-  CardNumberElement,
-  CreateCardNumberElementOptions,
-  CardVerificationCodeElement,
-  CreateCardVerificationCodeElementOptions,
-  ElementType,
-  CreateElementOptions,
-  PublicSquareInitOptions,
-  Card,
-  CardsCreateInput,
-  CardCreateResponse,
-  CardBillingDetails,
-  ValidatedCardsCreateInput,
-  CardCreateErrorResponse,
   BankAccountCreateErrorResponse,
   BankAccountCreateResponse,
   BankAccountCreateInput,
-  BankAccountHolderType
-} from '@publicsquare/elements-js/types'
+  BankAccountElement,
+  BankAccountHolderType,
+  BankAccountRoutingNumberElement,
+  BankAccountVerificationElement,
+  BankAccountVerificationIdResponse,
+  Card,
+  CardBillingDetails,
+  CardCreateErrorResponse,
+  CardCreateInput,
+  CardCreateResponse,
+  CardElement,
+  CardExpirationDateElement,
+  CardNumberElement,
+  CardVerificationCodeElement,
+  CreateBankAccountAccountNumberElementOptions,
+  CreateBankAccountElementOptions,
+  CreateBankAccountRoutingNumberElementOptions,
+  CreateBankAccountVerificationElementOptions,
+  CreateCardExpirationDateElementOptions,
+  CreateCardNumberElementOptions,
+  CreateCardVerificationCodeElementOptions,
+  CreateElementOptions,
+  ElementType,
+  PublicSquareInitOptions,
+  ValidatedCardsCreateInput,
+  CardsCreateInput
+} from '@publicsquare/elements-js/dist/types'
 import { PublicSquare } from '@publicsquare/elements-js'
 
 export type PublicSquareProviderValue = {
@@ -67,6 +71,11 @@ export type BankAccountElementProps = {
   id: string
 } & CreateBankAccountElementOptions
 
+export type BankAccountVerificationElementProps = {
+  id: string
+  onVerificationComplete?: (result: BankAccountVerificationIdResponse) => void
+} & CreateBankAccountVerificationElementOptions
+
 export type BankAccountRoutingNumberElementProps = {
   id: string
 } & CreateBankAccountRoutingNumberElementOptions
@@ -75,11 +84,46 @@ export type BankAccountAccountNumberElementProps = {
   id: string
 } & CreateBankAccountAccountNumberElementOptions
 
+export type ApplePayButtonElement = React.Ref<HTMLDivElement>
+
+export type ApplePayButtonElementProps = {
+  id: string
+  buttonStyle?: 'black' | 'white' | 'white-outline'
+  type?:
+    | 'plain'
+    | 'add-money'
+    | 'book'
+    | 'buy'
+    | 'check-out'
+    | 'continue'
+    | 'contribute'
+    | 'donate'
+    | 'order'
+    | 'pay'
+    | 'reload'
+    | 'rent'
+    | 'set-up'
+    | 'subscribe'
+    | 'support'
+    | 'tip'
+    | 'top-up'
+  locale?: string
+  onClick?: () => void
+  style?: {
+    width?: string
+    height?: string
+    borderRadius?: string
+    padding?: string
+  }
+  disabled?: boolean
+}
+
 export {
   CardElement,
   CreateBankAccountAccountNumberElementOptions,
   BankAccountAccountNumberElement,
   BankAccountElement,
+  BankAccountVerificationElement,
   CreateBankAccountElementOptions,
   BankAccountRoutingNumberElement,
   CreateBankAccountRoutingNumberElementOptions,
@@ -93,6 +137,7 @@ export {
   CreateElementOptions,
   PublicSquareInitOptions,
   Card,
+  CardCreateInput,
   CardsCreateInput,
   CardCreateResponse,
   CardBillingDetails,
@@ -101,5 +146,6 @@ export {
   BankAccountCreateErrorResponse,
   BankAccountCreateResponse,
   BankAccountCreateInput,
-  BankAccountHolderType
+  BankAccountHolderType,
+  CreateBankAccountVerificationElementOptions
 }

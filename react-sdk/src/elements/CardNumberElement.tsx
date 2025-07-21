@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import PublicSquareElement from './element'
+import PublicSquareElement from './PublicSquareElement'
 import * as Types from '../types'
 
 export const CardNumberElement = forwardRef<
@@ -8,4 +8,3 @@ export const CardNumberElement = forwardRef<
 >(function Component(props, ref) {
   return <PublicSquareElement type="cardNumber" {...props} ref={ref} />
 })
-

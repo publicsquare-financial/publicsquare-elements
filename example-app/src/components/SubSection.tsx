@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react'
+import { ReactNode, useMemo, useState } from 'react'
 import ReactButton from './Buttons/ReactButton'
 import JavascriptButton from './Buttons/JavascriptButton'
-import AllInOneToggle from './Toggles/AllInOneToggle'
 
 export type Technology = 'react' | 'javascript'
 
@@ -19,14 +19,13 @@ export default function HomeSection({
     href: string
     label: string
   }
-  rightColumn: (type: Technology, allInOne: boolean) => React.ReactElement
+  rightColumn: (type: Technology) => React.ReactElement
 }) {
   const [selected, setSelected] = React.useState<Technology>('react')
-  const [allInOne, setAllInOne] = React.useState(true)
 
   const memoizedRightColumn = React.useMemo(() => {
-    return rightColumn(selected, allInOne)
-  }, [selected, allInOne])
+    return rightColumn(selected)
+  }, [selected])
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8">
@@ -54,10 +53,7 @@ export default function HomeSection({
           </a>
         </p>
       </div>
-      <div className="space-y-6 w-full">
-        <AllInOneToggle value={allInOne} onChange={setAllInOne} />
-        {memoizedRightColumn}
-      </div>
+      <div className="space-y-6 w-full">{memoizedRightColumn}</div>
     </div>
   )
 }

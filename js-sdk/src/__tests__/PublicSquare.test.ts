@@ -2,8 +2,8 @@ import { PublicSquare } from '..'
 import {
   ELEMENTS_INIT_ERROR_MESSAGE,
   ELEMENTS_TYPE_NOT_SUPPORTED
-} from '@/constants'
-import { getError } from '@/tests/utils'
+} from '../constants'
+import { getError } from '../tests/utils'
 
 jest.mock('@basis-theory/basis-theory-js', () => ({
   BasisTheory: jest.fn().mockImplementation(() => ({

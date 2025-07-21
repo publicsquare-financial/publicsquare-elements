@@ -1,7 +1,7 @@
 'use client'
 import { FormEvent, useEffect, useRef, useState } from 'react'
-import { PublicSquare } from '@publicsquare/elements-js'
 import SubmitButton from '@/components/SubmitButton'
+import { PublicSquare } from '@publicsquare/elements-js'
 import {
   BankAccountCreateInput,
   PublicSquareInitOptions,
@@ -84,7 +84,7 @@ export default function BankAccountElementsJs({
     }
   }, [publicsquare, allInOne])
 
-  function onSubmitCardElement(e: FormEvent<HTMLFormElement>) {
+  function onSubmitBankAccountElement(e: FormEvent<HTMLFormElement>) {
     if (bankAccountElement) {
       onSubmit(e, {
         account_number: bankAccountElement.accountNumber.el.value,
@@ -93,7 +93,7 @@ export default function BankAccountElementsJs({
     }
   }
 
-  function onSubmitCardElements(e: FormEvent<HTMLFormElement>) {
+  function onSubmitBankAccountElements(e: FormEvent<HTMLFormElement>) {
     if (accountNumberElement && routingNumberElement) {
       onSubmit(e, {
         account_number: accountNumberElement.el.value,
@@ -110,8 +110,9 @@ export default function BankAccountElementsJs({
 
     const formData = new FormData(e.currentTarget)
     const formProps = Object.fromEntries(formData)
+
     if (loading) return
-    if (publicsquare && data.account_number && data.routing_number) {
+    if (publicsquare && 'account_number' in data && 'routing_number' in data) {
       setLoading(true)
       try {
         const response = await publicsquare.bankAccounts.create({
@@ -123,17 +124,18 @@ export default function BankAccountElementsJs({
           error: !!response.error
         })
       } catch (error) {
-        console.log(error)
+        console.error('Error creating bank account:', error)
       }
       setLoading(false)
     }
   }
-
   return (
     <div className="space-y-4 w-full">
       <form
         onSubmit={(e) =>
-          allInOne ? onSubmitCardElement(e) : onSubmitCardElements(e)
+          allInOne
+            ? onSubmitBankAccountElement(e)
+            : onSubmitBankAccountElements(e)
         }
         name="js-form-bank-account-element"
       >

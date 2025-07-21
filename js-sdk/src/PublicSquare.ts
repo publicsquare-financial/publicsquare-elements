@@ -20,6 +20,7 @@ import {
   CreateBankAccountAccountNumberElementOptions,
   CreateBankAccountElementOptions,
   CreateBankAccountRoutingNumberElementOptions,
+  CreateBankAccountVerificationElementOptions,
   CreateCardElementOptions,
   CreateElementOptions,
   ElementType,
@@ -35,6 +36,8 @@ export class PublicSquare {
   _bankAccountCreateUrl: string =
     'https://api.publicsquare.com/payment-methods/bank-accounts'
   protected _bt?: BasisTheoryInstance
+  _bankAccountVerificationUrl: string =
+    'https://api.publicsquare.com/payment-methods/bank-accounts/verification'
 
   get bt(): BasisTheoryInstance | undefined {
     return this._bt
@@ -114,6 +117,10 @@ export class PublicSquare {
         return this.createBankAccountElement(
           options as CreateBankAccountElementOptions
         )
+      case ElementTypeEnum.BankAccountVerification:
+        return this.createBankAccountVerificationElement(
+          options as CreateBankAccountVerificationElementOptions
+        )
       case ElementTypeEnum.BankAccountRoutingNumber:
         return this.createBankAccountRoutingNumberElement(
           options as CreateBankAccountRoutingNumberElementOptions
@@ -180,5 +187,11 @@ export class PublicSquare {
     >[0] = {}
   ) {
     return new PublicSquareBankAccount(this).createAccountNumberElement(options)
+  }
+
+  public createBankAccountVerificationElement(
+    options: CreateBankAccountVerificationElementOptions
+  ) {
+    return new PublicSquareBankAccount(this).createVerificationElement(options)
   }
 }

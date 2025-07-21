@@ -2,9 +2,6 @@
 import CaptureModal from '@/components/Modals/CaptureModal'
 import NameInput from '@/components/Form/NameInput'
 import SubmitButton from '@/components/SubmitButton'
-import PublicSquareTypes, {
-  PublicSquareInitOptions
-} from '@publicsquare/elements-react/types/sdk'
 import {
   PublicSquareProvider,
   CardElement,
@@ -13,6 +10,9 @@ import {
   CardVerifcationCodeElement,
   usePublicSquare
 } from '@publicsquare/elements-react'
+import PublicSquareTypes, {
+  PublicSquareInitOptions
+} from '@publicsquare/elements-react/types/sdk'
 import { FormEvent, useRef, useState } from 'react'
 
 export default function CardElementsReact({ allInOne }: { allInOne: boolean }) {
@@ -30,9 +30,9 @@ function Elements({ allInOne }: { allInOne: boolean }) {
   const { publicsquare } = usePublicSquare()
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState<{
-      message?: object
-      error?: boolean
-    }>()
+    message?: object
+    error?: boolean
+  }>()
   const cardElement = useRef<PublicSquareTypes.CardElement>(null)
   const cardNumberElement = useRef<PublicSquareTypes.CardNumberElement>(null)
   const cardExpirationDateElement =
@@ -63,7 +63,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
 
   async function onSubmit(
     e: FormEvent<HTMLFormElement>,
-    card: PublicSquareTypes.CardsCreateInput['card']
+    card: PublicSquareTypes.CardCreateInput['card']
   ) {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)

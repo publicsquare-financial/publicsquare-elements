@@ -1,6 +1,7 @@
 import { Environment } from './publicsquare'
 import { InputElementOptions, PSQTextElement } from './elements'
 import { CardBillingDetails } from './cards'
+import { BankAccountVerificationIdResponse } from './verificationWidget'
 
 export type BankAccountHolderType = 'individual' | 'company'
 
@@ -8,10 +9,11 @@ export type BankAccountType = 'checking' | 'savings'
 
 export type BankAccountCreateInput = {
   account_holder_name?: string
+  bank_account_verification_id?: string
   account_holder_type?: BankAccountHolderType | string
   account_type?: BankAccountType | string
-  routing_number: string
-  account_number: string
+  routing_number?: string
+  account_number?: string
   customer_id?: string
   billing_details?: CardBillingDetails
 }
@@ -22,6 +24,7 @@ export type ValidatedBankAccountCreateInput = {
 
 export type BankAccountCreateResponse = {
   id?: string
+  bank_account_verification_id?: string
   account_id?: string
   environment?: Environment
   account_holder_name?: string
@@ -56,6 +59,10 @@ export type BankAccountElement = {
   routingNumber: BankAccountRoutingNumberElement
 }
 
+export type BankAccountVerificationElement = {
+  mount: (targetId: string) => void
+}
+
 export type CreateBankAccountElementOptions = {
   routingNumberOptions?: InputElementOptions
   accountNumberOptions?: InputElementOptions
@@ -65,3 +72,9 @@ export type CreateBankAccountElementOptions = {
 export type CreateBankAccountRoutingNumberElementOptions = InputElementOptions
 
 export type CreateBankAccountAccountNumberElementOptions = InputElementOptions
+
+export type CreateBankAccountVerificationElementOptions = {
+  className?: string
+  target?: string
+  onVerificationComplete?: (result: BankAccountVerificationIdResponse) => void
+}

@@ -1,5 +1,5 @@
 'use client'
-import { FormEvent, useEffect, useRef, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { PublicSquare } from '@publicsquare/elements-js'
 import SubmitButton from '@/components/SubmitButton'
 import {
@@ -15,7 +15,6 @@ import CaptureModal from '@/components/Modals/CaptureModal'
 
 export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>()
-  const cardRef = useRef(null)
   const [cardElement, setCardElement] = useState<CardElement>()
   const [cardNumberElement, setCardNumberElement] =
     useState<CardNumberElement>()
@@ -28,8 +27,6 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
     error?: boolean
   }>()
   const [loading, setLoading] = useState(false)
-  const cardElementForm = useRef<HTMLDivElement>(null)
-  const cardElementsForm = useRef<HTMLDivElement>(null)
 
   function unmountElements() {
     try {

@@ -1,28 +1,44 @@
-import { Indexable } from '@/types'
+import { Indexable } from '../types'
 import {
   BankAccountCreateInput,
   ValidatedBankAccountCreateInput
-} from '@/types/sdk'
+} from '../types/sdk'
 
 export function validateCreateBankAccountInput(
   input: BankAccountCreateInput
 ): ValidatedBankAccountCreateInput {
-  if (!['string', 'object'].includes(typeof input.routing_number)) {
-    throw new Error('routing_number is required')
+  // If bank_account_verification_id is provided, routing_number and account_number are not required
+  if (!input.bank_account_verification_id) {
+    if (!input.routing_number || typeof input.routing_number !== 'string') {
+      throw new Error(
+        'routing_number is required when bank_account_verification_id is not provided'
+      )
+    }
+    if (!input.account_number || typeof input.account_number !== 'string') {
+      throw new Error(
+        'account_number is required when bank_account_verification_id is not provided'
+      )
+    }
+  } else {
+    if (input.routing_number || input.account_number) {
+      throw new Error(
+        'routing_number and account_number should not be provided when bank_account_verification_id is provided'
+      )
+    }
   }
-  if (!['string', 'object'].includes(typeof input.account_number)) {
-    throw new Error('account_number is required')
-  }
+
   if (input.billing_details && typeof input.billing_details !== 'object') {
     throw new Error('billing_details must be an object')
   }
+
   return {
     validated: [
       'account_holder_name',
       'account_holder_type',
       'account_type',
       'customer_id',
-      'billing_details'
+      'billing_details',
+      'bank_account_verification_id'
     ].reduce(
       (acc, key) => {
         ;(acc as Indexable)[key] = (input as Indexable)[key]

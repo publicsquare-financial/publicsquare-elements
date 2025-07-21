@@ -4,25 +4,29 @@ import {
   ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ROUTING_NUMBER_LOAD_ERROR_MESSAGE,
   ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ACCOUNT_NUMBER_LOAD_ERROR_MESSAGE,
   ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE
-} from '@/constants'
-import { PublicSquare } from '@/PublicSquare'
+} from '../constants'
+import { PublicSquare } from '../PublicSquare'
 import {
   BankAccountAccountNumberElement,
   BankAccountCreateInput,
   BankAccountCreateResponse,
   BankAccountElement,
   BankAccountRoutingNumberElement,
+  BankAccountVerificationElement,
+  BankAccountVerificationIdResponse,
   CreateBankAccountAccountNumberElementOptions,
   CreateBankAccountElementOptions,
   CreateBankAccountRoutingNumberElementOptions,
+  CreateBankAccountVerificationElementOptions,
   InputElementOptions,
   PSQTextElement
-} from '@/types/sdk'
-import { transformCreateBankAccountInput } from '@/utils'
+} from '../types/sdk'
+import { transformCreateBankAccountInput } from '../utils'
 import {
   validateCreateBankAccountInput,
   validateRoutingNumber
-} from '@/validators/bankAccounts'
+} from '../validators'
+import { VerificationWidget } from './VerificationWidget'
 
 function createInputElement({
   placeholder,
@@ -45,14 +49,12 @@ function createInputElement({
   if (pattern) {
     input.pattern = pattern
   }
-  let reportedValidity = false
 
   input.addEventListener('invalid', (e) => {
     if (onValidate && !onValidate(input.value)) {
       if (patternError) {
         input.setCustomValidity(patternError)
       }
-      reportedValidity = true
     }
   })
 
@@ -81,15 +83,7 @@ export class PublicSquareBankAccount {
     this._publicSquare = psqPointer
   }
 
-  /**
-   * Create a bank account
-   * @param input - The bank account input
-   * @param publicKey - The PublicSquare public key
-   * @returns The bank account create response
-   */
-  public create(
-    input: BankAccountCreateInput
-  ): Promise<BankAccountCreateResponse> {
+  private createBankAccount(input: BankAccountCreateInput) {
     if (!this._publicSquare._apiKey) {
       throw new Error('apiKey must be sent at initialization')
     } else if (!this._publicSquare.bt || !this._publicSquare.bt.client) {
@@ -112,6 +106,81 @@ export class PublicSquareBankAccount {
               }
             : res
         )
+    }
+  }
+
+  /**
+   * Create a bank account
+   * @param input - The bank account input
+   * @param publicKey - The PublicSquare public key
+   * @returns The bank account create response
+   */
+  public create(
+    input: BankAccountCreateInput
+  ): Promise<BankAccountCreateResponse> {
+    return this.createBankAccount(input)
+  }
+
+  public openVerification(
+    target?: string
+  ): Promise<BankAccountVerificationIdResponse> {
+    return new Promise((resolve, reject) => {
+      const widget = new VerificationWidget(this._publicSquare)
+      widget
+        .open(target)
+        .then((res) => {
+          resolve({
+            bank_account_verification_id: res.bank_account_verification_id
+          })
+        })
+        .catch((err) => {
+          reject(err)
+        })
+    })
+  }
+
+  public createVerificationElement(
+    options: CreateBankAccountVerificationElementOptions
+  ): BankAccountVerificationElement {
+    const { onVerificationComplete } = options
+    if (typeof window === 'undefined') {
+      throw Error(ELEMENTS_NOM_DOM_ERROR_MESSAGE)
+    }
+
+    // Set up message listener for verification result
+    if (onVerificationComplete) {
+      const messageHandler = (e: MessageEvent) => {
+        const data = e.data
+        if (data && typeof data === 'object') {
+          if (data.step === 'REDIRECT' && data.loginId && data.requestId) {
+            // Save the bank account verification and then call the callback with the result
+            const widget = new VerificationWidget(this._publicSquare)
+            widget
+              .saveBankAccountVerification({
+                verification_code: data.loginId,
+                request_id: data.requestId
+              })
+              .then((result) => {
+                onVerificationComplete(result)
+              })
+              .catch((error) => {
+                console.error('Error saving bank account verification:', error)
+                // Don't call onVerificationComplete with error, just log it
+              })
+              .finally(() => {
+                // Clean up the listener
+                window.removeEventListener('message', messageHandler)
+              })
+          }
+        }
+      }
+      window.addEventListener('message', messageHandler)
+    }
+
+    return {
+      mount: (id: string) => {
+        this.openVerification(id)
+      }
     }
   }
 
@@ -144,6 +213,7 @@ export class PublicSquareBankAccount {
     if (typeof window === 'undefined') {
       throw Error(ELEMENTS_NOM_DOM_ERROR_MESSAGE)
     }
+
     const container = document.createElement('div')
     container.id = 'psq-bank-account-container'
     container.style.display = 'flex'

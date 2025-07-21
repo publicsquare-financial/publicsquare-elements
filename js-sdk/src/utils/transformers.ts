@@ -2,7 +2,7 @@ import type {
   BankAccountCreateInput,
   ValidatedBankAccountCreateInput,
   ValidatedCardsCreateInput
-} from '@/types/sdk'
+} from '../types/sdk'
 
 /**
  * Transform input from the sdk to the proxy input format

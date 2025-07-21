@@ -1,18 +1,17 @@
 'use client'
-
 import CaptureModal from '@/components/Modals/CaptureModal'
 import NameInput from '@/components/Form/NameInput'
 import SubmitButton from '@/components/SubmitButton'
+import {
+  BankAccountAccountNumberElement,
+  BankAccountRoutingNumberElement,
+  PublicSquareProvider,
+  usePublicSquare,
+  BankAccountElement
+} from '@publicsquare/elements-react'
 import PublicSquareTypes, {
   PublicSquareInitOptions
 } from '@publicsquare/elements-react/types/sdk'
-import {
-  BankAccountAccountNumberElement,
-  BankAccountElement,
-  BankAccountRoutingNumberElement,
-  PublicSquareProvider,
-  usePublicSquare
-} from '@publicsquare/elements-react'
 import { FormEvent, useRef, useState } from 'react'
 import AccountHolderTypeSelect from '../Form/AccountHolderTypeSelect'
 import AccountTypeSelect from '../Form/AccountTypeSelect'
@@ -45,7 +44,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
   const bankAccountNumberElement =
     useRef<PublicSquareTypes.BankAccountAccountNumberElement>(null)
 
-  function onSubmitCardElement(e: FormEvent<HTMLFormElement>) {
+  function onSubmitBankAccountElement(e: FormEvent<HTMLFormElement>) {
     if (bankAccountElement.current) {
       onSubmit(e, {
         routing_number: bankAccountElement.current.routingNumber.el.value,
@@ -54,7 +53,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
     }
   }
 
-  function onSubmitCardElements(e: FormEvent<HTMLFormElement>) {
+  function onSubmitBankAccountElements(e: FormEvent<HTMLFormElement>) {
     if (bankRoutingNumberElement.current && bankAccountNumberElement.current) {
       onSubmit(e, {
         routing_number: bankRoutingNumberElement.current.el.value,
@@ -72,7 +71,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
     const { cardholder_name, account_holder_type, account_type } =
       Object.fromEntries(formData)
     if (loading) return
-    if (publicsquare && data.routing_number && data.account_number) {
+    if (publicsquare && 'routing_number' in data && 'account_number' in data) {
       setLoading(true)
       try {
         const response = await publicsquare.bankAccounts.create({
@@ -91,7 +90,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
           error: !!response.error
         })
       } catch (error) {
-        console.log(error)
+        console.error('Error creating bank account:', error)
       }
       setLoading(false)
     }
@@ -101,7 +100,9 @@ function Elements({ allInOne }: { allInOne: boolean }) {
     <div className="space-y-4 w-full">
       <form
         onSubmit={(e) =>
-          allInOne ? onSubmitCardElement(e) : onSubmitCardElements(e)
+          allInOne
+            ? onSubmitBankAccountElement(e)
+            : onSubmitBankAccountElements(e)
         }
         name="react-form-bank-account-element"
       >

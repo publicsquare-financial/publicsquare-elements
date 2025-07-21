@@ -9,18 +9,20 @@ yarn
 
 cd js-sdk
 
+rm -rf node_modules
 yarn && yarn build
 
 cd ../react-sdk
 
+rm -rf node_modules
 yarn && yarn build
 
 cd ../example-app
 
 echo "Building project..."
 
-yarn --frozen-lockfile --no-progress --ignore-scripts
-yarn build
+rm -rf node_modules
+yarn && yarn build
 
 result=$?
 

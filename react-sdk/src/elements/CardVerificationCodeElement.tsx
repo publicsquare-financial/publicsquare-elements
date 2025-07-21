@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import PublicSquareElement from './element'
+import PublicSquareElement from './PublicSquareElement'
 import * as Types from '../types'
 
 export const CardVerifcationCodeElement = forwardRef<
