@@ -910,11 +910,6 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@pkgr/core@^0.2.4":
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.2.8.tgz#3e7a998d8dbb4ac9e212437ea865248e85b1dfc1"
-  integrity sha512-Yd820OqLNN/Rpyod/2uGB+SdiFXVDfI/bylOMvtvpl0nIjRRovXIfek65CwWUewOhTi+m2jjRruPbttcbkd1VA==
-
 "@pkgr/core@^0.2.9":
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.2.9.tgz#d229a7b7f9dac167a156992ef23c7f023653f53b"
@@ -1230,14 +1225,7 @@
     expect "^30.0.0"
     pretty-format "^30.0.0"
 
-"@types/node@*":
-  version "24.0.14"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.0.14.tgz#6e3d4fb6d858c48c69707394e1a0e08ce1ecc1bc"
-  integrity sha512-4zXMWD91vBLGRtHK3YbIoFMia+1nqEz72coM42C5ETjnNCa/heoj7NT1G67iAfOqMmcfhuCZ4uNpyz8EjlAejw==
-  dependencies:
-    undici-types "~7.8.0"
-
-"@types/node@^24.0.13":
+"@types/node@*", "@types/node@^24.0.13":
   version "24.0.15"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-24.0.15.tgz#f34fbc973e7d64217106e0c59ed8761e6b51381e"
   integrity sha512-oaeTSbCef7U/z7rDeJA138xpG3NuKc64/rZ2qmUFkFJmnMsAPaluIifqyWd8hSSMxyP9oie3dLAqYPblag9KgA==
@@ -3817,9 +3805,9 @@ mz@^2.4.0:
     thenify-all "^1.0.0"
 
 napi-postinstall@^0.3.0:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/napi-postinstall/-/napi-postinstall-0.3.1.tgz#d4260764961a60d943d36bb4b3006112b33ab0a2"
-  integrity sha512-is9eGpjKpRg+Z7ECny6NSOekea7+1eTs9+jTt5jJx43ez0o1BYRUKEBIf+ZZn15oQf5wvPnRf0Uat6MAtvVz+A==
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/napi-postinstall/-/napi-postinstall-0.3.2.tgz#03c62080e88b311c4d7423b0f15f0c920bbcc626"
+  integrity sha512-tWVJxJHmBWLy69PvO96TZMZDrzmw5KeiZBz3RHmiM2XZ9grBJ2WgMAFVVg25nqp3ZjTFUs2Ftw1JhscL3Teliw==
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -5045,19 +5033,12 @@ supports-hyperlinks@^3.1.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
-synckit@^0.11.11:
+synckit@^0.11.11, synckit@^0.11.8:
   version "0.11.11"
   resolved "https://registry.yarnpkg.com/synckit/-/synckit-0.11.11.tgz#c0b619cf258a97faa209155d9cd1699b5c998cb0"
   integrity sha512-MeQTA1r0litLUf0Rp/iisCaL8761lKAZHaimlbGK4j0HysC4PLfqygQj9srcs0m2RdtDYnF8UuYyKpbjHYp7Jw==
   dependencies:
     "@pkgr/core" "^0.2.9"
-
-synckit@^0.11.8:
-  version "0.11.9"
-  resolved "https://registry.yarnpkg.com/synckit/-/synckit-0.11.9.tgz#0d0c794f7827cd98a7ad8f551f070072cfbeaa12"
-  integrity sha512-02JE2dOputr8ku4SNqAnqhGo0FaHcvSvAuzXMLdvygH4dqu3PXyUdePefNozFcCznNtQwf6Wn98ZSLa+ArRqZQ==
-  dependencies:
-    "@pkgr/core" "^0.2.4"
 
 tar@^6.1.11, tar@^6.2.1:
   version "6.2.1"
