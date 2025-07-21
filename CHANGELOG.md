@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.6.0...v1.6.1) (2025-07-21)
+
+
+### Bug Fixes
+
+* bump elements dependency ([e175526](https://github.com/publicsquare-financial/publicsquare-elements/commit/e175526a80d76181e321974c631818ab511c97e9))
+
 # [1.6.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.5.0...v1.6.0) (2025-07-21)
 
 
