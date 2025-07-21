@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.4.0...v1.5.0) (2025-07-21)
+
+
+### Features
+
+* add bank verification and Apple Pay button elements ([34c0867](https://github.com/publicsquare-financial/publicsquare-elements/commit/34c08674f080e271ccae6103132c15bea933772d))
+
 # [1.4.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.3.0...v1.4.0) (2025-02-10)
 
 
