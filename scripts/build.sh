@@ -10,16 +10,14 @@ yarn
 cd js-sdk
 
 rm -rf node_modules
-yarn && yarn build
+yarn
+yarn build
 
-cd dist
-yarn link
-
-cd ../../react-sdk
+cd ../react-sdk
 
 rm -rf node_modules
 yarn
-yarn link @publicsquare/elements-js
+yarn link:js-sdk
 yarn build
 
 cd ../example-app
@@ -28,19 +26,8 @@ echo "Building project..."
 
 rm -rf node_modules
 yarn
-
-cd ../js-sdk/dist
-yarn link
-
-cd ../../example-app
-yarn link @publicsquare/elements-js
-
-cd ../react-sdk/dist
-yarn link
-
-cd ../../example-app
-yarn link @publicsquare/elements-react
-
+yarn link:js-sdk
+yarn link:react-sdk
 yarn build
 
 result=$?
