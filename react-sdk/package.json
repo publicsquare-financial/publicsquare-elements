@@ -26,7 +26,7 @@
     "publish:beta": "npm publish ./dist --tag beta"
   },
   "dependencies": {
-    "@publicsquare/elements-js": "1.5.0"
+    "@publicsquare/elements-js": "1.5.0-beta"
   },
   "devDependencies": {
     "@types/react": "^19.1.8",
