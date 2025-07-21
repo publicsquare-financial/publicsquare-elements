@@ -1,6 +1,6 @@
 {
   "name": "@publicsquare/elements-react",
-  "version": "1.5.0-beta",
+  "version": "1.4.0",
   "description": "PublicSquare React Elements",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,7 +26,7 @@
     "publish:beta": "npm publish ./dist --tag beta"
   },
   "dependencies": {
-    "@publicsquare/elements-js": "1.5.0-beta"
+    "@publicsquare/elements-js": "1.4.0"
   },
   "devDependencies": {
     "@types/react": "^19.1.8",

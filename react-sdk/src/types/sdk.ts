@@ -1,1 +1,1 @@
-export * from '@publicsquare/elements-js/dist/types/sdk'
+export * from '@publicsquare/elements-js/types/sdk'

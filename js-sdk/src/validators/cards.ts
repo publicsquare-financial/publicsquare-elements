@@ -1,7 +1,7 @@
 import type {
   CardCreateInput,
   ValidatedCardsCreateInput
-} from '../types/sdk/cards'
+} from '@/types/sdk/cards'
 
 export function validateCreateCardInput(
   input: CardCreateInput

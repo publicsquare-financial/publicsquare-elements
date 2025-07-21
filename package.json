@@ -1,16 +1,11 @@
 {
   "name": "publicsquare-elements",
-  "version": "1.5.0-beta",
-  "private": true,
+  "version": "1.4.0",
   "scripts": {
     "release": "semantic-release",
     "test": "yarn playwright test",
     "test:ui": "yarn playwright test --ui"
   },
-  "workspaces": [
-    "js-sdk",
-    "react-sdk"
-  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
