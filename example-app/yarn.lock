@@ -462,10 +462,10 @@
   dependencies:
     "@basis-theory/basis-theory-js" "^4.22.1"
 
-"@publicsquare/elements-react@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-react/-/elements-react-1.4.0.tgz#268c46b6cda0edf6d0f82549123385c3d7c0371e"
-  integrity sha512-lc0G58iS7bt0LaDZwW8SCbx3yWz9Uhe4SmH2tp37vLoH8C65MtIHABb5XUQKBMKSOmbHLAopbGpCn0JvDRQIfw==
+"@publicsquare/elements-react@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-react/-/elements-react-1.5.0.tgz#77215c2d56fbe2bd2ceeabadf2ba3e439882f824"
+  integrity sha512-KQB4K6EyE33KSMWao/0qGxcNyoBPqn1RVdcubKc0IsqDf3SN2iZJsCuPt1kcHyYLWc+1/VLCXzk3v2CmMdrukg==
   dependencies:
     "@publicsquare/elements-js" "1.4.0"
 
