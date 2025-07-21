@@ -915,6 +915,11 @@
   resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.2.8.tgz#3e7a998d8dbb4ac9e212437ea865248e85b1dfc1"
   integrity sha512-Yd820OqLNN/Rpyod/2uGB+SdiFXVDfI/bylOMvtvpl0nIjRRovXIfek65CwWUewOhTi+m2jjRruPbttcbkd1VA==
 
+"@pkgr/core@^0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.2.9.tgz#d229a7b7f9dac167a156992ef23c7f023653f53b"
+  integrity sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==
+
 "@playwright/test@^1.49.1":
   version "1.54.1"
   resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.54.1.tgz#a76333e5c2cba5f12f96a6da978bba3ab073c7e6"
@@ -5039,6 +5044,13 @@ supports-hyperlinks@^3.1.0:
   dependencies:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
+
+synckit@^0.11.11:
+  version "0.11.11"
+  resolved "https://registry.yarnpkg.com/synckit/-/synckit-0.11.11.tgz#c0b619cf258a97faa209155d9cd1699b5c998cb0"
+  integrity sha512-MeQTA1r0litLUf0Rp/iisCaL8761lKAZHaimlbGK4j0HysC4PLfqygQj9srcs0m2RdtDYnF8UuYyKpbjHYp7Jw==
+  dependencies:
+    "@pkgr/core" "^0.2.9"
 
 synckit@^0.11.8:
   version "0.11.9"
