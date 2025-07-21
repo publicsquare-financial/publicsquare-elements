@@ -5,12 +5,13 @@ const libPackage = require('./package.json');
 
 libPackage.version = distPackage.version;
 
+libPackage.dependencies["@publicsquare/elements-js"] = distPackage.version;
+distPackage.dependencies["@publicsquare/elements-js"] = distPackage.version;
+
 fs.writeFileSync(
   './package.json',
   `${JSON.stringify(libPackage, undefined, 2)}\n`
 );
-
-distPackage.dependencies["@publicsquare/elements-js"] = distPackage.version;
 
 // removes dist package scripts before publish
 delete distPackage.scripts;

@@ -455,19 +455,19 @@
   dependencies:
     playwright "1.54.1"
 
-"@publicsquare/elements-js@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.4.0.tgz#29f55fddac88a0fab598fd84f6deea8a0bd323c9"
-  integrity sha512-+8zV84vSdn0nSjg9PejHQnw2Ga/D0dOkjbd31su+30LcbpDdvx2y2/vkbxtsCv08OS1oOid2fwCYPeHc/b39Bw==
+"@publicsquare/elements-js@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.6.0.tgz#c1dbc80082c3c6e7f50abcdb7b8dfb501adc6fd2"
+  integrity sha512-dzhlawLPu9i12T/z1nOhzAbJK/bHZe//p9vTAH1Y7Pg9VFoS5gt+KoX76IrOBX+SPwFiA6fugTrdlTw5pLyaKw==
   dependencies:
     "@basis-theory/basis-theory-js" "^4.22.1"
 
-"@publicsquare/elements-react@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-react/-/elements-react-1.5.0.tgz#77215c2d56fbe2bd2ceeabadf2ba3e439882f824"
-  integrity sha512-KQB4K6EyE33KSMWao/0qGxcNyoBPqn1RVdcubKc0IsqDf3SN2iZJsCuPt1kcHyYLWc+1/VLCXzk3v2CmMdrukg==
+"@publicsquare/elements-react@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-react/-/elements-react-1.6.0.tgz#5d0d21ce198f72f266d66829b6084238482d3a39"
+  integrity sha512-KXBths+9rzfwL2QabC7uQIzDx1CL3feaSvJypSpzSs6ZJ1ibo+UnRvJ/6i7aJVLyUk0wwHgrzzLuLSG4PI4Dpg==
   dependencies:
-    "@publicsquare/elements-js" "1.4.0"
+    "@publicsquare/elements-js" "1.6.0"
 
 "@react-aria/focus@^3.20.2":
   version "3.20.5"
