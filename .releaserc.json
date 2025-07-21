@@ -18,7 +18,7 @@
     [
       "@semantic-release/npm",
       {
-        "pkgRoot": "js-sdk"
+        "pkgRoot": "js-sdk/dist"
       }
     ],
     [

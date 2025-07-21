@@ -4,8 +4,8 @@ import {
   ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ROUTING_NUMBER_LOAD_ERROR_MESSAGE,
   ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ACCOUNT_NUMBER_LOAD_ERROR_MESSAGE,
   ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE
-} from '../constants'
-import { PublicSquare } from '../PublicSquare'
+} from '@/constants'
+import { PublicSquare } from '@/PublicSquare'
 import {
   BankAccountAccountNumberElement,
   BankAccountCreateInput,
@@ -20,12 +20,12 @@ import {
   CreateBankAccountVerificationElementOptions,
   InputElementOptions,
   PSQTextElement
-} from '../types/sdk'
-import { transformCreateBankAccountInput } from '../utils'
+} from '@/types/sdk'
+import { transformCreateBankAccountInput } from '@/utils'
 import {
   validateCreateBankAccountInput,
   validateRoutingNumber
-} from '../validators'
+} from '@/validators'
 import { VerificationWidget } from './VerificationWidget'
 
 function createInputElement({

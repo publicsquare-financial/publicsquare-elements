@@ -1,12 +1,12 @@
 {
   "name": "@publicsquare/elements-js",
-  "version": "1.5.0-beta",
+  "version": "1.5.0",
   "description": "PublicSquare JavaScript Elements",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "module": "dist/index.js",
   "files": [
-    "dist",
-    "README.md"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -17,8 +17,11 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "yarn clean && yarn build:types",
-    "build:types": "tsc",
+    "build": "yarn clean && concurrently 'yarn build:bundle' 'yarn build:module' 'yarn build:types' 'yarn build:package' -n 'bundle,module,types,package' -c 'yellow,magenta,blue,green' --kill-others-on-fail -g",
+    "build:bundle": "webpack --config webpack.prod.js",
+    "build:module": "babel src --extensions .ts --out-dir dist",
+    "build:types": "tsc && tsc-alias",
+    "build:package": "node prepare.js",
     "check": "tsc --noEmit",
     "clean": "rimraf dist",
     "test": "jest",
@@ -29,10 +32,28 @@
     "@basis-theory/basis-theory-js": "^4.22.1"
   },
   "devDependencies": {
-    "@types/jest": "^30.0.0",
+    "@babel/cli": "^7.22.15",
+    "@babel/core": "^7.25.2",
+    "@babel/plugin-proposal-class-properties": "^7.12.13",
+    "@babel/plugin-transform-arrow-functions": "^7.24.7",
+    "@babel/plugin-transform-runtime": "^7.25.4",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-typescript": "^7.24.7",
+    "@types/jest": "^29.5.13",
+    "babel-loader": "^9.2.1",
+    "babel-plugin-inline-dotenv": "^1.1.0",
+    "babel-plugin-transform-builtin-extend": "^1.1.2",
+    "babel-plugin-tsconfig-paths-module-resolver": "^1.0.3",
+    "concurrently": "^9.0.1",
+    "dotenv-webpack": "^8.1.0",
     "jest": "^30.0.4",
     "rimraf": "^6.0.1",
-    "typescript": "^5.6.2"
+    "ts-jest": "^29.2.5",
+    "tsc-alias": "^1.8.10",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "typescript": "^5.6.2",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
   },
   "engines": {
     "node": ">=10.12.0"

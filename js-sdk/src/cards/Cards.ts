@@ -1,8 +1,8 @@
-import { CardCreateResponse, CardCreateInput } from '../types/sdk/cards'
+import { CardCreateResponse, CardCreateInput } from '@/types/sdk/cards'
 import { PublicSquare } from '..'
-import { ELEMENTS_CARDS_NO_POINTER_MESSAGE } from '../constants'
-import { transformCreateCardInput } from '../utils'
-import { validateCreateCardInput } from '../validators'
+import { ELEMENTS_CARDS_NO_POINTER_MESSAGE } from '@/constants'
+import { transformCreateCardInput } from '@/utils'
+import { validateCreateCardInput } from '@/validators'
 
 export class PublicSquareCards {
   private _publicSquare: PublicSquare

@@ -10,19 +10,25 @@ yarn
 cd js-sdk
 
 rm -rf node_modules
-yarn && yarn build
+yarn
+yarn build
 
 cd ../react-sdk
 
 rm -rf node_modules
-yarn && yarn build
+yarn
+yarn link:js-sdk
+yarn build
 
 cd ../example-app
 
 echo "Building project..."
 
 rm -rf node_modules
-yarn && yarn build
+yarn
+yarn link:js-sdk
+yarn link:react-sdk
+yarn build
 
 result=$?
 

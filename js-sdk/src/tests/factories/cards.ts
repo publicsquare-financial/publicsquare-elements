@@ -1,4 +1,4 @@
-import { CardCreateInput } from '../../types/sdk/cards'
+import { CardCreateInput } from '@/types/sdk/cards'
 
 export function generateCardCreateInput(
   override: object = {}
