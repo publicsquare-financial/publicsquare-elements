@@ -1,4 +1,14 @@
 import {
+  ApplePayCreateResponse,
+  ApplePayCreateErrorResponse,
+  ApplePayCreateInput,
+  ApplePayCreateSessionInput,
+  ApplePaymentData,
+  ApplePayPaymentData,
+  ApplePayPaymentMethod,
+  ApplePayPaymentDataHeader,
+  ApplePayBillingContact,
+  ApplePayPaymentPass,
   BankAccountAccountNumberElement,
   BankAccountCreateErrorResponse,
   BankAccountCreateResponse,
@@ -27,6 +37,9 @@ import {
   CreateElementOptions,
   ElementType,
   PublicSquareInitOptions,
+  ValidatedApplePayCreateInput,
+  ValidatedApplePayCreateSessionInput,
+  ValidatedCardCreateInput,
   ValidatedCardsCreateInput,
   CardsCreateInput
 } from '@publicsquare/elements-js/types'
@@ -119,6 +132,16 @@ export type ApplePayButtonElementProps = {
 }
 
 export {
+  ApplePayCreateResponse,
+  ApplePayCreateErrorResponse,
+  ApplePayCreateInput,
+  ApplePayCreateSessionInput,
+  ApplePaymentData,
+  ApplePayPaymentData,
+  ApplePayPaymentMethod,
+  ApplePayPaymentDataHeader,
+  ApplePayBillingContact,
+  ApplePayPaymentPass,
   CardElement,
   CreateBankAccountAccountNumberElementOptions,
   BankAccountAccountNumberElement,
@@ -141,6 +164,9 @@ export {
   CardsCreateInput,
   CardCreateResponse,
   CardBillingDetails,
+  ValidatedApplePayCreateInput,
+  ValidatedApplePayCreateSessionInput,
+  ValidatedCardCreateInput,
   ValidatedCardsCreateInput,
   CardCreateErrorResponse,
   BankAccountCreateErrorResponse,

@@ -29,15 +29,18 @@ export type CardCreateInput = {
   billing_details?: CardBillingDetails
 }
 
-export { CardCreateInput as CardsCreateInput };
-
-export type ValidatedCardsCreateInput = {
+export type ValidatedCardCreateInput = {
   validated: {
     cardholder_name: string
     card: Card
     customer_id?: string
     billing_details?: CardBillingDetails
   }
+}
+
+export {
+  CardCreateInput as CardsCreateInput,
+  ValidatedCardCreateInput as ValidatedCardsCreateInput
 }
 
 export type CardCreateResponse = {
