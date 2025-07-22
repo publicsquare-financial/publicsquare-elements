@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.7.0...v1.7.1) (2025-07-22)
+
+
+### Bug Fixes
+
+* export Apple Pay types in React SDK ([b7677a4](https://github.com/publicsquare-financial/publicsquare-elements/commit/b7677a4a6e9e3f697d0f69c12ef283c41b21f8ea))
+
 # [1.7.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.6.1...v1.7.0) (2025-07-22)
 
 
