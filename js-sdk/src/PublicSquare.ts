@@ -28,11 +28,16 @@ import {
   PSQTextElement,
   PublicSquareInitOptions
 } from './types'
+import { PublicSquareApplePay } from './applePay/ApplePay'
 
 export class PublicSquare {
   _apiKey?: string
   _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP'
   _cardCreateUrl: string = 'https://api.basistheory.com/proxy'
+  _applePayCreateUrl: string =
+    'https://api.publicsquare.com/payment-methods/apple-pay'
+  _applePayCreateSessionUrl: string =
+    'https://api.publicsquare.com/payment-methods/apple-pay/session'
   _bankAccountCreateUrl: string =
     'https://api.publicsquare.com/payment-methods/bank-accounts'
   protected _bt?: BasisTheoryInstance
@@ -46,7 +51,7 @@ export class PublicSquare {
   _elements: (ElementValue | PSQTextElement)[] = []
 
   public cards = new PublicSquareCards(this)
-
+  public applePay = new PublicSquareApplePay(this)
   public bankAccounts = new PublicSquareBankAccount(this)
 
   /**
@@ -61,6 +66,10 @@ export class PublicSquare {
     if (options?.cardCreateUrl) this._cardCreateUrl = options?.cardCreateUrl
     if (options?.bankAccountCreateUrl)
       this._bankAccountCreateUrl = options?.bankAccountCreateUrl
+    if (options?.applePayCreateUrl)
+      this._applePayCreateUrl = options?.applePayCreateUrl
+    if (options?.applePayCreateSessionUrl)
+      this._applePayCreateSessionUrl = options?.applePayCreateSessionUrl
 
     const bt = await new BasisTheory().init(
       (Math.random() + 1).toString(36).substring(7),

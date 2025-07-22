@@ -26,6 +26,8 @@ export interface ApplicationInfo {
 export interface PublicSquareInitOptions {
   cardCreateUrl?: string
   bankAccountCreateUrl?: string
+  applePayCreateUrl?: string
+  applePayCreateSessionUrl?: string
   proxyKey?: string
   appInfo?: ApplicationInfo
 }

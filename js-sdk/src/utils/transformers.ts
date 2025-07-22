@@ -1,8 +1,12 @@
 import type {
+  ApplePayCreateInput,
+  ApplePayCreateSessionInput,
   BankAccountCreateInput,
+  ValidatedApplePayCreateInput,
+  ValidatedApplePayCreateSessionInput,
   ValidatedBankAccountCreateInput,
   ValidatedCardsCreateInput
-} from '@/types/sdk'
+} from '@/types'
 
 /**
  * Transform input from the sdk to the proxy input format
@@ -28,12 +32,34 @@ export function transformCreateCardInput({
 }
 
 /**
- * Transform input from the sdk to the proxy input format
+ * Transform input from the sdk to the Bank Account input format
  * @param {ValidatedBankAccountCreateInput} input
  * @returns {BankAccountCreateInput} API input
  */
 export function transformCreateBankAccountInput({
   validated
 }: ValidatedBankAccountCreateInput): BankAccountCreateInput {
+  return validated
+}
+
+/**
+ * Transform input from the sdk to the Apple Pay input format
+ * @param {ValidatedApplePayCreateInput} input
+ * @returns {ApplePayCreateInput} API input
+ */
+export function transformCreateApplePayInput({
+  validated
+}: ValidatedApplePayCreateInput): ApplePayCreateInput {
+  return validated
+}
+
+/**
+ * Transform input from the sdk to the Apple Pay input format
+ * @param {ValidatedApplePayCreateInput} input
+ * @returns {ApplePayCreateInput} API input
+ */
+export function transformCreateApplePaySessionInput({
+  validated
+}: ValidatedApplePayCreateSessionInput): ApplePayCreateSessionInput {
   return validated
 }
