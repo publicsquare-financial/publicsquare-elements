@@ -1,4 +1,5 @@
 export * from './publicsquare'
+export * from './applePay'
 export * from './cards'
 export * from './bankAccounts'
 export * from './elements'
