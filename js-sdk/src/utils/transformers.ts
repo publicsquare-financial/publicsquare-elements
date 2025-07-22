@@ -54,7 +54,7 @@ export function transformCreateApplePayInput({
 }
 
 /**
- * Transform input from the sdk to the Apple Pay input format
+ * Transform input from the sdk to the Apple Pay Session input format
  * @param {ValidatedApplePayCreateInput} input
  * @returns {ApplePayCreateInput} API input
  */
