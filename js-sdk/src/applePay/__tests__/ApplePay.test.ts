@@ -28,7 +28,7 @@ const validApplePayCreateInput: ApplePayCreateInput = {
   }
 }
 
-describe('BankAccounts', () => {
+describe('ApplePay', () => {
   let publicSquare: PublicSquare
   let applePay: PublicSquareApplePay
   let originalFetch: typeof global.fetch
