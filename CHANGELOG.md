@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.6.1...v1.7.0) (2025-07-22)
+
+
+### Features
+
+* add apple pay client to js sdk ([914a5cb](https://github.com/publicsquare-financial/publicsquare-elements/commit/914a5cb25cadea6ea5e85fe02587b2cb7b7e12a3))
+
 ## [1.6.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.6.0...v1.6.1) (2025-07-21)
 
 
