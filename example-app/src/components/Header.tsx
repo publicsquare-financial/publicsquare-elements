@@ -63,6 +63,17 @@ export default function Header() {
           >
             Bank Accounts
           </Link>
+          <Link
+            href="/apple-pay"
+            className={cx(
+              'text-sm/6 font-semibold',
+              pathname === '/apple-pay'
+                ? 'text-indigo-500 border-b-2 border-indigo-500'
+                : 'text-gray-900 border-b-2 border-transparent'
+            )}
+          >
+            Apple Pay
+          </Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link
@@ -125,6 +136,17 @@ export default function Header() {
                   )}
                 >
                   Bank Accounts
+                </Link>
+                <Link
+                  href="/apple-pay"
+                  className={cx(
+                    '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold',
+                    pathname === '/apple-pay'
+                      ? 'text-indigo-500 border-b-2 border-indigo-500'
+                      : 'text-gray-900 border-b-2 border-transparent'
+                  )}
+                >
+                  Apple Pay
                 </Link>
               </div>
               <div className="py-6">

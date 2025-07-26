@@ -1,6 +1,38 @@
 import { CardBillingDetails } from './cards'
 import { Environment } from './publicsquare'
 
+export interface ApplePayButtonWidgetOptions {
+  id?: string;
+  buttonStyle?: 'black' | 'white' | 'white-outline';
+  type?:
+    | 'plain'
+    | 'add-money'
+    | 'book'
+    | 'buy'
+    | 'check-out'
+    | 'continue'
+    | 'contribute'
+    | 'donate'
+    | 'order'
+    | 'pay'
+    | 'reload'
+    | 'rent'
+    | 'set-up'
+    | 'subscribe'
+    | 'support'
+    | 'tip'
+    | 'top-up';
+  locale?: string;
+  style?: {
+    width?: string;
+    height?: string;
+    borderRadius?: string;
+    padding?: string;
+  };
+  disabled?: boolean;
+  onClick?: () => void;
+}
+
 export type ApplePayCreateInput = {
   apple_payment_data?: ApplePaymentData
   customer_id?: string
