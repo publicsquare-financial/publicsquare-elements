@@ -40,7 +40,7 @@
     "@babel/preset-env": "^7.25.4",
     "@babel/preset-typescript": "^7.24.7",
     "@types/jest": "^29.5.13",
-    "babel-loader": "^9.2.1",
+    "babel-loader": "^10.0.0",
     "babel-plugin-inline-dotenv": "^1.1.0",
     "babel-plugin-transform-builtin-extend": "^1.1.2",
     "babel-plugin-tsconfig-paths-module-resolver": "^1.0.3",
