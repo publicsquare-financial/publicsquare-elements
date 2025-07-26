@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.7.1...v1.8.0) (2025-07-26)
+
+
+### Features
+
+* add JS Apple Pay button ([ec01eb0](https://github.com/publicsquare-financial/publicsquare-elements/commit/ec01eb06543ea8c4fc9c98c5acc19fcc21edc401))
+
 ## [1.7.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.7.0...v1.7.1) (2025-07-22)
 
 
