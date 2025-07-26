@@ -62,7 +62,8 @@ export default function Header() {
             )}
           >
             Bank Accounts
-          </Link><Link
+          </Link>
+          <Link
             href="/apple-pay"
             className={cx(
               'text-sm/6 font-semibold',
