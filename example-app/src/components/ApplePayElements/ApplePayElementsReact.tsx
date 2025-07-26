@@ -1,12 +1,15 @@
 'use client'
+import { useState } from 'react'
 import {
-  PublicSquareProvider, usePublicSquare
+  PublicSquareProvider,
+  usePublicSquare
 } from '@publicsquare/elements-react'
-import ApplePayButtonElement from '@publicsquare/elements-react/elements/ApplePayButtonElement';
+import ApplePayButtonElement from '@publicsquare/elements-react/elements/ApplePayButtonElement'
+import CaptureModal from '../Modals/CaptureModal'
 
 declare global {
   interface Window {
-    ApplePaySession: any;
+    ApplePaySession: any
   }
 }
 
@@ -22,32 +25,50 @@ export default function ApplePayElementsReact() {
 
 function Elements() {
   const { publicsquare } = usePublicSquare()
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState<{
+    message?: object
+    error?: boolean
+  }>()
 
   async function onSubmitApplePay() {
     if (!window.ApplePaySession) {
-      return;
+      return
     }
 
-    const session = createApplePaySession();
+    const session = createApplePaySession()
 
     session.onvalidatemerchant = async () => {
-      const merchantSession = await validateMerchant();
-      session.completeMerchantValidation(merchantSession);
-    };
+      const merchantSession = await validateMerchant()
+      session.completeMerchantValidation(merchantSession)
+    }
 
     session.onpaymentauthorized = async (event: any) => {
-      try {
-        // decrypt and tokenize Apple Pay
-        await createApplePay(event);
-        // present green check to the user before the timeout (30 seconds)
-        session.completePayment(window.ApplePaySession.STATUS_SUCCESS);
-      } catch (e) {
-        console.error(e);
-        session.completePayment(window.ApplePaySession.STATUS_FAILURE);
-      }
-    };
+      if (publicsquare) {
+        setLoading(true)
 
-    session.begin();
+        try {
+          // decrypt and tokenize Apple Pay
+          const applePay = await createApplePay(event)
+          if (applePay) {
+            setMessage({
+              message: applePay,
+              error: !!applePay.error
+            })
+          }
+
+          // present green check to the user before the timeout (30 seconds)
+          session.completePayment(window.ApplePaySession.STATUS_SUCCESS)
+        } catch (e) {
+          console.error(e)
+          session.completePayment(window.ApplePaySession.STATUS_FAILURE)
+        }
+
+        setLoading(false)
+      }
+    }
+
+    session.begin()
   }
 
   function createApplePaySession() {
@@ -59,47 +80,50 @@ function Elements() {
       total: {
         label: 'Demo (Card is not charged)',
         type: 'final',
-        amount: '1.99',
-      },
-    });
+        amount: '1.99'
+      }
+    })
   }
 
   async function validateMerchant() {
     try {
-      const session = await publicsquare?.applePay.createSession({
+      return await publicsquare?.applePay.createSession({
         display_name: 'PublicSquare Payments Demo',
-        domain: window.location.host,
-      });
-
-      console.log(session);
-      return session;
+        domain: window.location.host
+      })
     } catch (error) {
-      console.error('Error validating merchant:', error);
-      throw error;
+      console.error('Error validating merchant:', error)
+      throw error
     }
   }
 
   async function createApplePay(event: any) {
     if (publicsquare) {
       try {
-        console.log('Apple Pay token', event.payment.token);
-
         const response = await publicsquare.applePay.create({
-          apple_payment_data: event.payment.token,
-        });
+          apple_payment_data: event.payment.token
+        })
         if (response) {
-          return response;
+          return response
         }
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     }
   }
 
   return (
+    <>
       <ApplePayButtonElement
         id="apple-pay-element"
+        disabled={loading}
         onClick={onSubmitApplePay}
       />
+      <CaptureModal
+        message={message?.message}
+        onClose={() => setMessage(undefined)}
+        error={message?.error}
+      />
+    </>
   )
 }
