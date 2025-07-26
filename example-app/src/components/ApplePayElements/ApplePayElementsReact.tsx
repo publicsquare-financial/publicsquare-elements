@@ -97,11 +97,9 @@ function Elements() {
   }
 
   return (
-    <div className="space-y-4 w-full">
       <ApplePayButtonElement
         id="apple-pay-element"
         onClick={onSubmitApplePay}
       />
-    </div>
   )
 }

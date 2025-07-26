@@ -1,12 +1,16 @@
 'use client'
-
 import { PublicSquare } from "@publicsquare/elements-js"
 import { PublicSquareInitOptions } from "@publicsquare/elements-js/types"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+
+declare global {
+  var ApplePaySession: any;
+}
 
 export default function ApplePayElementsJs() {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>()
-  
+  const buttonContainerRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     /**
      * Step 1: Init the PublicSquare sdk
@@ -19,7 +23,94 @@ export default function ApplePayElementsJs() {
       .then((_publicsquare) => setPublicSquare(_publicsquare))
   }, [])
 
-    return (
-    <div className="space-y-4 w-full"></div>
-    )
+  useEffect(() => {
+    if (publicsquare && buttonContainerRef.current) {
+        publicsquare.applePay.renderButton(buttonContainerRef.current!, {
+          id: 'apple-pay-btn',
+          buttonStyle: 'black',
+          type: 'buy',
+          locale: 'en-US',
+          onClick: onSubmitApplePay
+        });
+    }
+  }, [publicsquare])
+
+  
+  function onSubmitApplePay() {
+    if (!ApplePaySession) {
+      return;
+    }
+    
+    const session = createApplePaySession();
+
+    session.onvalidatemerchant = async () => {
+      const merchantSession = await validateMerchant();
+      session.completeMerchantValidation(merchantSession);
+    };
+
+    session.onpaymentauthorized = async (event: any) => {
+      try {
+        // decrypt and tokenize Apple Pay
+        await createApplePay(event);
+        // present green check to the user before the timeout (30 seconds)
+        session.completePayment(ApplePaySession.STATUS_SUCCESS);
+      } catch (e) {
+        console.error(e);
+        session.completePayment(ApplePaySession.STATUS_FAILURE);
+      }
+    };
+
+    session.begin();
+
+  }
+
+  function createApplePaySession() {
+    return new ApplePaySession(3, {
+      countryCode: 'US',
+      currencyCode: 'USD',
+      merchantCapabilities: ['supports3DS'],
+      supportedNetworks: ['visa', 'masterCard', 'amex', 'discover'],
+      total: {
+        label: 'Demo (Card is not charged)',
+        type: 'final',
+        amount: '1.99',
+      },
+    });
+  }
+
+  async function validateMerchant() {
+    try {
+      const session = await publicsquare?.applePay.createSession({
+        display_name: 'PublicSquare Payments Demo',
+        domain: window.location.host,
+      });
+
+      console.log(session);
+      return session;
+    } catch (error) {
+      console.error('Error validating merchant:', error);
+      throw error;
+    }
+  }
+
+  async function createApplePay(event: any) {
+    if (publicsquare) {
+      try {
+        console.log('Apple Pay token', event.payment.token);
+
+        const response = await publicsquare.applePay.create({
+          apple_payment_data: event.payment.token,
+        });
+        if (response) {
+          return response;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  return (
+    <div ref={buttonContainerRef}></div>
+  )
 }

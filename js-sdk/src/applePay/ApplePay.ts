@@ -1,4 +1,5 @@
 import {
+  ApplePayButtonWidgetOptions,
   ApplePayCreateInput,
   ApplePayCreateResponse,
   ApplePayCreateSessionInput
@@ -13,6 +14,7 @@ import {
   validateCreateApplePayInput,
   validateCreateApplePaySessionInput
 } from '@/validators'
+import { ApplePayButtonWidget } from './ApplePayButtonWidget'
 
 export class PublicSquareApplePay {
   private _publicSquare: PublicSquare
@@ -22,6 +24,19 @@ export class PublicSquareApplePay {
       throw Error(ELEMENTS_PUBLICSQUARE_APPLE_PAY_NO_POINTER_MESSAGE)
     }
     this._publicSquare = publicSquarePointer
+  }
+
+  public renderButton(container: HTMLElement, options: ApplePayButtonWidgetOptions = {}) {
+    const widget = new ApplePayButtonWidget({
+      ...options,
+      onClick: () => {
+        if (typeof options.onClick === 'function') {
+          options.onClick()
+        }
+      }
+    })
+    widget.render(container)
+    return widget
   }
 
   public create(input: ApplePayCreateInput): Promise<ApplePayCreateResponse> {
