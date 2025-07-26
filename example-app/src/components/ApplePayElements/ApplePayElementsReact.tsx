@@ -17,6 +17,9 @@ export default function ApplePayElementsReact() {
   const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
 
   return (
+    /*
+     * Step 1: Init the PublicSquare sdk
+     */
     <PublicSquareProvider apiKey={apiKey}>
       <Elements />
     </PublicSquareProvider>
@@ -36,9 +39,15 @@ function Elements() {
       return
     }
 
+    /*
+     * Step 2: Create an Apple Pay session
+     */
     const session = createApplePaySession()
 
     session.onvalidatemerchant = async () => {
+      /*
+      * Step 3: Validate merchant's CSR with Apple Pay session
+      */
       const merchantSession = await validateMerchant()
       session.completeMerchantValidation(merchantSession)
     }
@@ -48,7 +57,9 @@ function Elements() {
         setLoading(true)
 
         try {
-          // decrypt and tokenize Apple Pay
+           /*
+           * Step 4: Create an Apple Pay payment method
+           */
           const applePay = await createApplePay(event)
           if (applePay) {
             setMessage({
@@ -57,7 +68,9 @@ function Elements() {
             })
           }
 
-          // present green check to the user before the timeout (30 seconds)
+          /*
+           * Step 5: Complete the Apple Pay session
+           */
           session.completePayment(window.ApplePaySession.STATUS_SUCCESS)
         } catch (e) {
           console.error(e)

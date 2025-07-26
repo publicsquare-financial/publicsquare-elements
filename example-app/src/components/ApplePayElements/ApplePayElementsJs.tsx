@@ -18,7 +18,7 @@ export default function ApplePayElementsJs() {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    /**
+    /*
      * Step 1: Init the PublicSquare sdk
      */
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
@@ -31,6 +31,10 @@ export default function ApplePayElementsJs() {
 
   useEffect(() => {
     if (publicsquare && buttonContainerRef.current) {
+
+      /*
+       * Step 2: Render the Apple Pay button
+       */
       publicsquare.applePay.renderButton(buttonContainerRef.current!, {
         id: 'apple-pay-btn',
         buttonStyle: 'black',
@@ -47,9 +51,15 @@ export default function ApplePayElementsJs() {
       return
     }
 
+    /*
+     * Step 3: Create an Apple Pay session
+     */
     const session = createApplePaySession()
 
     session.onvalidatemerchant = async () => {
+      /*
+      * Step 4: Validate merchant's CSR with Apple Pay session
+      */
       const merchantSession = await validateMerchant()
       session.completeMerchantValidation(merchantSession)
     }
@@ -59,7 +69,9 @@ export default function ApplePayElementsJs() {
         setLoading(true)
 
         try {
-          // decrypt and tokenize Apple Pay
+          /*
+           * Step 5: Create an Apple Pay payment method
+           */
           const applePay = await createApplePay(event)
           if (applePay) {
             setMessage({
@@ -68,7 +80,9 @@ export default function ApplePayElementsJs() {
             })
           }
 
-          // present green check to the user before the timeout (30 seconds)
+          /*
+           * Step 6: Complete the Apple Pay session
+           */
           session.completePayment(ApplePaySession.STATUS_SUCCESS)
         } catch (e) {
           console.error(e)
@@ -98,13 +112,10 @@ export default function ApplePayElementsJs() {
 
   async function validateMerchant() {
     try {
-      const session = await publicsquare?.applePay.createSession({
+      return await publicsquare?.applePay.createSession({
         display_name: 'PublicSquare Payments Demo',
         domain: window.location.host
       })
-
-      console.log(session)
-      return session
     } catch (error) {
       console.error('Error validating merchant:', error)
       throw error
