@@ -125,8 +125,6 @@ export default function ApplePayElementsJs() {
   async function createApplePay(event: any) {
     if (publicsquare) {
       try {
-        console.log('Apple Pay token', event.payment.token)
-
         const response = await publicsquare.applePay.create({
           apple_payment_data: event.payment.token
         })
