@@ -16,7 +16,7 @@
     "@publicsquare/elements-js": "1.7.1",
     "@publicsquare/elements-react": "1.7.1",
     "next": "^15.3.5",
-    "react": "^19.1.0",
+    "react": "^19.1.1",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
