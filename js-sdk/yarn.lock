@@ -2492,18 +2492,10 @@ emoji-regex@^9.2.2:
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-9.2.2.tgz#840c8803b0d8047f4ff0cf963176b32d4ef3ed72"
   integrity sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==
 
-enhanced-resolve@^5.17.2:
+enhanced-resolve@^5.17.2, enhanced-resolve@^5.7.0:
   version "5.18.2"
   resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.18.2.tgz#7903c5b32ffd4b2143eeb4b92472bd68effd5464"
   integrity sha512-6Jw4sE1maoRJo3q8MsSIn2onJFbLTOjY9hlx4DZXmOKvLRd1Ok2kXmAGXaafL2+ijsJZ1ClYbl/pmqr9+k4iUQ==
-  dependencies:
-    graceful-fs "^4.2.4"
-    tapable "^2.2.0"
-
-enhanced-resolve@^5.7.0:
-  version "5.18.0"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.18.0.tgz#91eb1db193896b9801251eeff1c6980278b1e404"
-  integrity sha512-0/r0MySGYG8YqlayBZ6MuCfECmHFdJ5qyPh8s8wa5Hnm6SaFLSK1VYCbj+NKp090Nm1caZhD+QTnmxO7esYGyQ==
   dependencies:
     graceful-fs "^4.2.4"
     tapable "^2.2.0"
@@ -4398,15 +4390,10 @@ synckit@^0.11.8:
   dependencies:
     "@pkgr/core" "^0.2.9"
 
-tapable@^2.1.1, tapable@^2.2.0:
+tapable@^2.1.1, tapable@^2.2.0, tapable@^2.2.1:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.2.tgz#ab4984340d30cb9989a490032f086dbb8b56d872"
   integrity sha512-Re10+NauLTMCudc7T5WLFLAwDhQ0JWdrMK+9B2M8zR5hRExKmsRDCBA7/aV/pNJFltmBFO5BAMlQFi/vq3nKOg==
-
-tapable@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.1.tgz#1967a73ef4060a82f12ab96af86d52fdb76eeca0"
-  integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
 
 terser-webpack-plugin@^5.3.11:
   version "5.3.14"
@@ -4682,9 +4669,9 @@ webpack-sources@^3.3.3:
   integrity sha512-yd1RBzSGanHkitROoPFd6qsrxt+oFhg/129YzheDGqeustzX0vTZJZsSsQjVQC4yzBQ56K55XU8gaNCtIzOnTg==
 
 webpack@^5.94.0:
-  version "5.100.2"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.100.2.tgz#e2341facf9f7de1d702147c91bcb65b693adf9e8"
-  integrity sha512-QaNKAvGCDRh3wW1dsDjeMdDXwZm2vqq3zn6Pvq4rHOEOGSaUMgOOjG2Y9ZbIGzpfkJk9ZYTHpDqgDfeBDcnLaw==
+  version "5.101.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.101.0.tgz#4b81407ffad9857f81ff03f872e3369b9198cc9d"
+  integrity sha512-B4t+nJqytPeuZlHuIKTbalhljIFXeNRqrUGAQgTGlfOl2lXXKXw+yZu6bicycP+PUlM44CxBjCFD6aciKFT3LQ==
   dependencies:
     "@types/eslint-scope" "^3.7.7"
     "@types/estree" "^1.0.8"
