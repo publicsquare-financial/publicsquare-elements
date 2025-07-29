@@ -455,19 +455,19 @@
   dependencies:
     playwright "1.54.1"
 
-"@publicsquare/elements-js@1.7.1":
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.7.1.tgz#2357a14ca1633e45bd23c1841e8d29421107cce5"
-  integrity sha512-sg//JLwiPzieZc/hhu+fswwWUI0calR+niQ1fPMvdBOvlfxYMnRe3hMB1IRv+vhnVmfvGQYsB0meBcRR3sML9A==
+"@publicsquare/elements-js@1.8.0", "@publicsquare/elements-js@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.8.0.tgz#654ca5cffb14b336a8c9b8e1ff5ea80b33c15113"
+  integrity sha512-qWJXkboAtV9QQwsfGUMFf1qDjcYW3Cev459vtk7gOqFs4Jm5/IVfMiYnk7HhY7seMEzZ39yrdvrCzY9FFMScFA==
   dependencies:
     "@basis-theory/basis-theory-js" "^4.22.1"
 
-"@publicsquare/elements-react@1.7.1":
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-react/-/elements-react-1.7.1.tgz#74f9dd63e7e4787a5183e85d6003a7033dd2f58d"
-  integrity sha512-HOMyCfNmj7luxcO6Xd5GRa6/DVT7YKsyAI8rS0WdMd4nN6x27oqT3LIMJjclC4dS/zy21cqekclDUyxLJ9H28w==
+"@publicsquare/elements-react@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-react/-/elements-react-1.8.0.tgz#5f54de6a4baad68949abe0c6b511339fe7a0e4be"
+  integrity sha512-ma1m4dfIarzoIBJFtZEdq48Fby6mEyVVfKHG/imwkq0XwmnlqajoQ3Ik6pfmRyPmc7ct9Yzcr9/sf/l1rFvDNw==
   dependencies:
-    "@publicsquare/elements-js" "1.7.1"
+    "@publicsquare/elements-js" "1.8.0"
 
 "@react-aria/focus@^3.20.2":
   version "3.21.0"
@@ -595,14 +595,14 @@
     undici-types "~7.8.0"
 
 "@types/react-dom@^19.1.6":
-  version "19.1.6"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-19.1.6.tgz#4af629da0e9f9c0f506fc4d1caa610399c595d64"
-  integrity sha512-4hOiT/dwO8Ko0gV1m/TJZYk3y0KBnY9vzDh7W+DH17b2HFSOGgdj33dhihPeuy3l0q23+4e+hoXHV6hCC4dCXw==
+  version "19.1.7"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-19.1.7.tgz#2863f2aa89e023592b981204ef92c5221b286410"
+  integrity sha512-i5ZzwYpqjmrKenzkoLM2Ibzt6mAsM7pxB6BCIouEVVmgiqaMj1TjaK7hnA36hbW5aZv20kx7Lw6hWzPWg0Rurw==
 
 "@types/react@^19.1.8":
-  version "19.1.8"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-19.1.8.tgz#ff8395f2afb764597265ced15f8dddb0720ae1c3"
-  integrity sha512-AwAfQ2Wa5bCx9WP8nZL2uMZWod7J7/JSplxbTmBQ5ms6QpqNYm672H0Vu9ZVKVngQ+ii4R/byguVEUZQyeg44g==
+  version "19.1.9"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-19.1.9.tgz#f42b24f35474566a39b5c3a98e4d0c425b79a849"
+  integrity sha512-WmdoynAX8Stew/36uTSVMcLJJ1KRh6L3IZRx1PZ7qJtBqT3dYTgyDTx8H1qoRghErydW7xw9mSJ3wS//tCRpFA==
   dependencies:
     csstype "^3.0.2"
 
@@ -2751,9 +2751,9 @@ quick-lru@^4.0.1:
   integrity sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==
 
 react-dom@^19.1.0:
-  version "19.1.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-19.1.0.tgz#133558deca37fa1d682708df8904b25186793623"
-  integrity sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==
+  version "19.1.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-19.1.1.tgz#2daa9ff7f3ae384aeb30e76d5ee38c046dc89893"
+  integrity sha512-Dlq/5LAZgF0Gaz6yiqZCf6VCcZs1ghAJyrsu84Q/GT0gV+mCxbfmKNoGRKBYMJ8IEdGPqu49YWXD02GCknEDkw==
   dependencies:
     scheduler "^0.26.0"
 
@@ -2763,9 +2763,9 @@ react-is@^16.13.1:
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
 react@^19.1.0:
-  version "19.1.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-19.1.0.tgz#926864b6c48da7627f004795d6cce50e90793b75"
-  integrity sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==
+  version "19.1.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-19.1.1.tgz#06d9149ec5e083a67f9a1e39ce97b06a03b644af"
+  integrity sha512-w8nqGImo45dmMIfljjMwOGtbmC/mk4CMYhWIicdSflH91J9TyCyczcPFXJzrZ/ZXcgGRFeP6BU0BEJTw6tZdfQ==
 
 read-cache@^1.0.0:
   version "1.0.0"
