@@ -72,13 +72,13 @@ export default function BankAccountVerificationElementJs() {
           <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
             <label>Bank Account Verification element</label>
             <div className="w-full  bg-white  overflow-hidden">
-              <div id="bank-account-verification-element">
-                <Button
+              <Button
                   onClick={onConnectBankAccountWithVerification}
                   className="mb-4"
                 >
                   Connect Bank Account
-                </Button>
+              </Button>
+              <div id="bank-account-verification-element">
               </div>
             </div>
           </div>

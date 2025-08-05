@@ -35,14 +35,14 @@ export class PublicSquare {
   _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP'
   _cardCreateUrl: string = 'https://api.basistheory.com/proxy'
   _applePayCreateUrl: string =
-    'https://api.publicsquare.com/payment-methods/apple-pay'
+    'https://staging.api.publicsquare.com/payment-methods/apple-pay'
   _applePayCreateSessionUrl: string =
-    'https://api.publicsquare.com/payment-methods/apple-pay/session'
+    'https://staging.api.publicsquare.com/payment-methods/apple-pay/session'
   _bankAccountCreateUrl: string =
-    'https://api.publicsquare.com/payment-methods/bank-accounts'
+    'https://staging.api.publicsquare.com/payment-methods/bank-accounts'
   protected _bt?: BasisTheoryInstance
   _bankAccountVerificationUrl: string =
-    'https://api.publicsquare.com/payment-methods/bank-accounts/verification'
+    'https://staging.api.publicsquare.com/payment-methods/bank-accounts/verification'
 
   get bt(): BasisTheoryInstance | undefined {
     return this._bt
@@ -127,6 +127,7 @@ export class PublicSquare {
           options as CreateBankAccountElementOptions
         )
       case ElementTypeEnum.BankAccountVerification:
+        console.log('Creating Bank Account Verification Element', options)
         return this.createBankAccountVerificationElement(
           options as CreateBankAccountVerificationElementOptions
         )

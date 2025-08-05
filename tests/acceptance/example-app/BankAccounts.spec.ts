@@ -55,7 +55,7 @@ test.describe('js', () => {
   test('should submit the JS CardElement form', async ({ page }) => {
     const data = fakeBankAccountInputData
     await page.route(
-      'https://api.publicsquare.com/payment-methods/bank-accounts',
+      'https://staging.api.publicsquare.com/payment-methods/bank-accounts',
       async (route) => {
         const json = fakeBankAccount(data)
         await route.fulfill({ json })
@@ -77,7 +77,7 @@ test.describe('js', () => {
   test('should submit the JS CardElements form', async ({ page }) => {
     const data = fakeBankAccountInputData
     await page.route(
-      'https://api.publicsquare.com/payment-methods/bank-accounts',
+      'https://staging.api.publicsquare.com/payment-methods/bank-accounts',
       async (route) => {
         const json = fakeBankAccount(data)
         await route.fulfill({ json })
@@ -118,7 +118,7 @@ test.describe('react', () => {
   test('should submit the React CardElement form', async ({ page }) => {
     const data = fakeBankAccountInputData
     await page.route(
-      'https://api.publicsquare.com/payment-methods/bank-accounts',
+      'https://staging.api.publicsquare.com/payment-methods/bank-accounts',
       async (route) => {
         const json = fakeBankAccount(data)
         await route.fulfill({ json })
@@ -140,7 +140,7 @@ test.describe('react', () => {
   test('should submit the React CardElements form', async ({ page }) => {
     const data = fakeBankAccountInputData
     await page.route(
-      'https://api.publicsquare.com/payment-methods/bank-accounts',
+      'https://staging.api.publicsquare.com/payment-methods/bank-accounts',
       async (route) => {
         const json = fakeBankAccount(data)
         await route.fulfill({ json })

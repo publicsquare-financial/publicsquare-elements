@@ -143,16 +143,22 @@ export class PublicSquareBankAccount {
     options: CreateBankAccountVerificationElementOptions
   ): BankAccountVerificationElement {
     const { onVerificationComplete } = options
+    console.log('createVerificationElement (src)')
     if (typeof window === 'undefined') {
       throw Error(ELEMENTS_NOM_DOM_ERROR_MESSAGE)
     }
 
     // Set up message listener for verification result
     if (onVerificationComplete) {
+      let handled = false;
       const messageHandler = (e: MessageEvent) => {
+        if (handled) return
         const data = e.data
         if (data && typeof data === 'object') {
           if (data.step === 'REDIRECT' && data.loginId && data.requestId) {
+            console.log('Handle src:', handled)
+            handled = true
+            console.log('Bank account verification initiated (src):', data)
             // Save the bank account verification and then call the callback with the result
             const widget = new VerificationWidget(this._publicSquare)
             widget

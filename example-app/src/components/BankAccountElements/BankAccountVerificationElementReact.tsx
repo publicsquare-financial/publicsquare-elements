@@ -75,6 +75,7 @@ function Elements() {
               id="react-bank-account-verification-element"
               className="space-x-4"
               onVerificationComplete={(result) => {
+                console.log('Bank account verification completed React:', result.bank_account_verification_id);
                 setBankAccountVerificationId(
                   result.bank_account_verification_id
                 )

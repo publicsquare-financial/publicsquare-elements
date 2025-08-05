@@ -38,10 +38,15 @@ export class VerificationWidget {
 
   private _setupMessageListener(): Promise<BankAccountVerificationIdResponse> {
     return new Promise((resolve, reject) => {
+      let handled = false
       this._messageHandler = (e: MessageEvent) => {
+        if (handled) return
         const data = e.data
         if (data && typeof data === 'object') {
           if (data.step === 'REDIRECT' && data.loginId && data.requestId) {
+            console.log('Handle widget:', handled)
+            handled = true
+            console.log('Bank account verification initiated (widget):', data)
             // Handle redirect event with loginId and requestId
             this.saveBankAccountVerification({
               verification_code: data.loginId,
@@ -140,6 +145,7 @@ export class VerificationWidget {
       }
     })
 
+    console.log('Get Bank account verification URL (widget)')
     if (!res.ok) {
       throw Error(ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_VERIFICATION_NOT_ENABLED)
     }

@@ -71,7 +71,7 @@ describe('ApplePay', () => {
 
     const result = await applePay.create(validApplePayCreateInput)
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://api.publicsquare.com/payment-methods/apple-pay',
+      'https://staging.api.publicsquare.com/payment-methods/apple-pay',
       {
         method: 'POST',
         headers: {
@@ -98,7 +98,7 @@ describe('ApplePay', () => {
     }
     const result = await applePay.create(input)
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://api.publicsquare.com/payment-methods/apple-pay',
+      'https://staging.api.publicsquare.com/payment-methods/apple-pay',
       {
         method: 'POST',
         headers: {
@@ -137,7 +137,7 @@ describe('ApplePay', () => {
     }
     await applePay.create(input)
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://api.publicsquare.com/payment-methods/apple-pay',
+      'https://staging.api.publicsquare.com/payment-methods/apple-pay',
       {
         method: 'POST',
         headers: {

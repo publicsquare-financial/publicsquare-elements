@@ -75,7 +75,7 @@ describe('BankAccounts', () => {
 
     const result = await bankAccount.create(validBankAccountCreateInput)
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://api.publicsquare.com/payment-methods/bank-accounts',
+      'https://staging.api.publicsquare.com/payment-methods/bank-accounts',
       {
         method: 'POST',
         headers: {
@@ -105,7 +105,7 @@ describe('BankAccounts', () => {
     }
     const result = await bankAccount.create(input)
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://api.publicsquare.com/payment-methods/bank-accounts',
+      'https://staging.api.publicsquare.com/payment-methods/bank-accounts',
       {
         method: 'POST',
         headers: {
@@ -150,7 +150,7 @@ describe('BankAccounts', () => {
     }
     await bankAccount.create(input)
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://api.publicsquare.com/payment-methods/bank-accounts',
+      'https://staging.api.publicsquare.com/payment-methods/bank-accounts',
       {
         method: 'POST',
         headers: {
