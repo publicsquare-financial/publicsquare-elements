@@ -63,10 +63,6 @@ function Elements() {
 
   return (
     <div className="space-y-4 w-full">
-      <form
-        onSubmit={handleSubmit}
-        name="react-form-bank-account-verification-element"
-      >
         <div className="w-full space-y-4">
           <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
             <label>Bank account verification element</label>
@@ -81,11 +77,7 @@ function Elements() {
               }}
             />
           </div>
-          <div className="flex justify-end">
-            <SubmitButton loading={loading} elementType="bankAccount" />
-          </div>
         </div>
-      </form>
       <CaptureModal
         message={message?.message}
         onClose={() => setMessage(undefined)}

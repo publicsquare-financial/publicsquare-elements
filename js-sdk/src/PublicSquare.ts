@@ -14,7 +14,7 @@ import {
   ElementValue
 } from '@basis-theory/basis-theory-js/types/elements'
 import { PublicSquareCards } from './cards'
-import { PublicSquareBankAccount } from './bankAccounts'
+import { PublicSquareBankAccount } from './bankAccounts/BankAccount'
 import {
   BasisTheoryInstance,
   CreateBankAccountAccountNumberElementOptions,
@@ -29,20 +29,21 @@ import {
   PublicSquareInitOptions
 } from './types'
 import { PublicSquareApplePay } from './applePay/ApplePay'
+import { PublicSquareBankVerification } from './bankAccounts/BankVerification';
 
 export class PublicSquare {
   _apiKey?: string
   _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP'
   _cardCreateUrl: string = 'https://api.basistheory.com/proxy'
   _applePayCreateUrl: string =
-    'https://api.publicsquare.com/payment-methods/apple-pay'
+    'https://staging.api.publicsquare.com/payment-methods/apple-pay'
   _applePayCreateSessionUrl: string =
-    'https://api.publicsquare.com/payment-methods/apple-pay/session'
+    'https://staging.api.publicsquare.com/payment-methods/apple-pay/session'
   _bankAccountCreateUrl: string =
-    'https://api.publicsquare.com/payment-methods/bank-accounts'
+    'https://staging.api.publicsquare.com/payment-methods/bank-accounts'
   protected _bt?: BasisTheoryInstance
   _bankAccountVerificationUrl: string =
-    'https://api.publicsquare.com/payment-methods/bank-accounts/verification'
+    'https://staging.api.publicsquare.com/payment-methods/bank-accounts/verification'
 
   get bt(): BasisTheoryInstance | undefined {
     return this._bt
@@ -53,6 +54,7 @@ export class PublicSquare {
   public cards = new PublicSquareCards(this)
   public applePay = new PublicSquareApplePay(this)
   public bankAccounts = new PublicSquareBankAccount(this)
+  public bankVerify = new PublicSquareBankVerification(this);
 
   /**
    * Initialize the PublicSquare sdk. (REQUIRED before calling `createElement`)
@@ -179,6 +181,7 @@ export class PublicSquare {
       typeof PublicSquareBankAccount.prototype.createElement
     >[0]
   ) {
+    console.log("createBankAccountElement")
     return new PublicSquareBankAccount(this).createElement(options)
   }
 
@@ -201,6 +204,7 @@ export class PublicSquare {
   public createBankAccountVerificationElement(
     options: CreateBankAccountVerificationElementOptions
   ) {
-    return new PublicSquareBankAccount(this).createVerificationElement(options)
+    console.log("createBankAccountVerificationElement")
+    return new PublicSquareBankVerification(this).createVerificationElement(options)
   }
 }

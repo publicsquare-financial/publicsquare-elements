@@ -1,5 +1,5 @@
 'use client'
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useRef, useState } from 'react'
 import { PublicSquare } from '@publicsquare/elements-js'
 import SubmitButton from '@/components/SubmitButton'
 import {
@@ -17,7 +17,7 @@ export default function BankAccountVerificationElementJs() {
     message?: object
     error?: boolean
   }>()
-  const [loading, setLoading] = useState(false)
+  const [connected, setConnected] = useState(false);
 
   useEffect(() => {
     /**
@@ -32,40 +32,15 @@ export default function BankAccountVerificationElementJs() {
   }, [])
 
   async function onConnectBankAccountWithVerification() {
-    const response = await publicsquare?.bankAccounts.openVerification(
+    setConnected(true);
+    const response = await publicsquare?.bankVerify.openVerification(
       `#${'bank-account-verification-element'}`
     )
     setData(response)
   }
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-
-    try {
-      setLoading(true)
-      const bankAccount = await publicsquare?.bankAccounts.create({
-        bank_account_verification_id: data?.bank_account_verification_id
-      })
-      setMessage({
-        message: bankAccount,
-        error: false
-      })
-    } catch (error) {
-      console.error('Error creating bank account:', error)
-      setMessage({
-        message: error as object,
-        error: true
-      })
-    } finally {
-      setLoading(false)
-    }
-  }
   return (
     <div className="space-y-4 w-full">
-      <form
-        onSubmit={(e) => onSubmit(e)}
-        name="js-form-bank-account-verification-element"
-      >
         <div className="w-full space-y-4">
           <NameInput />
 
@@ -73,20 +48,18 @@ export default function BankAccountVerificationElementJs() {
             <label>Bank Account Verification element</label>
             <div className="w-full  bg-white  overflow-hidden">
               <div id="bank-account-verification-element">
-                <Button
-                  onClick={onConnectBankAccountWithVerification}
-                  className="mb-4"
-                >
-                  Connect Bank Account
-                </Button>
+                {!connected && (
+                  <Button
+                    onClick={onConnectBankAccountWithVerification}
+                    className="mb-4"
+                  >
+                    Connect Bank Account
+                  </Button>
+                )}
               </div>
             </div>
           </div>
-          <div className="flex justify-end">
-            <SubmitButton loading={loading} elementType="bankAccount" />
-          </div>
         </div>
-      </form>
 
       <CaptureModal
         message={message?.message}

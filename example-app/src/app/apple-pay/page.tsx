@@ -1,6 +1,5 @@
 'use client'
 import ApplePayFormColumn from '@/components/ApplePayFormColumn'
-import HomeSection from '@/components/HomeSection'
 import SubSection from '@/components/SubSection'
 
 export default function Page() {
