@@ -32,15 +32,14 @@ export class PublicSquare {
   _apiKey?: string;
   _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP';
   _cardCreateUrl: string = 'https://api.basistheory.com/proxy';
-  _applePayCreateUrl: string = 'https://staging.api.publicsquare.com/payment-methods/apple-pay';
+  _applePayCreateUrl: string = 'https://api.publicsquare.com/payment-methods/apple-pay';
   _applePayCreateSessionUrl: string =
-    'https://staging.api.publicsquare.com/payment-methods/apple-pay/session';
-  _bankAccountCreateUrl: string =
-    'https://staging.api.publicsquare.com/payment-methods/bank-accounts';
-  protected _bt?: BasisTheoryInstance;
+    'https://api.publicsquare.com/payment-methods/apple-pay/session';
+  _bankAccountCreateUrl: string = 'https://api.publicsquare.com/payment-methods/bank-accounts';
   _bankAccountVerificationUrl: string =
-    'https://staging.api.publicsquare.com/payment-methods/bank-accounts/verification';
+    'https://api.publicsquare.com/payment-methods/bank-accounts/verification';
 
+  protected _bt?: BasisTheoryInstance;
   get bt(): BasisTheoryInstance | undefined {
     return this._bt;
   }
