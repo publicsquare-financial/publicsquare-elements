@@ -1,4 +1,6 @@
 MAKEFLAGS += --silent
+format:
+	./scripts/format.sh
 
 verify:
 	./scripts/verify.sh
