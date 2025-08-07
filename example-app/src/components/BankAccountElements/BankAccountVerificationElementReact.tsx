@@ -1,96 +1,98 @@
-'use client'
-import CaptureModal from '@/components/Modals/CaptureModal'
-import SubmitButton from '@/components/SubmitButton'
+'use client';
+import CaptureModal from '@/components/Modals/CaptureModal';
+import SubmitButton from '@/components/SubmitButton';
 import {
   BankAccountVerificationElement,
   PublicSquareProvider,
-  usePublicSquare
-} from '@publicsquare/elements-react'
-import PublicSquareTypes, {
-  PublicSquareInitOptions
-} from '@publicsquare/elements-react/types/sdk'
-import { FormEvent, useRef, useState } from 'react'
+  usePublicSquare,
+} from '@publicsquare/elements-react';
+import PublicSquareTypes, { PublicSquareInitOptions } from '@publicsquare/elements-react/types/sdk';
+import { FormEvent, useRef, useState } from 'react';
 
 export default function BankAccountVerificationElementReact() {
-  const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-  const options: PublicSquareInitOptions = {}
+  const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
+  const options: PublicSquareInitOptions = {};
 
   return (
     <PublicSquareProvider apiKey={apiKey} options={options}>
       <Elements />
     </PublicSquareProvider>
-  )
+  );
 }
 
 function Elements() {
-  const [loading, setLoading] = useState(false)
-  const [bankAccountVerificationId, setBankAccountVerificationId] =
-    useState<string>()
+  //Used only to refresh the modal to create bank account after verification
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{
-    message?: object
-    error?: boolean
-  }>()
+    message?: object;
+    error?: boolean;
+  }>();
 
-  const { publicsquare } = usePublicSquare()
-
+  //Element items
+  const { publicsquare } = usePublicSquare();
+  const [bankAccountVerificationId, setBankAccountVerificationId] = useState<string>();
   const bankAccountVerificationElement =
-    useRef<PublicSquareTypes.BankAccountVerificationElement>(null)
+    useRef<PublicSquareTypes.BankAccountVerificationElement>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
     try {
       if (!bankAccountVerificationId) {
-        throw new Error('No bank account verification ID available')
+        setMessage({
+          message: { message: 'Finish verification steps' },
+          error: true,
+        });
+      } else if (!loading) {
+        setLoading(true);
+        const bankAccount = await publicsquare?.bankAccounts.create({
+          bank_account_verification_id: bankAccountVerificationId,
+        });
+        setMessage({
+          message: bankAccount,
+          error: false,
+        });
+      } else {
+        setMessage({
+          message: { message: 'Verification in progress, please wait' },
+          error: true,
+        });
       }
-      const bankAccount = await publicsquare?.bankAccounts.create({
-        bank_account_verification_id: bankAccountVerificationId
-      })
-      setMessage({
-        message: bankAccount,
-        error: false
-      })
     } catch (error) {
-      console.error('Error creating bank account:', error)
+      console.error('Error creating bank account:', error);
       setMessage({
         message: error as object,
-        error: true
-      })
+        error: true,
+      });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <div className="space-y-4 w-full">
-      <form
-        onSubmit={handleSubmit}
-        name="react-form-bank-account-verification-element"
-      >
-        <div className="w-full space-y-4">
-          <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
-            <label>Bank account verification element</label>
-            <BankAccountVerificationElement
-              ref={bankAccountVerificationElement}
-              id="react-bank-account-verification-element"
-              className="space-x-4"
-              onVerificationComplete={(result) => {
-                setBankAccountVerificationId(
-                  result.bank_account_verification_id
-                )
-              }}
-            />
-          </div>
+    <div className="w-full space-y-4">
+      <div className="w-full space-y-4">
+        <div className="space-y-2 rounded-lg border-2 border-dashed border-gray-300 p-4">
+          <label>Bank account verification element</label>
+          <BankAccountVerificationElement
+            ref={bankAccountVerificationElement}
+            id="react-bank-account-verification-element"
+            className="space-x-4"
+            onVerificationComplete={(result) => {
+              setBankAccountVerificationId(result.bank_account_verification_id);
+            }}
+          />
+        </div>
+        <form onSubmit={handleSubmit} name="react-form-bank-account-verification-element">
           <div className="flex justify-end">
             <SubmitButton loading={loading} elementType="bankAccount" />
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
       <CaptureModal
         message={message?.message}
         onClose={() => setMessage(undefined)}
         error={message?.error}
       />
     </div>
-  )
+  );
 }

@@ -64,6 +64,17 @@ export default function Header() {
             Bank Accounts
           </Link>
           <Link
+            href="/bank-verification"
+            className={cx(
+              'text-sm/6 font-semibold',
+              pathname === '/bank-verification'
+                ? 'text-indigo-500 border-b-2 border-indigo-500'
+                : 'text-gray-900 border-b-2 border-transparent'
+            )}
+          >
+            Verify Bank Accounts
+          </Link>
+          <Link
             href="/apple-pay"
             className={cx(
               'text-sm/6 font-semibold',
