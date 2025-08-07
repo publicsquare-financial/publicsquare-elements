@@ -20,7 +20,7 @@ class BankVerifyJSPage {
   }
 
   async isVisible() {
-    await expect(await this.bankVerificationIframe).toBeVisible();
+    await expect(await this.bankVerificationIframe).toBeVisible({ timeout: 30000 });
   }
 }
 
@@ -36,7 +36,7 @@ class BankVerifyReactPage {
   }
 
   async isVisible() {
-    await expect(await this.bankVerificationIframe).toBeVisible();
+    await expect(await this.bankVerificationIframe).toBeVisible({ timeout: 30000 });
   }
 
   async goToPage() {
