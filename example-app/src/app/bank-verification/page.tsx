@@ -1,6 +1,6 @@
-'use client'
-import BankAccountVerificationFormColumn from '@/components/BankAccountVerificationFormColumn'
-import SubSection from '@/components/SubSection'
+'use client';
+import BankAccountVerificationFormColumn from '@/components/BankAccountVerificationFormColumn';
+import SubSection from '@/components/SubSection';
 export default function Page() {
   return (
     <div className="container mx-auto">
@@ -9,12 +9,10 @@ export default function Page() {
         description="This example shows how the PublicSquare Bank Account Verification Elements look and operate."
         getStarted={{
           href: 'https://www.npmjs.com/package/@publicsquare/elements-js',
-          label: 'Get Started'
+          label: 'Get Started',
         }}
-        rightColumn={(type) => (
-          <BankAccountVerificationFormColumn type={type} />
-        )}
+        rightColumn={(type) => <BankAccountVerificationFormColumn type={type} />}
       />
     </div>
-  )
+  );
 }

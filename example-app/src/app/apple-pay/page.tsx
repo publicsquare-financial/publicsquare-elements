@@ -1,6 +1,6 @@
-'use client'
-import ApplePayFormColumn from '@/components/ApplePayFormColumn'
-import SubSection from '@/components/SubSection'
+'use client';
+import ApplePayFormColumn from '@/components/ApplePayFormColumn';
+import SubSection from '@/components/SubSection';
 
 export default function Page() {
   return (
@@ -9,13 +9,11 @@ export default function Page() {
         title="Apple Pay Element"
         description="This example shows how the PublicSquare Apple Pay Elements look and operate."
         getStarted={{
-        href: 'https://www.npmjs.com/package/@publicsquare/elements-js',
-        label: 'Get Started'
+          href: 'https://www.npmjs.com/package/@publicsquare/elements-js',
+          label: 'Get Started',
         }}
-        rightColumn={(type) => (
-          <ApplePayFormColumn type={type} />
-        )}
+        rightColumn={(type) => <ApplePayFormColumn type={type} />}
       />
     </div>
-  )
+  );
 }
