@@ -96,11 +96,7 @@ export class PublicSquareBankAccount {
             })
                 .then((res) => res.json())
                 .then((res) =>
-                    res.errors
-                        ? {
-                            error: res
-                        }
-                        : res
+                    res.errors ? {error: res} : res
                 )
         }
     }
@@ -116,7 +112,6 @@ export class PublicSquareBankAccount {
     ): Promise<BankAccountCreateResponse> {
         return this.createBankAccount(input)
     }
-
 
     public createRoutingNumberElement(
         options: CreateBankAccountRoutingNumberElementOptions

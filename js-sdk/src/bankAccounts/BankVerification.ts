@@ -35,9 +35,9 @@ export class PublicSquareBankVerification {
                         });
                     }
                 })
-                .catch((error) => {
-                    console.error('Verification failed:', error);
-                });
+                    .catch((error) => {
+                        console.error('Verification failed:', error);
+                    });
             }
         }
     }
@@ -62,7 +62,7 @@ export class PublicSquareBankVerification {
         })
     }
 
-    public open(target ?: string) : Promise<BankAccountVerificationIdResponse> {
+    public open(target ?: string): Promise<BankAccountVerificationIdResponse> {
         return this.getAuthorizationUrl()
             .then((response) => {
                 this.buildContainer(response.authorization_url, target)
@@ -75,6 +75,7 @@ export class PublicSquareBankVerification {
     }
 
     private _setupMessageListener(): Promise<BankAccountVerificationIdResponse> {
+        this.destroy();
         return new Promise((resolve, reject) => {
             this._messageHandler = (e: MessageEvent) => {
                 const data = e.data
@@ -111,15 +112,15 @@ export class PublicSquareBankVerification {
             },
             body: JSON.stringify(request)
         })
-        .then((res) => {
-            return res.json()
-        })
-        .then((res) =>
-            res.errors ? { error: res } : res
-        )
+            .then((res) => {
+                return res.json()
+            })
+            .then((res) =>
+                res.errors ? {error: res} : res
+            )
     }
 
-    private buildContainer(url : string, target ?: string) {
+    private buildContainer(url: string, target ?: string) {
         const targetContainer = target
             ? document.querySelector(target)
             : document.body
@@ -145,7 +146,7 @@ export class PublicSquareBankVerification {
         container.appendChild(iframe)
     }
 
-    private buildErrorContainer(error : string, target ?: string) {
+    private buildErrorContainer(error: string, target ?: string) {
         const targetContainer = target
             ? document.querySelector(target)
             : document.body
@@ -164,7 +165,7 @@ export class PublicSquareBankVerification {
         targetContainer.appendChild(container)
     }
 
-    private async getAuthorizationUrl() : Promise<BankAccountVerificationUrlResponse> {
+    private async getAuthorizationUrl(): Promise<BankAccountVerificationUrlResponse> {
         const res = await fetch(this._publicSquare._bankAccountVerificationUrl, {
             method: 'GET',
             headers: {

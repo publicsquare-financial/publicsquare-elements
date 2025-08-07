@@ -23,33 +23,43 @@ export default function BankAccountVerificationElementReact() {
 }
 
 function Elements() {
+  //Used only to refresh the modal to create bank account after verification
   const [loading, setLoading] = useState(false)
-  const [bankAccountVerificationId, setBankAccountVerificationId] =
-    useState<string>()
   const [message, setMessage] = useState<{
     message?: object
     error?: boolean
   }>()
 
+  //Element items
   const { publicsquare } = usePublicSquare()
-
+  const [bankAccountVerificationId, setBankAccountVerificationId] =
+    useState<string>()
   const bankAccountVerificationElement =
     useRef<PublicSquareTypes.BankAccountVerificationElement>(null)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setLoading(true)
     try {
       if (!bankAccountVerificationId) {
-        throw new Error('No bank account verification ID available')
+        setMessage({
+          message: { message: 'Finish verification steps' },
+          error: true
+        })
+      } else if (!loading) {
+        setLoading(true)
+        const bankAccount = await publicsquare?.bankAccounts.create({
+          bank_account_verification_id: bankAccountVerificationId
+        })
+        setMessage({
+          message: bankAccount,
+          error: false
+        })
+      } else {
+        setMessage({
+          message: { message: 'Verification in progress, please wait' },
+          error: true
+        })
       }
-      const bankAccount = await publicsquare?.bankAccounts.create({
-        bank_account_verification_id: bankAccountVerificationId
-      })
-      setMessage({
-        message: bankAccount,
-        error: false
-      })
     } catch (error) {
       console.error('Error creating bank account:', error)
       setMessage({
@@ -63,21 +73,27 @@ function Elements() {
 
   return (
     <div className="space-y-4 w-full">
-        <div className="w-full space-y-4">
-          <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
-            <label>Bank account verification element</label>
-            <BankAccountVerificationElement
-              ref={bankAccountVerificationElement}
-              id="react-bank-account-verification-element"
-              className="space-x-4"
-              onVerificationComplete={(result) => {
-                setBankAccountVerificationId(
-                  result.bank_account_verification_id
-                )
-              }}
-            />
-          </div>
+      <div className="w-full space-y-4">
+        <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
+          <label>Bank account verification element</label>
+          <BankAccountVerificationElement
+            ref={bankAccountVerificationElement}
+            id="react-bank-account-verification-element"
+            className="space-x-4"
+            onVerificationComplete={(result) => {
+              setBankAccountVerificationId(result.bank_account_verification_id)
+            }}
+          />
         </div>
+        <form
+          onSubmit={handleSubmit}
+          name="react-form-bank-account-verification-element"
+        >
+          <div className="flex justify-end">
+            <SubmitButton loading={loading} elementType="bankAccount" />
+          </div>
+        </form>
+      </div>
       <CaptureModal
         message={message?.message}
         onClose={() => setMessage(undefined)}
