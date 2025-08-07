@@ -85,7 +85,6 @@ class BankAccountsJSPage {
 
 class BankAccountsReactPage {
   private page: Page;
-  private technologyToggle: Locator;
   private allInOneToggle: Locator;
   private successModal: Locator;
   private elementForm: Locator;
@@ -97,11 +96,6 @@ class BankAccountsReactPage {
   constructor(page: Page) {
     this.page = page;
     // Target the first section (Bank Account Element) specifically
-    this.technologyToggle = page
-      .locator('div')
-      .filter({ hasText: /^ReactJSJavascriptBank Account Element$/ })
-      .getByTestId('react-type-button')
-      .first();
     this.allInOneToggle = page.getByTestId('all-in-one-toggle');
     this.elementForm = page.locator('form[name="react-form-bank-account-element"]');
     this.routingNumberElement = page.locator(
@@ -121,7 +115,6 @@ class BankAccountsReactPage {
 
   async goToPage() {
     await this.page.goto('/bank-accounts');
-    await this.technologyToggle.click();
   }
 
   async isVisible() {

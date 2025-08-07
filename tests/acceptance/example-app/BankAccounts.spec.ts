@@ -49,7 +49,7 @@ test.describe('js', () => {
     await homePage.elementsAllInOneReady();
   });
 
-  test('should submit the JS CardElement form', async ({ page }) => {
+  test('should submit the JS Create Bank Account form', async ({ page }) => {
     const data = fakeBankAccountInputData;
     await page.route(
       'https://api.publicsquare.com/payment-methods/bank-accounts',
@@ -71,7 +71,7 @@ test.describe('js', () => {
     await homePage.expectSuccessModalIsVisible();
   });
 
-  test('should submit the JS CardElements form', async ({ page }) => {
+  test('should submit the AllInOne JS Create Bank Account form', async ({ page }) => {
     const data = fakeBankAccountInputData;
     await page.route(
       'https://api.publicsquare.com/payment-methods/bank-accounts',
@@ -112,7 +112,7 @@ test.describe('react', () => {
     await homePage.elementsAllInOneReady();
   });
 
-  test('should submit the React CardElement form', async ({ page }) => {
+  test('should submit the React Create Bank Account form', async ({ page }) => {
     const data = fakeBankAccountInputData;
     await page.route(
       'https://api.publicsquare.com/payment-methods/bank-accounts',
@@ -134,7 +134,7 @@ test.describe('react', () => {
     await homePage.expectSuccessModalIsVisible();
   });
 
-  test('should submit the React CardElements form', async ({ page }) => {
+  test('should submit the AllInOne React Create Bank Account form', async ({ page }) => {
     const data = fakeBankAccountInputData;
     await page.route(
       'https://api.publicsquare.com/payment-methods/bank-accounts',
