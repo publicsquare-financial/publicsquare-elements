@@ -1,8 +1,5 @@
-import { BasisTheory } from '@basis-theory/basis-theory-js'
-import {
-  ELEMENTS_INIT_ERROR_MESSAGE,
-  ELEMENTS_TYPE_NOT_SUPPORTED
-} from './constants'
+import { BasisTheory } from '@basis-theory/basis-theory-js';
+import { ELEMENTS_INIT_ERROR_MESSAGE, ELEMENTS_TYPE_NOT_SUPPORTED } from './constants';
 import {
   CardElement,
   CardExpirationDateElement,
@@ -11,10 +8,10 @@ import {
   CreateCardExpirationDateElementOptions,
   CreateCardNumberElementOptions,
   CreateCardVerificationCodeElementOptions,
-  ElementValue
-} from '@basis-theory/basis-theory-js/types/elements'
-import { PublicSquareCards } from './cards'
-import { PublicSquareBankAccount } from './bankAccounts'
+  ElementValue,
+} from '@basis-theory/basis-theory-js/types/elements';
+import { PublicSquareCards } from './cards';
+import { PublicSquareBankAccount } from './bankAccounts/BankAccount';
 import {
   BasisTheoryInstance,
   CreateBankAccountAccountNumberElementOptions,
@@ -26,33 +23,33 @@ import {
   ElementType,
   ElementTypeEnum,
   PSQTextElement,
-  PublicSquareInitOptions
-} from './types'
-import { PublicSquareApplePay } from './applePay/ApplePay'
+  PublicSquareInitOptions,
+} from './types';
+import { PublicSquareApplePay } from './applePay/ApplePay';
+import { PublicSquareBankVerification } from './bankAccounts/BankVerification';
 
 export class PublicSquare {
-  _apiKey?: string
-  _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP'
-  _cardCreateUrl: string = 'https://api.basistheory.com/proxy'
-  _applePayCreateUrl: string =
-    'https://api.publicsquare.com/payment-methods/apple-pay'
+  _apiKey?: string;
+  _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP';
+  _cardCreateUrl: string = 'https://api.basistheory.com/proxy';
+  _applePayCreateUrl: string = 'https://api.publicsquare.com/payment-methods/apple-pay';
   _applePayCreateSessionUrl: string =
-    'https://api.publicsquare.com/payment-methods/apple-pay/session'
-  _bankAccountCreateUrl: string =
-    'https://api.publicsquare.com/payment-methods/bank-accounts'
-  protected _bt?: BasisTheoryInstance
+    'https://api.publicsquare.com/payment-methods/apple-pay/session';
+  _bankAccountCreateUrl: string = 'https://api.publicsquare.com/payment-methods/bank-accounts';
   _bankAccountVerificationUrl: string =
-    'https://api.publicsquare.com/payment-methods/bank-accounts/verification'
+    'https://api.publicsquare.com/payment-methods/bank-accounts/verification';
 
+  protected _bt?: BasisTheoryInstance;
   get bt(): BasisTheoryInstance | undefined {
-    return this._bt
+    return this._bt;
   }
 
-  _elements: (ElementValue | PSQTextElement)[] = []
+  _elements: (ElementValue | PSQTextElement)[] = [];
 
-  public cards = new PublicSquareCards(this)
-  public applePay = new PublicSquareApplePay(this)
-  public bankAccounts = new PublicSquareBankAccount(this)
+  public cards = new PublicSquareCards(this);
+  public applePay = new PublicSquareApplePay(this);
+  public bankAccounts = new PublicSquareBankAccount(this);
+  public bankVerify = new PublicSquareBankVerification(this);
 
   /**
    * Initialize the PublicSquare sdk. (REQUIRED before calling `createElement`)
@@ -61,41 +58,34 @@ export class PublicSquare {
    * @returns class PublicSquare
    */
   public async init(apiKey: string, options?: PublicSquareInitOptions) {
-    this._apiKey = apiKey
-    if (options?.proxyKey) this._proxyKey = options?.proxyKey
-    if (options?.cardCreateUrl) this._cardCreateUrl = options?.cardCreateUrl
-    if (options?.bankAccountCreateUrl)
-      this._bankAccountCreateUrl = options?.bankAccountCreateUrl
-    if (options?.applePayCreateUrl)
-      this._applePayCreateUrl = options?.applePayCreateUrl
+    this._apiKey = apiKey;
+    if (options?.proxyKey) this._proxyKey = options?.proxyKey;
+    if (options?.cardCreateUrl) this._cardCreateUrl = options?.cardCreateUrl;
+    if (options?.bankAccountCreateUrl) this._bankAccountCreateUrl = options?.bankAccountCreateUrl;
+    if (options?.applePayCreateUrl) this._applePayCreateUrl = options?.applePayCreateUrl;
     if (options?.applePayCreateSessionUrl)
-      this._applePayCreateSessionUrl = options?.applePayCreateSessionUrl
+      this._applePayCreateSessionUrl = options?.applePayCreateSessionUrl;
 
-    const bt = await new BasisTheory().init(
-      (Math.random() + 1).toString(36).substring(7),
-      { elements: true }
-    )
+    const bt = await new BasisTheory().init((Math.random() + 1).toString(36).substring(7), {
+      elements: true,
+    });
     if (!bt) {
-      throw new Error(ELEMENTS_INIT_ERROR_MESSAGE)
+      throw new Error(ELEMENTS_INIT_ERROR_MESSAGE);
     }
-    this._bt = bt
-    return this
+    this._bt = bt;
+    return this;
   }
 
   private _createElement(
     type: ElementTypeEnum,
-    options: CreateElementOptions
-  ):
-    | CardElement
-    | CardExpirationDateElement
-    | CardNumberElement
-    | CardVerificationCodeElement {
+    options: CreateElementOptions,
+  ): CardElement | CardExpirationDateElement | CardNumberElement | CardVerificationCodeElement {
     if (!this._bt) {
-      throw new Error(ELEMENTS_INIT_ERROR_MESSAGE)
+      throw new Error(ELEMENTS_INIT_ERROR_MESSAGE);
     }
-    const element = this._bt.createElement(type as any, options as any)
-    this._elements.push(element)
-    return element
+    const element = this._bt.createElement(type as any, options as any);
+    this._elements.push(element);
+    return element;
   }
 
   /**
@@ -107,100 +97,92 @@ export class PublicSquare {
   public createElement(type: ElementType, options: CreateElementOptions) {
     switch (type) {
       case ElementTypeEnum.Text:
-        return this._createElement(ElementTypeEnum.Text, options)
+        return this._createElement(ElementTypeEnum.Text, options);
       case ElementTypeEnum.Card:
-        return this.createCardElement(options as CreateCardElementOptions)
+        return this.createCardElement(options as CreateCardElementOptions);
       case ElementTypeEnum.CardExpirationDate:
         return this.createCardExpirationDateElement(
-          options as CreateCardExpirationDateElementOptions
-        )
+          options as CreateCardExpirationDateElementOptions,
+        );
       case ElementTypeEnum.CardNumber:
-        return this.createCardNumberElement(
-          options as CreateCardNumberElementOptions
-        )
+        return this.createCardNumberElement(options as CreateCardNumberElementOptions);
       case ElementTypeEnum.CardVerificationCode:
         return this.createCardVerificationCodeElement(
-          options as CreateCardVerificationCodeElementOptions
-        )
+          options as CreateCardVerificationCodeElementOptions,
+        );
       case ElementTypeEnum.BankAccount:
-        return this.createBankAccountElement(
-          options as CreateBankAccountElementOptions
-        )
+        return this.createBankAccountElement(options as CreateBankAccountElementOptions);
       case ElementTypeEnum.BankAccountVerification:
         return this.createBankAccountVerificationElement(
-          options as CreateBankAccountVerificationElementOptions
-        )
+          options as CreateBankAccountVerificationElementOptions,
+        );
       case ElementTypeEnum.BankAccountRoutingNumber:
         return this.createBankAccountRoutingNumberElement(
-          options as CreateBankAccountRoutingNumberElementOptions
-        )
+          options as CreateBankAccountRoutingNumberElementOptions,
+        );
       case ElementTypeEnum.BankAccountAccountNumber:
         return this.createBankAccountAccountNumberElement(
-          options as CreateBankAccountAccountNumberElementOptions
-        )
+          options as CreateBankAccountAccountNumberElementOptions,
+        );
       default:
-        throw new Error(ELEMENTS_TYPE_NOT_SUPPORTED)
+        throw new Error(ELEMENTS_TYPE_NOT_SUPPORTED);
     }
   }
 
   public createCardElement(options: CreateCardElementOptions) {
-    return this._createElement(ElementTypeEnum.Card, options) as CardElement
+    return this._createElement(ElementTypeEnum.Card, options) as CardElement;
   }
 
   public createCardExpirationDateElement(
-    options: Omit<CreateCardExpirationDateElementOptions, 'targetId'>
+    options: Omit<CreateCardExpirationDateElementOptions, 'targetId'>,
   ) {
     return this._createElement(ElementTypeEnum.CardExpirationDate, {
       ...options,
-      targetId: 'elementTypesCardExpirationDateElement'
-    }) as CardExpirationDateElement
+      targetId: 'elementTypesCardExpirationDateElement',
+    }) as CardExpirationDateElement;
   }
 
-  public createCardNumberElement(
-    options: Omit<CreateCardNumberElementOptions, 'targetId'>
-  ) {
+  public createCardNumberElement(options: Omit<CreateCardNumberElementOptions, 'targetId'>) {
     return this._createElement(ElementTypeEnum.CardNumber, {
       ...options,
-      targetId: 'elementTypesCardNumberElement'
-    }) as CardNumberElement
+      targetId: 'elementTypesCardNumberElement',
+    }) as CardNumberElement;
   }
 
   public createCardVerificationCodeElement(
-    options: Omit<CreateCardVerificationCodeElementOptions, 'targetId'>
+    options: Omit<CreateCardVerificationCodeElementOptions, 'targetId'>,
   ) {
     return this._createElement(ElementTypeEnum.CardVerificationCode, {
       ...options,
-      targetId: 'elementTypesCardVerificationCodeElement'
-    }) as CardVerificationCodeElement
+      targetId: 'elementTypesCardVerificationCodeElement',
+    }) as CardVerificationCodeElement;
   }
 
   public createBankAccountElement(
-    options?: Parameters<
-      typeof PublicSquareBankAccount.prototype.createElement
-    >[0]
+    options?: Parameters<typeof PublicSquareBankAccount.prototype.createElement>[0],
   ) {
-    return new PublicSquareBankAccount(this).createElement(options)
+    return new PublicSquareBankAccount(this).createElement(options);
   }
 
   public createBankAccountRoutingNumberElement(
     options: Parameters<
       typeof PublicSquareBankAccount.prototype.createRoutingNumberElement
-    >[0] = {}
+    >[0] = {},
   ) {
-    return new PublicSquareBankAccount(this).createRoutingNumberElement(options)
+    return new PublicSquareBankAccount(this).createRoutingNumberElement(options);
   }
 
   public createBankAccountAccountNumberElement(
     options: Parameters<
       typeof PublicSquareBankAccount.prototype.createAccountNumberElement
-    >[0] = {}
+    >[0] = {},
   ) {
-    return new PublicSquareBankAccount(this).createAccountNumberElement(options)
+    return new PublicSquareBankAccount(this).createAccountNumberElement(options);
   }
 
   public createBankAccountVerificationElement(
-    options: CreateBankAccountVerificationElementOptions
+    options: CreateBankAccountVerificationElementOptions,
   ) {
-    return new PublicSquareBankAccount(this).createVerificationElement(options)
+    return new PublicSquareBankVerification(this).createVerificationElement(options);
   }
 }

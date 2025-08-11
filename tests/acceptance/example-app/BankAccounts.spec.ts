@@ -1,8 +1,5 @@
-import test from '@playwright/test'
-import {
-  BankAccountsJSPage,
-  BankAccountsReactPage,
-} from '../pages/BankAccounts.page'
+import test from '@playwright/test';
+import { BankAccountsJSPage, BankAccountsReactPage } from '../pages/BankAccounts.page';
 
 const fakeBankAccountInputData = {
   account_holder_name: 'John Doe',
@@ -19,7 +16,7 @@ const fakeBankAccountInputData = {
     postal_code: '51111',
     country: 'US',
   },
-}
+};
 
 const fakeBankAccount = (data) => ({
   id: 'ba_7Ay5mcUXAxwrN6wQEQUVEHBCJ',
@@ -34,130 +31,130 @@ const fakeBankAccount = (data) => ({
   account_type: data.account_type,
   routing_number: data.routing_number,
   account_number_last4: data.account_number.slice(-4),
-})
+});
 
 test.describe('js', () => {
   test.beforeEach(async ({ page }) => {
-    const homePage = new BankAccountsJSPage(page)
-    await homePage.goToPage()
+    const homePage = new BankAccountsJSPage(page);
+    await homePage.goToPage();
 
-    await homePage.isVisible()
+    await homePage.isVisible();
 
-    await homePage.elementsAllInOneReady()
-  })
+    await homePage.elementsAllInOneReady();
+  });
 
   test('should show 4 js elements', async ({ page }) => {
-    const homePage = new BankAccountsJSPage(page)
+    const homePage = new BankAccountsJSPage(page);
 
-    await homePage.elementsAllInOneReady()
-  })
+    await homePage.elementsAllInOneReady();
+  });
 
-  test('should submit the JS CardElement form', async ({ page }) => {
-    const data = fakeBankAccountInputData
+  test('should submit the JS Create Bank Account form', async ({ page }) => {
+    const data = fakeBankAccountInputData;
     await page.route(
       'https://api.publicsquare.com/payment-methods/bank-accounts',
       async (route) => {
-        const json = fakeBankAccount(data)
-        await route.fulfill({ json })
-      }
-    )
+        const json = fakeBankAccount(data);
+        await route.fulfill({ json });
+      },
+    );
 
-    const homePage = new BankAccountsJSPage(page)
+    const homePage = new BankAccountsJSPage(page);
 
     await homePage.fillElementInput({
       routing_number: data.routing_number,
       account_number: data.account_number,
-    })
+    });
 
-    await homePage.submitElementForm()
+    await homePage.submitElementForm();
 
-    await homePage.expectSuccessModalIsVisible()
-  })
+    await homePage.expectSuccessModalIsVisible();
+  });
 
-  test('should submit the JS CardElements form', async ({ page }) => {
-    const data = fakeBankAccountInputData
+  test('should submit the AllInOne JS Create Bank Account form', async ({ page }) => {
+    const data = fakeBankAccountInputData;
     await page.route(
       'https://api.publicsquare.com/payment-methods/bank-accounts',
       async (route) => {
-        const json = fakeBankAccount(data)
-        await route.fulfill({ json })
-      }
-    )
+        const json = fakeBankAccount(data);
+        await route.fulfill({ json });
+      },
+    );
 
-    const homePage = new BankAccountsJSPage(page)
+    const homePage = new BankAccountsJSPage(page);
 
-    await homePage.toggleAllInOne()
+    await homePage.toggleAllInOne();
 
     await homePage.fillElementsInput({
       routing_number: data.routing_number,
       account_number: data.account_number,
-    })
+    });
 
-    await homePage.submitElementForm()
+    await homePage.submitElementForm();
 
-    await homePage.expectSuccessModalIsVisible()
-  })
-})
+    await homePage.expectSuccessModalIsVisible();
+  });
+});
 
 test.describe('react', () => {
   test.beforeEach(async ({ page }) => {
-    const homePageReact = new BankAccountsReactPage(page)
-    await homePageReact.goToPage()
+    const homePageReact = new BankAccountsReactPage(page);
+    await homePageReact.goToPage();
 
-    await homePageReact.isVisible()
+    await homePageReact.isVisible();
 
-    await homePageReact.elementsAllInOneReady()
-  })
+    await homePageReact.elementsAllInOneReady();
+  });
 
   test('should show 4 react elements', async ({ page }) => {
-    const homePage = new BankAccountsReactPage(page)
+    const homePage = new BankAccountsReactPage(page);
 
-    await homePage.elementsAllInOneReady()
-  })
+    await homePage.elementsAllInOneReady();
+  });
 
-  test('should submit the React CardElement form', async ({ page }) => {
-    const data = fakeBankAccountInputData
+  test('should submit the React Create Bank Account form', async ({ page }) => {
+    const data = fakeBankAccountInputData;
     await page.route(
       'https://api.publicsquare.com/payment-methods/bank-accounts',
       async (route) => {
-        const json = fakeBankAccount(data)
-        await route.fulfill({ json })
-      }
-    )
+        const json = fakeBankAccount(data);
+        await route.fulfill({ json });
+      },
+    );
 
-    const homePage = new BankAccountsReactPage(page)
+    const homePage = new BankAccountsReactPage(page);
 
     await homePage.fillElementInput({
       routing_number: data.routing_number,
       account_number: data.account_number,
-    })
+    });
 
-    await homePage.submitElementForm()
+    await homePage.submitElementForm();
 
-    await homePage.expectSuccessModalIsVisible()
-  })
+    await homePage.expectSuccessModalIsVisible();
+  });
 
-  test('should submit the React CardElements form', async ({ page }) => {
-    const data = fakeBankAccountInputData
+  test('should submit the AllInOne React Create Bank Account form', async ({ page }) => {
+    const data = fakeBankAccountInputData;
     await page.route(
       'https://api.publicsquare.com/payment-methods/bank-accounts',
       async (route) => {
-        const json = fakeBankAccount(data)
-        await route.fulfill({ json })
-      }
-    )
+        const json = fakeBankAccount(data);
+        await route.fulfill({ json });
+      },
+    );
 
-    const homePage = new BankAccountsReactPage(page)
+    const homePage = new BankAccountsReactPage(page);
 
-    await homePage.toggleAllInOne()
+    await homePage.toggleAllInOne();
 
     await homePage.fillElementsInput({
       routing_number: data.routing_number,
       account_number: data.account_number,
-    })
+    });
 
-    await homePage.submitElementForm()
+    await homePage.submitElementForm();
 
-    await homePage.expectSuccessModalIsVisible()
-  })
-})
+    await homePage.expectSuccessModalIsVisible();
+  });
+});

@@ -1,98 +1,104 @@
-'use client'
-import { FormEvent, useEffect, useState } from 'react'
-import { PublicSquare } from '@publicsquare/elements-js'
-import SubmitButton from '@/components/SubmitButton'
+'use client';
+import { FormEvent, useState } from 'react';
+import { PublicSquare } from '@publicsquare/elements-js';
+import SubmitButton from '@/components/SubmitButton';
 import {
   PublicSquareInitOptions,
-  BankAccountVerificationIdResponse
-} from '@publicsquare/elements-js/types'
-import NameInput from '@/components/Form/NameInput'
-import CaptureModal from '@/components/Modals/CaptureModal'
-import Button from '../Buttons/Button'
+  BankAccountVerificationIdResponse,
+} from '@publicsquare/elements-js/types';
+import CaptureModal from '@/components/Modals/CaptureModal';
+import Button from '../Buttons/Button';
 
+//Element items
+let publicSquare: PublicSquare;
+let bankAccountId: BankAccountVerificationIdResponse | undefined;
 export default function BankAccountVerificationElementJs() {
-  const [publicsquare, setPublicSquare] = useState<PublicSquare>()
-  const [data, setData] = useState<BankAccountVerificationIdResponse>()
+  //Used only to refresh the modal to create bank account after verification
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{
-    message?: object
-    error?: boolean
-  }>()
-  const [loading, setLoading] = useState(false)
+    message?: object;
+    error?: boolean;
+  }>();
 
-  useEffect(() => {
-    /**
-     * Step 1: Init the PublicSquare sdk
-     */
-    const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-    const options: PublicSquareInitOptions = {}
+  //Create public square instance and load element
+  async function loadElement() {
+    //Element Container
+    const target = '#bank-account-verification-element';
 
-    new PublicSquare()
-      .init(apiKey, options)
-      .then((_publicsquare) => setPublicSquare(_publicsquare))
-  }, [])
+    //Optional - Clear out container
+    const container = document.querySelector(target);
+    if (container) {
+      container.innerHTML = '';
+    }
 
-  async function onConnectBankAccountWithVerification() {
-    const response = await publicsquare?.bankAccounts.openVerification(
-      `#${'bank-account-verification-element'}`
-    )
-    setData(response)
+    //Init public square
+    const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
+    const options: PublicSquareInitOptions = {};
+    publicSquare = new PublicSquare();
+    await publicSquare.init(apiKey, options);
+
+    //Open verification element in container and Get data back
+    bankAccountId = await publicSquare.bankVerify.openVerification(target);
   }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-
+    e.preventDefault();
     try {
-      setLoading(true)
-      const bankAccount = await publicsquare?.bankAccounts.create({
-        bank_account_verification_id: data?.bank_account_verification_id
-      })
-      setMessage({
-        message: bankAccount,
-        error: false
-      })
+      if (!bankAccountId) {
+        setMessage({
+          message: { message: 'Finish verification steps' },
+          error: true,
+        });
+      } else if (!loading) {
+        setLoading(true);
+        const bankAccount = await publicSquare?.bankAccounts.create({
+          bank_account_verification_id: bankAccountId?.bank_account_verification_id,
+        });
+        setMessage({
+          message: bankAccount,
+          error: false,
+        });
+      } else {
+        setMessage({
+          message: { message: 'Verification in progress, please wait' },
+          error: true,
+        });
+      }
     } catch (error) {
-      console.error('Error creating bank account:', error)
+      console.error('Error creating bank account:', error);
       setMessage({
         message: error as object,
-        error: true
-      })
+        error: true,
+      });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
-  return (
-    <div className="space-y-4 w-full">
-      <form
-        onSubmit={(e) => onSubmit(e)}
-        name="js-form-bank-account-verification-element"
-      >
-        <div className="w-full space-y-4">
-          <NameInput />
 
-          <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
-            <label>Bank Account Verification element</label>
-            <div className="w-full  bg-white  overflow-hidden">
-              <div id="bank-account-verification-element">
-                <Button
-                  onClick={onConnectBankAccountWithVerification}
-                  className="mb-4"
-                >
-                  Connect Bank Account
-                </Button>
-              </div>
+  return (
+    <div className="w-full space-y-4">
+      <div className="w-full space-y-4">
+        <div className="space-y-2 rounded-lg border-2 border-dashed border-gray-300 p-4">
+          <label>Bank Account Verification element</label>
+          <div className="w-full overflow-hidden bg-white">
+            <div id="bank-account-verification-element">
+              <Button onClick={loadElement} className="mb-4">
+                Open verification element
+              </Button>
             </div>
           </div>
-          <div className="flex justify-end">
-            <SubmitButton loading={loading} elementType="bankAccount" />
-          </div>
+        </div>
+      </div>
+      <form onSubmit={(e) => onSubmit(e)} name="js-form-bank-account-verification-element">
+        <div className="flex justify-end">
+          <SubmitButton loading={loading} elementType="bankAccount" />
         </div>
       </form>
-
       <CaptureModal
         message={message?.message}
         onClose={() => setMessage(undefined)}
         error={message?.error}
       />
     </div>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import { expect, type Page, type Locator } from "@playwright/test";
+import { expect, type Page, type Locator } from '@playwright/test';
 
 class BankAccountsJSPage {
   private page: Page;
@@ -14,32 +14,26 @@ class BankAccountsJSPage {
   constructor(page: Page) {
     this.page = page;
     // Target the first section (Bank Account Element) specifically
-    this.technologyToggle = page
-      .locator("div")
-      .filter({ hasText: /^ReactJSJavascriptBank Account Element$/ })
-      .getByTestId("js-type-button")
-      .first();
-    this.allInOneToggle = page.getByTestId("all-in-one-toggle");
-    this.elementForm = page.locator(
-      'form[name="js-form-bank-account-element"]'
-    );
+    this.technologyToggle = page.getByTestId('js-type-button').first();
+    this.allInOneToggle = page.getByTestId('all-in-one-toggle');
+    this.elementForm = page.locator('form[name="js-form-bank-account-element"]');
     this.routingNumberElement = page.locator(
-      "#psq-bank-account-routing-number-container>.publicsquare-element-input"
+      '#psq-bank-account-routing-number-container>.publicsquare-element-input',
     );
     this.accountNumberElement = page.locator(
-      "#psq-bank-account-account-number-container>.publicsquare-element-input"
+      '#psq-bank-account-account-number-container>.publicsquare-element-input',
     );
     this.separateRoutingNumberElement = page.locator(
-      "#routing-number-element>.publicsquare-element-input"
+      '#routing-number-element>.publicsquare-element-input',
     );
     this.separateAccountNumberElement = page.locator(
-      "#account-number-element>.publicsquare-element-input"
+      '#account-number-element>.publicsquare-element-input',
     );
-    this.successModal = page.getByTestId("capture-modal");
+    this.successModal = page.getByTestId('capture-modal');
   }
 
   async goToPage() {
-    await this.page.goto("/bank-accounts");
+    await this.page.goto('/bank-accounts');
     await this.technologyToggle.click();
   }
 
@@ -58,18 +52,11 @@ class BankAccountsJSPage {
   }
 
   async elementsIndividualReady() {
-    await expect(
-      await this.separateRoutingNumberElement.innerHTML()
-    ).toBeDefined();
-    await expect(
-      await this.separateAccountNumberElement.innerHTML()
-    ).toBeDefined();
+    await expect(await this.separateRoutingNumberElement.innerHTML()).toBeDefined();
+    await expect(await this.separateAccountNumberElement.innerHTML()).toBeDefined();
   }
 
-  async fillElementInput(input: {
-    routing_number: string;
-    account_number: string;
-  }) {
+  async fillElementInput(input: { routing_number: string; account_number: string }) {
     await this.routingNumberElement.fill(input.routing_number);
     await this.accountNumberElement.fill(input.account_number);
   }
@@ -78,10 +65,7 @@ class BankAccountsJSPage {
     await this.elementForm.locator('button[type="submit"]').click();
   }
 
-  async fillElementsInput(input: {
-    routing_number: string;
-    account_number: string;
-  }) {
+  async fillElementsInput(input: { routing_number: string; account_number: string }) {
     await this.separateRoutingNumberElement.fill(input.routing_number);
     await this.separateAccountNumberElement.fill(input.account_number);
   }
@@ -109,32 +93,26 @@ class BankAccountsReactPage {
   constructor(page: Page) {
     this.page = page;
     // Target the first section (Bank Account Element) specifically
-    this.technologyToggle = page
-      .locator("div")
-      .filter({ hasText: /^ReactJSJavascriptBank Account Element$/ })
-      .getByTestId("react-type-button")
-      .first();
-    this.allInOneToggle = page.getByTestId("all-in-one-toggle");
-    this.elementForm = page.locator(
-      'form[name="react-form-bank-account-element"]'
-    );
+    this.technologyToggle = page.getByTestId('react-type-button').first();
+    this.allInOneToggle = page.getByTestId('all-in-one-toggle');
+    this.elementForm = page.locator('form[name="react-form-bank-account-element"]');
     this.routingNumberElement = page.locator(
-      "#psq-bank-account-routing-number-container>.publicsquare-element-input"
+      '#psq-bank-account-routing-number-container>.publicsquare-element-input',
     );
     this.accountNumberElement = page.locator(
-      "#psq-bank-account-account-number-container>.publicsquare-element-input"
+      '#psq-bank-account-account-number-container>.publicsquare-element-input',
     );
     this.separateRoutingNumberElement = page.locator(
-      "#react-bank-account-routing-number-element>.publicsquare-element-input"
+      '#react-bank-account-routing-number-element>.publicsquare-element-input',
     );
     this.separateAccountNumberElement = page.locator(
-      "#react-bank-account-account-number-element>.publicsquare-element-input"
+      '#react-bank-account-account-number-element>.publicsquare-element-input',
     );
-    this.successModal = page.getByTestId("capture-modal");
+    this.successModal = page.getByTestId('capture-modal');
   }
 
   async goToPage() {
-    await this.page.goto("/bank-accounts");
+    await this.page.goto('/bank-accounts');
     await this.technologyToggle.click();
   }
 
@@ -153,12 +131,8 @@ class BankAccountsReactPage {
   }
 
   async elementsIndividualReady() {
-    await expect(
-      await this.separateRoutingNumberElement.innerHTML()
-    ).toBeDefined();
-    await expect(
-      await this.separateAccountNumberElement.innerHTML()
-    ).toBeDefined();
+    await expect(await this.separateRoutingNumberElement.innerHTML()).toBeDefined();
+    await expect(await this.separateAccountNumberElement.innerHTML()).toBeDefined();
   }
 
   getElementNameInput() {
@@ -181,10 +155,7 @@ class BankAccountsReactPage {
     await expect(await input.inputValue()).toEqual(value);
   }
 
-  async fillElementInput(input: {
-    routing_number: string;
-    account_number: string;
-  }) {
+  async fillElementInput(input: { routing_number: string; account_number: string }) {
     await this.routingNumberElement.fill(input.routing_number);
     await this.accountNumberElement.fill(input.account_number);
   }
@@ -193,10 +164,7 @@ class BankAccountsReactPage {
     await this.elementForm.locator('button[type="submit"]').click();
   }
 
-  async fillElementsInput(input: {
-    routing_number: string;
-    account_number: string;
-  }) {
+  async fillElementsInput(input: { routing_number: string; account_number: string }) {
     await this.separateRoutingNumberElement.fill(input.routing_number);
     await this.separateAccountNumberElement.fill(input.account_number);
   }
