@@ -27,6 +27,7 @@ import {
 } from './types';
 import { PublicSquareApplePay } from './applePay/ApplePay';
 import { PublicSquareBankVerification } from './bankAccounts/BankVerification';
+import { PublicSquareGooglePay } from './googlePay/GooglePay';
 
 export class PublicSquare {
   _apiKey?: string;
@@ -38,6 +39,8 @@ export class PublicSquare {
   _bankAccountCreateUrl: string = 'https://api.publicsquare.com/payment-methods/bank-accounts';
   _bankAccountVerificationUrl: string =
     'https://api.publicsquare.com/payment-methods/bank-accounts/verification';
+  _googlePayCreateUrl: string = 'https://api.publicsquare.com/payment-methods/google-pay';
+  _getGooglePayConfiguration: string = 'https://api.publicsquare.com/.well-known/google-pay-configuration';
 
   protected _bt?: BasisTheoryInstance;
   get bt(): BasisTheoryInstance | undefined {
@@ -50,6 +53,7 @@ export class PublicSquare {
   public applePay = new PublicSquareApplePay(this);
   public bankAccounts = new PublicSquareBankAccount(this);
   public bankVerify = new PublicSquareBankVerification(this);
+  public googlePay = new PublicSquareGooglePay(this);
 
   /**
    * Initialize the PublicSquare sdk. (REQUIRED before calling `createElement`)
@@ -65,6 +69,9 @@ export class PublicSquare {
     if (options?.applePayCreateUrl) this._applePayCreateUrl = options?.applePayCreateUrl;
     if (options?.applePayCreateSessionUrl)
       this._applePayCreateSessionUrl = options?.applePayCreateSessionUrl;
+    if (options?.googlePayCreateUrl) this._googlePayCreateUrl = options?.googlePayCreateUrl;
+    if (options?.getGooglePayConfiguration)
+      this._getGooglePayConfiguration = options?.getGooglePayConfiguration;
 
     const bt = await new BasisTheory().init((Math.random() + 1).toString(36).substring(7), {
       elements: true,

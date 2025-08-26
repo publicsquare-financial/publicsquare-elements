@@ -41,7 +41,13 @@ import {
   ValidatedApplePayCreateSessionInput,
   ValidatedCardCreateInput,
   ValidatedCardsCreateInput,
-  CardsCreateInput
+  CardsCreateInput,
+  GooglePayCreateInput,
+  ValidatedGooglePayCreateInput,
+  GooglePayCreateResponse,
+  GooglePayCreateErrorResponse,
+  GooglePayIntermediateSigningKey,
+  GooglePaymentMethodToken
 } from '@publicsquare/elements-js/types'
 import { PublicSquare } from '@publicsquare/elements-js'
 
@@ -131,6 +137,35 @@ export type ApplePayButtonElementProps = {
   disabled?: boolean
 }
 
+export type GooglePayButtonElement = React.Ref<HTMLDivElement>
+
+export type GooglePayButtonElementProps = {
+  id?: string
+  environment?: 'TEST' | 'PRODUCTION'
+  merchantId?: string
+  merchantName?: string
+  allowedCardAuthMethods?: Array<'PAN_ONLY' | 'CRYPTOGRAM_3DS'>
+  buttonColor?: 'black' | 'white'
+  buttonType?: 'book' | 'buy' | 'checkout' | 'donate' | 'order' | 'pay' | 'plain' | 'subscribe'
+  locale?:
+        | 'en' | 'ar' | 'bg' | 'ca' | 'cs' | 'da' | 'de' | 'el' | 'es' | 'et' | 'fi' | 'fr' | 'hr' | 'id' | 'it' 
+        | 'ja' | 'ko' | 'ms' | 'nl' | 'no' | 'pl' | 'pt' | 'ru' | 'sk' | 'sl' | 'sr' | 'sv' | 'th' | 'tr' | 'uk' | 'zh'
+  style?: {
+    width?: string
+    height?: string
+    borderRadius?: number
+    borderType?: 'default_border' | 'no_border'
+  }
+  transactionInfo?: {
+    totalPriceStatus?: 'FINAL' | 'ESTIMATED'
+    totalPrice?: string
+    currencyCode?: string
+    countryCode?: string
+  },
+  disabled?: boolean
+  onPaymentDataLoaded?: (paymentData: any) => void
+}
+
 export {
   ApplePayCreateResponse,
   ApplePayCreateErrorResponse,
@@ -173,5 +208,11 @@ export {
   BankAccountCreateResponse,
   BankAccountCreateInput,
   BankAccountHolderType,
-  CreateBankAccountVerificationElementOptions
+  CreateBankAccountVerificationElementOptions,
+  GooglePayCreateInput,
+  ValidatedGooglePayCreateInput,
+  GooglePayCreateResponse,
+  GooglePayCreateErrorResponse,
+  GooglePayIntermediateSigningKey,
+  GooglePaymentMethodToken
 }
