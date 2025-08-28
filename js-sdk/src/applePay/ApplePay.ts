@@ -5,7 +5,7 @@ import {
   ApplePayCreateSessionInput
 } from '@/types'
 import { PublicSquare } from '..'
-import { ELEMENTS_PUBLICSQUARE_APPLE_PAY_NO_POINTER_MESSAGE } from '@/constants'
+import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '@/constants'
 import {
   transformCreateApplePayInput,
   transformCreateApplePaySessionInput
@@ -21,7 +21,7 @@ export class PublicSquareApplePay {
 
   constructor(publicSquarePointer: PublicSquare) {
     if (!publicSquarePointer) {
-      throw Error(ELEMENTS_PUBLICSQUARE_APPLE_PAY_NO_POINTER_MESSAGE)
+      throw Error(ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE)
     }
     this._publicSquare = publicSquarePointer
   }

@@ -1,7 +1,7 @@
 import { PublicSquare } from '../../index'
 import { PublicSquareGooglePay } from '..'
 import { getError } from '../../tests/utils'
-import { ELEMENTS_PUBLICSQUARE_GOOGLE_PAY_NO_POINTER_MESSAGE } from '../../constants'
+import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '../../constants'
 import { GooglePayCreateInput } from '../../types'
 
 jest.mock('@basis-theory/basis-theory-js', () => ({
@@ -54,7 +54,7 @@ describe('GooglePay', () => {
       () => new (PublicSquareGooglePay as any)()
     )
     expect(error.message).toEqual(
-      ELEMENTS_PUBLICSQUARE_GOOGLE_PAY_NO_POINTER_MESSAGE
+      ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE
     )
   })
 

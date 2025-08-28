@@ -1,7 +1,7 @@
 import { PublicSquare } from '../../index';
 import { PublicSquareBankAccount } from '..';
 import { getError } from '../../tests/utils';
-import { ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE } from '../../constants';
+import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '../../constants';
 import { BankAccountCreateInput } from '../../types';
 
 jest.mock('@basis-theory/basis-theory-js', () => ({
@@ -55,7 +55,7 @@ describe('BankAccounts', () => {
   test('constructs', async () => {
     expect(bankAccount).toBeDefined();
     const error = await getError<{ message: string }>(() => new (PublicSquareBankAccount as any)());
-    expect(error.message).toEqual(ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE);
+    expect(error.message).toEqual(ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE);
   });
 
   test('create() works', async () => {

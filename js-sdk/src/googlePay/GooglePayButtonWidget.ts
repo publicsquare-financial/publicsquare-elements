@@ -11,22 +11,27 @@ export class GooglePayButtonWidget {
     apiVersionMinor: 0,
   };
 
-  constructor(options: GooglePayButtonWidgetOptions = {}) {
+  constructor(options: GooglePayButtonWidgetOptions) {
     this.options = {
-      id: options.id || 'google-pay-btn',
-      environment: options.environment || 'TEST',
-      merchantId: options.merchantId || '12345678901234567890',
-      merchantName: options.merchantName || 'Example Merchant',
+      id: options.id,
+      environment: options.environment,
+      merchantId: options.merchantId,
+      merchantName: options.merchantName,
       allowedCardAuthMethods: options.allowedCardAuthMethods || ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+      allowedCardNetworks: options.allowedCardNetworks || ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
       buttonColor: options.buttonColor || 'black',
       buttonType: options.buttonType || 'buy',
-      locale: options.locale || 'en',
-      style: options.style || { width: '160px', height: '40px', borderRadius: 4, borderType: 'default_border' },
-      transactionInfo: options.transactionInfo || {
-        totalPriceStatus: 'FINAL',
-        totalPrice: '0.00',
-        currencyCode: 'USD',
-        countryCode: 'US',
+      style: { 
+        width: options.style?.width || '160px', 
+        height: options.style?.height || '40px', 
+        borderRadius: options.style?.borderRadius || 4, 
+        borderType: options.style?.borderType || 'default_border' },
+      locale: options.locale,
+      transactionInfo: {
+        totalPriceStatus: options.transactionInfo.totalPriceStatus,
+        totalPrice: options.transactionInfo.totalPrice,
+        currencyCode: options.transactionInfo.currencyCode,
+        countryCode: options.transactionInfo.countryCode,
       },
       disabled: options.disabled ?? false,
       onPaymentDataLoaded: options.onPaymentDataLoaded || (() => {}),
@@ -51,12 +56,11 @@ export class GooglePayButtonWidget {
 
   render(container: HTMLElement): Promise<void> {
     return this.createGooglePayButton().then(async () => {
-      const allowedCardNetworks = ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'];
       const baseCardPaymentMethod = {
         type: 'CARD',
         parameters: {
           allowedAuthMethods: this.options.allowedCardAuthMethods,
-          allowedCardNetworks: allowedCardNetworks,
+          allowedCardNetworks: this.options.allowedCardNetworks,
         },
       };
 
@@ -88,6 +92,7 @@ export class GooglePayButtonWidget {
               onClick: () => this.onGooglePaymentButtonClicked(baseCardPaymentMethod),
               allowedPaymentMethods: [baseCardPaymentMethod],
             });
+            btn.id = this.options.id;
             this.containerRef = btn;
             container.appendChild(btn);
             this.updateButtonStyle(btn, this.options.disabled);

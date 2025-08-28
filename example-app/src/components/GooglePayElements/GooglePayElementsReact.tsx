@@ -10,10 +10,7 @@ import CaptureModal from '../Modals/CaptureModal'
 
 export default function GooglePayElementsReact() {
   const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-  //const options: PublicSquareInitOptions = {}
-  const options: PublicSquareInitOptions = { 
-    googlePayCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/google-pay'
-  }
+  const options: PublicSquareInitOptions = {}
   
   return (
     <PublicSquareProvider apiKey={apiKey} options={options}>
@@ -72,12 +69,11 @@ function Elements() {
     <>
       <GooglePayButtonElement
         id="google-pay-element"
-        environment= 'TEST'
-        merchantId= '12345678901234567890'
-        // environment="PRODUCTION"
-        // merchantId="BCR2DN7TWDO3PRCD"
+        environment="PRODUCTION"
+        merchantId="BCR2DN7TWDO3PRCD"
         merchantName="PSQ Merchant Test"
         allowedCardAuthMethods={['PAN_ONLY', 'CRYPTOGRAM_3DS']}
+        allowedCardNetworks={['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA']}
         buttonColor='black'
         buttonType='buy'
         locale='en'

@@ -2,14 +2,15 @@ import { CardBillingDetails } from './cards'
 import { Environment } from './publicsquare'
 
 export interface GooglePayButtonWidgetOptions {
-  id?: string
-  environment?: 'TEST' | 'PRODUCTION'
-  merchantId?: string
-  merchantName?: string
+  id: string
+  environment: 'TEST' | 'PRODUCTION'
+  merchantId: string
+  merchantName: string
   allowedCardAuthMethods?: Array<'PAN_ONLY' | 'CRYPTOGRAM_3DS'>
+  allowedCardNetworks?: Array<'AMEX' | 'DISCOVER' | 'INTERAC' | 'JCB' | 'MASTERCARD' | 'VISA'>
   buttonColor?: 'black' | 'white'
   buttonType?: 'book' | 'buy' | 'checkout' | 'donate' | 'order' | 'pay' | 'plain' | 'subscribe'
-  locale?:
+  locale:
         | 'en' | 'ar' | 'bg' | 'ca' | 'cs' | 'da' | 'de' | 'el' | 'es' | 'et' | 'fi' | 'fr' | 'hr' | 'id' | 'it' 
         | 'ja' | 'ko' | 'ms' | 'nl' | 'no' | 'pl' | 'pt' | 'ru' | 'sk' | 'sl' | 'sr' | 'sv' | 'th' | 'tr' | 'uk' | 'zh'
   style?: {
@@ -18,11 +19,11 @@ export interface GooglePayButtonWidgetOptions {
     borderRadius?: number
     borderType?: 'default_border' | 'no_border'
   }
-  transactionInfo?: {
-    totalPriceStatus?: 'FINAL' | 'ESTIMATED'
-    totalPrice?: string
-    currencyCode?: string
-    countryCode?: string
+  transactionInfo: {
+    totalPriceStatus: 'FINAL' | 'ESTIMATED';
+    totalPrice: string;
+    currencyCode: string;
+    countryCode: string;
   },
   disabled?: boolean
   onPaymentDataLoaded?: (paymentData: any) => void

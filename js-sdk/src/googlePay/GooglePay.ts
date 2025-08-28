@@ -5,7 +5,7 @@ import {
   GooglePayCreateResponse
 } from '@/types'
 import { PublicSquare } from '..'
-import { ELEMENTS_PUBLICSQUARE_GOOGLE_PAY_NO_POINTER_MESSAGE } from '@/constants'
+import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '@/constants'
 import {
   transformCreateGooglePayInput
 } from '@/utils'
@@ -19,12 +19,12 @@ export class PublicSquareGooglePay {
 
   constructor(publicSquarePointer: PublicSquare) {
     if (!publicSquarePointer) {
-      throw Error(ELEMENTS_PUBLICSQUARE_GOOGLE_PAY_NO_POINTER_MESSAGE)
+      throw Error(ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE)
     }
     this._publicSquare = publicSquarePointer
   }
 
-  public renderButton(container: HTMLElement, options: GooglePayButtonWidgetOptions = {}) {
+  public renderButton(container: HTMLElement, options: GooglePayButtonWidgetOptions) {
     const widget = new GooglePayButtonWidget({
       ...options,
       onPaymentDataLoaded: (paymentData) => {

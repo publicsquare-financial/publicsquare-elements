@@ -6,20 +6,16 @@ import { GooglePayConfiguration } from '@publicsquare/elements-js/types'
 
 const GooglePayButtonElement: React.FC<Types.GooglePayButtonElementProps> = ({
   id,
-  environment = 'TEST',
-  merchantId = '12345678901234567890',
-  merchantName = 'Example Merchant',
+  environment,
+  merchantId,
+  merchantName,
   allowedCardAuthMethods = ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+  allowedCardNetworks = ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
   buttonColor = 'black',
   buttonType = 'buy',
-  locale = 'en',
+  locale,
   style = { width: '160px', height: '40px', borderRadius: 4, borderType: 'default_border' },
-  transactionInfo = {
-    totalPriceStatus: 'FINAL',
-    totalPrice: '0.00',
-    currencyCode: 'USD',
-    countryCode: 'US'
-  },
+  transactionInfo,
   disabled = false,
   onPaymentDataLoaded
 }) => {
@@ -33,7 +29,6 @@ const GooglePayButtonElement: React.FC<Types.GooglePayButtonElementProps> = ({
       apiVersion: 2,
       apiVersionMinor: 0,
     }
-    const allowedCardNetworks = ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA']
     const baseCardPaymentMethod = {
       type: 'CARD',
       parameters: {
@@ -163,7 +158,7 @@ const GooglePayButtonElement: React.FC<Types.GooglePayButtonElementProps> = ({
   }, [disabled, containerRef.current])
 
   return (
-    <div ref={containerRef} id="container" style={{ width: style.width, height: style.height }}></div>
+    <div ref={containerRef} id={id} style={{ width: style.width, height: style.height }}></div>
   )
 }
  

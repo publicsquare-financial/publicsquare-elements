@@ -17,10 +17,7 @@ export default function GooglePayElementsJs() {
 
   useEffect(() => {
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-    //const options: PublicSquareInitOptions = {}
-    const options: PublicSquareInitOptions = { 
-      googlePayCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/google-pay'
-    }
+    const options: PublicSquareInitOptions = {}
 
     new PublicSquare()
       .init(apiKey, options)
@@ -31,12 +28,11 @@ export default function GooglePayElementsJs() {
     if (publicsquare && buttonContainerRef.current) {
       googlePayButtonRef.current = publicsquare.googlePay.renderButton(buttonContainerRef.current!, {
         id: 'google-pay-btn',
-        environment: 'TEST',
-        merchantId: '12345678901234567890',
-        // environment: 'PRODUCTION',
-        // merchantId: 'BCR2DN7TWDO3PRCD',
+        environment: 'PRODUCTION',
+        merchantId: 'BCR2DN7TWDO3PRCD',
         merchantName: 'PSQ Merchant Test',
         allowedCardAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+        allowedCardNetworks: ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
         buttonColor: 'black',
         buttonType: 'buy',
         locale: 'en',
