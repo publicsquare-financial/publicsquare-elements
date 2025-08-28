@@ -26,7 +26,7 @@ export class GooglePayButtonWidget {
         height: options.style?.height || '40px', 
         borderRadius: options.style?.borderRadius || 4, 
         borderType: options.style?.borderType || 'default_border' },
-      locale: options.locale,
+      locale: options.locale || 'en',
       transactionInfo: {
         totalPriceStatus: options.transactionInfo.totalPriceStatus,
         totalPrice: options.transactionInfo.totalPrice,

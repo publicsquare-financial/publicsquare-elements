@@ -13,7 +13,7 @@ const GooglePayButtonElement: React.FC<Types.GooglePayButtonElementProps> = ({
   allowedCardNetworks = ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
   buttonColor = 'black',
   buttonType = 'buy',
-  locale,
+  locale = 'en',
   style = { width: '160px', height: '40px', borderRadius: 4, borderType: 'default_border' },
   transactionInfo,
   disabled = false,
