@@ -1,6 +1,8 @@
 import {
+  GooglePayButtonWidgetOptions,
   GooglePayCreateInput,
   ValidatedGooglePayCreateInput,
+  ValidateGooglePayButtonWidgetOptions,
 } from '@/types'
 
 export function validateCreateGooglePayInput(
@@ -20,6 +22,45 @@ export function validateCreateGooglePayInput(
       google_payment_method_token: input.google_payment_method_token as any,
       customer_id: input.customer_id,
       billing_details: input.billing_details
+    }
+  }
+}
+
+export function validateGooglePayButtonWidgetOptions(
+  input: GooglePayButtonWidgetOptions
+): ValidateGooglePayButtonWidgetOptions {
+  
+  if (typeof input.id !== 'string') {
+    throw new Error('id is required')
+  }
+  if (typeof input.environment !== 'string') {
+    throw new Error('environment is required')
+  }
+  if (typeof input.merchantId !== 'string') {
+    throw new Error('merchantId is required')
+  }
+  if (typeof input.merchantName !== 'string') {
+    throw new Error('merchantName is required')
+  }
+  if (typeof input.locale !== 'string') {
+    throw new Error('locale is required')
+  }
+  if (typeof input.transactionInfo !== 'object') {
+    throw new Error('transactionInfo is required')
+  }
+  if (typeof input.onPaymentDataLoaded !== 'function') {
+    throw new Error('onPaymentDataLoaded is required')
+  }
+
+  return {
+    validated: {
+      id: input.id,
+      environment: input.environment,
+      merchantId: input.merchantId,
+      merchantName: input.merchantName,
+      locale: input.locale,
+      transactionInfo: input.transactionInfo as any,
+      onPaymentDataLoaded: input.onPaymentDataLoaded as any
     }
   }
 }

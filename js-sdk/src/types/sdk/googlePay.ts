@@ -39,6 +39,10 @@ export type ValidatedGooglePayCreateInput = {
   validated: GooglePayCreateInput
 }
 
+export type ValidateGooglePayButtonWidgetOptions = {
+  validated: GooglePayButtonWidgetOptions
+}
+
 export type GooglePayIntermediateSigningKey = {
   signedKey?: string
   signatures?: string[]

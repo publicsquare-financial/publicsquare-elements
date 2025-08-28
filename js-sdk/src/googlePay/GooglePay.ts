@@ -7,10 +7,12 @@ import {
 import { PublicSquare } from '..'
 import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '@/constants'
 import {
-  transformCreateGooglePayInput
+  transformCreateGooglePayInput,
+  transformGooglePayButtonWidgetOptions
 } from '@/utils'
 import {
-  validateCreateGooglePayInput
+  validateCreateGooglePayInput,
+  validateGooglePayButtonWidgetOptions
 } from '@/validators'
 import { GooglePayButtonWidget } from './GooglePayButtonWidget'
 
@@ -25,8 +27,9 @@ export class PublicSquareGooglePay {
   }
 
   public renderButton(container: HTMLElement, options: GooglePayButtonWidgetOptions) {
+    const validatedInput = validateGooglePayButtonWidgetOptions(options)
     const widget = new GooglePayButtonWidget({
-      ...options,
+      ...transformGooglePayButtonWidgetOptions(validatedInput),
       onPaymentDataLoaded: (paymentData) => {
         if (typeof options.onPaymentDataLoaded === 'function') {
           options.onPaymentDataLoaded(paymentData)
