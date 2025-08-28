@@ -36,17 +36,28 @@ export function validateGooglePayButtonWidgetOptions(
   if (typeof input.environment !== 'string') {
     throw new Error('environment is required')
   }
-  if (typeof input.merchantId !== 'string') {
+  if (input.environment === 'PRODUCTION' && typeof input.merchantId !== 'string') {
     throw new Error('merchantId is required')
   }
   if (typeof input.merchantName !== 'string') {
     throw new Error('merchantName is required')
   }
-  if (typeof input.locale !== 'string') {
-    throw new Error('locale is required')
-  }
   if (typeof input.transactionInfo !== 'object') {
     throw new Error('transactionInfo is required')
+  }
+  else {
+    if (typeof input.transactionInfo.totalPriceStatus !== 'string') {
+      throw new Error('transactionInfo.totalPriceStatus is required')
+    }
+    if (typeof input.transactionInfo.totalPrice !== 'string') {
+      throw new Error('transactionInfo.totalPrice is required')
+    }
+    if (typeof input.transactionInfo.currencyCode !== 'string') {
+      throw new Error('transactionInfo.currencyCode is required')
+    }
+    if (typeof input.transactionInfo.countryCode !== 'string') {
+      throw new Error('transactionInfo.countryCode is required')
+    }
   }
   if (typeof input.onPaymentDataLoaded !== 'function') {
     throw new Error('onPaymentDataLoaded is required')

@@ -4,13 +4,13 @@ import { Environment } from './publicsquare'
 export interface GooglePayButtonWidgetOptions {
   id: string
   environment: 'TEST' | 'PRODUCTION'
-  merchantId: string
+  merchantId?: string
   merchantName: string
   allowedCardAuthMethods?: Array<'PAN_ONLY' | 'CRYPTOGRAM_3DS'>
   allowedCardNetworks?: Array<'AMEX' | 'DISCOVER' | 'INTERAC' | 'JCB' | 'MASTERCARD' | 'VISA'>
   buttonColor?: 'black' | 'white'
   buttonType?: 'book' | 'buy' | 'checkout' | 'donate' | 'order' | 'pay' | 'plain' | 'subscribe'
-  locale:
+  locale?:
         | 'en' | 'ar' | 'bg' | 'ca' | 'cs' | 'da' | 'de' | 'el' | 'es' | 'et' | 'fi' | 'fr' | 'hr' | 'id' | 'it' 
         | 'ja' | 'ko' | 'ms' | 'nl' | 'no' | 'pl' | 'pt' | 'ru' | 'sk' | 'sl' | 'sr' | 'sv' | 'th' | 'tr' | 'uk' | 'zh'
   style?: {

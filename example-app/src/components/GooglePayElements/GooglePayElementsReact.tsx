@@ -90,7 +90,7 @@ function Elements() {
           countryCode: 'US'
         }}
         disabled={loading}
-        onPaymentDataLoaded={async (paymentData) => {
+        onPaymentDataLoaded={async (paymentData: any) => {
           onPaymentAuthorized(paymentData)
         }}
       />

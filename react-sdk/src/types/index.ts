@@ -140,34 +140,6 @@ export type ApplePayButtonElementProps = {
 
 export type GooglePayButtonElement = React.Ref<HTMLDivElement>
 
-export type GooglePayButtonElementProps = {
-  id?: string
-  environment: 'TEST' | 'PRODUCTION'
-  merchantId: string
-  merchantName: string
-  allowedCardAuthMethods?: Array<'PAN_ONLY' | 'CRYPTOGRAM_3DS'>
-  allowedCardNetworks?: Array<'AMEX' | 'DISCOVER' | 'INTERAC' | 'JCB' | 'MASTERCARD' | 'VISA'>
-  buttonColor?: 'black' | 'white'
-  buttonType?: 'book' | 'buy' | 'checkout' | 'donate' | 'order' | 'pay' | 'plain' | 'subscribe'
-  style?: {
-    width?: string
-    height?: string
-    borderRadius?: number
-    borderType?: 'default_border' | 'no_border'
-  }
-  locale:
-        | 'en' | 'ar' | 'bg' | 'ca' | 'cs' | 'da' | 'de' | 'el' | 'es' | 'et' | 'fi' | 'fr' | 'hr' | 'id' | 'it' 
-        | 'ja' | 'ko' | 'ms' | 'nl' | 'no' | 'pl' | 'pt' | 'ru' | 'sk' | 'sl' | 'sr' | 'sv' | 'th' | 'tr' | 'uk' | 'zh'
-  transactionInfo: {
-    totalPriceStatus: 'FINAL' | 'ESTIMATED';
-    totalPrice: string;
-    currencyCode: string;
-    countryCode: string;
-  },
-  disabled?: boolean
-  onPaymentDataLoaded?: (paymentData: any) => void
-}
-
 export {
   ApplePayCreateResponse,
   ApplePayCreateErrorResponse,

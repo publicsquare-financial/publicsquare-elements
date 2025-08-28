@@ -1,24 +1,28 @@
-import React, { RefObject, useEffect, useRef } from 'react'
-import * as Types from '../types'
+import React, { useEffect, useRef } from 'react'
 import { PublicSquare } from '@publicsquare/elements-js/PublicSquare'
 import { PublicSquareInitOptions } from '../types'
-import { GooglePayConfiguration } from '@publicsquare/elements-js/types'
+import { GooglePayConfiguration, GooglePayButtonWidgetOptions } from '@publicsquare/elements-js/types'
+import {
+  validateGooglePayButtonWidgetOptions
+} from '@publicsquare/elements-js/validators'
 
-const GooglePayButtonElement: React.FC<Types.GooglePayButtonElementProps> = ({
-  id,
-  environment,
-  merchantId,
-  merchantName,
-  allowedCardAuthMethods = ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-  allowedCardNetworks = ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
-  buttonColor = 'black',
-  buttonType = 'buy',
-  locale = 'en',
-  style = { width: '160px', height: '40px', borderRadius: 4, borderType: 'default_border' },
-  transactionInfo,
-  disabled = false,
-  onPaymentDataLoaded
-}) => {
+const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) => {
+  const { validated } = validateGooglePayButtonWidgetOptions(props)
+  const {
+    id,
+    environment,
+    merchantId,
+    merchantName,
+    allowedCardAuthMethods = ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+    allowedCardNetworks = ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
+    buttonColor = 'black',
+    buttonType = 'buy',
+    locale = 'en',
+    style = { width: '160px', height: '40px', borderRadius: 4, borderType: 'default_border' },
+    transactionInfo,
+    disabled = false,
+    onPaymentDataLoaded
+  } = validated
   const containerRef = useRef<HTMLDivElement>(null)
   let publicSquare = new PublicSquare()
   

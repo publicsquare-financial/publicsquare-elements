@@ -15,7 +15,7 @@ export class GooglePayButtonWidget {
     this.options = {
       id: options.id,
       environment: options.environment,
-      merchantId: options.merchantId,
+      merchantId: options.merchantId!,
       merchantName: options.merchantName,
       allowedCardAuthMethods: options.allowedCardAuthMethods || ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
       allowedCardNetworks: options.allowedCardNetworks || ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
