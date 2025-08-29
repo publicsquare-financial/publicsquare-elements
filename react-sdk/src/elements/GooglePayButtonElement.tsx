@@ -43,7 +43,12 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
 
     async function setupGooglePayConfiguration():Promise<GooglePayConfiguration> {
       const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-      const options: PublicSquareInitOptions = {}
+      let options: PublicSquareInitOptions = {};
+      if (environment === 'TEST') {
+        options = {
+          getGooglePayConfiguration: 'https://staging.api.publicsquare.com/.well-known/google-pay-configuration'
+        };
+      }
       await publicSquare.init(apiKey, options)
       try {
         const config = await publicSquare.googlePay.getGooglePayConfiguration()
