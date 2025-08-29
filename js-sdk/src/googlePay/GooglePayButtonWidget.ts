@@ -108,16 +108,14 @@ export class GooglePayButtonWidget {
 
   async setupGooglePayConfiguration():Promise<GooglePayConfiguration> {
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
-    let options: PublicSquareInitOptions = {};
-    if (this.options.environment === 'TEST') {
-      options = {
-        getGooglePayConfiguration: 'https://staging.api.publicsquare.com/.well-known/google-pay-configuration'
-      };
-    }
+    let options: PublicSquareInitOptions = {getGooglePayConfiguration: 'https://staging.api.publicsquare.com/.well-known/google-pay-configuration'};
     await this.publicSquare.init(apiKey, options);
     try {
       const config = await this.publicSquare.googlePay.getGooglePayConfiguration();
-      return config;
+      if (this.options.environment === 'TEST') {
+        return config.TEST
+      }
+      return config.PRODUCTION;
     } catch (error) {
       console.error('Error fetching Google Pay configuration:', error);
       throw error;

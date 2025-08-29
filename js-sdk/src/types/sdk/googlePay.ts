@@ -83,3 +83,8 @@ export type GooglePayConfiguration = {
   gateway: string
   gatewayMerchantId: string
 }
+
+export type GooglePayEnvironmentsConfiguration = {
+  TEST: GooglePayConfiguration;
+  PRODUCTION: GooglePayConfiguration;
+}

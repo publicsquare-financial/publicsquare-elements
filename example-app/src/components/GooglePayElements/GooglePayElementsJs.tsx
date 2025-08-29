@@ -13,7 +13,6 @@ export default function GooglePayElementsJs() {
     message?: object
     error?: boolean
   }>()
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
@@ -47,7 +46,6 @@ export default function GooglePayElementsJs() {
           currencyCode: 'USD',
           countryCode: 'US'
         },
-        disabled: loading,
         onPaymentDataLoaded: async (paymentData) => {
           onPaymentAuthorized(paymentData)
         }

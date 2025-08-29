@@ -1,6 +1,6 @@
 import {
   GooglePayButtonWidgetOptions,
-  GooglePayConfiguration,
+  GooglePayEnvironmentsConfiguration,
   GooglePayCreateInput,
   GooglePayCreateResponse
 } from '@/types'
@@ -40,7 +40,7 @@ export class PublicSquareGooglePay {
     return widget
   }
 
-  public getGooglePayConfiguration(): Promise<GooglePayConfiguration> {
+  public getGooglePayConfiguration(): Promise<GooglePayEnvironmentsConfiguration> {
     return fetch(this._publicSquare._getGooglePayConfiguration, {
       method: 'GET',
       headers: {
