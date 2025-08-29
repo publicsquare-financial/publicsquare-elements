@@ -112,10 +112,7 @@ export class GooglePayButtonWidget {
     await this.publicSquare.init(apiKey, options);
     try {
       const config = await this.publicSquare.googlePay.getGooglePayConfiguration();
-      if (this.options.environment === 'TEST') {
-        return config.TEST
-      }
-      return config.PRODUCTION;
+      return config[this.options.environment];
     } catch (error) {
       console.error('Error fetching Google Pay configuration:', error);
       throw error;

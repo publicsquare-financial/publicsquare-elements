@@ -47,10 +47,7 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
       await publicSquare.init(apiKey, options)
       try {
         const config = await publicSquare.googlePay.getGooglePayConfiguration()
-        if (environment === 'TEST') {
-          return config.TEST
-        }
-        return config.PRODUCTION;
+        return config[environment];
       } catch (error) {
         console.error('Error fetching Google Pay configuration:', error)
         throw error
