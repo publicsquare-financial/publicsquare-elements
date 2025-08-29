@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.8.0...v1.9.0) (2025-08-29)
+
+
+### Features
+
+* add Google Pay element ([797078a](https://github.com/publicsquare-financial/publicsquare-elements/commit/797078a03b96405824be5bd44bae7776a0b494bb))
+
 # [1.8.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.7.1...v1.8.0) (2025-07-26)
 
 
