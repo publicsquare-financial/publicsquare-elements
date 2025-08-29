@@ -69,8 +69,7 @@ function Elements() {
     <>
       <GooglePayButtonElement
         id="google-pay-element"
-        environment="PRODUCTION"
-        merchantId="BCR2DN7TWDO3PRCD"
+        environment="TEST"
         merchantName="PSQ Merchant Test"
         allowedCardAuthMethods={['PAN_ONLY', 'CRYPTOGRAM_3DS']}
         allowedCardNetworks={['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA']}
