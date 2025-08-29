@@ -2,7 +2,7 @@ import { PublicSquare } from '@/PublicSquare';
 import type { GooglePayButtonWidgetOptions, GooglePayConfiguration, PublicSquareInitOptions } from '@/types'
 
 export class GooglePayButtonWidget {
-  private options: Required<GooglePayButtonWidgetOptions>;
+  private options: GooglePayButtonWidgetOptions;
   private containerRef: HTMLElement | null;
   private paymentsClient: any;
   private publicSquare = new PublicSquare();
@@ -15,7 +15,7 @@ export class GooglePayButtonWidget {
     this.options = {
       id: options.id,
       environment: options.environment,
-      merchantId: options.merchantId!,
+      merchantId: options.merchantId,
       merchantName: options.merchantName,
       allowedCardAuthMethods: options.allowedCardAuthMethods || ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
       allowedCardNetworks: options.allowedCardNetworks || ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
@@ -85,8 +85,8 @@ export class GooglePayButtonWidget {
             const btn = this.paymentsClient.createButton({
               buttonColor: this.options.buttonColor,
               buttonType: this.options.buttonType,
-              buttonRadius: this.options.style.borderRadius,
-              buttonBorderType: this.options.style.borderType,
+              buttonRadius: this.options.style?.borderRadius,
+              buttonBorderType: this.options.style?.borderType,
               locale: this.options.locale,
               buttonSizeMode: 'fill',
               onClick: () => this.onGooglePaymentButtonClicked(baseCardPaymentMethod),
