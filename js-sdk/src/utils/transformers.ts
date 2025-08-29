@@ -2,10 +2,14 @@ import type {
   ApplePayCreateInput,
   ApplePayCreateSessionInput,
   BankAccountCreateInput,
+  GooglePayButtonWidgetOptions,
+  GooglePayCreateInput,
   ValidatedApplePayCreateInput,
   ValidatedApplePayCreateSessionInput,
   ValidatedBankAccountCreateInput,
-  ValidatedCardsCreateInput
+  ValidatedCardsCreateInput,
+  ValidatedGooglePayCreateInput,
+  ValidateGooglePayButtonWidgetOptions
 } from '@/types'
 
 /**
@@ -61,5 +65,27 @@ export function transformCreateApplePayInput({
 export function transformCreateApplePaySessionInput({
   validated
 }: ValidatedApplePayCreateSessionInput): ApplePayCreateSessionInput {
+  return validated
+}
+
+/**
+ * Transform input from the sdk to the Google Pay input format
+ * @param {ValidatedGooglePayCreateInput} input
+ * @returns {GooglePayCreateInput} API input
+ */
+export function transformCreateGooglePayInput({
+  validated
+}: ValidatedGooglePayCreateInput): GooglePayCreateInput {
+  return validated
+}
+
+/**
+ * Transform input from the sdk to the Google Pay button widget options format
+ * @param {ValidateGooglePayButtonWidgetOptions} input
+ * @returns {GooglePayButtonWidgetOptions} API input
+ */
+export function transformGooglePayButtonWidgetOptions({
+  validated
+}: ValidateGooglePayButtonWidgetOptions): GooglePayButtonWidgetOptions {
   return validated
 }

@@ -41,7 +41,14 @@ import {
   ValidatedApplePayCreateSessionInput,
   ValidatedCardCreateInput,
   ValidatedCardsCreateInput,
-  CardsCreateInput
+  CardsCreateInput,
+  GooglePayCreateInput,
+  ValidatedGooglePayCreateInput,
+  ValidateGooglePayButtonWidgetOptions,
+  GooglePayCreateResponse,
+  GooglePayCreateErrorResponse,
+  GooglePayIntermediateSigningKey,
+  GooglePaymentMethodToken
 } from '@publicsquare/elements-js/types'
 import { PublicSquare } from '@publicsquare/elements-js'
 
@@ -131,6 +138,8 @@ export type ApplePayButtonElementProps = {
   disabled?: boolean
 }
 
+export type GooglePayButtonElement = React.Ref<HTMLDivElement>
+
 export {
   ApplePayCreateResponse,
   ApplePayCreateErrorResponse,
@@ -173,5 +182,12 @@ export {
   BankAccountCreateResponse,
   BankAccountCreateInput,
   BankAccountHolderType,
-  CreateBankAccountVerificationElementOptions
+  CreateBankAccountVerificationElementOptions,
+  GooglePayCreateInput,
+  ValidatedGooglePayCreateInput,
+  ValidateGooglePayButtonWidgetOptions,
+  GooglePayCreateResponse,
+  GooglePayCreateErrorResponse,
+  GooglePayIntermediateSigningKey,
+  GooglePaymentMethodToken
 }

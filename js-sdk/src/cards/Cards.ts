@@ -1,6 +1,6 @@
 import { CardCreateResponse, CardCreateInput } from '@/types/sdk/cards'
 import { PublicSquare } from '..'
-import { ELEMENTS_CARDS_NO_POINTER_MESSAGE } from '@/constants'
+import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '@/constants'
 import { transformCreateCardInput } from '@/utils'
 import { validateCreateCardInput } from '@/validators'
 
@@ -9,7 +9,7 @@ export class PublicSquareCards {
 
   constructor(publicSquarePointer: PublicSquare) {
     if (!publicSquarePointer) {
-      throw Error(ELEMENTS_CARDS_NO_POINTER_MESSAGE)
+      throw Error(ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE)
     }
     this._publicSquare = publicSquarePointer
   }

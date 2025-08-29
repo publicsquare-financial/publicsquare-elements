@@ -1,8 +1,8 @@
 import { PublicSquare } from '../../index'
-import { PublicSquareApplePay } from '..'
+import { PublicSquareGooglePay } from '..'
 import { getError } from '../../tests/utils'
 import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '../../constants'
-import { ApplePayCreateInput } from '../../types'
+import { GooglePayCreateInput } from '../../types'
 
 jest.mock('@basis-theory/basis-theory-js', () => ({
   BasisTheory: jest.fn().mockImplementation(() => ({
@@ -15,8 +15,8 @@ jest.mock('@basis-theory/basis-theory-js', () => ({
   }))
 }))
 
-const validApplePayCreateInput: ApplePayCreateInput = {
-  apple_payment_data: {},
+const validGooglePayCreateInput: GooglePayCreateInput = {
+  google_payment_method_token: {},
   customer_id: 'cus_123',
   billing_details: {
     address_line_1: '123 Main St',
@@ -28,16 +28,16 @@ const validApplePayCreateInput: ApplePayCreateInput = {
   }
 }
 
-describe('ApplePay', () => {
+describe('GooglePay', () => {
   let publicSquare: PublicSquare
-  let applePay: PublicSquareApplePay
+  let googlePay: PublicSquareGooglePay
   let originalFetch: typeof global.fetch
 
   beforeAll(async () => {
     originalFetch = global.fetch
     global.fetch = jest.fn()
     publicSquare = await new PublicSquare().init('api_key')
-    applePay = new PublicSquareApplePay(publicSquare)
+    googlePay = new PublicSquareGooglePay(publicSquare)
   })
 
   afterAll(() => {
@@ -49,9 +49,9 @@ describe('ApplePay', () => {
   })
 
   test('constructs', async () => {
-    expect(applePay).toBeDefined()
+    expect(googlePay).toBeDefined()
     const error = await getError<{ message: string }>(
-      () => new (PublicSquareApplePay as any)()
+      () => new (PublicSquareGooglePay as any)()
     )
     expect(error.message).toEqual(
       ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE
@@ -60,8 +60,8 @@ describe('ApplePay', () => {
 
   test('create() works', async () => {
     const mockResponse = {
-      id: 'applepay_123',
-      ...validApplePayCreateInput
+      id: 'googlepay_123',
+      ...validGooglePayCreateInput
     }
     ;(global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
@@ -69,16 +69,16 @@ describe('ApplePay', () => {
       })
     )
 
-    const result = await applePay.create(validApplePayCreateInput)
+    const result = await googlePay.create(validGooglePayCreateInput)
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://api.publicsquare.com/payment-methods/apple-pay',
+      'https://api.publicsquare.com/payment-methods/google-pay',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'X-API-KEY': 'api_key'
         },
-        body: JSON.stringify(validApplePayCreateInput)
+        body: JSON.stringify(validGooglePayCreateInput)
       }
     )
     expect(result).toEqual(mockResponse)
@@ -86,7 +86,7 @@ describe('ApplePay', () => {
 
   test('create() works with minimal valid input', async () => {
     const mockResponse = {
-      id: 'applepay_123'
+      id: 'googlepay_123'
     }
     ;(global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
@@ -94,11 +94,11 @@ describe('ApplePay', () => {
       })
     )
     const input = {
-      apple_payment_data: {}
+      google_payment_method_token: {}
     }
-    const result = await applePay.create(input)
+    const result = await googlePay.create(input)
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://api.publicsquare.com/payment-methods/apple-pay',
+      'https://api.publicsquare.com/payment-methods/google-pay',
       {
         method: 'POST',
         headers: {
@@ -111,16 +111,16 @@ describe('ApplePay', () => {
     expect(result).toEqual(mockResponse)
   })
 
-  test('create() fails with invalid apple_payment_data', async () => {
+  test('create() fails with invalid google_payment_method_token', async () => {
     const error = await getError<{ message: string }>(() =>
-      applePay.create({} as any)
+      googlePay.create({} as any)
     )
-    expect(error.message).toEqual('apple_payment_data is required')
+    expect(error.message).toEqual('google_payment_method_token is required')
   })
 
   test('create() only passes validated input', async () => {
     const mockResponse = {
-      id: 'applepay_123'
+      id: 'googlepay_123'
     }
     ;(global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
@@ -128,16 +128,20 @@ describe('ApplePay', () => {
       })
     )
     const input = {
-      apple_payment_data: {
-        paymentData: {
-          data: 'abcd1234'
-        }
+      google_payment_method_token: {
+        protocolVersion: 'ECv2',
+        signature: 'abcd1234',
+        intermediateSigningKey: {
+            signedKey: 'key1234',
+            signatures: ['xyz1234']
+        },
+        signedMessage: 'MEQCIA6xeBmZ02LNFJgt8aXfKRJRT2J0VSD'
       },
       random_value: 'abcdefgh'
     }
-    await applePay.create(input)
+    await googlePay.create(input)
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://api.publicsquare.com/payment-methods/apple-pay',
+      'https://api.publicsquare.com/payment-methods/google-pay',
       {
         method: 'POST',
         headers: {
@@ -145,10 +149,14 @@ describe('ApplePay', () => {
           'X-API-KEY': 'api_key'
         },
         body: JSON.stringify({
-          apple_payment_data: {
-            paymentData: {
-              data: 'abcd1234'
-            }
+          google_payment_method_token: {
+            protocolVersion: 'ECv2',
+            signature: 'abcd1234',
+            intermediateSigningKey: {
+                signedKey: 'key1234',
+                signatures: ['xyz1234']
+            },
+            signedMessage: 'MEQCIA6xeBmZ02LNFJgt8aXfKRJRT2J0VSD'
           }
         })
       }

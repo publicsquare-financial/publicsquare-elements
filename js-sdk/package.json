@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "yarn clean && concurrently 'yarn build:bundle' 'yarn build:module' 'yarn build:types' 'yarn build:package' -n 'bundle,module,types,package' -c 'yellow,magenta,blue,green' --kill-others-on-fail -g",
+    "build": "yarn clean && concurrently \"yarn build:bundle\" \"yarn build:module\" \"yarn build:types\" \"yarn build:package\" -n \"bundle,module,types,package\" -c \"yellow,magenta,blue,green\" --kill-others-on-fail -g",
     "build:bundle": "webpack --config webpack.prod.js",
     "build:module": "babel src --extensions .ts --out-dir dist",
     "build:types": "tsc && tsc-alias",
@@ -40,6 +40,7 @@
     "@babel/plugin-transform-runtime": "^7.25.4",
     "@babel/preset-env": "^7.25.4",
     "@babel/preset-typescript": "^7.24.7",
+    "@babel/runtime": "^7.28.3",
     "@types/jest": "^30.0.0",
     "babel-loader": "^10.0.0",
     "babel-plugin-inline-dotenv": "^1.1.0",

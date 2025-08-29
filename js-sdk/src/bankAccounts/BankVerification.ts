@@ -7,7 +7,7 @@ import {
 } from '@/types';
 import { PublicSquare } from '@/PublicSquare';
 import {
-  ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE,
+  ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE,
   ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_VERIFICATION_NOT_ENABLED,
 } from '@/constants';
 
@@ -17,7 +17,7 @@ export class PublicSquareBankVerification {
 
   constructor(psqPointer: PublicSquare) {
     if (!psqPointer) {
-      throw Error(ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_NO_POINTER_MESSAGE);
+      throw Error(ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE);
     }
     this._publicSquare = psqPointer;
   }

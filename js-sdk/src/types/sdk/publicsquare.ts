@@ -28,6 +28,8 @@ export interface PublicSquareInitOptions {
   bankAccountCreateUrl?: string
   applePayCreateUrl?: string
   applePayCreateSessionUrl?: string
+  googlePayCreateUrl?: string
+  getGooglePayConfiguration?: string
   proxyKey?: string
   appInfo?: ApplicationInfo
 }
