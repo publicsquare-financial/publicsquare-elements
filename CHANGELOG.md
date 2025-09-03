@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.0...v1.9.1) (2025-09-03)
+
+
+### Bug Fixes
+
+* add onClick handler to GooglePay button ([ef1b07b](https://github.com/publicsquare-financial/publicsquare-elements/commit/ef1b07bb020ebb7ff4152a3f40838b7e315eb9b4))
+
 # [1.9.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.8.0...v1.9.0) (2025-08-29)
 
 
