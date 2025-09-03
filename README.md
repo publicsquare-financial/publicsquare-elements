@@ -6,6 +6,12 @@ Contained within is the official **PublicSquare** Elements Javascript and React 
 
 ## Quickstart
 
+### Dependencies
+
+- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) - `npm install --global yarn`
+  - Run yarn once to enable it - `yarn`
+- [Playwright](https://playwright.dev/) - `yarn playwright install`
+
 ### Build the SDK and run Tests
 
 Run the following command from the root of the project:

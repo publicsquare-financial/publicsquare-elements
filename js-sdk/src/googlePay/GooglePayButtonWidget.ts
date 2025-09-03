@@ -34,6 +34,7 @@ export class GooglePayButtonWidget {
         countryCode: options.transactionInfo.countryCode,
       },
       disabled: options.disabled ?? false,
+      onClick: options.onClick,
       onPaymentDataLoaded: options.onPaymentDataLoaded || (() => {}),
     };
     this.containerRef = null;
@@ -95,6 +96,12 @@ export class GooglePayButtonWidget {
             btn.id = this.options.id;
             this.containerRef = btn;
             container.appendChild(btn);
+
+            const actualButton = btn.querySelector('button');
+            if (actualButton && this.options.disabled !== true && typeof this.options.onClick === 'function') {
+              actualButton.addEventListener('click', this.options.onClick);
+            }
+
             this.updateButtonStyle(btn, this.options.disabled);
           }
         } else {
@@ -108,7 +115,7 @@ export class GooglePayButtonWidget {
 
   async setupGooglePayConfiguration():Promise<GooglePayConfiguration> {
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
-    let options: PublicSquareInitOptions = {getGooglePayConfiguration: 'https://staging.api.publicsquare.com/.well-known/google-pay-configuration'};
+    let options: PublicSquareInitOptions = {};
     await this.publicSquare.init(apiKey, options);
     try {
       const config = await this.publicSquare.googlePay.getGooglePayConfiguration();

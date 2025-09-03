@@ -71,6 +71,7 @@ export function validateGooglePayButtonWidgetOptions(
       merchantName: input.merchantName,
       locale: input.locale,
       transactionInfo: input.transactionInfo as any,
+      onClick: input.onClick as any,
       onPaymentDataLoaded: input.onPaymentDataLoaded as any
     }
   }
