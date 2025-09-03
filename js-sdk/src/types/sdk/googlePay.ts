@@ -26,6 +26,7 @@ export interface GooglePayButtonWidgetOptions {
     countryCode: string;
   },
   disabled?: boolean
+  onClick?: () => void
   onPaymentDataLoaded?: (paymentData: any) => void
 }
 

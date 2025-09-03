@@ -21,6 +21,7 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
     style = { width: '160px', height: '40px', borderRadius: 4, borderType: 'default_border' },
     transactionInfo,
     disabled = false,
+    onClick,
     onPaymentDataLoaded
   } = validated
   const containerRef = useRef<HTMLDivElement>(null)
@@ -87,6 +88,11 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
       })
       containerRef.current.innerHTML = ''
       containerRef.current.appendChild(button)
+
+      const actualButton = button.querySelector('button');
+      if (actualButton && disabled !== true &&  typeof onClick === 'function') {
+        actualButton.addEventListener('click', onClick);
+      }
     }
 
     async function onGooglePaymentButtonClicked() {
@@ -136,7 +142,13 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
 
     return () => {
       document.body.removeChild(script)
-      if (containerRef.current) containerRef.current.innerHTML = ''
+      if (containerRef.current) {
+        const button = containerRef.current.querySelector('button')
+        if (button && typeof onClick === 'function') {
+          button.removeEventListener('click', onClick)
+        }
+        containerRef.current.innerHTML = ''
+      }
     }
   }, [])
 
