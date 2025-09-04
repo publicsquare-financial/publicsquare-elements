@@ -69,8 +69,14 @@ export function validateGooglePayButtonWidgetOptions(
       environment: input.environment,
       merchantId: input.merchantId,
       merchantName: input.merchantName,
+      allowedCardAuthMethods: input.allowedCardAuthMethods,
+      allowedCardNetworks: input.allowedCardNetworks,
+      buttonColor: input.buttonColor,
+      buttonType: input.buttonType,
       locale: input.locale,
+      style: input.style as any,
       transactionInfo: input.transactionInfo as any,
+      disabled: input.disabled,
       onClick: input.onClick as any,
       onPaymentDataLoaded: input.onPaymentDataLoaded as any
     }
