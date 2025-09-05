@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.1...v1.9.2) (2025-09-05)
+
+
+### Bug Fixes
+
+* add Google Pay configuration fields ([e8bc858](https://github.com/publicsquare-financial/publicsquare-elements/commit/e8bc8587ab7fb785b99fba3f3750168badcb11b8))
+
 ## [1.9.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.0...v1.9.1) (2025-09-03)
 
 
