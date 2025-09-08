@@ -46,7 +46,7 @@ jobs:
           workload_identity_provider: projects/6883124133/locations/global/workloadIdentityPools/psqfinancial/providers/psqfinancial-github
       
       - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v2'
+        uses: 'google-github-actions/setup-gcloud@v3'
 
       - name: Release CDN
         run: make release-cdn
