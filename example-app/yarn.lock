@@ -455,12 +455,20 @@
   dependencies:
     playwright "1.55.0"
 
-"@publicsquare/elements-js@1.8.0", "@publicsquare/elements-js@^1.8.0":
+"@publicsquare/elements-js@1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.8.0.tgz#654ca5cffb14b336a8c9b8e1ff5ea80b33c15113"
   integrity sha512-qWJXkboAtV9QQwsfGUMFf1qDjcYW3Cev459vtk7gOqFs4Jm5/IVfMiYnk7HhY7seMEzZ39yrdvrCzY9FFMScFA==
   dependencies:
     "@basis-theory/basis-theory-js" "^4.22.1"
+
+"@publicsquare/elements-js@^1.9.2":
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.9.2.tgz#d7612e5b2113b6421c489beeb177241930ca343a"
+  integrity sha512-bj+UF0YebC6+Aga8y/ex7kPCYhZGS4zbm7YnIV+caNPHJRuahtkQBIzjzOveb+fanOb2QDM3/i1VWkS2vAwMfg==
+  dependencies:
+    "@basis-theory/basis-theory-js" "^4.22.1"
+    prettier "^3.6.2"
 
 "@publicsquare/elements-react@^1.8.0":
   version "1.8.0"
