@@ -85,6 +85,7 @@ export class PublicSquareBankVerification {
             this.saveBankAccountVerification({
               verification_code: data.loginId,
               request_id: data.requestId,
+              bank_account_id: data.accountId,
             })
               .then(resolve)
               .catch(reject);

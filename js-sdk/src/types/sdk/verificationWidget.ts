@@ -18,6 +18,7 @@ export type BankAccountVerificationUrlResponse = {
 export type BankAccountVerificationIdRequest = {
   verification_code: string
   request_id: string
+  bank_account_id: string
 }
 
 export type BankAccountVerificationIdResponse = {
