@@ -1,3 +1,10 @@
+## [1.9.3](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.2...v1.9.3) (2025-09-12)
+
+
+### Bug Fixes
+
+* save bank account id to bank verification flow ([01210a2](https://github.com/publicsquare-financial/publicsquare-elements/commit/01210a2508f137c03196ee01d4b89ece93f5f2fa))
+
 ## [1.9.2](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.1...v1.9.2) (2025-09-05)
 
 

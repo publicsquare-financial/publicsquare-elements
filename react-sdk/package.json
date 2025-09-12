@@ -1,6 +1,6 @@
 {
   "name": "@publicsquare/elements-react",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "description": "PublicSquare React Elements",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -29,7 +29,7 @@
     "publish:beta": "npm publish ./dist --tag beta"
   },
   "dependencies": {
-    "@publicsquare/elements-js": "1.9.2",
+    "@publicsquare/elements-js": "1.9.3",
     "prettier": "^3.6.2"
   },
   "resolutions": {
