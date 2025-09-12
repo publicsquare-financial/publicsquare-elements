@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@publicsquare/elements-js": "1.9.2",
+    "axios": "^1.12.1",
     "prettier": "^3.6.2"
   },
   "devDependencies": {
