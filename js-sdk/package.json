@@ -32,6 +32,9 @@
     "@basis-theory/basis-theory-js": "^4.22.1",
     "prettier": "^3.6.2"
   },
+  "resolutions": {
+    "axios": "^1.12.1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.22.15",
     "@babel/core": "^7.25.2",

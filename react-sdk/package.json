@@ -32,6 +32,9 @@
     "@publicsquare/elements-js": "1.9.2",
     "prettier": "^3.6.2"
   },
+  "resolutions": {
+    "axios": "^1.12.1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.25.6",
     "@babel/core": "^7.25.2",
