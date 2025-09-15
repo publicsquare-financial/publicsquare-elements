@@ -1363,10 +1363,10 @@
   resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.2.9.tgz#d229a7b7f9dac167a156992ef23c7f023653f53b"
   integrity sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==
 
-"@publicsquare/elements-js@1.9.2":
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.9.2.tgz#d7612e5b2113b6421c489beeb177241930ca343a"
-  integrity sha512-bj+UF0YebC6+Aga8y/ex7kPCYhZGS4zbm7YnIV+caNPHJRuahtkQBIzjzOveb+fanOb2QDM3/i1VWkS2vAwMfg==
+"@publicsquare/elements-js@1.9.3":
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.9.3.tgz#1089533e5878da964f7bd2b45b5df1b7007a6f28"
+  integrity sha512-XosIRBMRnE+xV9Q8cuPu8rEYqHho8IRHcI3zYiEU5v9ARUFT28PXem94mRCaQPLDz+b+wwF5RnZ71mQTXAGWBg==
   dependencies:
     "@basis-theory/basis-theory-js" "^4.22.1"
     prettier "^3.6.2"
@@ -1457,9 +1457,9 @@
     undici-types "~7.10.0"
 
 "@types/react@^19.1.8":
-  version "19.1.12"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-19.1.12.tgz#7bfaa76aabbb0b4fe0493c21a3a7a93d33e8937b"
-  integrity sha512-cMoR+FoAf/Jyq6+Df2/Z41jISvGZZ2eTlnsaJRptmZ76Caldwy1odD4xTr/gNV9VLj0AWgg/nmkevIyUfIIq5w==
+  version "19.1.13"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-19.1.13.tgz#fc650ffa680d739a25a530f5d7ebe00cdd771883"
+  integrity sha512-hHkbU/eoO3EG5/MZkuFSKmYqPbSVk5byPFa3e7y/8TybHiLMACgI8seVYlicwk7H5K/rI2px9xrQp/C+AUDTiQ==
   dependencies:
     csstype "^3.0.2"
 
