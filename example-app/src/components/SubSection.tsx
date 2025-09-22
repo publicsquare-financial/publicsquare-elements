@@ -1,41 +1,38 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { ReactNode, useMemo, useState } from 'react'
-import ReactButton from './Buttons/ReactButton'
-import JavascriptButton from './Buttons/JavascriptButton'
+import React from 'react';
+import { ReactNode, useMemo, useState } from 'react';
+import ReactButton from './Buttons/ReactButton';
+import JavascriptButton from './Buttons/JavascriptButton';
 
-export type Technology = 'react' | 'javascript'
+export type Technology = 'react' | 'javascript';
 
 export default function HomeSection({
   title,
   description,
   getStarted,
-  rightColumn
+  rightColumn,
 }: {
-  title: string
-  description: string
+  title: string;
+  description: string;
   getStarted: {
-    href: string
-    label: string
-  }
-  rightColumn: (type: Technology) => React.ReactElement
+    href: string;
+    label: string;
+  };
+  rightColumn: (type: Technology) => React.ReactElement;
 }) {
-  const [selected, setSelected] = React.useState<Technology>('react')
+  const [selected, setSelected] = React.useState<Technology>('react');
 
   const memoizedRightColumn = React.useMemo(() => {
-    return rightColumn(selected)
-  }, [selected])
+    return rightColumn(selected);
+  }, [selected]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8">
+    <div className="grid grid-cols-1 gap-8 py-8 md:grid-cols-2">
       <div className="space-y-4">
         <div className="space-y-4">
           <div className="flex gap-2">
-            <ReactButton
-              selected={selected === 'react'}
-              onClick={() => setSelected('react')}
-            />
+            <ReactButton selected={selected === 'react'} onClick={() => setSelected('react')} />
             <JavascriptButton
               selected={selected === 'javascript'}
               onClick={() => setSelected('javascript')}
@@ -46,14 +43,14 @@ export default function HomeSection({
         <p>{description}</p>
         <p>
           <a
-            className="border border-slate-400 rounded-md px-2 py-1 text-slate-800 hover:bg-slate-300 transition-colors"
+            className="rounded-md border border-slate-400 px-2 py-1 text-slate-800 transition-colors hover:bg-slate-300"
             href={getStarted.href}
           >
             View on npm ↗
           </a>
         </p>
       </div>
-      <div className="space-y-6 w-full">{memoizedRightColumn}</div>
+      <div className="w-full space-y-6">{memoizedRightColumn}</div>
     </div>
-  )
+  );
 }

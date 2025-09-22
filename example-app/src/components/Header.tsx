@@ -1,15 +1,15 @@
-'use client'
-import { useState } from 'react'
-import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import Image from 'next/image'
-import Link from 'next/link'
-import cx from 'classnames'
-import { usePathname } from 'next/navigation'
+'use client';
+import { useState } from 'react';
+import { Dialog, DialogPanel } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
+import Link from 'next/link';
+import cx from 'classnames';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const pathname = usePathname()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="bg-white">
@@ -46,8 +46,8 @@ export default function Header() {
             className={cx(
               'text-sm/6 font-semibold',
               pathname === '/debit-credit-cards'
-                ? 'text-indigo-500 border-b-2 border-indigo-500'
-                : 'text-gray-900 border-b-2 border-transparent'
+                ? 'border-b-2 border-indigo-500 text-indigo-500'
+                : 'border-b-2 border-transparent text-gray-900',
             )}
           >
             Debit/Credit Cards
@@ -57,8 +57,8 @@ export default function Header() {
             className={cx(
               'text-sm/6 font-semibold',
               pathname === '/bank-accounts'
-                ? 'text-indigo-500 border-b-2 border-indigo-500'
-                : 'text-gray-900 border-b-2 border-transparent'
+                ? 'border-b-2 border-indigo-500 text-indigo-500'
+                : 'border-b-2 border-transparent text-gray-900',
             )}
           >
             Bank Accounts
@@ -68,8 +68,8 @@ export default function Header() {
             className={cx(
               'text-sm/6 font-semibold',
               pathname === '/bank-verification'
-                ? 'text-indigo-500 border-b-2 border-indigo-500'
-                : 'text-gray-900 border-b-2 border-transparent'
+                ? 'border-b-2 border-indigo-500 text-indigo-500'
+                : 'border-b-2 border-transparent text-gray-900',
             )}
           >
             Verify Bank Accounts
@@ -79,8 +79,8 @@ export default function Header() {
             className={cx(
               'text-sm/6 font-semibold',
               pathname === '/apple-pay'
-                ? 'text-indigo-500 border-b-2 border-indigo-500'
-                : 'text-gray-900 border-b-2 border-transparent'
+                ? 'border-b-2 border-indigo-500 text-indigo-500'
+                : 'border-b-2 border-transparent text-gray-900',
             )}
           >
             Apple Pay
@@ -90,8 +90,8 @@ export default function Header() {
             className={cx(
               'text-sm/6 font-semibold',
               pathname === '/google-pay'
-                ? 'text-indigo-500 border-b-2 border-indigo-500'
-                : 'text-gray-900 border-b-2 border-transparent'
+                ? 'border-b-2 border-indigo-500 text-indigo-500'
+                : 'border-b-2 border-transparent text-gray-900',
             )}
           >
             Google Pay
@@ -106,11 +106,7 @@ export default function Header() {
           </Link>
         </div>
       </nav>
-      <Dialog
-        open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
-        className="lg:hidden"
-      >
+      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
         <div className="fixed inset-0 z-10" />
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
@@ -142,8 +138,8 @@ export default function Header() {
                   className={cx(
                     '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold',
                     pathname === '/debit-credit-cards'
-                      ? 'text-indigo-500 border-b-2 border-indigo-500'
-                      : 'text-gray-900 border-b-2 border-transparent'
+                      ? 'border-b-2 border-indigo-500 text-indigo-500'
+                      : 'border-b-2 border-transparent text-gray-900',
                   )}
                 >
                   Debit/Credit Cards
@@ -153,8 +149,8 @@ export default function Header() {
                   className={cx(
                     '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold',
                     pathname === '/bank-accounts'
-                      ? 'text-indigo-500 border-b-2 border-indigo-500'
-                      : 'text-gray-900 border-b-2 border-transparent'
+                      ? 'border-b-2 border-indigo-500 text-indigo-500'
+                      : 'border-b-2 border-transparent text-gray-900',
                   )}
                 >
                   Bank Accounts
@@ -164,8 +160,8 @@ export default function Header() {
                   className={cx(
                     '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold',
                     pathname === '/apple-pay'
-                      ? 'text-indigo-500 border-b-2 border-indigo-500'
-                      : 'text-gray-900 border-b-2 border-transparent'
+                      ? 'border-b-2 border-indigo-500 text-indigo-500'
+                      : 'border-b-2 border-transparent text-gray-900',
                   )}
                 >
                   Apple Pay
@@ -175,8 +171,8 @@ export default function Header() {
                   className={cx(
                     '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold',
                     pathname === '/google-pay'
-                      ? 'text-indigo-500 border-b-2 border-indigo-500'
-                      : 'text-gray-900 border-b-2 border-transparent'
+                      ? 'border-b-2 border-indigo-500 text-indigo-500'
+                      : 'border-b-2 border-transparent text-gray-900',
                   )}
                 >
                   Google Pay
@@ -195,5 +191,5 @@ export default function Header() {
         </DialogPanel>
       </Dialog>
     </header>
-  )
+  );
 }
