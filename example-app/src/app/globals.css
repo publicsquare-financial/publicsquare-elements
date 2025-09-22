@@ -17,15 +17,15 @@
 }
 
 body {
-  @apply text-slate-900 bg-slate-100;
+  @apply bg-slate-100 text-slate-900;
 }
 
 he {
-  @apply bg-white border-b border-slate-200;
+  @apply border-b border-slate-200 bg-white;
 }
 
 main {
-  @apply min-h-96 max-w-7xl mx-auto p-6 lg:px-8;
+  @apply mx-auto min-h-96 max-w-7xl p-6 lg:px-8;
 }
 
 footer {
@@ -47,5 +47,5 @@ p {
 }
 
 select {
-  border-right: 1em solid transparent
+  border-right: 1em solid transparent;
 }

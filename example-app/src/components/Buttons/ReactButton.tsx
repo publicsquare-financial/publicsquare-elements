@@ -1,29 +1,24 @@
-import Image from 'next/image'
-import ReactLogo from '../../../public/react.svg'
-import { HTMLAttributes } from 'react'
-import cx from 'classnames'
+import Image from 'next/image';
+import ReactLogo from '../../../public/react.svg';
+import { HTMLAttributes } from 'react';
+import cx from 'classnames';
 
 export default function ReactButton(
-  props: HTMLAttributes<HTMLButtonElement> & { selected?: boolean }
+  props: HTMLAttributes<HTMLButtonElement> & { selected?: boolean },
 ) {
   return (
     <button
       data-testid="react-type-button"
       className={cx(
-        'space-x-2 bg-cyan-300 border border-cyan-300 hover:border-cyan-500 px-2 rounded-md inline-flex items-center transition-all',
-        props.selected
-          ? 'opacity-100 border-cyan-500'
-          : 'opacity-50 hover:opacity-100'
+        'inline-flex items-center space-x-2 rounded-md border border-cyan-300 bg-cyan-300 px-2 transition-all hover:border-cyan-500',
+        props.selected ? 'border-cyan-500 opacity-100' : 'opacity-50 hover:opacity-100',
       )}
       {...props}
     >
-      <span
-        className="font-bold font-sans inline-flex items-center"
-        style={{ height: 24 }}
-      >
+      <span className="inline-flex items-center font-sans font-bold" style={{ height: 24 }}>
         <Image src={ReactLogo} alt="React Logo" width={20} height={20} />
       </span>
-      <span className="italic text-cyan-700 text-sm">React</span>
+      <span className="text-sm italic text-cyan-700">React</span>
     </button>
-  )
+  );
 }

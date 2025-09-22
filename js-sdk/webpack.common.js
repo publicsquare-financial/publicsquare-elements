@@ -29,6 +29,7 @@ const base = {
       {
         include: [path.resolve(__dirname, 'src')],
         test: /\.(ts|js)x?$/u,
+        // exclude: /\.d\.ts$/,
         loader: 'babel-loader',
         options: babelConfig,
       },

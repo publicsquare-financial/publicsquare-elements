@@ -15,7 +15,7 @@ libPackage.scripts = {
 libPackage.files = ['*', '!*.bundle.js'];
 
 // updates source flags removing 'dist' path
-['main', 'module', 'types'].forEach((prop) => {
+['main', 'module'].forEach((prop) => {
   libPackage[prop] = libPackage[prop].replace('dist/', '');
 });
 

@@ -1,68 +1,67 @@
-'use client'
-import { useEffect, useRef, useState } from 'react'
-import {
-  PublicSquareProvider,
-  usePublicSquare
-} from '@publicsquare/elements-react'
-import { PublicSquareInitOptions } from '@publicsquare/elements-js/types'
-import GooglePayButtonElement from '@publicsquare/elements-react/elements/GooglePayButtonElement'
-import CaptureModal from '../Modals/CaptureModal'
+'use client';
+import { useEffect, useRef, useState } from 'react';
+import { PublicSquareProvider, usePublicSquare } from '@publicsquare/elements-react';
+import { PublicSquareInitOptions } from '@publicsquare/elements-js/types';
+import GooglePayButtonElement from '@publicsquare/elements-react/elements/GooglePayButtonElement';
+import CaptureModal from '../Modals/CaptureModal';
 
 export default function GooglePayElementsReact() {
-  const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-  const options: PublicSquareInitOptions = {}
-  
+  const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
+  const options: PublicSquareInitOptions = {};
+
   return (
     <PublicSquareProvider apiKey={apiKey} options={options}>
       <Elements />
     </PublicSquareProvider>
-  )
+  );
 }
 
 function Elements() {
-  const { publicsquare } = usePublicSquare()
-  const [loading, setLoading] = useState(false)
+  const { publicsquare } = usePublicSquare();
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{
-    message?: object
-    error?: boolean
-  }>()
+    message?: object;
+    error?: boolean;
+  }>();
 
   const publicsquareRef = useRef(publicsquare);
   useEffect(() => {
     publicsquareRef.current = publicsquare;
   }, [publicsquare]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async function createGooglePay(event: any) {
     const psq = publicsquareRef.current;
     if (psq) {
       try {
-        const tokenObj = JSON.parse(event.paymentMethodData.tokenizationData.token)
+        const tokenObj = JSON.parse(event.paymentMethodData.tokenizationData.token);
         const response = await psq.googlePay.create({
-          google_payment_method_token: tokenObj
-        })
+          google_payment_method_token: tokenObj,
+        });
         if (response) {
-          return response
+          return response;
         }
       } catch (error) {
-        console.log(error)
+        console.error(error);
       }
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async function onPaymentAuthorized(event: any) {
-    setLoading(true)
+    setLoading(true);
     try {
-      const googlePay = await createGooglePay(event)
+      const googlePay = await createGooglePay(event);
       if (googlePay) {
         setMessage({
           message: googlePay,
-          error: !!googlePay.error
-        })
+          error: !!googlePay.error,
+        });
       }
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-    setLoading(false)
+    setLoading(false);
   }
 
   return (
@@ -73,24 +72,25 @@ function Elements() {
         merchantName="PSQ Merchant Test"
         allowedCardAuthMethods={['PAN_ONLY', 'CRYPTOGRAM_3DS']}
         allowedCardNetworks={['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA']}
-        buttonColor='black'
-        buttonType='buy'
-        locale='en'
+        buttonColor="black"
+        buttonType="buy"
+        locale="en"
         style={{
           width: '160px',
           height: '40px',
           borderRadius: 4,
-          borderType: 'default_border'
+          borderType: 'default_border',
         }}
         transactionInfo={{
           totalPriceStatus: 'FINAL',
           totalPrice: '1.00',
           currencyCode: 'USD',
-          countryCode: 'US'
+          countryCode: 'US',
         }}
         disabled={loading}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onPaymentDataLoaded={async (paymentData: any) => {
-          onPaymentAuthorized(paymentData)
+          onPaymentAuthorized(paymentData);
         }}
       />
       <CaptureModal
@@ -99,5 +99,5 @@ function Elements() {
         error={message?.error}
       />
     </>
-  )
+  );
 }

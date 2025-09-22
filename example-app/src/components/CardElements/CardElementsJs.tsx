@@ -1,45 +1,44 @@
-'use client'
-import { FormEvent, useEffect, useState } from 'react'
-import { PublicSquare } from '@publicsquare/elements-js'
-import SubmitButton from '@/components/SubmitButton'
+'use client';
+import { FormEvent, useEffect, useState } from 'react';
+import { PublicSquare } from '@publicsquare/elements-js';
+import SubmitButton from '@/components/SubmitButton';
 import {
   CardElement,
   CardExpirationDateElement,
   CardNumberElement,
   CardVerificationCodeElement,
   CardsCreateInput,
-  PublicSquareInitOptions
-} from '@publicsquare/elements-js/types'
-import NameInput from '@/components/Form/NameInput'
-import CaptureModal from '@/components/Modals/CaptureModal'
+  PublicSquareInitOptions,
+} from '@publicsquare/elements-js/types';
+import NameInput from '@/components/Form/NameInput';
+import CaptureModal from '@/components/Modals/CaptureModal';
 
 export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
-  const [publicsquare, setPublicSquare] = useState<PublicSquare>()
-  const [cardElement, setCardElement] = useState<CardElement>()
-  const [cardNumberElement, setCardNumberElement] =
-    useState<CardNumberElement>()
+  const [publicsquare, setPublicSquare] = useState<PublicSquare>();
+  const [cardElement, setCardElement] = useState<CardElement>();
+  const [cardNumberElement, setCardNumberElement] = useState<CardNumberElement>();
   const [cardExpirationDateElement, setCardExpirationDateElement] =
-    useState<CardExpirationDateElement>()
+    useState<CardExpirationDateElement>();
   const [cardVerificationCodeElement, setCardVerificationCodeElement] =
-    useState<CardVerificationCodeElement>()
+    useState<CardVerificationCodeElement>();
   const [message, setMessage] = useState<{
-    message?: object
-    error?: boolean
-  }>()
-  const [loading, setLoading] = useState(false)
+    message?: object;
+    error?: boolean;
+  }>();
+  const [loading, setLoading] = useState(false);
 
   function unmountElements() {
     try {
-      cardElement?.unmount()
+      cardElement?.unmount();
     } catch {}
     try {
-      cardNumberElement?.unmount()
+      cardNumberElement?.unmount();
     } catch {}
     try {
-      cardExpirationDateElement?.unmount()
+      cardExpirationDateElement?.unmount();
     } catch {}
     try {
-      cardVerificationCodeElement?.unmount()
+      cardVerificationCodeElement?.unmount();
     } catch {}
   }
 
@@ -47,117 +46,104 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
     /**
      * Step 1: Init the PublicSquare sdk
      */
-    const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-    const options: PublicSquareInitOptions = {}
+    const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
+    const options: PublicSquareInitOptions = {};
 
     new PublicSquare()
       .init(apiKey, options)
-      .then((_publicsquare) => setPublicSquare(_publicsquare))
-  }, [])
+      .then((_publicsquare) => setPublicSquare(_publicsquare));
+  }, []);
 
   useEffect(() => {
     if (publicsquare) {
       // This is to make sure the DOM is updated before we mount the elements
       requestAnimationFrame(() => {
-        unmountElements()
+        unmountElements();
         if (allInOne) {
           /**
            * Step 2: Initialize the elements you want to use
            */
           // The whole card
-          const cardElement = publicsquare.createCardElement({})
-          cardElement.mount('#card-element')
-          setCardElement(cardElement)
+          const cardElement = publicsquare.createCardElement({});
+          cardElement.mount('#card-element');
+          setCardElement(cardElement);
         } else {
           // Just the number
-          const cardNumberElement = publicsquare.createCardNumberElement({})
-          cardNumberElement.mount('#card-number-element')
-          setCardNumberElement(cardNumberElement)
+          const cardNumberElement = publicsquare.createCardNumberElement({});
+          cardNumberElement.mount('#card-number-element');
+          setCardNumberElement(cardNumberElement);
           // Just the expiration date
-          const cardExpirationDateElement =
-            publicsquare.createCardExpirationDateElement({})
-          cardExpirationDateElement.mount('#card-expiration-date-element')
-          setCardExpirationDateElement(cardExpirationDateElement)
+          const cardExpirationDateElement = publicsquare.createCardExpirationDateElement({});
+          cardExpirationDateElement.mount('#card-expiration-date-element');
+          setCardExpirationDateElement(cardExpirationDateElement);
           // Just the verification code
-          const cardVerificationCodeElement =
-            publicsquare.createCardVerificationCodeElement({})
-          cardVerificationCodeElement.mount('#card-verification-code-element')
-          setCardVerificationCodeElement(cardVerificationCodeElement)
+          const cardVerificationCodeElement = publicsquare.createCardVerificationCodeElement({});
+          cardVerificationCodeElement.mount('#card-verification-code-element');
+          setCardVerificationCodeElement(cardVerificationCodeElement);
         }
-      })
+      });
     }
-  }, [publicsquare, allInOne])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [publicsquare, allInOne]);
 
   function onSubmitCardElement(e: FormEvent<HTMLFormElement>) {
     if (cardElement) {
-      onSubmit(e, cardElement)
+      onSubmit(e, cardElement);
     }
   }
 
   function onSubmitCardElements(e: FormEvent<HTMLFormElement>) {
-    if (
-      cardNumberElement &&
-      cardExpirationDateElement &&
-      cardVerificationCodeElement
-    ) {
+    if (cardNumberElement && cardExpirationDateElement && cardVerificationCodeElement) {
       onSubmit(e, {
         number: cardNumberElement!,
         expirationMonth: cardExpirationDateElement!.month(),
         expirationYear: cardExpirationDateElement!.year(),
-        cvc: cardVerificationCodeElement!
-      })
+        cvc: cardVerificationCodeElement!,
+      });
     }
   }
 
-  async function onSubmit(
-    e: FormEvent<HTMLFormElement>,
-    card: CardsCreateInput['card']
-  ) {
-    e.preventDefault()
+  async function onSubmit(e: FormEvent<HTMLFormElement>, card: CardsCreateInput['card']) {
+    e.preventDefault();
 
-    const formData = new FormData(e.currentTarget)
-    const formProps = Object.fromEntries(formData)
-    if (loading) return
+    const formData = new FormData(e.currentTarget);
+    const formProps = Object.fromEntries(formData);
+    if (loading) return;
     if (formProps.cardholder_name && card) {
-      setLoading(true)
+      setLoading(true);
       try {
         const response = await publicsquare?.cards.create({
           cardholder_name: formProps.cardholder_name as string,
-          card
-        })
+          card,
+        });
         if (response) {
           setMessage({
             message: response,
-            error: !!response.error
-          })
+            error: !!response.error,
+          });
         }
       } catch (error) {
-        console.log(error)
+        console.error(error);
       }
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   return (
-    <div className="space-y-4 w-full">
+    <div className="w-full space-y-4">
       <form
-        onSubmit={(e) =>
-          allInOne ? onSubmitCardElement(e) : onSubmitCardElements(e)
-        }
+        onSubmit={(e) => (allInOne ? onSubmitCardElement(e) : onSubmitCardElements(e))}
         name="js-form-cardelement"
       >
         <div className="w-full space-y-4">
           <NameInput />
           {allInOne ? (
-            <div className="space-y-2 border-2 border-dashed border-gray-300 rounded-lg p-4">
+            <div className="space-y-2 rounded-lg border-2 border-dashed border-gray-300 p-4">
               <label>Card element</label>
-              <div
-                className="w-full rounded-lg bg-white p-2 shadow"
-                id="card-element"
-              ></div>
+              <div className="w-full rounded-lg bg-white p-2 shadow" id="card-element"></div>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-4 items-start border-2 border-dashed border-gray-300 rounded-lg p-4">
+            <div className="grid grid-cols-2 items-start gap-4 rounded-lg border-2 border-dashed border-gray-300 p-4">
               <div>
                 <label>Card number element</label>
                 <div
@@ -165,7 +151,7 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
                   id="card-number-element"
                 ></div>
               </div>
-              <div className="grid grid-cols-2 gap-4 items-start">
+              <div className="grid grid-cols-2 items-start gap-4">
                 <div>
                   <label>Expiration</label>
                   <div
@@ -194,5 +180,5 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
         error={message?.error}
       />
     </div>
-  )
+  );
 }

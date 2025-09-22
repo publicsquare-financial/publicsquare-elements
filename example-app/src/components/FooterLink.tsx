@@ -1,16 +1,16 @@
 export default function FooterLink({
   label,
   href,
-  description
+  description,
 }: {
-  label: string
-  href: string
-  description: string
+  label: string;
+  href: string;
+  description: string;
 }) {
   return (
     <a
       href={href}
-      className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-white hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30 flex flex-col justify-center items-center lg:mx-4"
+      className="group flex flex-col items-center justify-center rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-white lg:mx-4 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -33,9 +33,7 @@ export default function FooterLink({
           </svg>
         </span>
       </h2>
-      <p className="m-0 max-w-[30ch] text-sm opacity-50 text-center">
-        {description}
-      </p>
+      <p className="m-0 max-w-[30ch] text-center text-sm opacity-50">{description}</p>
     </a>
-  )
+  );
 }
