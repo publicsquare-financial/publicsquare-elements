@@ -54,8 +54,10 @@ export default function GooglePayElementsJs() {
         },
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [publicsquare]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async function onPaymentAuthorized(event: any) {
     if (publicsquare && buttonContainerRef.current) {
       googlePayButtonRef.current?.setDisabled(true);
@@ -76,6 +78,7 @@ export default function GooglePayElementsJs() {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async function createGooglePay(event: any) {
     if (publicsquare) {
       try {
@@ -87,7 +90,7 @@ export default function GooglePayElementsJs() {
           return response;
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
   }

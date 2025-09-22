@@ -29,6 +29,7 @@ function Elements() {
     publicsquareRef.current = publicsquare;
   }, [publicsquare]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async function createGooglePay(event: any) {
     const psq = publicsquareRef.current;
     if (psq) {
@@ -41,11 +42,12 @@ function Elements() {
           return response;
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async function onPaymentAuthorized(event: any) {
     setLoading(true);
     try {
@@ -86,6 +88,7 @@ function Elements() {
           countryCode: 'US',
         }}
         disabled={loading}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onPaymentDataLoaded={async (paymentData: any) => {
           onPaymentAuthorized(paymentData);
         }}

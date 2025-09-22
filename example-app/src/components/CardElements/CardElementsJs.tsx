@@ -83,6 +83,7 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
         }
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [publicsquare, allInOne]);
 
   function onSubmitCardElement(e: FormEvent<HTMLFormElement>) {
@@ -122,7 +123,7 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
           });
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
       setLoading(false);
     }

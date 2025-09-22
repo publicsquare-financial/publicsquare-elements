@@ -79,7 +79,7 @@ function Elements({ allInOne }: { allInOne: boolean }) {
           });
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
       setLoading(false);
     }

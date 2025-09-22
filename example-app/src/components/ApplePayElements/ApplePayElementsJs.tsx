@@ -1,6 +1,10 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { ApplePaySession, PublicSquare } from '@publicsquare/elements-js';
+import {
+  ApplePayPaymentAuthorizedEvent,
+  ApplePaySession,
+  PublicSquare,
+} from '@publicsquare/elements-js';
 import { PublicSquareInitOptions } from '@publicsquare/elements-js/types';
 import CaptureModal from '../Modals/CaptureModal';
 
@@ -60,7 +64,7 @@ export default function ApplePayElementsJs() {
       session.completeMerchantValidation(merchantSession);
     };
 
-    session.onpaymentauthorized = async (event: any) => {
+    session.onpaymentauthorized = async (event: ApplePayPaymentAuthorizedEvent) => {
       if (publicsquare && buttonContainerRef.current) {
         setLoading(true);
 
@@ -118,7 +122,7 @@ export default function ApplePayElementsJs() {
     }
   }
 
-  async function createApplePay(event: any) {
+  async function createApplePay(event: ApplePayPaymentAuthorizedEvent) {
     if (publicsquare) {
       try {
         const response = await publicsquare.applePay.create({
@@ -128,7 +132,7 @@ export default function ApplePayElementsJs() {
           return response;
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
   }
