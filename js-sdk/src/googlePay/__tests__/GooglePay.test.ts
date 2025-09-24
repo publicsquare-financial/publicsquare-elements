@@ -16,7 +16,7 @@ jest.mock('@basis-theory/basis-theory-js', () => ({
 }))
 
 const validGooglePayCreateInput: GooglePayCreateInput = {
-  google_payment_method_token: {},
+  google_payment_data: {},
   customer_id: 'cus_123',
   billing_details: {
     address_line_1: '123 Main St',
@@ -94,7 +94,7 @@ describe('GooglePay', () => {
       })
     )
     const input = {
-      google_payment_method_token: {}
+      google_payment_data: {}
     }
     const result = await googlePay.create(input)
     expect(global.fetch).toHaveBeenCalledWith(
@@ -111,11 +111,11 @@ describe('GooglePay', () => {
     expect(result).toEqual(mockResponse)
   })
 
-  test('create() fails with invalid google_payment_method_token', async () => {
+  test('create() fails with invalid google_payment_data', async () => {
     const error = await getError<{ message: string }>(() =>
       googlePay.create({} as any)
     )
-    expect(error.message).toEqual('google_payment_method_token is required')
+    expect(error.message).toEqual('google_payment_data is required')
   })
 
   test('create() only passes validated input', async () => {
@@ -128,7 +128,7 @@ describe('GooglePay', () => {
       })
     )
     const input = {
-      google_payment_method_token: {
+      google_payment_data: {
         protocolVersion: 'ECv2',
         signature: 'abcd1234',
         intermediateSigningKey: {
@@ -149,7 +149,7 @@ describe('GooglePay', () => {
           'X-API-KEY': 'api_key'
         },
         body: JSON.stringify({
-          google_payment_method_token: {
+          google_payment_data: {
             protocolVersion: 'ECv2',
             signature: 'abcd1234',
             intermediateSigningKey: {

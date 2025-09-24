@@ -31,7 +31,7 @@ export interface GooglePayButtonWidgetOptions {
 }
 
 export type GooglePayCreateInput = {
-  google_payment_method_token?: GooglePaymentMethodToken
+  google_payment_data?: GooglePaymentMethodToken
   customer_id?: string
   billing_details?: CardBillingDetails
 }
