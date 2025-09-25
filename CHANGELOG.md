@@ -1,3 +1,10 @@
+## [1.9.4](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.3...v1.9.4) (2025-09-25)
+
+
+### Bug Fixes
+
+* update Google Pay data payload ([7ea25bf](https://github.com/publicsquare-financial/publicsquare-elements/commit/7ea25bf1ce07f8073185c4d3c3fb98dfe264f2e8))
+
 ## [1.9.3](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.2...v1.9.3) (2025-09-12)
 
 
