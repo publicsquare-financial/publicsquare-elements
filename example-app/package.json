@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.48.0",
-    "@types/node": "^24.0.10",
+    "@types/node": "^24.8.1",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "classnames": "^2.5.1",
