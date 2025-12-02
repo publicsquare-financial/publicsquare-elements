@@ -6,6 +6,9 @@
     "test": "yarn playwright test",
     "test:ui": "yarn playwright test --ui"
   },
+  "resolutions": {
+    "glob": "^10.5.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
