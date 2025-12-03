@@ -10,6 +10,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "resolutions": {
+    "glob": "^10.5.0"
+  },
   "dependencies": {
     "@headlessui/react": "^2.1.8",
     "@heroicons/react": "^2.1.5",
