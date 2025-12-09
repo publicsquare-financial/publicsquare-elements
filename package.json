@@ -6,19 +6,24 @@
     "test": "yarn playwright test",
     "test:ui": "yarn playwright test --ui"
   },
+  "resolutions": {
+    "glob": "^10.5.0",
+    "js-yaml": "^4.1.1",
+    "tar": "^7.5.2"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.49.1",
+    "@playwright/test": "^1.56.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^11.0.1",
-    "@semantic-release/npm": "^12.0.1",
+    "@semantic-release/npm": "^13.1.2",
     "@semantic-release/release-notes-generator": "^14.0.3",
-    "@types/node": "^24.0.13",
+    "@types/node": "^24.10.1",
     "dotenv": "^17.2.0",
     "semantic-release": "^24.2.1",
     "synckit": "^0.11.11",
