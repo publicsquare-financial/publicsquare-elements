@@ -36,6 +36,7 @@ jobs:
         env:
           ENVIRONMENT: prod
           NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - id: login-to-gcp
         name: Authenticate to GCP
