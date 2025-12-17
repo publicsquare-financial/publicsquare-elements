@@ -11,10 +11,8 @@ jobs:
     runs-on: 'ubuntu-latest'
 
     permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for trusted publishing and npm provenance
+      contents: 'read'
+      id-token: 'write'
 
     env:
       HUSKY: 0 # disables husky hooks
@@ -22,6 +20,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.SEMANTIC_RELEASE_PAT }}
 
       - name: Setup Node
         uses: actions/setup-node@v6
@@ -35,8 +35,8 @@ jobs:
         run: make release
         env:
           ENVIRONMENT: prod
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
           NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - id: login-to-gcp
         name: Authenticate to GCP
