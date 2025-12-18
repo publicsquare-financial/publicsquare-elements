@@ -27,7 +27,6 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24.*
-          registry-url: "https://registry.npmjs.org"
 
       - name: Upgrade npm to 11.5.1+ for OIDC
         run: npm install -g npm@latest
@@ -40,7 +39,6 @@ jobs:
         env:
           ENVIRONMENT: prod
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
-          NPM_CONFIG_PROVENANCE: true
 
       - id: login-to-gcp
         name: Authenticate to GCP
