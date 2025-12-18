@@ -12,15 +12,13 @@
     [
       "@semantic-release/npm",
       {
-        "pkgRoot": "js-sdk/dist",
-        "npmPublish": true
+        "pkgRoot": "js-sdk/dist"
       }
     ],
     [
       "@semantic-release/npm",
       {
-        "pkgRoot": "react-sdk/dist",
-        "npmPublish": true
+        "pkgRoot": "react-sdk/dist"
       }
     ],
     [
