@@ -16,14 +16,14 @@
   "dependencies": {
     "@headlessui/react": "^2.1.8",
     "@heroicons/react": "^2.1.5",
-    "@publicsquare/elements-js": "^1.8.0",
-    "@publicsquare/elements-react": "^1.8.0",
+    "@publicsquare/elements-js": "^1.9.4",
+    "@publicsquare/elements-react": "^1.9.4",
     "next": "^15.5.8",
     "react": "^19.2.1",
     "react-dom": "^19.2.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.48.0",
+    "@playwright/test": "^1.56.1",
     "@types/node": "^24.10.1",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.2.3",
