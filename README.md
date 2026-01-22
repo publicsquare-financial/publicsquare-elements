@@ -29,7 +29,26 @@ To use it, simply:
 ```bash
 $ cd example-app
 $ yarn
+
 $ yarn dev
 ```
 
 Then open [http://localhost:3000](http://localhost:3000)
+
+## Deploy
+
+- Use [semantic release commit messages](https://semantic-release.gitbook.io/semantic-release/#commit-message-format) to ensure it bumped the version correctly.
+
+- After merge, add a comment in the PR like below (remember to change the version):
+```
+🎉 This PR is included in version <version> 🎉
+
+The release is available on:
+
+[npm package (@latest dist-tag)](https://www.npmjs.com/package/@publicsquare/elements-js/v/<version>)
+[npm package (@latest dist-tag)](https://www.npmjs.com/package/@publicsquare/elements-react/v/<version>)
+[GitHub release](https://github.com/publicsquare-financial/publicsquare-elements/releases/tag/<version>)
+Your [semantic-release](https://github.com/semantic-release/semantic-release) bot 📦🚀
+```
+
+- Add the `release` label to the pull request in the 'Labels' section on the GitHub sidebar.
