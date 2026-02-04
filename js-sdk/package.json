@@ -36,7 +36,8 @@
   "resolutions": {
     "axios": "^1.12.2",
     "glob": "^10.5.0",
-    "js-yaml": "^4.1.1"
+    "js-yaml": "^4.1.1",
+    "lodash": "^4.17.23"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.15",
