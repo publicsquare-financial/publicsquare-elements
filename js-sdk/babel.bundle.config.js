@@ -12,11 +12,5 @@ module.exports = {
   plugins: [
     '@babel/proposal-class-properties',
     '@babel/plugin-transform-runtime',
-    [
-      'babel-plugin-transform-builtin-extend',
-      {
-        globals: ['Error'],
-      },
-    ],
   ],
 };

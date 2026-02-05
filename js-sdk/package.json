@@ -32,13 +32,12 @@
   "dependencies": {
     "@basis-theory/basis-theory-js": "^4.22.1",
     "axios": "^1.13.4",
-    "babel-template": "6.26.0",
     "glob": "^13.0.1",
     "prettier": "^3.6.2"
   },
   "resolutions": {
-    "axios": "^1.12.2",
-    "glob": "^10.5.0",
+    "axios": "^1.13.4",
+    "glob": "^13.0.1",
     "js-yaml": "^4.1.1",
     "lodash": "^4.17.23"
   },
@@ -51,10 +50,11 @@
     "@babel/preset-env": "^7.29.0",
     "@babel/preset-typescript": "^7.28.5",
     "@babel/runtime": "^7.28.6",
+    "@babel/template": "^7.28.6",
+    "@babel/traverse": "^7.29.0",
     "@types/jest": "^30.0.0",
     "babel-loader": "^10.0.0",
     "babel-plugin-inline-dotenv": "^1.7.0",
-    "babel-plugin-transform-builtin-extend": "^1.1.2",
     "babel-plugin-tsconfig-paths-module-resolver": "^1.0.4",
     "concurrently": "^9.0.1",
     "dotenv-webpack": "^8.1.0",
