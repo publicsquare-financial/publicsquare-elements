@@ -16,8 +16,8 @@
   "dependencies": {
     "@headlessui/react": "^2.1.8",
     "@heroicons/react": "^2.1.5",
-    "@publicsquare/elements-js": "^1.9.4",
-    "@publicsquare/elements-react": "^1.9.4",
+    "@publicsquare/elements-js": "^1.9.6",
+    "@publicsquare/elements-react": "^1.9.6",
     "next": "^15.5.10",
     "react": "^19.2.1",
     "react-dom": "^19.2.1"

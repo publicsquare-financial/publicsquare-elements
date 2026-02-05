@@ -469,20 +469,20 @@
   dependencies:
     playwright "1.58.1"
 
-"@publicsquare/elements-js@1.9.4", "@publicsquare/elements-js@^1.9.4":
-  version "1.9.4"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.9.4.tgz#4fbdb1b47be909ec8dbcb8f69011fe9583a3517e"
-  integrity sha512-qD6Z2eN5/usq7YBr72y2scHLWH16LcFGXrbAQxkMPwDTdQzowRIKQnrAyW8Q2QnJLUQkOmA/OfxrxYhDbrXpQQ==
+"@publicsquare/elements-js@1.9.6", "@publicsquare/elements-js@^1.9.6":
+  version "1.9.6"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.9.6.tgz#a3d716a3079cd83f970b807e031ae62f19d3713f"
+  integrity sha512-t1EZqnmou/ci/R6OmgpkqbyPvZ/KhqKm5R5vYcvRja6v6ip3pUo/LUkhUAvR4WD3fb6UcgFwkB2MH9S/PBhhbA==
   dependencies:
     "@basis-theory/basis-theory-js" "^4.22.1"
     prettier "^3.6.2"
 
-"@publicsquare/elements-react@^1.9.4":
-  version "1.9.4"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-react/-/elements-react-1.9.4.tgz#79f67093dd1088a1b6d1a0ed32a53a15bc965427"
-  integrity sha512-4rnI91UHSPevgs0MlOfTDK+HytfPRGDELn1kmDtdv+N+sH1hkedd0m8gPHOF1vqgARE5jflnDsICupnd06FAAQ==
+"@publicsquare/elements-react@^1.9.6":
+  version "1.9.6"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-react/-/elements-react-1.9.6.tgz#11035186baf493d7ec26fe68a76ad0666fcd6888"
+  integrity sha512-CFLioZxw97ox95xFKX8H3T4fHTTeIjxEwR7dIYKq538CiT3K+Ni7Z095uNFGq5sA60T36E817rzsLxWwcnxtSQ==
   dependencies:
-    "@publicsquare/elements-js" "1.9.4"
+    "@publicsquare/elements-js" "1.9.6"
     prettier "^3.6.2"
 
 "@react-aria/focus@^3.20.2":
