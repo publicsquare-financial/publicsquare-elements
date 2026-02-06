@@ -16,11 +16,5 @@ module.exports = {
     'tsconfig-paths-module-resolver',
     '@babel/proposal-class-properties',
     ['inline-dotenv', { unsafe: true }],
-    [
-      'babel-plugin-transform-builtin-extend',
-      {
-        globals: ['Error'],
-      },
-    ],
   ],
 };
