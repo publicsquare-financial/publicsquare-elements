@@ -28,7 +28,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.2.3",
     "classnames": "^2.5.1",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.2",
     "eslint-config-next": "^15.5.8",
     "postcss": "^8.4.47",
     "prettier": "^3.8.1",
