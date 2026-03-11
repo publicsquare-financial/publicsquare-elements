@@ -18,10 +18,17 @@ jobs:
       HUSKY: 0 # disables husky hooks
 
     steps:
+      - name: Generate token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.RELEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+
       - name: Checkout repo
         uses: actions/checkout@v6
         with:
-          token: ${{ secrets.SEMANTIC_RELEASE_PAT || github.token }}
+          token: ${{ steps.generate-token.outputs.token }}
           fetch-depth: 0
 
       - name: Setup Node
@@ -39,7 +46,7 @@ jobs:
         run: make release
         env:
           ENVIRONMENT: prod
-          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
       - id: login-to-gcp
         name: Authenticate to GCP
