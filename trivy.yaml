@@ -1,0 +1,27 @@
+timeout: 5m0s
+quiet: false
+
+ignorefile: ".trivyignore"
+
+scan:
+  scanners:
+    - vuln
+    - secret
+
+  skip-dirs:
+    - node_modules
+    - vendor
+    - .git
+    - tmp
+    - temp
+
+format: "table"
+severity:
+  - HIGH
+  - CRITICAL
+
+# Exit with error code on findings
+exit-code: 1
+
+vulnerability:
+  ignore-unfixed: true
