@@ -34,7 +34,7 @@
     "prettier": "^3.8.1"
   },
   "resolutions": {
-    "axios": "^1.13.4",
+    "axios": "^1.13.5",
     "glob": "^13.0.1",
     "js-yaml": "^4.1.1"
   },
