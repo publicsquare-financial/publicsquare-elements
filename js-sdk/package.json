@@ -36,6 +36,7 @@
     "prettier": "^3.8.1"
   },
   "resolutions": {
+    "axios": "^1.13.5",
     "js-yaml": "^4.1.1",
     "lodash": "^4.17.23",
     "minimatch": "^10.2.3",
