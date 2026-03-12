@@ -11,13 +11,15 @@
     "lint": "next lint"
   },
   "resolutions": {
-    "glob": "^10.5.0"
+    "glob": "^10.5.0",
+    "axios": "^1.13.5",
+    "minimatch": "^10.2.3"
   },
   "dependencies": {
     "@headlessui/react": "^2.1.8",
     "@heroicons/react": "^2.1.5",
-    "@publicsquare/elements-js": "^1.9.6",
-    "@publicsquare/elements-react": "^1.9.6",
+    "@publicsquare/elements-js": "^1.9.7",
+    "@publicsquare/elements-react": "^1.9.7",
     "next": "^15.5.10",
     "react": "^19.2.1",
     "react-dom": "^19.2.1"
