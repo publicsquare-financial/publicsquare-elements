@@ -31,13 +31,15 @@
   },
   "dependencies": {
     "@basis-theory/basis-theory-js": "^4.22.1",
-    "axios": "^1.13.4",
+    "axios": "^1.13.5",
     "glob": "^13.0.1",
     "prettier": "^3.8.1"
   },
   "resolutions": {
+    "axios": "^1.13.5",
     "js-yaml": "^4.1.1",
-    "lodash": "^4.17.23"
+    "lodash": "^4.17.23",
+    "minimatch": "^10.2.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.28.6",
