@@ -1,6 +1,6 @@
 {
   "name": "publicsquare-elements",
-  "version": "1.9.7",
+  "version": "1.9.8",
   "scripts": {
     "release": "semantic-release",
     "test": "yarn playwright test",
