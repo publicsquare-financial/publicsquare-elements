@@ -10,7 +10,10 @@ import CaptureModal from '../Modals/CaptureModal'
 
 export default function GooglePayElementsReact() {
   const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-  const options: PublicSquareInitOptions = {}
+  const options: PublicSquareInitOptions = {
+    googlePayCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/google-pay',
+    getGooglePayConfiguration: 'https://staging.api.publicsquare.com/.well-known/google-pay-configuration'
+  }
   
   return (
     <PublicSquareProvider apiKey={apiKey} options={options}>

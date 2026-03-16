@@ -31,7 +31,9 @@ export default function BankAccountElementsJs({ allInOne }: { allInOne: boolean 
      * Step 1: Init the PublicSquare sdk
      */
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
-    const options: PublicSquareInitOptions = {};
+    const options: PublicSquareInitOptions = {
+      bankAccountCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/bank-accounts'
+    };
 
     new PublicSquare()
       .init(apiKey, options)

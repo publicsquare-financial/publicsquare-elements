@@ -21,24 +21,16 @@ export class PublicSquareCards {
       throw new Error('PublicSquare JS has not be initialized yet')
     } else {
       const validatedInput = validateCreateCardInput(input)
-      let cardCreateUrl = this._publicSquare._cardCreateUrl;
-      let proxyKey = this._publicSquare._proxyKey;
-
-      if (this._publicSquare._apiKey.includes('test')){
-        cardCreateUrl = this._publicSquare._cardCreateUrlTest;
-        proxyKey = this._publicSquare._proxyKeyTest;
-
-      }
 
       return this._publicSquare.bt.client
         .post(
-          cardCreateUrl,
+          this._publicSquare._cardCreateUrl,
           transformCreateCardInput(validatedInput),
           {
             headers: {
               'Content-Type': 'application/json',
               'X-API-KEY': this._publicSquare._apiKey,
-              'BT-PROXY-KEY': proxyKey
+              'BT-PROXY-KEY': this._publicSquare._proxyKey
             }
           }
         )

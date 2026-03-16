@@ -11,7 +11,10 @@ import { FormEvent, useRef, useState } from 'react';
 
 export default function BankAccountVerificationElementReact() {
   const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
-  const options: PublicSquareInitOptions = {};
+  const options: PublicSquareInitOptions = {
+    bankAccountCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/bank-accounts',
+    bankAccountVerificationUrl: 'https://staging.api.publicsquare.com/payment-methods/bank-accounts/verification'
+  };
 
   return (
     <PublicSquareProvider apiKey={apiKey} options={options}>

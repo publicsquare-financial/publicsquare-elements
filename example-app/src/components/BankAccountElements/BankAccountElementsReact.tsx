@@ -16,7 +16,9 @@ import AccountTypeSelect from '../Form/AccountTypeSelect';
 
 export default function BankAccountElementsReact({ allInOne }: { allInOne: boolean }) {
   const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
-  const options: PublicSquareInitOptions = {};
+  const options: PublicSquareInitOptions = {
+    bankAccountCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/bank-accounts'
+  };
 
   return (
     <PublicSquareProvider apiKey={apiKey} options={options}>

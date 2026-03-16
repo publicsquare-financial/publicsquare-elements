@@ -17,7 +17,10 @@ import { FormEvent, useRef, useState } from 'react'
 
 export default function CardElementsReact({ allInOne }: { allInOne: boolean }) {
   const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-  const options: PublicSquareInitOptions = {}
+  const options: PublicSquareInitOptions = {
+    cardCreateUrl: 'https://api.test.basistheory.com/proxy',
+    proxyKey: 'key_test_us_proxy_FrL4kJFRXU1AwuYVnMbTnP'
+  }
 
   return (
     <PublicSquareProvider apiKey={apiKey} options={options}>

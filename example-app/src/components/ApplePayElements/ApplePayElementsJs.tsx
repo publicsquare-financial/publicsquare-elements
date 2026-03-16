@@ -22,7 +22,10 @@ export default function ApplePayElementsJs() {
      * Step 1: Init the PublicSquare sdk
      */
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-    const options: PublicSquareInitOptions = {}
+    const options: PublicSquareInitOptions = {
+      applePayCreateSessionUrl: 'https://staging.api.publicsquare.com/payment-methods/apple-pay/session',
+      applePayCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/apple-pay'
+    }
 
     new PublicSquare()
       .init(apiKey, options)

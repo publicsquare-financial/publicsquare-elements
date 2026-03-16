@@ -33,7 +33,10 @@ export default function BankAccountVerificationElementJs() {
 
     //Init public square
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
-    const options: PublicSquareInitOptions = {};
+    const options: PublicSquareInitOptions = {
+      bankAccountCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/bank-accounts',
+      bankAccountVerificationUrl: 'https://staging.api.publicsquare.com/payment-methods/bank-accounts/verification'
+    };
     publicSquare = new PublicSquare();
     await publicSquare.init(apiKey, options);
 

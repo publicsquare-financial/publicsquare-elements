@@ -48,7 +48,10 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
      * Step 1: Init the PublicSquare sdk
      */
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-    const options: PublicSquareInitOptions = {}
+    const options: PublicSquareInitOptions = {
+      cardCreateUrl: 'https://api.test.basistheory.com/proxy',
+      proxyKey: 'key_test_us_proxy_FrL4kJFRXU1AwuYVnMbTnP'
+    }
 
     new PublicSquare()
       .init(apiKey, options)
