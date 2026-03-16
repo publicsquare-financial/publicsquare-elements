@@ -40,7 +40,7 @@ jobs:
         NEXT_PUBLIC_PUBLICSQUARE_KEY: ${{ vars.NEXT_PUBLIC_PUBLICSQUARE_KEY }}
       run: make acceptance-test
 
-    - uses: actions/upload-artifact@v5
+    - uses: actions/upload-artifact@v7
       if: always()
       with:
         name: playwright-report
