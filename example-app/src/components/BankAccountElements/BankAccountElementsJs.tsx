@@ -4,13 +4,13 @@ import SubmitButton from '@/components/SubmitButton';
 import { PublicSquare } from '@publicsquare/elements-js';
 import {
   BankAccountCreateInput,
-  PublicSquareInitOptions,
   BankAccountElement,
   BankAccountRoutingNumberElement,
   BankAccountAccountNumberElement,
 } from '@publicsquare/elements-js/types/sdk';
 import NameInput from '@/components/Form/NameInput';
 import CaptureModal from '@/components/Modals/CaptureModal';
+import { environment } from '@/config/environments';
 
 export default function BankAccountElementsJs({ allInOne }: { allInOne: boolean }) {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>();
@@ -30,13 +30,8 @@ export default function BankAccountElementsJs({ allInOne }: { allInOne: boolean 
     /**
      * Step 1: Init the PublicSquare sdk
      */
-    const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
-    const options: PublicSquareInitOptions = {
-      bankAccountCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/bank-accounts'
-    };
-
     new PublicSquare()
-      .init(apiKey, options)
+      .init(environment.apiKey, environment.bankAccount)
       .then((_publicsquare) => setPublicSquare(_publicsquare));
   }, []);
 

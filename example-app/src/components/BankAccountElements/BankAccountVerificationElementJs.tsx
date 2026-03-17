@@ -2,12 +2,10 @@
 import { FormEvent, useState } from 'react';
 import { PublicSquare } from '@publicsquare/elements-js';
 import SubmitButton from '@/components/SubmitButton';
-import {
-  PublicSquareInitOptions,
-  BankAccountVerificationIdResponse,
-} from '@publicsquare/elements-js/types';
+import { BankAccountVerificationIdResponse } from '@publicsquare/elements-js/types';
 import CaptureModal from '@/components/Modals/CaptureModal';
 import Button from '../Buttons/Button';
+import { environment } from '@/config/environments';
 
 //Element items
 let publicSquare: PublicSquare;
@@ -32,13 +30,8 @@ export default function BankAccountVerificationElementJs() {
     }
 
     //Init public square
-    const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
-    const options: PublicSquareInitOptions = {
-      bankAccountCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/bank-accounts',
-      bankAccountVerificationUrl: 'https://staging.api.publicsquare.com/payment-methods/bank-accounts/verification'
-    };
     publicSquare = new PublicSquare();
-    await publicSquare.init(apiKey, options);
+    await publicSquare.init(environment.apiKey, environment.bankVerification);
 
     //Open verification element in container and Get data back
     bankAccountId = await publicSquare.bankVerify.openVerification(target);

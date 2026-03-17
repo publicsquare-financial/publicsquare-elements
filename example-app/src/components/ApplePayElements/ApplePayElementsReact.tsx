@@ -6,7 +6,7 @@ import {
 } from '@publicsquare/elements-react'
 import ApplePayButtonElement from '@publicsquare/elements-react/elements/ApplePayButtonElement'
 import CaptureModal from '../Modals/CaptureModal'
-import { PublicSquareInitOptions } from '@publicsquare/elements-react/types/sdk'
+import { environment } from '@/config/environments'
 
 declare global {
   interface Window {
@@ -15,17 +15,11 @@ declare global {
 }
 
 export default function ApplePayElementsReact() {
-  const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;  
-  const options: PublicSquareInitOptions = {
-    applePayCreateSessionUrl: 'https://staging.api.publicsquare.com/payment-methods/apple-pay/session',
-    applePayCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/apple-pay'
-  };
-
   return (
     /*
      * Step 1: Init the PublicSquare sdk
      */
-    <PublicSquareProvider apiKey={apiKey} options={options}>
+    <PublicSquareProvider apiKey={environment.apiKey} options={environment.applePay}>
       <Elements />
     </PublicSquareProvider>
   )

@@ -4,19 +4,13 @@ import {
   PublicSquareProvider,
   usePublicSquare
 } from '@publicsquare/elements-react'
-import { PublicSquareInitOptions } from '@publicsquare/elements-js/types'
 import GooglePayButtonElement from '@publicsquare/elements-react/elements/GooglePayButtonElement'
 import CaptureModal from '../Modals/CaptureModal'
+import { environment } from '@/config/environments'
 
 export default function GooglePayElementsReact() {
-  const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-  const options: PublicSquareInitOptions = {
-    googlePayCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/google-pay',
-    getGooglePayConfiguration: 'https://staging.api.publicsquare.com/.well-known/google-pay-configuration'
-  }
-  
   return (
-    <PublicSquareProvider apiKey={apiKey} options={options}>
+    <PublicSquareProvider apiKey={environment.apiKey} options={environment.googlePay}>
       <Elements />
     </PublicSquareProvider>
   )
