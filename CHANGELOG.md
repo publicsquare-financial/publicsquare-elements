@@ -1,3 +1,10 @@
+## [1.9.9](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.8...v1.9.9) (2026-03-18)
+
+
+### Bug Fixes
+
+* Update configuration for Test Tenant environment ([#245](https://github.com/publicsquare-financial/publicsquare-elements/issues/245)) ([7c48ab1](https://github.com/publicsquare-financial/publicsquare-elements/commit/7c48ab1b06425ebf577616a14e8d688786d2d339))
+
 ## [1.9.8](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.7...v1.9.8) (2026-03-13)
 
 
