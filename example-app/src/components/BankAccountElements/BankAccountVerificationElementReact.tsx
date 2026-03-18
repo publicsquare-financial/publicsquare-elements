@@ -6,15 +6,13 @@ import {
   PublicSquareProvider,
   usePublicSquare,
 } from '@publicsquare/elements-react';
-import PublicSquareTypes, { PublicSquareInitOptions } from '@publicsquare/elements-react/types/sdk';
+import PublicSquareTypes from '@publicsquare/elements-react/types/sdk';
 import { FormEvent, useRef, useState } from 'react';
+import { environment } from '@/config/environments';
 
 export default function BankAccountVerificationElementReact() {
-  const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
-  const options: PublicSquareInitOptions = {};
-
   return (
-    <PublicSquareProvider apiKey={apiKey} options={options}>
+    <PublicSquareProvider apiKey={environment.apiKey} options={environment.bankVerification}>
       <Elements />
     </PublicSquareProvider>
   );

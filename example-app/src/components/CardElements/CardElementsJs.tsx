@@ -7,11 +7,11 @@ import {
   CardExpirationDateElement,
   CardNumberElement,
   CardVerificationCodeElement,
-  CardsCreateInput,
-  PublicSquareInitOptions
+  CardsCreateInput
 } from '@publicsquare/elements-js/types'
 import NameInput from '@/components/Form/NameInput'
 import CaptureModal from '@/components/Modals/CaptureModal'
+import { environment } from '@/config/environments'
 
 export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>()
@@ -47,11 +47,8 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
     /**
      * Step 1: Init the PublicSquare sdk
      */
-    const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-    const options: PublicSquareInitOptions = {}
-
     new PublicSquare()
-      .init(apiKey, options)
+      .init(environment.apiKey, environment.card)
       .then((_publicsquare) => setPublicSquare(_publicsquare))
   }, [])
 

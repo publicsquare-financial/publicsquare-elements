@@ -45,7 +45,7 @@ test.describe('js', () => {
 
   test('should submit the JS CardElement form', async ({ page }) => {
     const data = fakeCardInputData
-    await page.route('https://api.basistheory.com/proxy', async (route) => {
+    await page.route('https://api.test.basistheory.com/proxy', async (route) => {
       const json = fakeCard(data)
       await route.fulfill({ json })
     })
@@ -63,7 +63,7 @@ test.describe('js', () => {
 
   test('should submit the JS CardElements form', async ({ page }) => {
     const data = fakeCardInputData
-    await page.route('https://api.basistheory.com/proxy', async (route) => {
+    await page.route('https://api.test.basistheory.com/proxy', async (route) => {
       const json = fakeCard(data)
       await route.fulfill({ json })
     })
@@ -100,7 +100,7 @@ test.describe('react', () => {
 
   test('should submit the React CardElement form', async ({ page }) => {
     const data = fakeCardInputData
-    await page.route('https://api.basistheory.com/proxy', async (route) => {
+    await page.route('https://api.test.basistheory.com/proxy', async (route) => {
       const json = fakeCard(data)
       await route.fulfill({ json })
     })
@@ -118,7 +118,7 @@ test.describe('react', () => {
 
   test('should submit the React CardElements form', async ({ page }) => {
     const data = fakeCardInputData
-    await page.route('https://api.basistheory.com/proxy', async (route) => {
+    await page.route('https://api.test.basistheory.com/proxy', async (route) => {
       const json = fakeCard(data)
       await route.fulfill({ json })
     })

@@ -9,17 +9,15 @@ import {
   usePublicSquare,
   BankAccountElement,
 } from '@publicsquare/elements-react';
-import PublicSquareTypes, { PublicSquareInitOptions } from '@publicsquare/elements-react/types/sdk';
+import PublicSquareTypes from '@publicsquare/elements-react/types/sdk';
 import { FormEvent, useRef, useState } from 'react';
 import AccountHolderTypeSelect from '../Form/AccountHolderTypeSelect';
 import AccountTypeSelect from '../Form/AccountTypeSelect';
+import { environment } from '@/config/environments';
 
 export default function BankAccountElementsReact({ allInOne }: { allInOne: boolean }) {
-  const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
-  const options: PublicSquareInitOptions = {};
-
   return (
-    <PublicSquareProvider apiKey={apiKey} options={options}>
+    <PublicSquareProvider apiKey={environment.apiKey} options={environment.bankAccount}>
       <Elements allInOne={allInOne} />
     </PublicSquareProvider>
   );

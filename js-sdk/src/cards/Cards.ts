@@ -21,6 +21,7 @@ export class PublicSquareCards {
       throw new Error('PublicSquare JS has not be initialized yet')
     } else {
       const validatedInput = validateCreateCardInput(input)
+
       return this._publicSquare.bt.client
         .post(
           this._publicSquare._cardCreateUrl,

@@ -26,6 +26,7 @@ export interface ApplicationInfo {
 export interface PublicSquareInitOptions {
   cardCreateUrl?: string
   bankAccountCreateUrl?: string
+  bankAccountVerificationUrl?: string
   applePayCreateUrl?: string
   applePayCreateSessionUrl?: string
   googlePayCreateUrl?: string

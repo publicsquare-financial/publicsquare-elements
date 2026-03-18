@@ -66,6 +66,7 @@ export class PublicSquare {
     if (options?.proxyKey) this._proxyKey = options?.proxyKey;
     if (options?.cardCreateUrl) this._cardCreateUrl = options?.cardCreateUrl;
     if (options?.bankAccountCreateUrl) this._bankAccountCreateUrl = options?.bankAccountCreateUrl;
+    if (options?.bankAccountVerificationUrl) this._bankAccountVerificationUrl = options?.bankAccountVerificationUrl;
     if (options?.applePayCreateUrl) this._applePayCreateUrl = options?.applePayCreateUrl;
     if (options?.applePayCreateSessionUrl)
       this._applePayCreateSessionUrl = options?.applePayCreateSessionUrl;

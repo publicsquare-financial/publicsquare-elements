@@ -1,9 +1,9 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { PublicSquare } from '@publicsquare/elements-js'
-import { PublicSquareInitOptions } from '@publicsquare/elements-js/types'
 import CaptureModal from '../Modals/CaptureModal'
 import { GooglePayButtonWidget } from '@publicsquare/elements-js/googlePay/GooglePayButtonWidget'
+import { environment } from '@/config/environments'
 
 export default function GooglePayElementsJs() {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>()
@@ -15,11 +15,8 @@ export default function GooglePayElementsJs() {
   }>()
 
   useEffect(() => {
-    const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-    const options: PublicSquareInitOptions = {}
-
     new PublicSquare()
-      .init(apiKey, options)
+      .init(environment.apiKey, environment.googlePay)
       .then((_publicsquare) => setPublicSquare(_publicsquare))
   }, [])
 

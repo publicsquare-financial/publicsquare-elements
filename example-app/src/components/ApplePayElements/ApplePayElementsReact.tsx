@@ -6,6 +6,7 @@ import {
 } from '@publicsquare/elements-react'
 import ApplePayButtonElement from '@publicsquare/elements-react/elements/ApplePayButtonElement'
 import CaptureModal from '../Modals/CaptureModal'
+import { environment } from '@/config/environments'
 
 declare global {
   interface Window {
@@ -14,13 +15,11 @@ declare global {
 }
 
 export default function ApplePayElementsReact() {
-  const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
-
   return (
     /*
      * Step 1: Init the PublicSquare sdk
      */
-    <PublicSquareProvider apiKey={apiKey}>
+    <PublicSquareProvider apiKey={environment.apiKey} options={environment.applePay}>
       <Elements />
     </PublicSquareProvider>
   )

@@ -1174,7 +1174,7 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.28.5"
 
-"@basis-theory/basis-theory-js@^4.22.1":
+"@basis-theory/basis-theory-js@^4.30.0":
   version "4.30.0"
   resolved "https://registry.yarnpkg.com/@basis-theory/basis-theory-js/-/basis-theory-js-4.30.0.tgz#c34c3ba9f78096ba30292d4dcd62ff3a0f49db53"
   integrity sha512-sDzzriAMe/JbY+beioqLzo2i2NacV6XjqxrbpW0kl/7rnSiM7TLGptKpU3sMHhtGHIUxliCvfOm8KHEWHQecfA==
@@ -1503,13 +1503,13 @@
   resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.2.9.tgz#d229a7b7f9dac167a156992ef23c7f023653f53b"
   integrity sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==
 
-"@publicsquare/elements-js@1.9.7":
-  version "1.9.7"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.9.7.tgz#2dc157d1652442eaa6395ef5952715b812c1a587"
-  integrity sha512-cq15tp3jXm82hEAn3dMC+bQ3Z5rW3wA5V+p8UkHBeeNEFgYph8JvhfnMvcX1Z7Vew73F/Dov5CGo9Wg6ZlgPcw==
+"@publicsquare/elements-js@1.9.8":
+  version "1.9.8"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.9.8.tgz#222f9e678646ea073ebc1833858570775e4b30e0"
+  integrity sha512-YCMzpzSq7Eog6tehrxMDhfX5kDW8E77Jmwf8J7y7Q+zgIGPQ1SunFYgxgSQmAGHpHmhHfDsGTr3zSvLktb6x5w==
   dependencies:
-    "@basis-theory/basis-theory-js" "^4.22.1"
-    axios "^1.13.4"
+    "@basis-theory/basis-theory-js" "^4.30.0"
+    axios "^1.13.5"
     glob "^13.0.1"
     prettier "^3.8.1"
 
@@ -1766,7 +1766,7 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
-axios@^1.13.4, axios@^1.13.5, axios@^1.8.2:
+axios@^1.13.5, axios@^1.8.2:
   version "1.13.6"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.13.6.tgz#c3f92da917dc209a15dd29936d20d5089b6b6c98"
   integrity sha512-ChTCHMouEe2kn713WHbQGcuYrr6fXTBiu460OTwWrWob16g1bXn4vtz07Ope7ewMozJAnEquLk5lWQWtBig9DQ==
