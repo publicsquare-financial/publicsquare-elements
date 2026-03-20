@@ -1,3 +1,10 @@
+## [1.9.10](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.9...v1.9.10) (2026-03-20)
+
+
+### Bug Fixes
+
+* remove trivy ([#250](https://github.com/publicsquare-financial/publicsquare-elements/issues/250)) ([7f6ae26](https://github.com/publicsquare-financial/publicsquare-elements/commit/7f6ae269449758e97ef49078d33ec44d3420b9fe))
+
 ## [1.9.9](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.8...v1.9.9) (2026-03-18)
 
 
