@@ -81,6 +81,3 @@ cd react-sdk && yarn link:js-sdk   # Links local js-sdk build into react-sdk
 ```
 The `build.sh` script handles this automatically via `yarn link` when running `make build`.
 
-### Security Scanning
-
-Trivy scans run on every PR for HIGH/CRITICAL CVEs. Known unfixed CVEs are tracked in `.trivyignore`. When updating dependencies to address CVEs, also update `resolutions` in `package.json` to force transitive dependency upgrades.
