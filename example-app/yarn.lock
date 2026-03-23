@@ -146,7 +146,7 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.28.5"
 
-"@basis-theory/basis-theory-js@^4.22.1":
+"@basis-theory/basis-theory-js@^4.30.0":
   version "4.30.0"
   resolved "https://registry.yarnpkg.com/@basis-theory/basis-theory-js/-/basis-theory-js-4.30.0.tgz#c34c3ba9f78096ba30292d4dcd62ff3a0f49db53"
   integrity sha512-sDzzriAMe/JbY+beioqLzo2i2NacV6XjqxrbpW0kl/7rnSiM7TLGptKpU3sMHhtGHIUxliCvfOm8KHEWHQecfA==
@@ -623,22 +623,22 @@
   dependencies:
     playwright "1.58.2"
 
-"@publicsquare/elements-js@1.9.7", "@publicsquare/elements-js@^1.9.7":
-  version "1.9.7"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.9.7.tgz#2dc157d1652442eaa6395ef5952715b812c1a587"
-  integrity sha512-cq15tp3jXm82hEAn3dMC+bQ3Z5rW3wA5V+p8UkHBeeNEFgYph8JvhfnMvcX1Z7Vew73F/Dov5CGo9Wg6ZlgPcw==
+"@publicsquare/elements-js@1.9.10", "@publicsquare/elements-js@^1.9.7":
+  version "1.9.10"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.9.10.tgz#371e17c4c2c4c8d079537671bc3373f477b193c7"
+  integrity sha512-FJ5vZKOPKGuxSX/D/C/jgDTMLMqwTfVcftlFV5qvh+kCPzBD08T/JxE4/UsRfYUR6fKr3Uyl8yBM++9lgBn+OQ==
   dependencies:
-    "@basis-theory/basis-theory-js" "^4.22.1"
-    axios "^1.13.4"
+    "@basis-theory/basis-theory-js" "^4.30.0"
+    axios "^1.13.5"
     glob "^13.0.1"
     prettier "^3.8.1"
 
-"@publicsquare/elements-react@^1.9.7":
-  version "1.9.7"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-react/-/elements-react-1.9.7.tgz#17fd2f9da17ad27ea2950ef22324647befa877a3"
-  integrity sha512-N10PNkpJsGUnluHBZC1nXUXZ4v0GZTfUJjlWVeAXEGamYTwyNNwHfOQbqvzWV+qYofBIR7qdDuUIPkKh8wcXIQ==
+"@publicsquare/elements-react@^1.9.10":
+  version "1.9.10"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-react/-/elements-react-1.9.10.tgz#ab7da81d11bfb3b6e8e7a83ac6183af7cee6fd36"
+  integrity sha512-0Viu0+v69xnLIBigtN5PRpKC/+W+oDaFpZDAQZFeDaEEGuNHm1H3QbvkS/sCpL2NXVLaLcmqAKEFAcrK1r7UcQ==
   dependencies:
-    "@publicsquare/elements-js" "1.9.7"
+    "@publicsquare/elements-js" "1.9.10"
     prettier "^3.8.1"
 
 "@react-aria/focus@^3.20.2":
@@ -1154,7 +1154,7 @@ axe-core@^4.10.0:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.11.0.tgz#16f74d6482e343ff263d4f4503829e9ee91a86b6"
   integrity sha512-ilYanEU8vxxBexpJd8cWM4ElSQq4QctCLKih0TSfjIfCQTeyH/6zVrmIJfLPrKTKJRbiG+cfnZbQIjAlJmF1jQ==
 
-axios@^1.13.4, axios@^1.13.5, axios@^1.8.2:
+axios@^1.13.5, axios@^1.8.2:
   version "1.13.6"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.13.6.tgz#c3f92da917dc209a15dd29936d20d5089b6b6c98"
   integrity sha512-ChTCHMouEe2kn713WHbQGcuYrr6fXTBiu460OTwWrWob16g1bXn4vtz07Ope7ewMozJAnEquLk5lWQWtBig9DQ==
