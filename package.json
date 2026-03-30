@@ -35,7 +35,7 @@
     "dotenv": "^17.3.1",
     "semantic-release": "^25.0.3",
     "synckit": "^0.11.12",
-    "typescript": ">=3.0.0"
+    "typescript": ">=6.0.2"
   },
   "dependencies": {
     "prettier": "^3.8.1"
