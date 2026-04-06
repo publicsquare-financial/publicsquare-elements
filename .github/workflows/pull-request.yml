@@ -4,18 +4,17 @@ on:
   pull_request:
     branches: [master]
 
-permissions:
-  pull-requests: write
-  contents: read
-
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   security:
     name: Source Security Scan
     uses: publicsquare-financial/psq-ops-actions/.github/workflows/security.yaml@v11.14
+    permissions:
+      pull-requests: write
+      contents: read
 
   test:
     timeout-minutes: 60
