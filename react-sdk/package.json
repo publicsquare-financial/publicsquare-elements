@@ -31,6 +31,9 @@
   },
   "dependencies": {
     "@publicsquare/elements-js": "1.9.10",
+    "axios": "^1.13.5",
+    "glob": "^13.0.1",
+    "minimatch": "^10.2.3",
     "prettier": "^3.8.1"
   },
   "resolutions": {

@@ -33,7 +33,9 @@
     "@basis-theory/basis-theory-js": "^4.30.0",
     "axios": "^1.13.5",
     "glob": "^13.0.1",
-    "prettier": "^3.8.1"
+    "minimatch": "^10.2.3",
+    "prettier": "^3.8.1",
+    "serialize-javascript": "^7.0.4"
   },
   "resolutions": {
     "axios": "^1.13.5",
