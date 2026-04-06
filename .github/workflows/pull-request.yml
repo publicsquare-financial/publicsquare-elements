@@ -11,10 +11,15 @@ concurrency:
 jobs:
   security:
     name: Source Security Scan
-    uses: publicsquare-financial/psq-ops-actions/.github/workflows/security.yaml@v11.14
+    runs-on: ubuntu-latest
     permissions:
       pull-requests: write
       contents: read
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ./.github/actions/security
 
   test:
     timeout-minutes: 60
