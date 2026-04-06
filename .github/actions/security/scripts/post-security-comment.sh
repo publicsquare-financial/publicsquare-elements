@@ -1,13 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 
-# Post or update a unified security scan PR comment.
-# Handles two phases: source (dir:.) and image (docker:<ref>).
-# Both phases write to the same comment - phase 2 preserves phase 1 content.
+# Post or update a security scan PR comment (source-only, no container image).
 #
 # Expects:
 #   GH_TOKEN          - GitHub token
-#   SCAN_PHASE        - "source" or "image"
 #   SEVERITY          - threshold used (for display)
 #   PACKAGES          - "true"/"false"
 #   LICENSES          - "true"/"false"
@@ -18,8 +15,6 @@ set -euo pipefail
 MAIN_MARKER="<!-- security-scan-report -->"
 SOURCE_START="<!-- security-source-start -->"
 SOURCE_END="<!-- security-source-end -->"
-IMAGE_START="<!-- security-image-start -->"
-IMAGE_END="<!-- security-image-end -->"
 LICENSE_START="<!-- security-license-start -->"
 LICENSE_END="<!-- security-license-end -->"
 CODE_START="<!-- security-code-start -->"
@@ -30,14 +25,6 @@ if [ -z "$PR_NUMBER" ]; then
   echo "Not a pull request - skipping comment"
   exit 0
 fi
-
-# Extract section content from an existing comment body (exclusive of markers)
-extract_section() {
-  local start="$1" end="$2" body="$3"
-  printf '%s' "$body" | awk \
-    "found && index(\$0, \"${end}\"){found=0; next} found{print} index(\$0, \"${start}\"){found=1}" \
-    || true
-}
 
 BLOCK_ON_PACKAGES="${BLOCK_ON_PACKAGES:-true}"
 BLOCK_ON_CODE="${BLOCK_ON_CODE:-true}"
@@ -132,8 +119,6 @@ build_code_section() {
   echo "⚠️ ${count} finding(s)"
   echo ""
 
-  # Get languages by extracting from ruleId (e.g. "ruby.lang.security.foo" -> "ruby")
-  # Fall back to file extension if ruleId doesn't have a language prefix
   local languages
   languages=$(jq -r '
     [.runs[0].results[] |
@@ -231,31 +216,13 @@ build_license_section() {
 EXISTING_ID=$(gh api "repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments" \
   --jq ".[] | select(.body | startswith(\"${MAIN_MARKER}\")) | .id" | head -1 || true)
 
-EXISTING_BODY=""
-if [ -n "$EXISTING_ID" ]; then
-  EXISTING_BODY=$(gh api "repos/${GITHUB_REPOSITORY}/issues/comments/${EXISTING_ID}" --jq '.body')
-fi
-
-# Build each section - use local results for current phase, preserve existing for the other
-if [ "${SCAN_PHASE}" = "source" ]; then
-  SOURCE_CONTENT=$(build_vuln_section "grype-source-results.json")
-  CODE_CONTENT=$(build_code_section)
-  LICENSE_CONTENT=$(build_license_section)
-  IMAGE_CONTENT=$(extract_section "$IMAGE_START" "$IMAGE_END" "$EXISTING_BODY")
-  [ -z "$IMAGE_CONTENT" ] && IMAGE_CONTENT="_Container image scan runs after build._"
-else
-  IMAGE_CONTENT=$(build_vuln_section "grype-image-results.json")
-  SOURCE_CONTENT=$(extract_section "$SOURCE_START" "$SOURCE_END" "$EXISTING_BODY")
-  CODE_CONTENT=$(extract_section "$CODE_START" "$CODE_END" "$EXISTING_BODY")
-  LICENSE_CONTENT=$(extract_section "$LICENSE_START" "$LICENSE_END" "$EXISTING_BODY")
-  [ -z "$SOURCE_CONTENT" ] && SOURCE_CONTENT="_Source scan results unavailable._"
-  [ -z "$CODE_CONTENT" ]   && CODE_CONTENT="_Code scan results unavailable._"
-  [ -z "$LICENSE_CONTENT" ] && LICENSE_CONTENT="_License scan results unavailable._"
-fi
+# Build sections
+SOURCE_CONTENT=$(build_vuln_section "grype-source-results.json")
+CODE_CONTENT=$(build_code_section)
+LICENSE_CONTENT=$(build_license_section)
 
 # Build blocking status lines
 SOURCE_BLOCKING=$(blocking_status "$BLOCK_ON_PACKAGES" "fails on ${SEVERITY}+ severity vulnerabilities")
-IMAGE_BLOCKING=$(blocking_status "$BLOCK_ON_PACKAGES" "fails on ${SEVERITY}+ severity vulnerabilities")
 CODE_BLOCKING=$(blocking_status "$BLOCK_ON_CODE" "fails on code analysis findings")
 LICENSE_BLOCKING=$(blocking_status "$BLOCK_ON_LICENSES" "fails on high-risk (strong copyleft) licenses")
 
@@ -263,19 +230,12 @@ LICENSE_BLOCKING=$(blocking_status "$BLOCK_ON_LICENSES" "fails on high-risk (str
 COMMENT_BODY="${MAIN_MARKER}
 ## Security Scan
 
-### Source - Package & OS Vulnerabilities
+### Package & OS Vulnerabilities
 ${SOURCE_BLOCKING}
 
 ${SOURCE_START}
 ${SOURCE_CONTENT}
 ${SOURCE_END}
-
-### Container Image - Package & OS Vulnerabilities
-${IMAGE_BLOCKING}
-
-${IMAGE_START}
-${IMAGE_CONTENT}
-${IMAGE_END}
 
 ### Code - Static Analysis
 ${CODE_BLOCKING}
