@@ -6,19 +6,6 @@
     "test": "yarn playwright test",
     "test:ui": "yarn playwright test --ui"
   },
-  "resolutions": {
-    "glob": "^10.5.0",
-    "js-yaml": "^4.1.1",
-    "tar": "^7.5.11",
-    "@semantic-release/npm": "^13.1.5",
-    "lodash-es": "^4.18.0",
-    "lodash": "^4.18.0",
-    "diff": "8.0.3",
-    "@isaacs/brace-expansion": "^5.0.1",
-    "undici": "^7.24.0",
-    "npm": "^11.9.0",
-    "minimatch": "^10.2.3"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -31,8 +18,8 @@
     "@semantic-release/github": "^12.0.6",
     "@semantic-release/npm": "^13.1.5",
     "@semantic-release/release-notes-generator": "^14.0.3",
-    "@types/node": "^25.5.0",
-    "dotenv": "^17.3.1",
+    "@types/node": "^25.6.0",
+    "dotenv": "^17.4.2",
     "semantic-release": "^25.0.3",
     "synckit": "^0.11.12",
     "typescript": ">=3.0.0"
@@ -42,7 +29,7 @@
     "lodash-es": "^4.18.0",
     "minimatch": "^10.2.3",
     "npm": "^11.9.0",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.2",
     "tar": "^7.5.11",
     "undici": "^7.24.0"
   }
