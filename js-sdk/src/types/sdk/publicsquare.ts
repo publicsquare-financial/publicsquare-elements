@@ -4,9 +4,13 @@ import type {
   CreateCardNumberElementOptions,
   CreateCardVerificationCodeElementOptions,
   ElementType as BTElementType,
-  BasisTheoryElements
-} from '@basis-theory/basis-theory-js/types/elements'
-import { BasisTheory as IBasisTheory } from '@basis-theory/basis-theory-js/types/sdk'
+  BasisTheoryElements,
+  ElementWrapper,
+  ICardElement,
+  ICardExpirationDateElement,
+  ICardNumberElement,
+  ICardVerificationCodeElement,
+} from '@basis-theory/web-elements/dist/types'
 import {
   CreateBankAccountAccountNumberElementOptions,
   CreateBankAccountElementOptions,
@@ -14,8 +18,37 @@ import {
   CreateBankAccountVerificationElementOptions
 } from './bankAccounts'
 
-export { ElementWrapper } from '@basis-theory/basis-theory-js/types/elements'
-export * from '@basis-theory/basis-theory-js/types/elements'
+export type { ElementWrapper }
+export type {
+  AutoCompleteValue,
+  BaseElement,
+  BasisTheoryElements,
+  CardElementEvents,
+  CardExpirationDateElementEvents,
+  CardNumberElementEvents,
+  CardVerificationCodeElementEvents,
+  ChangeEvent,
+  CopyEvent,
+  CreateCardExpirationDateElementOptions,
+  CreateCardNumberElementOptions,
+  CreateCardVerificationCodeElementOptions,
+  ElementEventListener,
+  ElementMetadata,
+  ElementValue,
+  ICardElement,
+  ICardExpirationDateElement,
+  ICardNumberElement,
+  ICardVerificationCodeElement,
+  InputBlurEvent,
+  InputFocusEvent,
+  InputKeydownEvent,
+  ReadyEvent,
+  Subscription,
+  UpdateCardElementOptions,
+  UpdateCardExpirationDateElementOptions,
+  UpdateCardNumberElementOptions,
+  UpdateCardVerificationCodeElementOptions,
+} from '@basis-theory/web-elements/dist/types'
 
 export interface ApplicationInfo {
   name?: string
@@ -57,6 +90,10 @@ export enum ElementTypeEnum {
 }
 
 export type CreateCardElementOptions = BTCreateCardElementOptions
+export type CardElement = ICardElement
+export type CardExpirationDateElement = ICardExpirationDateElement
+export type CardNumberElement = ICardNumberElement
+export type CardVerificationCodeElement = ICardVerificationCodeElement
 
 export type CreateElementOptions =
   | CreateCardElementOptions
@@ -68,4 +105,4 @@ export type CreateElementOptions =
   | CreateBankAccountAccountNumberElementOptions
   | CreateBankAccountVerificationElementOptions
 
-export type BasisTheoryInstance = IBasisTheory & BasisTheoryElements
+export type BasisTheoryInstance = BasisTheoryElements

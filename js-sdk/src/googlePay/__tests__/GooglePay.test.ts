@@ -4,15 +4,13 @@ import { getError } from '../../tests/utils'
 import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '../../constants'
 import { GooglePayCreateInput } from '../../types'
 
-jest.mock('@basis-theory/basis-theory-js', () => ({
-  BasisTheory: jest.fn().mockImplementation(() => ({
-    init: jest.fn().mockResolvedValue({
-      createElement: jest.fn(),
-      client: {
-        post: jest.fn().mockResolvedValue({})
-      }
-    })
-  }))
+jest.mock('@basis-theory/web-elements', () => ({
+  basistheory: jest.fn().mockResolvedValue({
+    createElement: jest.fn(),
+    client: {
+      post: jest.fn().mockResolvedValue({})
+    }
+  })
 }))
 
 const validGooglePayCreateInput: GooglePayCreateInput = {

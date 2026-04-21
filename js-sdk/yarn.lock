@@ -972,6 +972,11 @@
     snake-case "^3.0.4"
     snakecase-keys "^3.2.1"
 
+"@basis-theory/web-elements@^2.11.2":
+  version "2.11.2"
+  resolved "https://registry.yarnpkg.com/@basis-theory/web-elements/-/web-elements-2.11.2.tgz#8029c0bce5b1afc47e425bc4b5b9cfd7ee0969a7"
+  integrity sha512-IQo6Jj9pngTG4gqAD8qFPUVdVhN+1j7MM99dkVgWJmolyeGhE0DKvU4SfjL4nCCQ0sfObrv7hon2xN5X+l9MIg==
+
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
@@ -4254,6 +4259,11 @@ type-fest@^4.41.0:
   version "4.41.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-4.41.0.tgz#6ae1c8e5731273c2bf1f58ad39cbae2c91a46c58"
   integrity sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==
+
+types@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/types/-/types-0.1.1.tgz#860c6859d11366293f835d8c95aebcf95029838e"
+  integrity sha512-JuntZtJj4MKLE9x/XBs7IjsznYhzETwr34pw3XJTKvgYtAMdeMG+o8x8U85E5Lm6eCPa1DdOdGVsHMwq4ZnZAg==
 
 typescript@^5.6.2:
   version "5.9.3"
