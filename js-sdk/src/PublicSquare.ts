@@ -88,7 +88,7 @@ export class PublicSquare {
   private _createElement(
     type: ElementTypeEnum,
     options: CreateElementOptions,
-  ): ICardElement | ICardExpirationDateElement | ICardNumberElement | ICardVerificationCodeElement {
+  ): ElementValue {
     if (!this._bt) {
       throw new Error(ELEMENTS_INIT_ERROR_MESSAGE);
     }

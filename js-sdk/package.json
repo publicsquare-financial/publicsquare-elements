@@ -36,8 +36,7 @@
     "glob": "^13.0.1",
     "minimatch": "^10.2.3",
     "prettier": "^3.8.2",
-    "serialize-javascript": "^7.0.5",
-    "types": "^0.1.1"
+    "serialize-javascript": "^7.0.5"
   },
   "resolutions": {
     "follow-redirects": "^1.16.0"
