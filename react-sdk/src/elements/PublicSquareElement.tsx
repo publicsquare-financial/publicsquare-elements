@@ -21,6 +21,10 @@ const PublicSquareElement = forwardRef<any, ElementProps>(function Component(
     if (!init && publicsquare) {
       init = true
       const element = createElement(type, options)
+      if (!('mount' in element) || typeof element.mount !== 'function') {
+        console.error('Created element does not support mount:', type)
+        return
+      }
       const mountResult = element.mount(`#${id}`)
 
       // Handle both synchronous and asynchronous mount functions
