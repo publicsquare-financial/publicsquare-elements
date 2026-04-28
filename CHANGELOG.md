@@ -1,10 +1,3 @@
-# [1.10.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.11...v1.10.0) (2026-04-28)
-
-
-### Features
-
-* migrate to BT web elements from deprecated js sdk ([86bcb5b](https://github.com/publicsquare-financial/publicsquare-elements/commit/86bcb5ba9e6ec445f3a514341e3890bc4ade52de))
-
 ## [1.9.11](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.10...v1.9.11) (2026-04-14)
 
 

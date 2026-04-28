@@ -2,16 +2,18 @@ import { PublicSquare } from '..';
 import { ELEMENTS_INIT_ERROR_MESSAGE, ELEMENTS_TYPE_NOT_SUPPORTED } from '@/constants';
 import { getError } from '@/tests/utils';
 
-jest.mock('@basis-theory/web-elements', () => ({
-  basistheory: jest.fn().mockResolvedValue({
-    createElement: jest.fn().mockResolvedValue({}),
-    client: {
-      post: jest.fn().mockResolvedValue({}),
-    },
-  }),
+jest.mock('@basis-theory/basis-theory-js', () => ({
+  BasisTheory: jest.fn().mockImplementation(() => ({
+    init: jest.fn().mockResolvedValue({
+      createElement: jest.fn().mockResolvedValue({}),
+      client: {
+        post: jest.fn().mockResolvedValue({}),
+      },
+    }),
+  })),
 }));
 
-jest.mock('../bankAccounts/BankAccount', () => ({
+jest.mock('../bankAccounts', () => ({
   PublicSquareBankAccount: jest.fn().mockImplementation(() => {
     function MockPublicSquareBankAccount() {}
     MockPublicSquareBankAccount.prototype.createElement = jest.fn().mockResolvedValue({});
