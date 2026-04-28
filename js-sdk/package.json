@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "@basis-theory/basis-theory-js": "^4.30.0",
-    "@basis-theory/web-elements": "^2.11.2",
     "axios": "^1.15.0",
     "glob": "^13.0.1",
     "minimatch": "^10.2.3",

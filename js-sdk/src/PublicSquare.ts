@@ -1,16 +1,15 @@
-import { basistheory } from '@basis-theory/web-elements';
+import { BasisTheory } from '@basis-theory/basis-theory-js';
 import { ELEMENTS_INIT_ERROR_MESSAGE, ELEMENTS_TYPE_NOT_SUPPORTED } from './constants';
 import {
-  ICardElement,
-  ICardExpirationDateElement,
-  ICardNumberElement,
-  ICardVerificationCodeElement,
+  CardElement,
+  CardExpirationDateElement,
+  CardNumberElement,
+  CardVerificationCodeElement,
   CreateCardExpirationDateElementOptions,
   CreateCardNumberElementOptions,
   CreateCardVerificationCodeElementOptions,
   ElementValue,
-  BasisTheoryElements,
-} from '@basis-theory/web-elements/dist/types';
+} from '@basis-theory/basis-theory-js/types/elements';
 import { PublicSquareCards } from './cards';
 import { PublicSquareBankAccount } from './bankAccounts/BankAccount';
 import {
@@ -41,11 +40,10 @@ export class PublicSquare {
   _bankAccountVerificationUrl: string =
     'https://api.publicsquare.com/payment-methods/bank-accounts/verification';
   _googlePayCreateUrl: string = 'https://api.publicsquare.com/payment-methods/google-pay';
-  _getGooglePayConfiguration: string =
-    'https://api.publicsquare.com/.well-known/google-pay-configuration';
+  _getGooglePayConfiguration: string = 'https://api.publicsquare.com/.well-known/google-pay-configuration';
 
-  protected _bt?: BasisTheoryElements;
-  get bt(): BasisTheoryElements | undefined {
+  protected _bt?: BasisTheoryInstance;
+  get bt(): BasisTheoryInstance | undefined {
     return this._bt;
   }
 
@@ -68,8 +66,7 @@ export class PublicSquare {
     if (options?.proxyKey) this._proxyKey = options?.proxyKey;
     if (options?.cardCreateUrl) this._cardCreateUrl = options?.cardCreateUrl;
     if (options?.bankAccountCreateUrl) this._bankAccountCreateUrl = options?.bankAccountCreateUrl;
-    if (options?.bankAccountVerificationUrl)
-      this._bankAccountVerificationUrl = options?.bankAccountVerificationUrl;
+    if (options?.bankAccountVerificationUrl) this._bankAccountVerificationUrl = options?.bankAccountVerificationUrl;
     if (options?.applePayCreateUrl) this._applePayCreateUrl = options?.applePayCreateUrl;
     if (options?.applePayCreateSessionUrl)
       this._applePayCreateSessionUrl = options?.applePayCreateSessionUrl;
@@ -77,7 +74,9 @@ export class PublicSquare {
     if (options?.getGooglePayConfiguration)
       this._getGooglePayConfiguration = options?.getGooglePayConfiguration;
 
-    const bt = await basistheory((Math.random() + 1).toString(36).substring(7));
+    const bt = await new BasisTheory().init((Math.random() + 1).toString(36).substring(7), {
+      elements: true,
+    });
     if (!bt) {
       throw new Error(ELEMENTS_INIT_ERROR_MESSAGE);
     }
@@ -88,7 +87,7 @@ export class PublicSquare {
   private _createElement(
     type: ElementTypeEnum,
     options: CreateElementOptions,
-  ): ElementValue {
+  ): CardElement | CardExpirationDateElement | CardNumberElement | CardVerificationCodeElement {
     if (!this._bt) {
       throw new Error(ELEMENTS_INIT_ERROR_MESSAGE);
     }
@@ -139,7 +138,7 @@ export class PublicSquare {
   }
 
   public createCardElement(options: CreateCardElementOptions) {
-    return this._createElement(ElementTypeEnum.Card, options) as ICardElement;
+    return this._createElement(ElementTypeEnum.Card, options) as CardElement;
   }
 
   public createCardExpirationDateElement(
@@ -148,14 +147,14 @@ export class PublicSquare {
     return this._createElement(ElementTypeEnum.CardExpirationDate, {
       ...options,
       targetId: 'elementTypesCardExpirationDateElement',
-    }) as ICardExpirationDateElement;
+    }) as CardExpirationDateElement;
   }
 
   public createCardNumberElement(options: Omit<CreateCardNumberElementOptions, 'targetId'>) {
     return this._createElement(ElementTypeEnum.CardNumber, {
       ...options,
       targetId: 'elementTypesCardNumberElement',
-    }) as ICardNumberElement;
+    }) as CardNumberElement;
   }
 
   public createCardVerificationCodeElement(
@@ -164,7 +163,7 @@ export class PublicSquare {
     return this._createElement(ElementTypeEnum.CardVerificationCode, {
       ...options,
       targetId: 'elementTypesCardVerificationCodeElement',
-    }) as ICardVerificationCodeElement;
+    }) as CardVerificationCodeElement;
   }
 
   public createBankAccountElement(
