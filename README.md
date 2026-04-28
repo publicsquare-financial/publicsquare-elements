@@ -40,8 +40,9 @@ Then open [http://localhost:3000](http://localhost:3000)
 - Use [semantic release commit messages](https://semantic-release.gitbook.io/semantic-release/#commit-message-format) to ensure it bumped the version correctly.
 
 - After merge, add a comment in the PR like below (remember to change the version):
+
 ```
-🎉 This PR is included in version <version> 🎉
+🎉 This PR is included in version <version>. 🎉
 
 The release is available on:
 
