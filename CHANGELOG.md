@@ -1,3 +1,20 @@
+# [1.11.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.10.0...v1.11.0) (2026-04-28)
+
+
+### Bug Fixes
+
+* revert basis-theory versions ([bad61e7](https://github.com/publicsquare-financial/publicsquare-elements/commit/bad61e794409c52e10ac8b8e85ca09534b33e0fc))
+
+
+### Features
+
+* revert BT migration ([a920503](https://github.com/publicsquare-financial/publicsquare-elements/commit/a920503ca004976b1824f1afe672cb852cfff353))
+
+
+### Reverts
+
+* Revert bt elements migration ([#289](https://github.com/publicsquare-financial/publicsquare-elements/issues/289)) ([305f440](https://github.com/publicsquare-financial/publicsquare-elements/commit/305f440235a86f914b0a79ba63df495ba59f84aa))
+
 ## [1.9.11](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.9.10...v1.9.11) (2026-04-14)
 
 
