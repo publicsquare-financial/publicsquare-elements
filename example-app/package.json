@@ -18,7 +18,7 @@
     "@heroicons/react": "^2.1.5",
     "@publicsquare/elements-js": "^1.9.7",
     "@publicsquare/elements-react": "^1.9.7",
-    "axios": "^1.15.0",
+    "axios": "^1.15.1",
     "flatted": "^3.4.2",
     "minimatch": "^10.2.3",
     "next": "^15.5.15",
