@@ -14,7 +14,7 @@
     "follow-redirects": "^1.16.0"
   },
   "dependencies": {
-    "@headlessui/react": "^2.1.8",
+    "@headlessui/react": "^2.2.10",
     "@heroicons/react": "^2.1.5",
     "@publicsquare/elements-js": "^1.9.7",
     "@publicsquare/elements-react": "^1.9.7",
