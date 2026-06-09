@@ -599,23 +599,28 @@
   dependencies:
     playwright "1.59.1"
 
-"@publicsquare/elements-js@1.9.10", "@publicsquare/elements-js@^1.9.7":
-  version "1.9.10"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.9.10.tgz#371e17c4c2c4c8d079537671bc3373f477b193c7"
-  integrity sha512-FJ5vZKOPKGuxSX/D/C/jgDTMLMqwTfVcftlFV5qvh+kCPzBD08T/JxE4/UsRfYUR6fKr3Uyl8yBM++9lgBn+OQ==
+"@publicsquare/elements-js@1.11.0", "@publicsquare/elements-js@^1.11.0":
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.11.0.tgz#1bbc042a66896f302d0ca9d54391c3462f365e5b"
+  integrity sha512-P6G23VnwJ2QAcrWtlKyIoV3Bm1q+sREXaEgVQI4ewZWaM+zKSW4uuF2vAiUFW07nfw1cDu3GD2SqB1i9mr2GXw==
   dependencies:
     "@basis-theory/basis-theory-js" "^4.30.0"
-    axios "^1.13.5"
+    axios "^1.15.0"
     glob "^13.0.1"
-    prettier "^3.8.1"
+    minimatch "^10.2.3"
+    prettier "^3.8.2"
+    serialize-javascript "^7.0.5"
 
-"@publicsquare/elements-react@^1.9.7":
-  version "1.9.10"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-react/-/elements-react-1.9.10.tgz#ab7da81d11bfb3b6e8e7a83ac6183af7cee6fd36"
-  integrity sha512-0Viu0+v69xnLIBigtN5PRpKC/+W+oDaFpZDAQZFeDaEEGuNHm1H3QbvkS/sCpL2NXVLaLcmqAKEFAcrK1r7UcQ==
+"@publicsquare/elements-react@^1.11.0":
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-react/-/elements-react-1.11.0.tgz#60df1abc6edfdbd049979876d362f3ae9f8d93f1"
+  integrity sha512-LLfSyE5CJeCNxx/nSod+MKH9PIYIwsdgctjrFtt/ltxaGInhlW1cTmus+9568ZObCZ/sEnukObhli1TXqZIkrw==
   dependencies:
-    "@publicsquare/elements-js" "1.9.10"
-    prettier "^3.8.1"
+    "@publicsquare/elements-js" "1.11.0"
+    axios "^1.15.0"
+    glob "^13.0.1"
+    minimatch "^10.2.3"
+    prettier "^3.8.2"
 
 "@react-aria/focus@^3.20.2":
   version "3.21.5"
@@ -1115,7 +1120,7 @@ axe-core@^4.10.0:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.11.2.tgz#86d28e085b170a4b43d459aee6d30624fba9be4e"
   integrity sha512-byD6KPdvo72y/wj2T/4zGEvvlis+PsZsn/yPS3pEO+sFpcrqRpX/TJCxvVaEsNeMrfQbCr7w163YqoD9IYwHXw==
 
-axios@^1.13.5, axios@^1.15.0, axios@^1.8.2:
+axios@^1.15.0, axios@^1.8.2:
   version "1.15.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.15.0.tgz#0fcee91ef03d386514474904b27863b2c683bf4f"
   integrity sha512-wWyJDlAatxk30ZJer+GeCWS209sA42X+N5jU2jy6oHTp7ufw8uzUTVFBX9+wTfAlhiJXGS0Bq7X6efruWjuK9Q==
@@ -2890,11 +2895,6 @@ prettier-plugin-tailwindcss@^0.6.8:
   resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.6.14.tgz#06701a580f7104c034ae3b699dbd17a80d67f0cd"
   integrity sha512-pi2e/+ZygeIqntN+vC573BcW5Cve8zUB0SSAGxqpB4f96boZF4M3phPVoOFCeypwkpRYdi7+jQ5YJJUwrkGUAg==
 
-prettier@^3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.8.1.tgz#edf48977cf991558f4fcbd8a3ba6015ba2a3a173"
-  integrity sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==
-
 prettier@^3.8.2:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.8.2.tgz#4f52e502193c9aa5b384c3d00852003e551bbd9f"
@@ -3071,6 +3071,11 @@ semver@^7.7.1, semver@^7.7.3:
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.7.4.tgz#28464e36060e991fa7a11d0279d2d3f3b57a7e8a"
   integrity sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==
+
+serialize-javascript@^7.0.5:
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-7.0.5.tgz#c798cc0552ffbb08981914a42a8756e339d0d5b1"
+  integrity sha512-F4LcB0UqUl1zErq+1nYEEzSHJnIwb3AF2XWB94b+afhrekOUijwooAYqFyRbjYkm2PAKBabx6oYv/xDxNi8IBw==
 
 set-function-length@^1.2.2:
   version "1.2.2"
