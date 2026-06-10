@@ -1,13 +1,13 @@
 import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '../constants'
 import type { PublicSquare } from '../PublicSquare'
 import type {
-  ThreeDSCreateSessionInput,
-  ThreeDSCreateSessionResponse,
+  ThreeDsCreateSessionInput,
+  ThreeDsCreateSessionResponse,
 } from '../types'
 import { validateSaveThreeDsSessionRequest } from '../validators'
 import { transformCreateThreeDsSessionInput } from '../utils'
 
-export class PublicSquareThreeDS {
+export class PublicSquareThreeDs {
   private _publicSquare: PublicSquare
 
   constructor(publicSquarePointer: PublicSquare) {
@@ -19,7 +19,7 @@ export class PublicSquareThreeDS {
 
   public async createSession(
     input: { token_id: string; payment_intent_id: string },
-  ): Promise<ThreeDSCreateSessionResponse> {
+  ): Promise<ThreeDsCreateSessionResponse> {
     if (!this._publicSquare._apiKey) {
       throw new Error('apiKey must be sent at initialization')
     } else if (!this._publicSquare.bt || !this._publicSquare.bt.client) {

@@ -28,7 +28,7 @@ import {
 import { PublicSquareApplePay } from './applePay/ApplePay';
 import { PublicSquareBankVerification } from './bankAccounts/BankVerification';
 import { PublicSquareGooglePay } from './googlePay/GooglePay';
-import { PublicSquareThreeDS } from './threeds/ThreeDS';
+import { PublicSquareThreeDs } from './threeds/ThreeDs';
 
 export class PublicSquare {
   _apiKey?: string;
@@ -57,7 +57,7 @@ export class PublicSquare {
   public bankAccounts = new PublicSquareBankAccount(this);
   public bankVerify = new PublicSquareBankVerification(this);
   public googlePay = new PublicSquareGooglePay(this);
-  public threeds = new PublicSquareThreeDS(this);
+  public threeds = new PublicSquareThreeDs(this);
 
   /**
    * Initialize the PublicSquare sdk. (REQUIRED before calling `createElement`)

@@ -1,1 +1,1 @@
-export * from './ThreeDS'
+export * from './ThreeDs'
