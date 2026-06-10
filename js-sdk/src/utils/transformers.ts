@@ -4,12 +4,14 @@ import type {
   BankAccountCreateInput,
   GooglePayButtonWidgetOptions,
   GooglePayCreateInput,
+  SaveThreeDsSessionRequest,
   ValidatedApplePayCreateInput,
   ValidatedApplePayCreateSessionInput,
   ValidatedBankAccountCreateInput,
   ValidatedCardsCreateInput,
   ValidatedGooglePayCreateInput,
-  ValidateGooglePayButtonWidgetOptions
+  ValidateGooglePayButtonWidgetOptions,
+  ValidatedSaveThreeDsSessionRequest
 } from '@/types'
 
 /**
@@ -87,5 +89,11 @@ export function transformCreateGooglePayInput({
 export function transformGooglePayButtonWidgetOptions({
   validated
 }: ValidateGooglePayButtonWidgetOptions): GooglePayButtonWidgetOptions {
+  return validated
+}
+
+export function transformCreateThreeDsSessionInput({
+  validated
+}: ValidatedSaveThreeDsSessionRequest): SaveThreeDsSessionRequest {
   return validated
 }
