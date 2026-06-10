@@ -972,6 +972,11 @@
     snake-case "^3.0.4"
     snakecase-keys "^3.2.1"
 
+"@basis-theory/web-threeds@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@basis-theory/web-threeds/-/web-threeds-2.1.2.tgz#49e1339075eee4ddcae299afcf2c2d6a01e9e5da"
+  integrity sha512-Gh2EAVu6OukomspU/+VWaXBwyaegCHuwzblYLH9o+THIxTbACuACTZvP68SnuFADxKJsII6X0ir5hQIVLXcMeQ==
+
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
