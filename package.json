@@ -9,6 +9,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "resolutions": {
+    "brace-expansion": "^5.0.6",
+    "ip-address": "^10.1.1"
+  },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@semantic-release/changelog": "^6.0.3",
