@@ -6,7 +6,7 @@ type EnvironmentOptions = {
   bankVerification: Pick<PublicSquareInitOptions, 'bankAccountCreateUrl' | 'bankAccountVerificationUrl'>;
   applePay: Pick<PublicSquareInitOptions, 'applePayCreateSessionUrl' | 'applePayCreateUrl'>;
   googlePay: Pick<PublicSquareInitOptions, 'googlePayCreateUrl' | 'getGooglePayConfiguration'>;
-  threeds: Pick<PublicSquareInitOptions, 'threedsCreateSessionUrl'>;
+  threeDs: Pick<PublicSquareInitOptions, 'threeDsCreateSessionUrl'>;
   apiKey: string;
 };
 
@@ -31,8 +31,8 @@ const staging: EnvironmentOptions = {
     googlePayCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/google-pay',
     getGooglePayConfiguration: 'https://staging.api.publicsquare.com/.well-known/google-pay-configuration',
   },
-  threeds: {
-    threedsCreateSessionUrl: 'https://staging.api.publicsquare.com/three-d-secure/sessions',
+  threeDs: {
+    threeDsCreateSessionUrl: 'https://staging.api.publicsquare.com/three-d-secure/sessions',
   },
 };
 
@@ -57,8 +57,8 @@ const production: EnvironmentOptions = {
     googlePayCreateUrl: 'https://api.publicsquare.com/payment-methods/google-pay',
     getGooglePayConfiguration: 'https://api.publicsquare.com/.well-known/google-pay-configuration',
   },
-  threeds: {
-    threedsCreateSessionUrl: 'https://api.publicsquare.com/three-d-secure/sessions',
+  threeDs: {
+    threeDsCreateSessionUrl: 'https://api.publicsquare.com/three-d-secure/sessions',
   },
 };
 

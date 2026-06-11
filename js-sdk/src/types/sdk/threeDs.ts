@@ -1,8 +1,4 @@
 //Basis Theory
-export type ThreeDsCreateSessionInput = {
-  tokenId: string
-}
-//Basis Theory
 export type ThreeDsCreateSessionResponse = {
   id: string
   cardBrand?: string

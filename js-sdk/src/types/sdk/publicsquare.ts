@@ -31,7 +31,7 @@ export interface PublicSquareInitOptions {
   applePayCreateSessionUrl?: string
   googlePayCreateUrl?: string
   getGooglePayConfiguration?: string
-  threedsCreateSessionUrl?: string
+  threeDsCreateSessionUrl?: string
   proxyKey?: string
   appInfo?: ApplicationInfo
 }

@@ -1,7 +1,6 @@
 import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '../constants'
 import type { PublicSquare } from '../PublicSquare'
 import type {
-  ThreeDsCreateSessionInput,
   ThreeDsCreateSessionResponse,
 } from '../types'
 import { validateSaveThreeDsSessionRequest } from '../validators'
@@ -26,7 +25,7 @@ export class PublicSquareThreeDs {
       throw new Error('PublicSquare JS has not be initialized yet')
     } else {
     
-      const btPublicKey = this._publicSquare._publicAPIKey
+      const btPublicKey = this._publicSquare._public3dsAppKey
       const { BasisTheory3ds } = await import('@basis-theory/web-threeds')
       const bt3ds = BasisTheory3ds(btPublicKey)
       const btSession = await bt3ds.createSession({ tokenId: input.token_id })
@@ -36,12 +35,11 @@ export class PublicSquareThreeDs {
         payment_intent_id: input.payment_intent_id
       })
 
-      return fetch(this._publicSquare._threedsCreateSessionUrl, {
+      return fetch(this._publicSquare._threeDsCreateSessionUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-API-KEY': this._publicSquare._apiKey,
-          'BT-PROXY-KEY': this._publicSquare._proxyKey
+          'X-API-KEY': this._publicSquare._apiKey
         },
         body: JSON.stringify(transformCreateThreeDsSessionInput(validatedInput)),
       })
