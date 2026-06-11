@@ -47,11 +47,11 @@ jobs:
         key: playwright-browsers-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
 
     - name: Install Playwright system deps
-      run: npx playwright install-deps chromium
+      run: npx playwright install-deps
 
     - name: Install Playwright Browsers
       if: steps.pw-cache.outputs.cache-hit != 'true'
-      run: npx playwright install chromium
+      run: npx playwright install
 
     - name: Run Playwright tests
       env:
