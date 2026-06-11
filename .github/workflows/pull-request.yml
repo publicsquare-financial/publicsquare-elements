@@ -36,8 +36,20 @@ jobs:
     - name: Install dependencies
       run: make build
 
+    - name: Cache Playwright browsers
+      uses: actions/cache@v4
+      id: playwright-cache
+      with:
+        path: ~/.cache/ms-playwright
+        key: playwright-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      run: npx playwright install --with-deps chromium
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
+
+    - name: Install Playwright system dependencies
+      run: npx playwright install-deps chromium
+      if: steps.playwright-cache.outputs.cache-hit == 'true'
 
     - name: Run Playwright tests
       env:
