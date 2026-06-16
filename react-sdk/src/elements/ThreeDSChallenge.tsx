@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useId, useRef } from 'react'
 import { usePublicSquare } from '../core/PublicSquareProvider'
 
 export type ThreeDSChallengeResult = {
@@ -11,6 +11,7 @@ export type ThreeDSChallengeProps = {
   sessionId: string
   acsChallengeUrl: string
   acsTransactionId: string
+  containerId?: string
   onComplete: (result: ThreeDSChallengeResult) => void
   onFailure?: (error: Error) => void
 }
@@ -19,10 +20,12 @@ export const ThreeDSChallenge = ({
   sessionId,
   acsChallengeUrl,
   acsTransactionId,
+  containerId: containerIdProp,
   onComplete,
   onFailure
 }: ThreeDSChallengeProps) => {
-  const containerId = 'threeds-challenge-container'
+  const generatedId = useId()
+  const containerId = containerIdProp ?? `threeds-challenge-${generatedId}`
   const { publicsquare } = usePublicSquare()
   const started = useRef(false)
 
@@ -39,7 +42,7 @@ export const ThreeDSChallenge = ({
       })
       .then((result) => onComplete(result as ThreeDSChallengeResult))
       .catch((error: Error) => onFailure?.(error))
-  }, [publicsquare])
+  }, [publicsquare, sessionId, acsChallengeUrl, acsTransactionId, onComplete, onFailure])
 
   return <div id={containerId} />
 }
