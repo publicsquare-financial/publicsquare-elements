@@ -96,6 +96,17 @@ export default function Header() {
           >
             Google Pay
           </Link>
+          <Link
+            href="/three-ds"
+            className={cx(
+              'text-sm/6 font-semibold',
+              pathname === '/three-ds'
+                ? 'text-indigo-500 border-b-2 border-indigo-500'
+                : 'text-gray-900 border-b-2 border-transparent'
+            )}
+          >
+            3DS
+          </Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link
@@ -180,6 +191,17 @@ export default function Header() {
                   )}
                 >
                   Google Pay
+                </Link>
+                <Link
+                  href="/three-ds"
+                  className={cx(
+                    '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold',
+                    pathname === '/three-ds'
+                      ? 'text-indigo-500 border-b-2 border-indigo-500'
+                      : 'text-gray-900 border-b-2 border-transparent'
+                  )}
+                >
+                  3DS
                 </Link>
               </div>
               <div className="py-6">

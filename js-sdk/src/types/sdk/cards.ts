@@ -45,6 +45,7 @@ export {
 
 export type CardCreateResponse = {
   account_id: string
+  brand: string
   cardholder_name: string
   created_at: string
   environment: Environment
@@ -54,6 +55,7 @@ export type CardCreateResponse = {
   id: string
   last4: string
   modified_at: string
+  token: string
   billing_details?: CardBillingDetails
   error?: CardCreateErrorResponse
 }

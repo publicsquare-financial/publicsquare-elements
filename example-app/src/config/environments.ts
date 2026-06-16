@@ -6,7 +6,7 @@ type EnvironmentOptions = {
   bankVerification: Pick<PublicSquareInitOptions, 'bankAccountCreateUrl' | 'bankAccountVerificationUrl'>;
   applePay: Pick<PublicSquareInitOptions, 'applePayCreateSessionUrl' | 'applePayCreateUrl'>;
   googlePay: Pick<PublicSquareInitOptions, 'googlePayCreateUrl' | 'getGooglePayConfiguration'>;
-  threeDs: Pick<PublicSquareInitOptions, 'threeDsCreateSessionUrl'>;
+  threeDs: Pick<PublicSquareInitOptions, 'threeDsCreateSessionUrl' | 'threeBtDsApiBaseUrl' | 'public3dsAppKey'>;
   apiKey: string;
 };
 
@@ -33,6 +33,8 @@ const staging: EnvironmentOptions = {
   },
   threeDs: {
     threeDsCreateSessionUrl: 'https://staging.api.publicsquare.com/three-d-secure/sessions',
+    threeBtDsApiBaseUrl: 'https://api.test.basistheory.com',
+    public3dsAppKey: 'key_test_us_pub_Tkia8nWTAWwFZ8QJyUJvES',
   },
 };
 
@@ -59,6 +61,8 @@ const production: EnvironmentOptions = {
   },
   threeDs: {
     threeDsCreateSessionUrl: 'https://api.publicsquare.com/three-d-secure/sessions',
+    threeBtDsApiBaseUrl: 'https://api.basistheory.com',
+    public3dsAppKey: 'key_prod_us_pub_7cC6EF431x2rKGwsnnuZPP',
   },
 };
 

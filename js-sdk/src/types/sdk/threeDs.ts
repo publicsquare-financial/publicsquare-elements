@@ -3,7 +3,6 @@ export type ThreeDsCreateSessionResponse = {
   id: string
   cardBrand?: string
   additionalCardBrands: string[]
-  error?: any
 }
 
 //API
@@ -13,11 +12,25 @@ export type SaveThreeDsSessionRequest = {
 }
 //API
 export type SaveThreeDsSessionResponse = {
-  id: string,
-  card_brand: string,
+  id: string
+  card_brand: string
+  acs_transaction_id: string
   additional_card_brands: string[]
 }
 
 export type ValidatedSaveThreeDsSessionRequest = {
   validated: SaveThreeDsSessionRequest
+}
+
+export type ThreeDsStartChallengeInput = {
+  sessionId: string
+  acsChallengeUrl: string
+  acsTransactionId: string
+  containerId?: string
+}
+
+export type ThreeDsStartChallengeResponse = {
+  id: string
+  isCompleted: boolean
+  authenticationStatus: string
 }
