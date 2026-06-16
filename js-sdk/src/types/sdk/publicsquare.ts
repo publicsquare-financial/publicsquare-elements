@@ -32,7 +32,7 @@ export interface PublicSquareInitOptions {
   googlePayCreateUrl?: string
   getGooglePayConfiguration?: string
   threeDsCreateSessionUrl?: string
-  threeBtDsApiBaseUrl?: string
+  btApiBaseUrl?: string
   public3dsAppKey?: string
   proxyKey?: string
   appInfo?: ApplicationInfo

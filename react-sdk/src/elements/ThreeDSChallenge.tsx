@@ -11,6 +11,7 @@ export type ThreeDSChallengeProps = {
   sessionId: string
   acsChallengeUrl: string
   acsTransactionId: string
+  threeDsVersion: string
   containerId?: string
   onComplete: (result: ThreeDSChallengeResult) => void
   onFailure?: (error: Error) => void
@@ -20,6 +21,7 @@ export const ThreeDSChallenge = ({
   sessionId,
   acsChallengeUrl,
   acsTransactionId,
+  threeDsVersion,
   containerId: containerIdProp,
   onComplete,
   onFailure
@@ -38,11 +40,12 @@ export const ThreeDSChallenge = ({
         sessionId,
         acsChallengeUrl,
         acsTransactionId,
+        threeDsVersion,
         containerId
       })
       .then((result) => onComplete(result as ThreeDSChallengeResult))
       .catch((error: Error) => onFailure?.(error))
-  }, [publicsquare, sessionId, acsChallengeUrl, acsTransactionId, onComplete, onFailure])
+  }, [publicsquare, sessionId, acsChallengeUrl, acsTransactionId, threeDsVersion, onComplete, onFailure])
 
   return <div id={containerId} />
 }

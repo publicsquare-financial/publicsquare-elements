@@ -43,7 +43,7 @@ export class PublicSquare {
   _googlePayCreateUrl: string = 'https://api.publicsquare.com/payment-methods/google-pay';
   _getGooglePayConfiguration: string = 'https://api.publicsquare.com/.well-known/google-pay-configuration';
   _threeDsCreateSessionUrl: string = 'https://api.publicsquare.com/three-d-secure/sessions';
-  _threeDsBtApiBaseUrl: string = 'https://api.basistheory.com';
+  _btApiBaseUrl: string = 'https://api.basistheory.com';
   _public3dsAppKey: string = 'key_prod_us_pub_7cC6EF431x2rKGwsnnuZPP';
 
   protected _bt?: BasisTheoryInstance;
@@ -80,8 +80,8 @@ export class PublicSquare {
       this._getGooglePayConfiguration = options?.getGooglePayConfiguration;
     if (options?.threeDsCreateSessionUrl)
       this._threeDsCreateSessionUrl = options?.threeDsCreateSessionUrl;
-    if (options?.threeBtDsApiBaseUrl)
-      this._threeDsBtApiBaseUrl = options?.threeBtDsApiBaseUrl;
+    if (options?.btApiBaseUrl)
+      this._btApiBaseUrl = options?.btApiBaseUrl;
     if (options?.public3dsAppKey)
       this._public3dsAppKey = options?.public3dsAppKey;
     

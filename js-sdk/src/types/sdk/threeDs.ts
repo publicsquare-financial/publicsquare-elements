@@ -26,6 +26,7 @@ export type ThreeDsStartChallengeInput = {
   sessionId: string
   acsChallengeUrl: string
   acsTransactionId: string
+  threeDsVersion: string
   containerId?: string
 }
 

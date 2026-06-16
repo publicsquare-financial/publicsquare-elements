@@ -25,7 +25,7 @@ export class PublicSquareThreeDs {
       const { BasisTheory3ds } = await import('@basis-theory/web-threeds')
       this._bt3ds = BasisTheory3ds(
         this._publicSquare._public3dsAppKey,
-        { apiBaseUrl: this._publicSquare._threeDsBtApiBaseUrl }
+        { apiBaseUrl: this._publicSquare._btApiBaseUrl }
       )
     }
     return this._bt3ds
@@ -72,7 +72,7 @@ export class PublicSquareThreeDs {
       sessionId: input.sessionId,
       acsChallengeUrl: input.acsChallengeUrl,
       acsTransactionId: input.acsTransactionId,
-      threeDSVersion: '2.2.0',
+      threeDSVersion: input.threeDsVersion,
       windowSize: '03',
       containerId: input.containerId,
     })
