@@ -2,12 +2,16 @@ import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '../constants'
 import type { PublicSquare } from '../PublicSquare'
 import type {
   ThreeDsCreateSessionResponse,
+  SaveThreeDsSessionResponse,
+  ThreeDsStartChallengeInput,
+  ThreeDsStartChallengeResponse,
 } from '../types'
 import { validateSaveThreeDsSessionRequest } from '../validators'
 import { transformCreateThreeDsSessionInput } from '../utils'
 
 export class PublicSquareThreeDs {
   private _publicSquare: PublicSquare
+  private _bt3ds?: any
 
   constructor(publicSquarePointer: PublicSquare) {
     if (!publicSquarePointer) {
@@ -16,19 +20,27 @@ export class PublicSquareThreeDs {
     this._publicSquare = publicSquarePointer
   }
 
+  private async _getBt3ds() {
+    if (!this._bt3ds) {
+      const { BasisTheory3ds } = await import('@basis-theory/web-threeds')
+      this._bt3ds = BasisTheory3ds(
+        this._publicSquare._public3dsAppKey,
+        { apiBaseUrl: this._publicSquare._btApiBaseUrl }
+      )
+    }
+    return this._bt3ds
+  }
+
   public async createSession(
     input: { token_id: string; payment_intent_id: string },
-  ): Promise<ThreeDsCreateSessionResponse> {
+  ): Promise<SaveThreeDsSessionResponse> {
     if (!this._publicSquare._apiKey) {
       throw new Error('apiKey must be sent at initialization')
     } else if (!this._publicSquare.bt || !this._publicSquare.bt.client) {
       throw new Error('PublicSquare JS has not be initialized yet')
     } else {
-    
-      const btPublicKey = this._publicSquare._public3dsAppKey
-      const { BasisTheory3ds } = await import('@basis-theory/web-threeds')
-      const bt3ds = BasisTheory3ds(btPublicKey)
-      const btSession = await bt3ds.createSession({ tokenId: input.token_id })
+      const bt3ds = await this._getBt3ds()
+      const btSession = await bt3ds.createSession({ tokenId: input.token_id }) as ThreeDsCreateSessionResponse
 
       const validatedInput = validateSaveThreeDsSessionRequest({
         bt_session_id: btSession.id,
@@ -39,7 +51,7 @@ export class PublicSquareThreeDs {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-API-KEY': this._publicSquare._apiKey
+          'X-API-KEY': this._publicSquare._apiKey,
         },
         body: JSON.stringify(transformCreateThreeDsSessionInput(validatedInput)),
       })
@@ -50,5 +62,20 @@ export class PublicSquareThreeDs {
             : res
         )
     }
+  }
+
+  public async startChallenge(
+    input: ThreeDsStartChallengeInput,
+  ): Promise<ThreeDsStartChallengeResponse> {
+    const bt3ds = await this._getBt3ds()
+    const result = await bt3ds.startChallenge({
+      sessionId: input.sessionId,
+      acsChallengeUrl: input.acsChallengeUrl,
+      acsTransactionId: input.acsTransactionId,
+      threeDSVersion: input.threeDsVersion,
+      windowSize: '03',
+      containerId: input.containerId,
+    })
+    return result as ThreeDsStartChallengeResponse
   }
 }
