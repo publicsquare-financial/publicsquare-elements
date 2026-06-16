@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.11.0...v1.12.0) (2026-06-16)
+
+
+### Features
+
+* add ThreeDSChallenge element ([fa40e68](https://github.com/publicsquare-financial/publicsquare-elements/commit/fa40e6808272910caac9207a6fcba7ff420cb1a3))
+
 # [1.11.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.10.0...v1.11.0) (2026-04-28)
 
 
