@@ -42,7 +42,6 @@ export class PublicSquareThreeDs {
       const bt3ds = await this._getBt3ds()
       const btSession = await bt3ds.createSession({ tokenId: input.token_id }) as ThreeDsCreateSessionResponse
 
-      //console.log('BT Session id: ', btSession.id)
       const validatedInput = validateSaveThreeDsSessionRequest({
         bt_session_id: btSession.id,
         payment_intent_id: input.payment_intent_id
@@ -77,7 +76,6 @@ export class PublicSquareThreeDs {
       windowSize: '03',
       containerId: input.containerId,
     })
-    //console.log('startChallenge response: ', result)
     return result as ThreeDsStartChallengeResponse
   }
 }
