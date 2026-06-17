@@ -12,7 +12,7 @@ import {
   CreateBankAccountElementOptions,
   CreateBankAccountRoutingNumberElementOptions,
   CreateBankAccountVerificationElementOptions
-} from './bankAccounts'
+} from '@/types'
 
 export { ElementWrapper } from '@basis-theory/basis-theory-js/types/elements'
 export * from '@basis-theory/basis-theory-js/types/elements'
@@ -24,6 +24,7 @@ export interface ApplicationInfo {
 }
 
 export interface PublicSquareInitOptions {
+  apiUrl?: string
   cardCreateUrl?: string
   bankAccountCreateUrl?: string
   bankAccountVerificationUrl?: string
