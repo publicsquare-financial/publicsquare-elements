@@ -59,7 +59,7 @@ export class PublicSquareThreeDs {
         .then((res) =>
           res.errors
             ? { error: res }
-            : res
+            : { ...res, bt_session_id: btSession.id }
         )
     }
   }
