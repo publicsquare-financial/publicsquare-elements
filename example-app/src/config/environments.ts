@@ -8,11 +8,11 @@ type EnvironmentOptions = {
   googlePay: Pick<PublicSquareInitOptions, 'googlePayCreateUrl' | 'getGooglePayConfiguration'>;
   threeDs: Pick<PublicSquareInitOptions, 'threeDsCreateSessionUrl' | 'btApiBaseUrl' | 'public3dsAppKey'>;
   apiKey: string;
-  apiUrl: Pick<PublicSquareInitOptions, 'apiUrl'>;
+  // apiUrl: Pick<PublicSquareInitOptions, 'apiUrl'>;
 };
 
 const staging: EnvironmentOptions = {
-  apiUrl: 'https://staging.api.publicsquare.com',
+  // apiUrl: 'https://staging.api.publicsquare.com',
   apiKey: process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!,
   card: {
     cardCreateUrl: 'https://api.test.basistheory.com/proxy',
@@ -41,7 +41,7 @@ const staging: EnvironmentOptions = {
 };
 
 const production: EnvironmentOptions = {
-  apiUrl: 'https://api.publicsquare.com',
+  // apiUrl: 'https://api.publicsquare.com',
   apiKey: process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!,
   card: {
     cardCreateUrl: 'https://api.basistheory.com/proxy',
