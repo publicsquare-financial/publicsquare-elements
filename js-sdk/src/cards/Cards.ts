@@ -1,6 +1,6 @@
 import { CardCreateResponse, CardCreateInput } from '@/types/sdk/cards'
 import { PublicSquare } from '..'
-import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '@/constants'
+import {BASIS_THEORY_ENDPOINTS, ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE} from '@/constants'
 import { transformCreateCardInput } from '@/utils'
 import { validateCreateCardInput } from '@/validators'
 
@@ -24,7 +24,7 @@ export class PublicSquareCards {
 
       return this._publicSquare.bt.client
         .post(
-          this._publicSquare._cardCreateUrl,
+          this._publicSquare._cardCreateUrl ?? BASIS_THEORY_ENDPOINTS.PROXY(this._publicSquare._btApiBaseUrl),
           transformCreateCardInput(validatedInput),
           {
             headers: {

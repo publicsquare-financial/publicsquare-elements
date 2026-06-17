@@ -5,7 +5,7 @@ import {
   GooglePayCreateResponse
 } from '@/types'
 import { PublicSquare } from '..'
-import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '@/constants'
+import {API_ENDPOINTS, ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE} from '@/constants'
 import {
   transformCreateGooglePayInput,
   transformGooglePayButtonWidgetOptions
@@ -41,7 +41,7 @@ export class PublicSquareGooglePay {
   }
 
   public getGooglePayConfiguration(): Promise<GooglePayEnvironmentsConfiguration> {
-    return fetch(this._publicSquare._getGooglePayConfiguration, {
+    return fetch(this._publicSquare._getGooglePayConfiguration ?? API_ENDPOINTS.GOOGLE_PAY_CONFIGURATION(this._publicSquare._apiUrl), {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ export class PublicSquareGooglePay {
       throw new Error('PublicSquare JS has not be initialized yet')
     } else {
       const validatedInput = validateCreateGooglePayInput(input)
-      return fetch(this._publicSquare._googlePayCreateUrl, {
+      return fetch(this._publicSquare._googlePayCreateUrl ?? API_ENDPOINTS.GOOGLE_PAY_CREATE(this._publicSquare._apiUrl), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

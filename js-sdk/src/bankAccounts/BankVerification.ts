@@ -8,7 +8,7 @@ import {
 import { PublicSquare } from '@/PublicSquare';
 import {
   ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE,
-  ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_VERIFICATION_NOT_ENABLED,
+  ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_VERIFICATION_NOT_ENABLED, API_ENDPOINTS,
 } from '@/constants';
 
 export class PublicSquareBankVerification {
@@ -106,7 +106,7 @@ export class PublicSquareBankVerification {
   public async saveBankAccountVerification(
     request: BankAccountVerificationIdRequest,
   ): Promise<BankAccountVerificationIdResponse> {
-    return fetch(this._publicSquare._bankAccountVerificationUrl, {
+    return fetch(this._publicSquare._bankAccountVerificationUrl ?? API_ENDPOINTS.BANK_ACCOUNT_VERIFICATION(this._publicSquare._apiUrl), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -162,7 +162,7 @@ export class PublicSquareBankVerification {
   }
 
   private async getAuthorizationUrl(): Promise<BankAccountVerificationUrlResponse> {
-    const res = await fetch(this._publicSquare._bankAccountVerificationUrl, {
+    const res = await fetch(this._publicSquare._bankAccountVerificationUrl ?? API_ENDPOINTS.BANK_ACCOUNT_VERIFICATION(this._publicSquare._apiUrl), {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
