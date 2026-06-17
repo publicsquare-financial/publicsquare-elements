@@ -65,7 +65,7 @@ export default function ThreeDSFormColumn({
           )}
         </ThreeDsProvider>
       )}
-      {type === 'javascript' && <ThreeDSElementsJs allInOne={allInOne} />}
+      {type === 'javascript' && <ThreeDSElementsJs flow={flow} allInOne={allInOne} />}
     </div>
   )
 }
