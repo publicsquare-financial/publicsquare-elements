@@ -327,6 +327,13 @@ export default function ThreeDSElementsJs({
 
   return (
     <div className="space-y-4 w-full">
+      {flow === 'redirect' && step !== 'done' && step !== 'error' && (
+        <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-600">
+          Redirect flow navigates this page to the ACS challenge, then returns to
+          <code className="mx-1">{COMPLETE_PATH}/&#123;intent&#125;/&#123;session&#125;</code>
+          to finish.
+        </div>
+      )}
       {isLoading && (
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-700">
           {STEP_LABELS[step]}…
