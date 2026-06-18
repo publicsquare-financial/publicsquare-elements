@@ -1,5 +1,5 @@
 'use client'
-import { ThreeDSChallenge, usePublicSquare } from '@publicsquare/elements-react'
+import { ThreeDSChallengeElement, usePublicSquare } from '@publicsquare/elements-react'
 import { FormEvent, useState } from 'react'
 import SubmitButton from '@/components/SubmitButton'
 import {
@@ -192,7 +192,7 @@ export default function IFrameFlow({ allInOne }: { allInOne: boolean }) {
         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm">
           <b>3DS Challenge</b> — complete the authentication below
         </div>
-        <ThreeDSChallenge
+        <ThreeDSChallengeElement
           sessionId={btSessionId}
           acsChallengeUrl={nextAction.acs_challenge_url!}
           acsTransactionId={nextAction.acs_transaction_id!}
