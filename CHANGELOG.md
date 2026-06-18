@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.12.0...v1.13.0) (2026-06-18)
+
+
+### Features
+
+* clean up API endpoints for payment operations ([#297](https://github.com/publicsquare-financial/publicsquare-elements/issues/297)) ([29aef2d](https://github.com/publicsquare-financial/publicsquare-elements/commit/29aef2d944ba1175e19e8b6830ca2f9ef49cd317))
+
 # [1.12.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.11.0...v1.12.0) (2026-06-16)
 
 
