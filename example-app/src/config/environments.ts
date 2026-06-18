@@ -71,4 +71,4 @@ const production: EnvironmentOptions = {
 
 // Switch between 'staging' and 'production' here to change all payment method URLs at once
 //NEXT_PUBLIC_PUBLICSQUARE_KEY - change for staging or production value in the .env
-export const environment = production;
+export const environment = process.env.NEXT_PUBLIC_ENVIRONMENT === 'staging' ? staging : production;
