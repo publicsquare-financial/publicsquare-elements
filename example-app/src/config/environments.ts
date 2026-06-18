@@ -8,7 +8,7 @@ type EnvironmentOptions = {
   googlePay: Pick<PublicSquareInitOptions, 'googlePayCreateUrl' | 'getGooglePayConfiguration'>;
   threeDs: Pick<PublicSquareInitOptions, 'threeDsCreateSessionUrl' | 'btApiBaseUrl' | 'public3dsAppKey'>;
   apiKey: string;
-  apiUrl: Pick<PublicSquareInitOptions, 'apiUrl'>;
+  apiUrl: string;
 };
 
 const staging: EnvironmentOptions = {
