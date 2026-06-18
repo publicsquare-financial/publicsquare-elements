@@ -17,7 +17,7 @@ export type ThreeDSChallengeProps = {
   onFailure?: (error: Error) => void
 }
 
-export const ThreeDSChallenge = ({
+export const ThreeDSChallengeElement = ({
   sessionId,
   acsChallengeUrl,
   acsTransactionId,
