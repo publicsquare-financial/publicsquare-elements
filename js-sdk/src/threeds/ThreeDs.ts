@@ -1,13 +1,13 @@
-import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '../constants'
-import type { PublicSquare } from '../PublicSquare'
+import {API_ENDPOINTS, ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE} from '@/constants'
+import type { PublicSquare } from '@/PublicSquare'
 import type {
   ThreeDsCreateSessionResponse,
   SaveThreeDsSessionResponse,
   ThreeDsStartChallengeInput,
   ThreeDsStartChallengeResponse,
-} from '../types'
-import { validateSaveThreeDsSessionRequest } from '../validators'
-import { transformCreateThreeDsSessionInput } from '../utils'
+} from '@/types'
+import { validateSaveThreeDsSessionRequest } from '@/validators'
+import { transformCreateThreeDsSessionInput } from '@/utils'
 
 export class PublicSquareThreeDs {
   private _publicSquare: PublicSquare
@@ -47,7 +47,7 @@ export class PublicSquareThreeDs {
         payment_intent_id: input.payment_intent_id
       })
 
-      return fetch(this._publicSquare._threeDsCreateSessionUrl, {
+      return fetch(this._publicSquare._threeDsCreateSessionUrl ?? API_ENDPOINTS.THREE_DS_CREATE_SESSION(this._publicSquare._apiUrl), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -13,6 +13,7 @@ export type SaveThreeDsSessionRequest = {
 //API
 export type SaveThreeDsSessionResponse = {
   id: string
+  bt_session_id: string
   card_brand: string
   acs_transaction_id: string
   additional_card_brands: string[]

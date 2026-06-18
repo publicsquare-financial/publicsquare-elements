@@ -8,9 +8,11 @@ type EnvironmentOptions = {
   googlePay: Pick<PublicSquareInitOptions, 'googlePayCreateUrl' | 'getGooglePayConfiguration'>;
   threeDs: Pick<PublicSquareInitOptions, 'threeDsCreateSessionUrl' | 'btApiBaseUrl' | 'public3dsAppKey'>;
   apiKey: string;
+  apiUrl: string;
 };
 
 const staging: EnvironmentOptions = {
+  apiUrl: 'https://staging.api.publicsquare.com',
   apiKey: process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!,
   card: {
     cardCreateUrl: 'https://api.test.basistheory.com/proxy',
@@ -39,6 +41,7 @@ const staging: EnvironmentOptions = {
 };
 
 const production: EnvironmentOptions = {
+  apiUrl: 'https://api.publicsquare.com',
   apiKey: process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!,
   card: {
     cardCreateUrl: 'https://api.basistheory.com/proxy',
@@ -68,4 +71,4 @@ const production: EnvironmentOptions = {
 
 // Switch between 'staging' and 'production' here to change all payment method URLs at once
 //NEXT_PUBLIC_PUBLICSQUARE_KEY - change for staging or production value in the .env
-export const environment = production;
+export const environment = process.env.NEXT_PUBLIC_ENVIRONMENT === 'staging' ? staging : production;

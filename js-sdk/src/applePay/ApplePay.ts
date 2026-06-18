@@ -5,7 +5,7 @@ import {
   ApplePayCreateSessionInput
 } from '@/types'
 import { PublicSquare } from '..'
-import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '@/constants'
+import {API_ENDPOINTS, ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE} from '@/constants'
 import {
   transformCreateApplePayInput,
   transformCreateApplePaySessionInput
@@ -46,7 +46,7 @@ export class PublicSquareApplePay {
       throw new Error('PublicSquare JS has not be initialized yet')
     } else {
       const validatedInput = validateCreateApplePayInput(input)
-      return fetch(this._publicSquare._applePayCreateUrl, {
+      return fetch(this._publicSquare._applePayCreateUrl ?? API_ENDPOINTS.APPLE_PAY_CREATE(this._publicSquare._apiUrl), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export class PublicSquareApplePay {
       throw new Error('PublicSquare JS has not be initialized yet')
     } else {
       const validatedInput = validateCreateApplePaySessionInput(input)
-      return fetch(this._publicSquare._applePayCreateSessionUrl, {
+      return fetch(this._publicSquare._applePayCreateSessionUrl ?? API_ENDPOINTS.APPLE_PAY_CREATE_SESSION(this._publicSquare._apiUrl), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

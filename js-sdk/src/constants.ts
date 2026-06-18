@@ -49,13 +49,17 @@ const CARD_ICON_POSITIONS = ['left', 'right', 'none'] as const
 const AUTOCOMPLETE_VALUES = ['off', 'on'] as const
 
 const API_ENDPOINTS = {
-  BASE_URL: 'https://collect-staging.publicsquare.com',
-  /**
-   * Endpoint to save new cards to
-   */
-  get COLLECT_CARD() {
-    return `${this.BASE_URL}`
-  }
+  APPLE_PAY_CREATE: (baseUrl: string) => `${baseUrl}/payment-methods/apple-pay`,
+  APPLE_PAY_CREATE_SESSION: (baseUrl: string) => `${baseUrl}/payment-methods/apple-pay/session`,
+  GOOGLE_PAY_CREATE: (baseUrl: string) => `${baseUrl}/payment-methods/google-pay`,
+  GOOGLE_PAY_CONFIGURATION: (baseUrl: string) => `${baseUrl}/.well-known/google-pay-configuration`,
+  BANK_ACCOUNT_CREATE: (baseUrl: string) => `${baseUrl}/payment-methods/bank-accounts`,
+  BANK_ACCOUNT_VERIFICATION: (baseUrl: string) => `${baseUrl}/payment-methods/bank-accounts/verification`,
+  THREE_DS_CREATE_SESSION: (baseUrl: string) => `${baseUrl}/three-d-secure/sessions`,
+}
+
+const BASIS_THEORY_ENDPOINTS = {
+  PROXY: (baseUrl: string) => `${baseUrl}/proxy`,
 }
 
 export {
@@ -72,5 +76,6 @@ export {
   CARD_BRANDS,
   CARD_ICON_POSITIONS,
   AUTOCOMPLETE_VALUES,
-  API_ENDPOINTS
+  API_ENDPOINTS,
+  BASIS_THEORY_ENDPOINTS,
 }

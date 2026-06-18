@@ -11,7 +11,7 @@ import {
   ElementValue,
 } from '@basis-theory/basis-theory-js/types/elements';
 import { PublicSquareCards } from './cards';
-import { PublicSquareBankAccount } from './bankAccounts/BankAccount';
+import { PublicSquareBankAccount } from '@/bankAccounts';
 import {
   BasisTheoryInstance,
   CreateBankAccountAccountNumberElementOptions,
@@ -25,25 +25,24 @@ import {
   PSQTextElement,
   PublicSquareInitOptions,
 } from './types';
-import { PublicSquareApplePay } from './applePay/ApplePay';
+import { PublicSquareApplePay } from '@/applePay';
 import { PublicSquareBankVerification } from './bankAccounts/BankVerification';
-import { PublicSquareGooglePay } from './googlePay/GooglePay';
-import { PublicSquareThreeDs } from './threeds/ThreeDs';
+import { PublicSquareGooglePay } from '@/googlePay';
+import { PublicSquareThreeDs } from '@/threeds';
 
 export class PublicSquare {
+  _apiUrl: string = 'https://api.publicsquare.com';
   _apiKey?: string;
   _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP';
-  _cardCreateUrl: string = 'https://api.basistheory.com/proxy';
-  _applePayCreateUrl: string = 'https://api.publicsquare.com/payment-methods/apple-pay';
-  _applePayCreateSessionUrl: string =
-    'https://api.publicsquare.com/payment-methods/apple-pay/session';
-  _bankAccountCreateUrl: string = 'https://api.publicsquare.com/payment-methods/bank-accounts';
-  _bankAccountVerificationUrl: string =
-    'https://api.publicsquare.com/payment-methods/bank-accounts/verification';
-  _googlePayCreateUrl: string = 'https://api.publicsquare.com/payment-methods/google-pay';
-  _getGooglePayConfiguration: string = 'https://api.publicsquare.com/.well-known/google-pay-configuration';
-  _threeDsCreateSessionUrl: string = 'https://api.publicsquare.com/three-d-secure/sessions';
+  _cardCreateUrl?: string
+  _applePayCreateUrl?: string
+  _applePayCreateSessionUrl?: string
+  _bankAccountCreateUrl?: string
+  _bankAccountVerificationUrl?: string
+  _googlePayCreateUrl?: string
+  _getGooglePayConfiguration?: string
   _btApiBaseUrl: string = 'https://api.basistheory.com';
+  _threeDsCreateSessionUrl?: string
   _public3dsAppKey: string = 'key_prod_us_pub_7cC6EF431x2rKGwsnnuZPP';
 
   protected _bt?: BasisTheoryInstance;
@@ -68,6 +67,7 @@ export class PublicSquare {
    */
   public async init(apiKey: string, options?: PublicSquareInitOptions) {
     this._apiKey = apiKey;
+    if (options?.apiUrl) this._apiUrl = options?.apiUrl;
     if (options?.proxyKey) this._proxyKey = options?.proxyKey;
     if (options?.cardCreateUrl) this._cardCreateUrl = options?.cardCreateUrl;
     if (options?.bankAccountCreateUrl) this._bankAccountCreateUrl = options?.bankAccountCreateUrl;

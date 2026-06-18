@@ -3,7 +3,7 @@ import {
   ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE,
   ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ROUTING_NUMBER_LOAD_ERROR_MESSAGE,
   ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ACCOUNT_NUMBER_LOAD_ERROR_MESSAGE,
-  ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE,
+  ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE, API_ENDPOINTS,
 } from '@/constants';
 import { PublicSquare } from '@/PublicSquare';
 import {
@@ -80,7 +80,7 @@ export class PublicSquareBankAccount {
       throw new Error('PublicSquare JS has not be initialized yet');
     } else {
       const validatedInput = validateCreateBankAccountInput(input);
-      return fetch(this._publicSquare._bankAccountCreateUrl, {
+      return fetch(this._publicSquare._bankAccountCreateUrl ?? API_ENDPOINTS.BANK_ACCOUNT_CREATE(this._publicSquare._apiUrl), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -96,7 +96,6 @@ export class PublicSquareBankAccount {
   /**
    * Create a bank account
    * @param input - The bank account input
-   * @param publicKey - The PublicSquare public key
    * @returns The bank account create response
    */
   public create(input: BankAccountCreateInput): Promise<BankAccountCreateResponse> {
