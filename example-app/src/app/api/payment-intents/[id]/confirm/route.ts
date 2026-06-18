@@ -5,7 +5,8 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const secretKey = process.env.PSQ_SECRET_KEY
-  const baseUrl = process.env.API_BASE_URL ?? 'https://api.publicsquare.com'
+  const baseUrl =
+    process.env.PSQ_PAYMENTS_API_BASE_URL ?? 'https://api.publicsquare.com'
 
   if (!secretKey) {
     return NextResponse.json(
