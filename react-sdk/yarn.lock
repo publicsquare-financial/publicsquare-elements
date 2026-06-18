@@ -1107,6 +1107,11 @@
     snake-case "^3.0.4"
     snakecase-keys "^3.2.1"
 
+"@basis-theory/web-threeds@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@basis-theory/web-threeds/-/web-threeds-2.1.2.tgz#49e1339075eee4ddcae299afcf2c2d6a01e9e5da"
+  integrity sha512-Gh2EAVu6OukomspU/+VWaXBwyaegCHuwzblYLH9o+THIxTbACuACTZvP68SnuFADxKJsII6X0ir5hQIVLXcMeQ==
+
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
@@ -1438,15 +1443,16 @@
   resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.2.9.tgz#d229a7b7f9dac167a156992ef23c7f023653f53b"
   integrity sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==
 
-"@publicsquare/elements-js@1.11.0":
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.11.0.tgz#1bbc042a66896f302d0ca9d54391c3462f365e5b"
-  integrity sha512-P6G23VnwJ2QAcrWtlKyIoV3Bm1q+sREXaEgVQI4ewZWaM+zKSW4uuF2vAiUFW07nfw1cDu3GD2SqB1i9mr2GXw==
+"@publicsquare/elements-js@1.12.0":
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/@publicsquare/elements-js/-/elements-js-1.12.0.tgz#28c7ceb0a1c1324d899e8d4b794eab8e94818e7d"
+  integrity sha512-t4aeHzXwKDy2iD+xTMx2AZnD2gj9enn6dPXzINDosCwwTycgY3tujPGBme9yvxTIDSpUxR/lNffXW18MbwcrwQ==
   dependencies:
     "@basis-theory/basis-theory-js" "^4.30.0"
-    axios "^1.15.0"
-    glob "^13.0.1"
-    minimatch "^10.2.3"
+    "@basis-theory/web-threeds" "^2.1.2"
+    follow-redirects "^1.16.0"
+    glob "^13.0.6"
+    minimatch "^10.2.5"
     prettier "^3.8.2"
     serialize-javascript "^7.0.5"
 
@@ -1720,7 +1726,7 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
-axios@^1.15.0, axios@^1.16.0, axios@^1.8.2:
+axios@^1.16.0, axios@^1.8.2:
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.17.0.tgz#ae5a1164a4f719942cd73c67e6a3f62d3ccb8f2b"
   integrity sha512-J8SwNxprqqpbfenehxWYXE7CW+wM1BB4w3+N+g+/Wx40xM4rsLrfPmHHxSWIxJLYDgSY/HqlFPIYb2/S3rxafw==
@@ -2306,7 +2312,7 @@ glob@^10.5.0:
     package-json-from-dist "^1.0.0"
     path-scurry "^1.11.1"
 
-glob@^13.0.1, glob@^13.0.3:
+glob@^13.0.1, glob@^13.0.3, glob@^13.0.6:
   version "13.0.6"
   resolved "https://registry.yarnpkg.com/glob/-/glob-13.0.6.tgz#078666566a425147ccacfbd2e332deb66a2be71d"
   integrity sha512-Wjlyrolmm8uDpm/ogGyXZXb1Z+Ca2B8NbJwqBVg0axK9GbBeoS7yGV6vjXnYdGm6X53iehEuxxbyiKp8QmN4Vw==
@@ -3001,7 +3007,7 @@ mimic-fn@^2.1.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
-minimatch@^10.2.2, minimatch@^10.2.3:
+minimatch@^10.2.2, minimatch@^10.2.3, minimatch@^10.2.5:
   version "10.2.5"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-10.2.5.tgz#bd48687a0be38ed2961399105600f832095861d1"
   integrity sha512-MULkVLfKGYDFYejP07QOurDLLQpcjk7Fw+7jXS2R2czRQzR56yHRveU5NDJEOviH+hETZKSkIk5c+T23GjFUMg==
