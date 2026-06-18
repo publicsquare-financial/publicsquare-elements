@@ -12,15 +12,18 @@ type FlowTab = 'iframe' | 'redirect'
 function TabButton({
   active,
   label,
+  testId,
   onClick,
 }: {
   active: boolean
   label: string
+  testId: string
   onClick: () => void
 }) {
   return (
     <button
       type="button"
+      data-testid={testId}
       onClick={onClick}
       className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
         active
@@ -48,10 +51,16 @@ export default function ThreeDSFormColumn({
       <p className="text-sm">This is a form for the 3D Secure challenge flow.</p>
 
       <div className="flex gap-2">
-        <TabButton active={flow === 'iframe'} label="Iframe" onClick={() => setFlow('iframe')} />
+        <TabButton
+          active={flow === 'iframe'}
+          label="Iframe"
+          testId="threeds-iframe-tab"
+          onClick={() => setFlow('iframe')}
+        />
         <TabButton
           active={flow === 'redirect'}
           label="Redirect"
+          testId="threeds-redirect-tab"
           onClick={() => setFlow('redirect')}
         />
       </div>
