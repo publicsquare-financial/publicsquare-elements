@@ -60,8 +60,7 @@ describe('ThreeDs', () => {
     const result = await publicsquare.threeDs.createSession({
       token_id: 'tok_123',
       payment_intent_id: 'pmt_int_1',
-      challenge_preference: "no-preference",
-      environment: "TEST",
+      challenge_preference: "no-preference"
     })
 
     // BT session is created from the card token
@@ -73,8 +72,7 @@ describe('ThreeDs', () => {
     expect(requestInit.headers['X-API-KEY']).toBe('pk_test_123')
     expect(JSON.parse(requestInit.body)).toEqual({
       bt_session_id: 'bt_session_123',
-      payment_intent_id: 'pmt_int_1',
-      environment: "TEST"
+      payment_intent_id: 'pmt_int_1'
     })
 
     // The API response (including bt_session_id) is returned to the caller
@@ -94,8 +92,7 @@ describe('ThreeDs', () => {
     const result = await publicsquare.threeDs.createSession({
       token_id: 'tok_123',
       payment_intent_id: '',
-      challenge_preference: "no-preference",
-      environment: "TEST"
+      challenge_preference: "no-preference"
     })
 
     expect(result).toEqual({ error: errorBody })
@@ -109,8 +106,7 @@ describe('ThreeDs', () => {
       publicsquare.threeDs.createSession({
         token_id: 'tok_123',
         payment_intent_id: 'pmt_int_1',
-        challenge_preference: "no-preference",
-        environment: "TEST"
+        challenge_preference: "no-preference"
       })
     )
 
@@ -124,8 +120,7 @@ describe('ThreeDs', () => {
       uninitialized.threeDs.createSession({
         token_id: 'tok_123',
         payment_intent_id: 'pmt_int_1',
-        challenge_preference: "no-preference",
-        environment: "TEST"
+        challenge_preference: "no-preference"
       })
     )
 
@@ -145,8 +140,7 @@ describe('ThreeDs', () => {
       acsChallengeUrl: 'https://acs.example.com/challenge',
       acsTransactionId: 'acs_tx_1',
       threeDsVersion: '2.2.0',
-      containerId: 'challenge-container',
-      environment:"TEST"
+      containerId: 'challenge-container'
     })
 
     expect(mockBtStartChallenge).toHaveBeenCalledWith({
@@ -155,8 +149,7 @@ describe('ThreeDs', () => {
       acsTransactionId: 'acs_tx_1',
       threeDSVersion: '2.2.0',
       windowSize: '03',
-      containerId: 'challenge-container',
-      environment:"TEST"
+      containerId: 'challenge-container'
     })
     expect(result).toEqual(challengeResult)
   })
