@@ -212,6 +212,7 @@ export default function ThreeDSElementsJs({
       sessionRes = (await publicsquare!.threeDs.createSession({
         token_id: tokenId,
         payment_intent_id: paymentIntentId,
+        challenge_preference: "no-preference",
         environment: "TEST",
       })) as typeof sessionRes
     } catch (err) {

@@ -9,6 +9,8 @@ export type ThreeDsCreateSessionResponse = {
 export type SaveThreeDsSessionRequest = {
   bt_session_id: string
   payment_intent_id: string
+  challenge_preference?: string
+  exemption_request_reason?: string
 }
 //API
 export type SaveThreeDsSessionResponse = {

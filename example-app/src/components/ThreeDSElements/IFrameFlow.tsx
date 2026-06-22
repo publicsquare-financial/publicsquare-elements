@@ -110,6 +110,7 @@ export default function IFrameFlow({ allInOne }: { allInOne: boolean }) {
       sessionRes = (await publicsquare.threeDs.createSession({
         token_id: cardResponse.token,
         payment_intent_id: intentRes.id,
+        challenge_preference: "no-preference",
         environment: "TEST",
       })) as typeof sessionRes
     } catch (err) {

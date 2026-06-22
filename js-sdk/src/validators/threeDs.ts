@@ -12,7 +12,9 @@ export function validateSaveThreeDsSessionRequest(
   return {
     validated: {
       bt_session_id: input.bt_session_id,
-      payment_intent_id: input.payment_intent_id
+      payment_intent_id: input.payment_intent_id,
+      challenge_preference: input.challenge_preference,
+      exemption_request_reason: input.exemption_request_reason
     }
   }
 }

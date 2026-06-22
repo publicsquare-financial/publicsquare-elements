@@ -40,7 +40,13 @@ export class PublicSquareThreeDs {
   }
 
   public async createSession(
-    input: { token_id: string; payment_intent_id: string; environment?: 'TEST' | 'PRODUCTION' },
+    input: { 
+      token_id: string; 
+      payment_intent_id: string; 
+      challenge_preference?: string;
+      exemption_request_reason?: string; 
+      environment?: 'TEST' | 'PRODUCTION' 
+    },
   ): Promise<SaveThreeDsSessionResponse> {
     if (!this._publicSquare._apiKey) {
       throw new Error('apiKey must be sent at initialization')
@@ -52,7 +58,9 @@ export class PublicSquareThreeDs {
 
       const validatedInput = validateSaveThreeDsSessionRequest({
         bt_session_id: btSession.id,
-        payment_intent_id: input.payment_intent_id
+        payment_intent_id: input.payment_intent_id,
+        challenge_preference: input.challenge_preference,
+        exemption_request_reason: input.exemption_request_reason
       })
 
       return fetch(this._publicSquare._threeDsCreateSessionUrl ?? API_ENDPOINTS.THREE_DS_CREATE_SESSION(this._publicSquare._apiUrl), {
