@@ -11,7 +11,7 @@ import { transformCreateThreeDsSessionInput } from '@/utils'
 
 export class PublicSquareThreeDs {
   private _publicSquare: PublicSquare
-  private _bt3ds?: any
+  private _bt3ds: Map<string, any> = new Map()
 
   constructor(publicSquarePointer: PublicSquare) {
     if (!publicSquarePointer) {
@@ -21,21 +21,22 @@ export class PublicSquareThreeDs {
   }
 
   private async _getBt3ds(environment?: 'TEST' | 'PRODUCTION') {
-    if (!this._bt3ds) {
-        const { BasisTheory3ds } = await import('@basis-theory/web-threeds')
-        if (environment === 'TEST') {
-          this._bt3ds = BasisTheory3ds(
-            'key_test_us_pub_Tkia8nWTAWwFZ8QJyUJvES',
-            { apiBaseUrl: 'https://api.test.basistheory.com' }
-          )
-          return this._bt3ds
-        }
-        this._bt3ds = BasisTheory3ds(
+    const env = environment ?? 'PRODUCTION'
+    if (!this._bt3ds.has(env)) {
+      const { BasisTheory3ds } = await import('@basis-theory/web-threeds')
+      if (env === 'TEST') {
+        this._bt3ds.set(env, BasisTheory3ds(
+          'key_test_us_pub_Tkia8nWTAWwFZ8QJyUJvES',
+          { apiBaseUrl: 'https://api.test.basistheory.com' }
+        ))
+      } else {
+        this._bt3ds.set(env, BasisTheory3ds(
           this._publicSquare._public3dsAppKey,
           { apiBaseUrl: this._publicSquare._btApiBaseUrl }
-        )
+        ))
+      }
     }
-    return this._bt3ds
+    return this._bt3ds.get(env)
   }
 
   public async createSession(
