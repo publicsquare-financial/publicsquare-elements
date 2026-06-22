@@ -21,7 +21,6 @@ export class PublicSquareThreeDs {
   }
 
   private async _getBt3ds(environment?: 'TEST' | 'PRODUCTION') {
-    console.log('environment', environment)
     if (!this._bt3ds) {
         const { BasisTheory3ds } = await import('@basis-theory/web-threeds')
         if (environment === 'TEST') {
