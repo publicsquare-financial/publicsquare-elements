@@ -59,7 +59,8 @@ describe('ThreeDs', () => {
 
     const result = await publicsquare.threeDs.createSession({
       token_id: 'tok_123',
-      payment_intent_id: 'pmt_int_1'
+      payment_intent_id: 'pmt_int_1',
+      environment: "TEST"
     })
 
     // BT session is created from the card token
@@ -71,7 +72,8 @@ describe('ThreeDs', () => {
     expect(requestInit.headers['X-API-KEY']).toBe('pk_test_123')
     expect(JSON.parse(requestInit.body)).toEqual({
       bt_session_id: 'bt_session_123',
-      payment_intent_id: 'pmt_int_1'
+      payment_intent_id: 'pmt_int_1',
+      environment: "TEST"
     })
 
     // The API response (including bt_session_id) is returned to the caller
@@ -90,7 +92,8 @@ describe('ThreeDs', () => {
 
     const result = await publicsquare.threeDs.createSession({
       token_id: 'tok_123',
-      payment_intent_id: ''
+      payment_intent_id: '',
+      environment: "TEST"
     })
 
     expect(result).toEqual({ error: errorBody })
@@ -103,7 +106,8 @@ describe('ThreeDs', () => {
     const error = await getError<{ message: string }>(() =>
       publicsquare.threeDs.createSession({
         token_id: 'tok_123',
-        payment_intent_id: 'pmt_int_1'
+        payment_intent_id: 'pmt_int_1',
+        environment: "TEST"
       })
     )
 
@@ -116,7 +120,8 @@ describe('ThreeDs', () => {
     const error = await getError<{ message: string }>(() =>
       uninitialized.threeDs.createSession({
         token_id: 'tok_123',
-        payment_intent_id: 'pmt_int_1'
+        payment_intent_id: 'pmt_int_1',
+        environment: "TEST"
       })
     )
 
@@ -136,7 +141,8 @@ describe('ThreeDs', () => {
       acsChallengeUrl: 'https://acs.example.com/challenge',
       acsTransactionId: 'acs_tx_1',
       threeDsVersion: '2.2.0',
-      containerId: 'challenge-container'
+      containerId: 'challenge-container',
+      environment:"TEST"
     })
 
     expect(mockBtStartChallenge).toHaveBeenCalledWith({
@@ -145,7 +151,8 @@ describe('ThreeDs', () => {
       acsTransactionId: 'acs_tx_1',
       threeDSVersion: '2.2.0',
       windowSize: '03',
-      containerId: 'challenge-container'
+      containerId: 'challenge-container',
+      environment:"TEST"
     })
     expect(result).toEqual(challengeResult)
   })

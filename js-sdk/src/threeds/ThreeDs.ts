@@ -20,26 +20,34 @@ export class PublicSquareThreeDs {
     this._publicSquare = publicSquarePointer
   }
 
-  private async _getBt3ds() {
+  private async _getBt3ds(environment?: 'TEST' | 'PRODUCTION') {
+    console.log('environment', environment)
     if (!this._bt3ds) {
-      const { BasisTheory3ds } = await import('@basis-theory/web-threeds')
-      this._bt3ds = BasisTheory3ds(
-        this._publicSquare._public3dsAppKey,
-        { apiBaseUrl: this._publicSquare._btApiBaseUrl }
-      )
+        const { BasisTheory3ds } = await import('@basis-theory/web-threeds')
+        if (environment === 'TEST') {
+          this._bt3ds = BasisTheory3ds(
+            'key_test_us_pub_Tkia8nWTAWwFZ8QJyUJvES',
+            { apiBaseUrl: 'https://api.test.basistheory.com' }
+          )
+          return this._bt3ds
+        }
+        this._bt3ds = BasisTheory3ds(
+          this._publicSquare._public3dsAppKey,
+          { apiBaseUrl: this._publicSquare._btApiBaseUrl }
+        )
     }
     return this._bt3ds
   }
 
   public async createSession(
-    input: { token_id: string; payment_intent_id: string },
+    input: { token_id: string; payment_intent_id: string; environment?: 'TEST' | 'PRODUCTION' },
   ): Promise<SaveThreeDsSessionResponse> {
     if (!this._publicSquare._apiKey) {
       throw new Error('apiKey must be sent at initialization')
     } else if (!this._publicSquare.bt || !this._publicSquare.bt.client) {
       throw new Error('PublicSquare JS has not be initialized yet')
     } else {
-      const bt3ds = await this._getBt3ds()
+      const bt3ds = await this._getBt3ds(input.environment ?? 'PRODUCTION')
       const btSession = await bt3ds.createSession({ tokenId: input.token_id }) as ThreeDsCreateSessionResponse
 
       const validatedInput = validateSaveThreeDsSessionRequest({
@@ -67,7 +75,7 @@ export class PublicSquareThreeDs {
   public async startChallenge(
     input: ThreeDsStartChallengeInput,
   ): Promise<ThreeDsStartChallengeResponse> {
-    const bt3ds = await this._getBt3ds()
+    const bt3ds = await this._getBt3ds(input.environment ?? 'PRODUCTION')
     const result = await bt3ds.startChallenge({
       sessionId: input.sessionId,
       acsChallengeUrl: input.acsChallengeUrl,

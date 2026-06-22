@@ -76,7 +76,7 @@ export default function IFrameFlow({ allInOne }: { allInOne: boolean }) {
       cardResponse = (await publicsquare.cards.create({
         cardholder_name: cardholderName,
         card,
-      })) as typeof cardResponse
+      }, "TEST")) as typeof cardResponse
     } catch (err) {
       return fail('cards.create threw', String(err))
     }
@@ -110,6 +110,7 @@ export default function IFrameFlow({ allInOne }: { allInOne: boolean }) {
       sessionRes = (await publicsquare.threeDs.createSession({
         token_id: cardResponse.token,
         payment_intent_id: intentRes.id,
+        environment: "TEST",
       })) as typeof sessionRes
     } catch (err) {
       return fail('createSession threw', String(err))
@@ -197,6 +198,7 @@ export default function IFrameFlow({ allInOne }: { allInOne: boolean }) {
           acsChallengeUrl={nextAction.acs_challenge_url!}
           acsTransactionId={nextAction.acs_transaction_id!}
           threeDsVersion={nextAction.three_ds_version!}
+          environment="TEST"
           onComplete={onChallengeComplete}
           onFailure={onChallengeFailure}
         />

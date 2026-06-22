@@ -33,13 +33,13 @@ describe('Cards', () => {
 
   test('create() works', async () => {
     const input = generateCardCreateInput()
-    const result = await publicsquare.cards.create(input)
+    const result = await publicsquare.cards.create(input, "TEST")
     expect(result).toEqual({})
   })
 
   test('create() fails with invalid input', async () => {
     const error = await getError<{ message: string }>(() =>
-      publicsquare.cards.create({ card: {} } as any)
+      publicsquare.cards.create({ card: {} } as any, "TEST")
     )
     expect(error.message).toBe('cardholder_name is required')
   })

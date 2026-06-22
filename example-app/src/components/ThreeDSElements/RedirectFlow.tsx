@@ -68,7 +68,7 @@ export default function RedirectFlow({ allInOne }: { allInOne: boolean }) {
       cardResponse = (await publicsquare.cards.create({
         cardholder_name: cardholderName,
         card,
-      })) as typeof cardResponse
+      }, "TEST")) as typeof cardResponse
     } catch (err) {
       return fail('cards.create threw', String(err))
     }

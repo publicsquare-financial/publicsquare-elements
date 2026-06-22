@@ -121,7 +121,7 @@ export default function CardElementsJs({ allInOne }: { allInOne: boolean }) {
         const response = await publicsquare?.cards.create({
           cardholder_name: formProps.cardholder_name as string,
           card
-        })
+        }, "TEST")
         if (response) {
           setMessage({
             message: response,

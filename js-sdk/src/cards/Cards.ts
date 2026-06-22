@@ -14,23 +14,30 @@ export class PublicSquareCards {
     this._publicSquare = publicSquarePointer
   }
 
-  public create(input: CardCreateInput): Promise<CardCreateResponse> {
+  public create(input: CardCreateInput, environment?: 'TEST' | 'PRODUCTION'): Promise<CardCreateResponse> {
     if (!this._publicSquare._apiKey) {
       throw new Error('apiKey must be sent at initialization')
     } else if (!this._publicSquare.bt || !this._publicSquare.bt.client) {
       throw new Error('PublicSquare JS has not be initialized yet')
     } else {
+      environment = environment ?? 'PRODUCTION'
       const validatedInput = validateCreateCardInput(input)
+      const cardCreateUrl = environment === 'TEST'
+        ? BASIS_THEORY_ENDPOINTS.PROXY('https://api.test.basistheory.com')
+        : this._publicSquare._cardCreateUrl ?? BASIS_THEORY_ENDPOINTS.PROXY(this._publicSquare._btApiBaseUrl)
+      const proxyKey = environment === 'TEST'
+        ? 'key_test_us_proxy_FrL4kJFRXU1AwuYVnMbTnP'
+        : this._publicSquare._proxyKey
 
       return this._publicSquare.bt.client
         .post(
-          this._publicSquare._cardCreateUrl ?? BASIS_THEORY_ENDPOINTS.PROXY(this._publicSquare._btApiBaseUrl),
+          cardCreateUrl,
           transformCreateCardInput(validatedInput),
           {
             headers: {
               'Content-Type': 'application/json',
               'X-API-KEY': this._publicSquare._apiKey,
-              'BT-PROXY-KEY': this._publicSquare._proxyKey
+              'BT-PROXY-KEY': proxyKey
             }
           }
         )
