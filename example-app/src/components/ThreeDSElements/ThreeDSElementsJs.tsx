@@ -170,7 +170,7 @@ export default function ThreeDSElementsJs({
       cardResponse = (await publicsquare.cards.create({
         cardholder_name: cardholderName,
         card,
-      })) as typeof cardResponse
+      }, "TEST")) as typeof cardResponse
     } catch (err) {
       return fail('cards.create threw', String(err))
     }
@@ -212,6 +212,8 @@ export default function ThreeDSElementsJs({
       sessionRes = (await publicsquare!.threeDs.createSession({
         token_id: tokenId,
         payment_intent_id: paymentIntentId,
+        challenge_preference: "no-preference",
+        environment: "TEST",
       })) as typeof sessionRes
     } catch (err) {
       return fail('createSession threw', String(err))
@@ -296,6 +298,7 @@ export default function ThreeDSElementsJs({
         acsTransactionId: nextAction.acs_transaction_id!,
         threeDsVersion: nextAction.three_ds_version!,
         containerId: CHALLENGE_CONTAINER_ID,
+        environment:"TEST",
       })
       .then((result) => onChallengeComplete(result))
       .catch((err) => fail('challenge failure', err instanceof Error ? err.message : String(err)))

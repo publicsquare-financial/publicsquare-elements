@@ -13,6 +13,7 @@ export type ThreeDSChallengeProps = {
   acsTransactionId: string
   threeDsVersion: string
   containerId?: string
+  environment?: 'TEST' | 'PRODUCTION'
   onComplete: (result: ThreeDSChallengeResult) => void
   onFailure?: (error: Error) => void
 }
@@ -23,6 +24,7 @@ export const ThreeDSChallengeElement = ({
   acsTransactionId,
   threeDsVersion,
   containerId: containerIdProp,
+  environment = 'PRODUCTION',
   onComplete,
   onFailure
 }: ThreeDSChallengeProps) => {
@@ -41,11 +43,12 @@ export const ThreeDSChallengeElement = ({
         acsChallengeUrl,
         acsTransactionId,
         threeDsVersion,
-        containerId
+        containerId,
+        environment
       })
       .then((result) => onComplete(result as ThreeDSChallengeResult))
       .catch((error: Error) => onFailure?.(error))
-  }, [publicsquare, sessionId, acsChallengeUrl, acsTransactionId, threeDsVersion, onComplete, onFailure])
+  }, [publicsquare, sessionId, acsChallengeUrl, acsTransactionId, threeDsVersion, environment, onComplete, onFailure])
 
   return <div id={containerId} />
 }

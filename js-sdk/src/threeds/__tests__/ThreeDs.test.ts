@@ -59,7 +59,8 @@ describe('ThreeDs', () => {
 
     const result = await publicsquare.threeDs.createSession({
       token_id: 'tok_123',
-      payment_intent_id: 'pmt_int_1'
+      payment_intent_id: 'pmt_int_1',
+      challenge_preference: "no-preference"
     })
 
     // BT session is created from the card token
@@ -90,7 +91,8 @@ describe('ThreeDs', () => {
 
     const result = await publicsquare.threeDs.createSession({
       token_id: 'tok_123',
-      payment_intent_id: ''
+      payment_intent_id: '',
+      challenge_preference: "no-preference"
     })
 
     expect(result).toEqual({ error: errorBody })
@@ -103,7 +105,8 @@ describe('ThreeDs', () => {
     const error = await getError<{ message: string }>(() =>
       publicsquare.threeDs.createSession({
         token_id: 'tok_123',
-        payment_intent_id: 'pmt_int_1'
+        payment_intent_id: 'pmt_int_1',
+        challenge_preference: "no-preference"
       })
     )
 
@@ -116,7 +119,8 @@ describe('ThreeDs', () => {
     const error = await getError<{ message: string }>(() =>
       uninitialized.threeDs.createSession({
         token_id: 'tok_123',
-        payment_intent_id: 'pmt_int_1'
+        payment_intent_id: 'pmt_int_1',
+        challenge_preference: "no-preference"
       })
     )
 

@@ -70,8 +70,8 @@ function Elements({ allInOne }: { allInOne: boolean }) {
       try {
         const response = await publicsquare.cards.create({
           cardholder_name: formProps.cardholder_name as string,
-          card
-        })
+          card,
+        }, "TEST")
         if (response) {
           setMessage({
             message: response,

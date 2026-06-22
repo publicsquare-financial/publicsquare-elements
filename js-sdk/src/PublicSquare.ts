@@ -87,7 +87,7 @@ export class PublicSquare {
     
 
     const bt = await new BasisTheory().init((Math.random() + 1).toString(36).substring(7), {
-      elements: true,
+      elements: true, apiBaseUrl: this._btApiBaseUrl
     });
     if (!bt) {
       throw new Error(ELEMENTS_INIT_ERROR_MESSAGE);
