@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.13.0...v1.13.1) (2026-06-22)
+
+
+### Bug Fixes
+
+* add environment, challenge_preference and exemption_request_reason in 3DS ([c53e937](https://github.com/publicsquare-financial/publicsquare-elements/commit/c53e93713dd896923980e1e55d1b905310d86444))
+
 # [1.13.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.12.0...v1.13.0) (2026-06-18)
 
 
