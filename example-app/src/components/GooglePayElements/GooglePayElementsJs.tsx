@@ -73,7 +73,7 @@ export default function GooglePayElementsJs() {
   async function createGooglePay(event: any) {
     if (publicsquare) {
       try {
-        const tokenObj = JSON.parse(event.paymentMethodData)
+        const tokenObj = event.paymentMethodData
         const response = await publicsquare.googlePay.create({
           google_payment_method_data: tokenObj
         })
