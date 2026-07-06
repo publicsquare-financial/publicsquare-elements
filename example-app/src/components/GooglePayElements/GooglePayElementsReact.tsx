@@ -33,9 +33,9 @@ function Elements() {
     const psq = publicsquareRef.current;
     if (psq) {
       try {
-        const tokenObj = JSON.parse(event.paymentMethodData.tokenizationData.token)
+        const tokenObj = JSON.parse(event.paymentMethodData)
         const response = await psq.googlePay.create({
-          google_payment_data: tokenObj
+          google_payment_method_data: tokenObj
         })
         if (response) {
           return response

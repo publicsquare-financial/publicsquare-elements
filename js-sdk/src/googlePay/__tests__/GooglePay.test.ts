@@ -1,8 +1,8 @@
 import { PublicSquare } from '../../index'
 import { PublicSquareGooglePay } from '..'
-import { getError } from '../../tests/utils'
-import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '../../constants'
-import { GooglePayCreateInput } from '../../types'
+import { getError } from '@/tests/utils'
+import { ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '@/constants'
+import { GooglePayCreateInput } from '@/types'
 
 jest.mock('@basis-theory/basis-theory-js', () => ({
   BasisTheory: jest.fn().mockImplementation(() => ({
@@ -16,7 +16,14 @@ jest.mock('@basis-theory/basis-theory-js', () => ({
 }))
 
 const validGooglePayCreateInput: GooglePayCreateInput = {
-  google_payment_data: {},
+    google_payment_method_data: {
+    type: 'CARD',
+    description: 'Visa •••• 1111',
+    tokenizationData: {
+      type: 'PAYMENT_GATEWAY',
+      token: '{"protocolVersion":"ECv2"}'
+    }
+  },
   customer_id: 'cus_123',
   billing_details: {
     address_line_1: '123 Main St',
@@ -93,8 +100,15 @@ describe('GooglePay', () => {
         json: () => Promise.resolve(mockResponse)
       })
     )
-    const input = {
-      google_payment_data: {}
+    const input: GooglePayCreateInput = {
+      google_payment_method_data: {
+        type: 'CARD',
+        description: 'Visa •••• 1111',
+        tokenizationData: {
+          type: 'PAYMENT_GATEWAY',
+          token: '{"protocolVersion":"ECv2"}'
+        }
+      }
     }
     const result = await googlePay.create(input)
     expect(global.fetch).toHaveBeenCalledWith(
@@ -111,11 +125,11 @@ describe('GooglePay', () => {
     expect(result).toEqual(mockResponse)
   })
 
-  test('create() fails with invalid google_payment_data', async () => {
+  test('create() fails with invalid google_payment_method_data', async () => {
     const error = await getError<{ message: string }>(() =>
       googlePay.create({} as any)
     )
-    expect(error.message).toEqual('google_payment_data is required')
+    expect(error.message).toEqual('google_payment_method_data is required')
   })
 
   test('create() only passes validated input', async () => {
@@ -128,18 +142,17 @@ describe('GooglePay', () => {
       })
     )
     const input = {
-      google_payment_data: {
-        protocolVersion: 'ECv2',
-        signature: 'abcd1234',
-        intermediateSigningKey: {
-            signedKey: 'key1234',
-            signatures: ['xyz1234']
-        },
-        signedMessage: 'MEQCIA6xeBmZ02LNFJgt8aXfKRJRT2J0VSD'
+      google_payment_method_data: {
+        type: 'CARD',
+        description: 'Visa •••• 1111',
+        tokenizationData: {
+          type: 'PAYMENT_GATEWAY',
+          token: '{"protocolVersion":"ECv2","signature":"abcd1234"}'
+        }
       },
       random_value: 'abcdefgh'
     }
-    await googlePay.create(input)
+    await googlePay.create(input as GooglePayCreateInput)
     expect(global.fetch).toHaveBeenCalledWith(
       'https://api.publicsquare.com/payment-methods/google-pay',
       {
@@ -149,14 +162,13 @@ describe('GooglePay', () => {
           'X-API-KEY': 'api_key'
         },
         body: JSON.stringify({
-          google_payment_data: {
-            protocolVersion: 'ECv2',
-            signature: 'abcd1234',
-            intermediateSigningKey: {
-                signedKey: 'key1234',
-                signatures: ['xyz1234']
-            },
-            signedMessage: 'MEQCIA6xeBmZ02LNFJgt8aXfKRJRT2J0VSD'
+          google_payment_method_data: {
+            type: 'CARD',
+            description: 'Visa •••• 1111',
+            tokenizationData: {
+              type: 'PAYMENT_GATEWAY',
+              token: '{"protocolVersion":"ECv2","signature":"abcd1234"}'
+            }
           }
         })
       }

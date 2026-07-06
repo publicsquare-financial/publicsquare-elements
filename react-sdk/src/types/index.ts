@@ -45,10 +45,9 @@ import {
   GooglePayCreateInput,
   ValidatedGooglePayCreateInput,
   ValidateGooglePayButtonWidgetOptions,
+  GooglePaymentMethodData,
   GooglePayCreateResponse,
   GooglePayCreateErrorResponse,
-  GooglePayIntermediateSigningKey,
-  GooglePaymentMethodToken
 } from '@publicsquare/elements-js/types'
 import { PublicSquare } from '@publicsquare/elements-js'
 
@@ -186,8 +185,7 @@ export {
   GooglePayCreateInput,
   ValidatedGooglePayCreateInput,
   ValidateGooglePayButtonWidgetOptions,
+  GooglePaymentMethodData,
   GooglePayCreateResponse,
-  GooglePayCreateErrorResponse,
-  GooglePayIntermediateSigningKey,
-  GooglePaymentMethodToken
+  GooglePayCreateErrorResponse
 }

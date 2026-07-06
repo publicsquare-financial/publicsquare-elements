@@ -1,5 +1,5 @@
 import { CardBillingDetails } from './cards'
-import { Environment } from './publicsquare'
+import { Environment } from '@/types'
 
 export interface GooglePayButtonWidgetOptions {
   id: string
@@ -31,7 +31,7 @@ export interface GooglePayButtonWidgetOptions {
 }
 
 export type GooglePayCreateInput = {
-  google_payment_data?: GooglePaymentMethodToken
+  google_payment_method_data?: GooglePaymentMethodData
   customer_id?: string
   billing_details?: CardBillingDetails
 }
@@ -44,17 +44,43 @@ export type ValidateGooglePayButtonWidgetOptions = {
   validated: GooglePayButtonWidgetOptions
 }
 
-export type GooglePayIntermediateSigningKey = {
-  signedKey?: string
-  signatures?: string[]
-}
+export type GooglePaymentMethodData = {
+  type: 'CARD';
+  description: string;
+  tokenizationData: PaymentMethodTokenizationData;
+  info?: CardInfo;
+};
 
-export type GooglePaymentMethodToken = {
-  protocolVersion?: string
-  signature?: string
-  intermediateSigningKey?: GooglePayIntermediateSigningKey
-  signedMessage?: string
-}
+export type PaymentMethodTokenizationData = {
+  type: 'PAYMENT_GATEWAY' | 'DIRECT';
+  token: string;
+};
+
+export type CardInfo = {
+  cardNetwork: string;
+  cardDetails: string;
+  billingAddress?: GooglePayAddress;
+  assuranceDetails?: GooglePayAssuranceDetails;
+};
+
+export type GooglePayAssuranceDetails = {
+  accountVerified?: boolean;
+  cardHolderAuthenticated?: boolean;
+};
+
+export type GooglePayAddress = {
+  name: string;
+  address1: string;
+  address2?: string;
+  address3?: string;
+  locality: string;
+  administrativeArea: string;
+  countryCode: string;
+  postalCode: string;
+  sortingCode?: string;
+  phoneNumber?: string;
+};
+
 
 export type GooglePayCreateResponse = {
   id: string

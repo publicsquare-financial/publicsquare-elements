@@ -8,8 +8,8 @@ import {
 export function validateCreateGooglePayInput(
   input: GooglePayCreateInput
 ): ValidatedGooglePayCreateInput {
-  if (typeof input.google_payment_data !== 'object') {
-    throw new Error('google_payment_data is required')
+  if (typeof input.google_payment_method_data !== 'object') {
+    throw new Error('google_payment_method_data is required')
   }
   if (!['string', 'undefined'].includes(typeof input.customer_id)) {
     throw new Error('customer_id must be a string if included')
@@ -19,7 +19,7 @@ export function validateCreateGooglePayInput(
   }
   return {
     validated: {
-      google_payment_data: input.google_payment_data as any,
+      google_payment_method_data: input.google_payment_method_data,
       customer_id: input.customer_id,
       billing_details: input.billing_details
     }
