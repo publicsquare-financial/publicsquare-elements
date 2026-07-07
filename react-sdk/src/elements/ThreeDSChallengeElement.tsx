@@ -1,22 +1,22 @@
-import React, { useEffect, useId, useRef } from 'react'
-import { usePublicSquare } from '../core/PublicSquareProvider'
+import React, { useEffect, useId, useRef } from 'react';
+import { usePublicSquare } from '../core/PublicSquareProvider';
 
 export type ThreeDSChallengeResult = {
-  id: string
-  isCompleted: boolean
-  authenticationStatus: string
-}
+  id: string;
+  isCompleted: boolean;
+  authenticationStatus: string;
+};
 
 export type ThreeDSChallengeProps = {
-  sessionId: string
-  acsChallengeUrl: string
-  acsTransactionId: string
-  threeDsVersion: string
-  containerId?: string
-  environment?: 'TEST' | 'PRODUCTION'
-  onComplete: (result: ThreeDSChallengeResult) => void
-  onFailure?: (error: Error) => void
-}
+  sessionId: string;
+  acsChallengeUrl: string;
+  acsTransactionId: string;
+  threeDsVersion: string;
+  containerId?: string;
+  environment?: 'TEST' | 'PRODUCTION';
+  onComplete: (result: ThreeDSChallengeResult) => void;
+  onFailure?: (error: Error) => void;
+};
 
 export const ThreeDSChallengeElement = ({
   sessionId,
@@ -26,16 +26,16 @@ export const ThreeDSChallengeElement = ({
   containerId: containerIdProp,
   environment = 'PRODUCTION',
   onComplete,
-  onFailure
+  onFailure,
 }: ThreeDSChallengeProps) => {
-  const generatedId = useId()
-  const containerId = containerIdProp ?? `threeds-challenge-${generatedId}`
-  const { publicsquare } = usePublicSquare()
-  const started = useRef(false)
+  const generatedId = useId();
+  const containerId = containerIdProp ?? `threeds-challenge-${generatedId}`;
+  const { publicsquare } = usePublicSquare();
+  const started = useRef(false);
 
   useEffect(() => {
-    if (!publicsquare || started.current) return
-    started.current = true
+    if (!publicsquare || started.current) return;
+    started.current = true;
 
     publicsquare.threeDs
       .startChallenge({
@@ -44,11 +44,20 @@ export const ThreeDSChallengeElement = ({
         acsTransactionId,
         threeDsVersion,
         containerId,
-        environment
+        environment,
       })
       .then((result) => onComplete(result as ThreeDSChallengeResult))
-      .catch((error: Error) => onFailure?.(error))
-  }, [publicsquare, sessionId, acsChallengeUrl, acsTransactionId, threeDsVersion, environment, onComplete, onFailure])
+      .catch((error: Error) => onFailure?.(error));
+  }, [
+    publicsquare,
+    sessionId,
+    acsChallengeUrl,
+    acsTransactionId,
+    threeDsVersion,
+    environment,
+    onComplete,
+    onFailure,
+  ]);
 
-  return <div id={containerId} />
-}
+  return <div id={containerId} />;
+};

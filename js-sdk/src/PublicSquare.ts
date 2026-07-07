@@ -34,15 +34,15 @@ export class PublicSquare {
   _apiUrl: string = 'https://api.publicsquare.com';
   _apiKey?: string;
   _proxyKey: string = 'key_prod_us_proxy_HiFqDwW49EZ8szKi8cMvQP';
-  _cardCreateUrl?: string
-  _applePayCreateUrl?: string
-  _applePayCreateSessionUrl?: string
-  _bankAccountCreateUrl?: string
-  _bankAccountVerificationUrl?: string
-  _googlePayCreateUrl?: string
-  _getGooglePayConfiguration?: string
+  _cardCreateUrl?: string;
+  _applePayCreateUrl?: string;
+  _applePayCreateSessionUrl?: string;
+  _bankAccountCreateUrl?: string;
+  _bankAccountVerificationUrl?: string;
+  _googlePayCreateUrl?: string;
+  _getGooglePayConfiguration?: string;
   _btApiBaseUrl: string = 'https://api.basistheory.com';
-  _threeDsCreateSessionUrl?: string
+  _threeDsCreateSessionUrl?: string;
   _public3dsAppKey: string = 'key_prod_us_pub_7cC6EF431x2rKGwsnnuZPP';
 
   protected _bt?: BasisTheoryInstance;
@@ -71,7 +71,8 @@ export class PublicSquare {
     if (options?.proxyKey) this._proxyKey = options?.proxyKey;
     if (options?.cardCreateUrl) this._cardCreateUrl = options?.cardCreateUrl;
     if (options?.bankAccountCreateUrl) this._bankAccountCreateUrl = options?.bankAccountCreateUrl;
-    if (options?.bankAccountVerificationUrl) this._bankAccountVerificationUrl = options?.bankAccountVerificationUrl;
+    if (options?.bankAccountVerificationUrl)
+      this._bankAccountVerificationUrl = options?.bankAccountVerificationUrl;
     if (options?.applePayCreateUrl) this._applePayCreateUrl = options?.applePayCreateUrl;
     if (options?.applePayCreateSessionUrl)
       this._applePayCreateSessionUrl = options?.applePayCreateSessionUrl;
@@ -80,14 +81,12 @@ export class PublicSquare {
       this._getGooglePayConfiguration = options?.getGooglePayConfiguration;
     if (options?.threeDsCreateSessionUrl)
       this._threeDsCreateSessionUrl = options?.threeDsCreateSessionUrl;
-    if (options?.btApiBaseUrl)
-      this._btApiBaseUrl = options?.btApiBaseUrl;
-    if (options?.public3dsAppKey)
-      this._public3dsAppKey = options?.public3dsAppKey;
-    
+    if (options?.btApiBaseUrl) this._btApiBaseUrl = options?.btApiBaseUrl;
+    if (options?.public3dsAppKey) this._public3dsAppKey = options?.public3dsAppKey;
 
     const bt = await new BasisTheory().init((Math.random() + 1).toString(36).substring(7), {
-      elements: true, apiBaseUrl: this._btApiBaseUrl
+      elements: true,
+      apiBaseUrl: this._btApiBaseUrl,
     });
     if (!bt) {
       throw new Error(ELEMENTS_INIT_ERROR_MESSAGE);

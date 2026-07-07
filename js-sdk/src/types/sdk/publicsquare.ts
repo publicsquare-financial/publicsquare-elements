@@ -4,49 +4,49 @@ import type {
   CreateCardNumberElementOptions,
   CreateCardVerificationCodeElementOptions,
   ElementType as BTElementType,
-  BasisTheoryElements
-} from '@basis-theory/basis-theory-js/types/elements'
-import { BasisTheory as IBasisTheory } from '@basis-theory/basis-theory-js/types/sdk'
+  BasisTheoryElements,
+} from '@basis-theory/basis-theory-js/types/elements';
+import { BasisTheory as IBasisTheory } from '@basis-theory/basis-theory-js/types/sdk';
 import {
   CreateBankAccountAccountNumberElementOptions,
   CreateBankAccountElementOptions,
   CreateBankAccountRoutingNumberElementOptions,
-  CreateBankAccountVerificationElementOptions
-} from '@/types'
+  CreateBankAccountVerificationElementOptions,
+} from '@/types';
 
-export { ElementWrapper } from '@basis-theory/basis-theory-js/types/elements'
-export * from '@basis-theory/basis-theory-js/types/elements'
+export { ElementWrapper } from '@basis-theory/basis-theory-js/types/elements';
+export * from '@basis-theory/basis-theory-js/types/elements';
 
 export interface ApplicationInfo {
-  name?: string
-  version?: string
-  url?: string
+  name?: string;
+  version?: string;
+  url?: string;
 }
 
 export interface PublicSquareInitOptions {
-  apiUrl?: string
-  cardCreateUrl?: string
-  bankAccountCreateUrl?: string
-  bankAccountVerificationUrl?: string
-  applePayCreateUrl?: string
-  applePayCreateSessionUrl?: string
-  googlePayCreateUrl?: string
-  getGooglePayConfiguration?: string
-  threeDsCreateSessionUrl?: string
-  btApiBaseUrl?: string
-  public3dsAppKey?: string
-  proxyKey?: string
-  appInfo?: ApplicationInfo
+  apiUrl?: string;
+  cardCreateUrl?: string;
+  bankAccountCreateUrl?: string;
+  bankAccountVerificationUrl?: string;
+  applePayCreateUrl?: string;
+  applePayCreateSessionUrl?: string;
+  googlePayCreateUrl?: string;
+  getGooglePayConfiguration?: string;
+  threeDsCreateSessionUrl?: string;
+  btApiBaseUrl?: string;
+  public3dsAppKey?: string;
+  proxyKey?: string;
+  appInfo?: ApplicationInfo;
 }
 
-export type Environment = 'test' | 'production'
+export type Environment = 'test' | 'production';
 
 export type BankAccountElementTypes =
   | 'bankAccount'
   | 'bankAccountRoutingNumber'
   | 'bankAccountAccountNumber'
-  | 'bankAccountVerification'
-export type ElementType = BTElementType | BankAccountElementTypes
+  | 'bankAccountVerification';
+export type ElementType = BTElementType | BankAccountElementTypes;
 
 export enum ElementTypeEnum {
   Text = 'text',
@@ -57,10 +57,10 @@ export enum ElementTypeEnum {
   BankAccount = 'bankAccount',
   BankAccountRoutingNumber = 'bankAccountRoutingNumber',
   BankAccountAccountNumber = 'bankAccountAccountNumber',
-  BankAccountVerification = 'bankAccountVerification'
+  BankAccountVerification = 'bankAccountVerification',
 }
 
-export type CreateCardElementOptions = BTCreateCardElementOptions
+export type CreateCardElementOptions = BTCreateCardElementOptions;
 
 export type CreateElementOptions =
   | CreateCardElementOptions
@@ -70,6 +70,6 @@ export type CreateElementOptions =
   | CreateBankAccountElementOptions
   | CreateBankAccountRoutingNumberElementOptions
   | CreateBankAccountAccountNumberElementOptions
-  | CreateBankAccountVerificationElementOptions
+  | CreateBankAccountVerificationElementOptions;
 
-export type BasisTheoryInstance = IBasisTheory & BasisTheoryElements
+export type BasisTheoryInstance = IBasisTheory & BasisTheoryElements;

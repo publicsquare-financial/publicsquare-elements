@@ -1,69 +1,72 @@
-'use client'
-import { useEffect, useRef, useState } from 'react'
-import { PublicSquare } from '@publicsquare/elements-js'
-import CaptureModal from '../Modals/CaptureModal'
-import { GooglePayButtonWidget } from '@publicsquare/elements-js/googlePay/GooglePayButtonWidget'
-import { environment } from '@/config/environments'
+'use client';
+import { useEffect, useRef, useState } from 'react';
+import { PublicSquare } from '@publicsquare/elements-js';
+import CaptureModal from '../Modals/CaptureModal';
+import { GooglePayButtonWidget } from '@publicsquare/elements-js/googlePay/GooglePayButtonWidget';
+import { environment } from '@/config/environments';
 
 export default function GooglePayElementsJs() {
-  const [publicsquare, setPublicSquare] = useState<PublicSquare>()
-  const buttonContainerRef = useRef<HTMLDivElement>(null)
-  const googlePayButtonRef = useRef<GooglePayButtonWidget>(null)
+  const [publicsquare, setPublicSquare] = useState<PublicSquare>();
+  const buttonContainerRef = useRef<HTMLDivElement>(null);
+  const googlePayButtonRef = useRef<GooglePayButtonWidget>(null);
   const [message, setMessage] = useState<{
-    message?: object
-    error?: boolean
-  }>()
+    message?: object;
+    error?: boolean;
+  }>();
 
   useEffect(() => {
     new PublicSquare()
       .init(environment.apiKey, environment.googlePay)
-      .then((_publicsquare) => setPublicSquare(_publicsquare))
-  }, [])
+      .then((_publicsquare) => setPublicSquare(_publicsquare));
+  }, []);
 
   useEffect(() => {
     if (publicsquare && buttonContainerRef.current) {
-      googlePayButtonRef.current = publicsquare.googlePay.renderButton(buttonContainerRef.current!, {
-        id: 'google-pay-btn',
-        environment: 'TEST',
-        merchantName: 'PSQ Merchant Test',
-        allowedCardAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-        allowedCardNetworks: ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
-        buttonColor: 'black',
-        buttonType: 'buy',
-        locale: 'en',
-        style: {
-          width: '160px',
-          height: '40px',
-          borderRadius: 4,
-          borderType: 'default_border'
+      googlePayButtonRef.current = publicsquare.googlePay.renderButton(
+        buttonContainerRef.current!,
+        {
+          id: 'google-pay-btn',
+          environment: 'TEST',
+          merchantName: 'PSQ Merchant Test',
+          allowedCardAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+          allowedCardNetworks: ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
+          buttonColor: 'black',
+          buttonType: 'buy',
+          locale: 'en',
+          style: {
+            width: '160px',
+            height: '40px',
+            borderRadius: 4,
+            borderType: 'default_border',
+          },
+          transactionInfo: {
+            totalPriceStatus: 'FINAL',
+            totalPrice: '1.00',
+            currencyCode: 'USD',
+            countryCode: 'US',
+          },
+          onPaymentDataLoaded: async (paymentData) => {
+            onPaymentAuthorized(paymentData);
+          },
         },
-        transactionInfo: {
-          totalPriceStatus: 'FINAL',
-          totalPrice: '1.00',
-          currencyCode: 'USD',
-          countryCode: 'US'
-        },
-        onPaymentDataLoaded: async (paymentData) => {
-          onPaymentAuthorized(paymentData)
-        }
-      })
+      );
     }
-  }, [publicsquare])
+  }, [publicsquare]);
 
   async function onPaymentAuthorized(event: any) {
     if (publicsquare && buttonContainerRef.current) {
       googlePayButtonRef.current?.setDisabled(true);
 
       try {
-        const googlePay = await createGooglePay(event)
+        const googlePay = await createGooglePay(event);
         if (googlePay) {
           setMessage({
-              message: googlePay,
-              error: !!googlePay.error
-          })
+            message: googlePay,
+            error: !!googlePay.error,
+          });
         }
       } catch (e) {
-          console.error(e)
+        console.error(e);
       }
 
       googlePayButtonRef.current?.setDisabled(false);
@@ -73,15 +76,15 @@ export default function GooglePayElementsJs() {
   async function createGooglePay(event: any) {
     if (publicsquare) {
       try {
-        const tokenObj = event.paymentMethodData
+        const tokenObj = event.paymentMethodData;
         const response = await publicsquare.googlePay.create({
-          google_payment_method_data: tokenObj
-        })
+          google_payment_method_data: tokenObj,
+        });
         if (response) {
-          return response
+          return response;
         }
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
   }
@@ -95,5 +98,5 @@ export default function GooglePayElementsJs() {
         error={message?.error}
       />
     </>
-  )
+  );
 }

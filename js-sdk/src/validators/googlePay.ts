@@ -3,64 +3,62 @@ import {
   GooglePayCreateInput,
   ValidatedGooglePayCreateInput,
   ValidateGooglePayButtonWidgetOptions,
-} from '@/types'
+} from '@/types';
 
 export function validateCreateGooglePayInput(
-  input: GooglePayCreateInput
+  input: GooglePayCreateInput,
 ): ValidatedGooglePayCreateInput {
   if (typeof input.google_payment_method_data !== 'object') {
-    throw new Error('google_payment_method_data is required')
+    throw new Error('google_payment_method_data is required');
   }
   if (!['string', 'undefined'].includes(typeof input.customer_id)) {
-    throw new Error('customer_id must be a string if included')
+    throw new Error('customer_id must be a string if included');
   }
   if (!['object', 'undefined'].includes(typeof input.billing_details)) {
-    throw new Error('billing_details must be an object if included')
+    throw new Error('billing_details must be an object if included');
   }
   return {
     validated: {
       google_payment_method_data: input.google_payment_method_data,
       customer_id: input.customer_id,
-      billing_details: input.billing_details
-    }
-  }
+      billing_details: input.billing_details,
+    },
+  };
 }
 
 export function validateGooglePayButtonWidgetOptions(
-  input: GooglePayButtonWidgetOptions
+  input: GooglePayButtonWidgetOptions,
 ): ValidateGooglePayButtonWidgetOptions {
-  
   if (typeof input.id !== 'string') {
-    throw new Error('id is required')
+    throw new Error('id is required');
   }
   if (typeof input.environment !== 'string') {
-    throw new Error('environment is required')
+    throw new Error('environment is required');
   }
   if (input.environment === 'PRODUCTION' && typeof input.merchantId !== 'string') {
-    throw new Error('merchantId is required')
+    throw new Error('merchantId is required');
   }
   if (typeof input.merchantName !== 'string') {
-    throw new Error('merchantName is required')
+    throw new Error('merchantName is required');
   }
   if (typeof input.transactionInfo !== 'object') {
-    throw new Error('transactionInfo is required')
-  }
-  else {
+    throw new Error('transactionInfo is required');
+  } else {
     if (typeof input.transactionInfo.totalPriceStatus !== 'string') {
-      throw new Error('transactionInfo.totalPriceStatus is required')
+      throw new Error('transactionInfo.totalPriceStatus is required');
     }
     if (typeof input.transactionInfo.totalPrice !== 'string') {
-      throw new Error('transactionInfo.totalPrice is required')
+      throw new Error('transactionInfo.totalPrice is required');
     }
     if (typeof input.transactionInfo.currencyCode !== 'string') {
-      throw new Error('transactionInfo.currencyCode is required')
+      throw new Error('transactionInfo.currencyCode is required');
     }
     if (typeof input.transactionInfo.countryCode !== 'string') {
-      throw new Error('transactionInfo.countryCode is required')
+      throw new Error('transactionInfo.countryCode is required');
     }
   }
   if (typeof input.onPaymentDataLoaded !== 'function') {
-    throw new Error('onPaymentDataLoaded is required')
+    throw new Error('onPaymentDataLoaded is required');
   }
 
   return {
@@ -78,7 +76,7 @@ export function validateGooglePayButtonWidgetOptions(
       transactionInfo: input.transactionInfo as any,
       disabled: input.disabled,
       onClick: input.onClick as any,
-      onPaymentDataLoaded: input.onPaymentDataLoaded as any
-    }
-  }
+      onPaymentDataLoaded: input.onPaymentDataLoaded as any,
+    },
+  };
 }

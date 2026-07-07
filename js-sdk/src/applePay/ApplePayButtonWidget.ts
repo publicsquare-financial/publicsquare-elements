@@ -1,4 +1,4 @@
-import type { ApplePayButtonWidgetOptions } from '@/types'
+import type { ApplePayButtonWidgetOptions } from '@/types';
 
 export class ApplePayButtonWidget {
   private options: Required<ApplePayButtonWidgetOptions>;
@@ -89,4 +89,3 @@ export class ApplePayButtonWidget {
     }
   }
 }
-

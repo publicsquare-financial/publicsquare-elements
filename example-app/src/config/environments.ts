@@ -3,10 +3,16 @@ import { PublicSquareInitOptions } from '@publicsquare/elements-js/types';
 type EnvironmentOptions = {
   card: Pick<PublicSquareInitOptions, 'cardCreateUrl' | 'proxyKey'>;
   bankAccount: Pick<PublicSquareInitOptions, 'bankAccountCreateUrl'>;
-  bankVerification: Pick<PublicSquareInitOptions, 'bankAccountCreateUrl' | 'bankAccountVerificationUrl'>;
+  bankVerification: Pick<
+    PublicSquareInitOptions,
+    'bankAccountCreateUrl' | 'bankAccountVerificationUrl'
+  >;
   applePay: Pick<PublicSquareInitOptions, 'applePayCreateSessionUrl' | 'applePayCreateUrl'>;
   googlePay: Pick<PublicSquareInitOptions, 'googlePayCreateUrl' | 'getGooglePayConfiguration'>;
-  threeDs: Pick<PublicSquareInitOptions, 'threeDsCreateSessionUrl' | 'btApiBaseUrl' | 'public3dsAppKey'>;
+  threeDs: Pick<
+    PublicSquareInitOptions,
+    'threeDsCreateSessionUrl' | 'btApiBaseUrl' | 'public3dsAppKey'
+  >;
   apiKey: string;
   apiUrl: string;
 };
@@ -23,15 +29,18 @@ const staging: EnvironmentOptions = {
   },
   bankVerification: {
     bankAccountCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/bank-accounts',
-    bankAccountVerificationUrl: 'https://staging.api.publicsquare.com/payment-methods/bank-accounts/verification',
+    bankAccountVerificationUrl:
+      'https://staging.api.publicsquare.com/payment-methods/bank-accounts/verification',
   },
   applePay: {
-    applePayCreateSessionUrl: 'https://staging.api.publicsquare.com/payment-methods/apple-pay/session',
+    applePayCreateSessionUrl:
+      'https://staging.api.publicsquare.com/payment-methods/apple-pay/session',
     applePayCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/apple-pay',
   },
   googlePay: {
     googlePayCreateUrl: 'https://staging.api.publicsquare.com/payment-methods/google-pay',
-    getGooglePayConfiguration: 'https://staging.api.publicsquare.com/.well-known/google-pay-configuration',
+    getGooglePayConfiguration:
+      'https://staging.api.publicsquare.com/.well-known/google-pay-configuration',
   },
   threeDs: {
     btApiBaseUrl: 'https://api.test.basistheory.com',
@@ -52,7 +61,8 @@ const production: EnvironmentOptions = {
   },
   bankVerification: {
     bankAccountCreateUrl: 'https://api.publicsquare.com/payment-methods/bank-accounts',
-    bankAccountVerificationUrl: 'https://api.publicsquare.com/payment-methods/bank-accounts/verification',
+    bankAccountVerificationUrl:
+      'https://api.publicsquare.com/payment-methods/bank-accounts/verification',
   },
   applePay: {
     applePayCreateSessionUrl: 'https://api.publicsquare.com/payment-methods/apple-pay/session',

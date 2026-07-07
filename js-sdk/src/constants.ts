@@ -1,32 +1,30 @@
-const ELEMENTS_INIT_ERROR_MESSAGE =
-  'PublicSquare Elements was not properly initialized.'
+const ELEMENTS_INIT_ERROR_MESSAGE = 'PublicSquare Elements was not properly initialized.';
 
 const ELEMENTS_TYPE_NOT_SUPPORTED =
-  'PublicSquare Elements does not support the type of element specified.'
+  'PublicSquare Elements does not support the type of element specified.';
 
 const ELEMENTS_NOM_DOM_ERROR_MESSAGE =
-  'Tried to load PublicSquare Elements in a non-DOM environment. Only client-side environments are supported.'
+  'Tried to load PublicSquare Elements in a non-DOM environment. Only client-side environments are supported.';
 
-const ELEMENTS_SCRIPT_LOAD_ERROR_MESSAGE =
-  'PublicSquare Elements did not load properly.'
+const ELEMENTS_SCRIPT_LOAD_ERROR_MESSAGE = 'PublicSquare Elements did not load properly.';
 
 const ELEMENTS_SCRIPT_UNKNOWN_ERROR_MESSAGE =
-  'There was an unknown error when loading PublicSquare Elements. Check the console for details.'
-  
+  'There was an unknown error when loading PublicSquare Elements. Check the console for details.';
+
 const ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE =
   'PublicSquare SDK requires a pointer when initializing any element';
 
 const ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_VERIFICATION_NOT_ENABLED =
-  'Bank account verification is not enabled for this account. Please request access at https://portal.publicsquare.com/settings'
+  'Bank account verification is not enabled for this account. Please request access at https://portal.publicsquare.com/settings';
 
 const ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_VERIFICATION_SAVE_ERROR_MESSAGE =
-  'PublicSquare Elements did not save the bank account verification properly.'
+  'PublicSquare Elements did not save the bank account verification properly.';
 
 const ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ROUTING_NUMBER_LOAD_ERROR_MESSAGE =
-  'PublicSquare Elements did not load the routing number element properly.'
+  'PublicSquare Elements did not load the routing number element properly.';
 
 const ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_ACCOUNT_NUMBER_LOAD_ERROR_MESSAGE =
-  'PublicSquare Elements did not load the account number element properly.'
+  'PublicSquare Elements did not load the account number element properly.';
 
 const CARD_BRANDS = [
   'visa',
@@ -41,12 +39,12 @@ const CARD_BRANDS = [
   'hiper',
   'hipercard',
   'mir',
-  'unknown'
-] as const
+  'unknown',
+] as const;
 
-const CARD_ICON_POSITIONS = ['left', 'right', 'none'] as const
+const CARD_ICON_POSITIONS = ['left', 'right', 'none'] as const;
 
-const AUTOCOMPLETE_VALUES = ['off', 'on'] as const
+const AUTOCOMPLETE_VALUES = ['off', 'on'] as const;
 
 const API_ENDPOINTS = {
   APPLE_PAY_CREATE: (baseUrl: string) => `${baseUrl}/payment-methods/apple-pay`,
@@ -54,13 +52,14 @@ const API_ENDPOINTS = {
   GOOGLE_PAY_CREATE: (baseUrl: string) => `${baseUrl}/payment-methods/google-pay`,
   GOOGLE_PAY_CONFIGURATION: (baseUrl: string) => `${baseUrl}/.well-known/google-pay-configuration`,
   BANK_ACCOUNT_CREATE: (baseUrl: string) => `${baseUrl}/payment-methods/bank-accounts`,
-  BANK_ACCOUNT_VERIFICATION: (baseUrl: string) => `${baseUrl}/payment-methods/bank-accounts/verification`,
+  BANK_ACCOUNT_VERIFICATION: (baseUrl: string) =>
+    `${baseUrl}/payment-methods/bank-accounts/verification`,
   THREE_DS_CREATE_SESSION: (baseUrl: string) => `${baseUrl}/three-d-secure/sessions`,
-}
+};
 
 const BASIS_THEORY_ENDPOINTS = {
   PROXY: (baseUrl: string) => `${baseUrl}/proxy`,
-}
+};
 
 export {
   ELEMENTS_INIT_ERROR_MESSAGE,
@@ -78,4 +77,4 @@ export {
   AUTOCOMPLETE_VALUES,
   API_ENDPOINTS,
   BASIS_THEORY_ENDPOINTS,
-}
+};

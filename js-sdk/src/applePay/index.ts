@@ -1,1 +1,1 @@
-export * from './ApplePay'
+export * from './ApplePay';

@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import { Field, Label, Switch } from '@headlessui/react'
+import { Field, Label, Switch } from '@headlessui/react';
 
 export default function AllInOneToggle({
   value,
-  onChange
+  onChange,
 }: {
-  value: boolean
-  onChange: (value: boolean) => void
+  value: boolean;
+  onChange: (value: boolean) => void;
 }) {
   return (
-    <Field className="flex items-center text-sm space-x-4">
+    <Field className="flex items-center space-x-4 text-sm">
       <Label as="span">
         <span className="font-medium text-gray-900">Individual inputs</span>{' '}
       </Label>
@@ -18,7 +18,7 @@ export default function AllInOneToggle({
         data-testid="all-in-one-toggle"
         checked={value}
         onChange={(checked) => {
-          onChange(checked)
+          onChange(checked);
         }}
         className="group relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 data-[checked]:bg-indigo-600"
       >
@@ -31,5 +31,5 @@ export default function AllInOneToggle({
         <span className="font-medium text-gray-900">All in one input</span>{' '}
       </Label>
     </Field>
-  )
+  );
 }

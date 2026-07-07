@@ -1,8 +1,5 @@
-import test from '@playwright/test'
-import {
-  DebitCreditCardsJSPage,
-  DebitCreditCardsReactPage,
-} from '../pages/DebitCreditCards.page'
+import test from '@playwright/test';
+import { DebitCreditCardsJSPage, DebitCreditCardsReactPage } from '../pages/DebitCreditCards.page';
 
 const fakeCardInputData = {
   cardholder_name: 'Test Person',
@@ -12,7 +9,7 @@ const fakeCardInputData = {
     expiration_year: `${new Date().getFullYear() + 1}`,
     cvc: '123',
   },
-}
+};
 
 const fakeCard = (data) => ({
   id: 'card_Nv2w5mjHFSVQcbq3caHAhE',
@@ -25,114 +22,114 @@ const fakeCard = (data) => ({
   fingerprint: '5vFj1H8zK9enBAXFp9Er1tbwr6XUJYKRqFw8bJBTYLxh',
   created_at: '2024-06-24T13:51:24.9801189+00:00',
   modified_at: '2024-06-24T13:51:24.9801189+00:00',
-})
+});
 
 test.describe('js', () => {
   test.beforeEach(async ({ page }) => {
-    const homePage = new DebitCreditCardsJSPage(page)
-    await homePage.goToPage()
+    const homePage = new DebitCreditCardsJSPage(page);
+    await homePage.goToPage();
 
-    await homePage.isVisible()
+    await homePage.isVisible();
 
-    await homePage.elementsAllInOneReady()
-  })
+    await homePage.elementsAllInOneReady();
+  });
 
   test('should show 4 js elements', async ({ page }) => {
-    const homePage = new DebitCreditCardsJSPage(page)
+    const homePage = new DebitCreditCardsJSPage(page);
 
-    await homePage.elementsAllInOneReady()
-  })
+    await homePage.elementsAllInOneReady();
+  });
 
   test('should submit the JS CardElement form', async ({ page }) => {
-    const data = fakeCardInputData
+    const data = fakeCardInputData;
     await page.route('https://api.test.basistheory.com/proxy', async (route) => {
-      const json = fakeCard(data)
-      await route.fulfill({ json })
-    })
+      const json = fakeCard(data);
+      await route.fulfill({ json });
+    });
 
-    const homePage = new DebitCreditCardsJSPage(page)
+    const homePage = new DebitCreditCardsJSPage(page);
 
-    await homePage.fillCardElementNameInput(data.cardholder_name)
+    await homePage.fillCardElementNameInput(data.cardholder_name);
 
-    await homePage.fillCardElementInput(data.card)
+    await homePage.fillCardElementInput(data.card);
 
-    await homePage.submitCardElementForm()
+    await homePage.submitCardElementForm();
 
-    await homePage.expectSuccessModalIsVisible()
-  })
+    await homePage.expectSuccessModalIsVisible();
+  });
 
   test('should submit the JS CardElements form', async ({ page }) => {
-    const data = fakeCardInputData
+    const data = fakeCardInputData;
     await page.route('https://api.test.basistheory.com/proxy', async (route) => {
-      const json = fakeCard(data)
-      await route.fulfill({ json })
-    })
+      const json = fakeCard(data);
+      await route.fulfill({ json });
+    });
 
-    const homePage = new DebitCreditCardsJSPage(page)
+    const homePage = new DebitCreditCardsJSPage(page);
 
-    await homePage.toggleAllInOne()
+    await homePage.toggleAllInOne();
 
-    await homePage.fillCardElementsNameInput(data.cardholder_name)
+    await homePage.fillCardElementsNameInput(data.cardholder_name);
 
-    await homePage.fillCardElementsInput(data.card)
+    await homePage.fillCardElementsInput(data.card);
 
-    await homePage.submitCardElementsForm()
+    await homePage.submitCardElementsForm();
 
-    await homePage.expectSuccessModalIsVisible()
-  })
-})
+    await homePage.expectSuccessModalIsVisible();
+  });
+});
 
 test.describe('react', () => {
   test.beforeEach(async ({ page }) => {
-    const homePageReact = new DebitCreditCardsReactPage(page)
-    await homePageReact.goToPage()
+    const homePageReact = new DebitCreditCardsReactPage(page);
+    await homePageReact.goToPage();
 
-    await homePageReact.isVisible()
+    await homePageReact.isVisible();
 
-    await homePageReact.elementsAllInOneReady()
-  })
+    await homePageReact.elementsAllInOneReady();
+  });
 
   test('should show 4 react elements', async ({ page }) => {
-    const homePage = new DebitCreditCardsReactPage(page)
+    const homePage = new DebitCreditCardsReactPage(page);
 
-    await homePage.elementsAllInOneReady()
-  })
+    await homePage.elementsAllInOneReady();
+  });
 
   test('should submit the React CardElement form', async ({ page }) => {
-    const data = fakeCardInputData
+    const data = fakeCardInputData;
     await page.route('https://api.test.basistheory.com/proxy', async (route) => {
-      const json = fakeCard(data)
-      await route.fulfill({ json })
-    })
+      const json = fakeCard(data);
+      await route.fulfill({ json });
+    });
 
-    const homePage = new DebitCreditCardsReactPage(page)
+    const homePage = new DebitCreditCardsReactPage(page);
 
-    await homePage.fillCardElementNameInput(data.cardholder_name)
+    await homePage.fillCardElementNameInput(data.cardholder_name);
 
-    await homePage.fillCardElementInput(data.card)
+    await homePage.fillCardElementInput(data.card);
 
-    await homePage.submitCardElementForm()
+    await homePage.submitCardElementForm();
 
-    await homePage.expectSuccessModalIsVisible()
-  })
+    await homePage.expectSuccessModalIsVisible();
+  });
 
   test('should submit the React CardElements form', async ({ page }) => {
-    const data = fakeCardInputData
+    const data = fakeCardInputData;
     await page.route('https://api.test.basistheory.com/proxy', async (route) => {
-      const json = fakeCard(data)
-      await route.fulfill({ json })
-    })
+      const json = fakeCard(data);
+      await route.fulfill({ json });
+    });
 
-    const homePage = new DebitCreditCardsReactPage(page)
+    const homePage = new DebitCreditCardsReactPage(page);
 
-    await homePage.toggleAllInOne()
+    await homePage.toggleAllInOne();
 
-    await homePage.fillCardElementsNameInput(data.cardholder_name)
+    await homePage.fillCardElementsNameInput(data.cardholder_name);
 
-    await homePage.fillCardElementsInput(data.card)
+    await homePage.fillCardElementsInput(data.card);
 
-    await homePage.submitCardElementsForm()
+    await homePage.submitCardElementsForm();
 
-    await homePage.expectSuccessModalIsVisible()
-  })
-})
+    await homePage.expectSuccessModalIsVisible();
+  });
+});

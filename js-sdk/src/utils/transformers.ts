@@ -11,17 +11,15 @@ import type {
   ValidatedCardsCreateInput,
   ValidatedGooglePayCreateInput,
   ValidateGooglePayButtonWidgetOptions,
-  ValidatedSaveThreeDsSessionRequest
-} from '@/types'
+  ValidatedSaveThreeDsSessionRequest,
+} from '@/types';
 
 /**
  * Transform input from the sdk to the proxy input format
  * @param {ValidatedCardsCreateInput} input
  * @returns {CardsCreateInput} API input
  */
-export function transformCreateCardInput({
-  validated
-}: ValidatedCardsCreateInput) {
+export function transformCreateCardInput({ validated }: ValidatedCardsCreateInput) {
   return {
     ...validated,
     ...(validated.card.cvc
@@ -30,11 +28,11 @@ export function transformCreateCardInput({
             number: validated.card.number,
             cvc: validated.card.cvc,
             expiration_month: validated.card.expirationMonth,
-            expiration_year: validated.card.expirationYear
-          }
+            expiration_year: validated.card.expirationYear,
+          },
         }
-      : { card: validated.card })
-  }
+      : { card: validated.card }),
+  };
 }
 
 /**
@@ -43,9 +41,9 @@ export function transformCreateCardInput({
  * @returns {BankAccountCreateInput} API input
  */
 export function transformCreateBankAccountInput({
-  validated
+  validated,
 }: ValidatedBankAccountCreateInput): BankAccountCreateInput {
-  return validated
+  return validated;
 }
 
 /**
@@ -54,9 +52,9 @@ export function transformCreateBankAccountInput({
  * @returns {ApplePayCreateInput} API input
  */
 export function transformCreateApplePayInput({
-  validated
+  validated,
 }: ValidatedApplePayCreateInput): ApplePayCreateInput {
-  return validated
+  return validated;
 }
 
 /**
@@ -65,9 +63,9 @@ export function transformCreateApplePayInput({
  * @returns {ApplePayCreateInput} API input
  */
 export function transformCreateApplePaySessionInput({
-  validated
+  validated,
 }: ValidatedApplePayCreateSessionInput): ApplePayCreateSessionInput {
-  return validated
+  return validated;
 }
 
 /**
@@ -76,9 +74,9 @@ export function transformCreateApplePaySessionInput({
  * @returns {GooglePayCreateInput} API input
  */
 export function transformCreateGooglePayInput({
-  validated
+  validated,
 }: ValidatedGooglePayCreateInput): GooglePayCreateInput {
-  return validated
+  return validated;
 }
 
 /**
@@ -87,13 +85,13 @@ export function transformCreateGooglePayInput({
  * @returns {GooglePayButtonWidgetOptions} API input
  */
 export function transformGooglePayButtonWidgetOptions({
-  validated
+  validated,
 }: ValidateGooglePayButtonWidgetOptions): GooglePayButtonWidgetOptions {
-  return validated
+  return validated;
 }
 
 export function transformCreateThreeDsSessionInput({
-  validated
+  validated,
 }: ValidatedSaveThreeDsSessionRequest): SaveThreeDsSessionRequest {
-  return validated
+  return validated;
 }

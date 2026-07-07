@@ -1,12 +1,8 @@
-export default function Loader({
-  message = 'Processing...'
-}: {
-  message?: string
-}) {
+export default function Loader({ message = 'Processing...' }: { message?: string }) {
   return (
     <div role="status" className="flex items-center">
       <svg
-        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+        className="-ml-1 mr-3 h-5 w-5 animate-spin text-white"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -27,5 +23,5 @@ export default function Loader({
       </svg>
       {message && <span>{message}</span>}
     </div>
-  )
+  );
 }

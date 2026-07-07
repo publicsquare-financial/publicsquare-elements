@@ -1,17 +1,12 @@
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle
-} from '@headlessui/react'
-import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import cx from 'classnames'
+import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import cx from 'classnames';
 
 type Props = {
-  message?: object
-  onClose: () => void
-  error?: boolean
-}
+  message?: object;
+  onClose: () => void;
+  error?: boolean;
+};
 
 export default function CaptureModal({ message, error, onClose }: Props) {
   return (
@@ -31,45 +26,28 @@ export default function CaptureModal({ message, error, onClose }: Props) {
               <div
                 className={cx(
                   'mx-auto flex h-12 w-12 items-center justify-center rounded-full',
-                  error ? 'bg-red-100' : 'bg-green-100'
+                  error ? 'bg-red-100' : 'bg-green-100',
                 )}
               >
                 {error ? (
-                  <XMarkIcon
-                    className="h-6 w-6 text-red-600"
-                    aria-hidden="true"
-                  />
+                  <XMarkIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                 ) : (
-                  <CheckIcon
-                    className="h-6 w-6 text-green-600"
-                    aria-hidden="true"
-                  />
+                  <CheckIcon className="h-6 w-6 text-green-600" aria-hidden="true" />
                 )}
               </div>
-              <div
-                className="mt-3 text-center sm:mt-5"
-                data-testid="capture-modal"
-              >
-                <DialogTitle
-                  as="h3"
-                  className="text-base font-semibold leading-6 text-gray-900"
-                >
+              <div className="mt-3 text-center sm:mt-5" data-testid="capture-modal">
+                <DialogTitle as="h3" className="text-base font-semibold leading-6 text-gray-900">
                   {error ? 'Capture failed' : 'Capture successful'}
                 </DialogTitle>
-                <div className="mt-2 text-left space-y-1">
+                <div className="mt-2 space-y-1 text-left">
                   <p>Response data:</p>
                   {message &&
                     Object.entries(message).map(([key, value], i) => (
-                      <div
-                        key={i}
-                        className="flex justify-between items-center"
-                      >
+                      <div key={i} className="flex items-center justify-between">
                         <b>{key}</b>
                         <div className="mx-4 flex-grow border-4 border-b border-dotted border-gray-100" />
-                        <span className="text-gray-700 text-sm">
-                          {typeof value === 'object'
-                            ? JSON.stringify(value)
-                            : value}
+                        <span className="text-sm text-gray-700">
+                          {typeof value === 'object' ? JSON.stringify(value) : value}
                         </span>
                       </div>
                     ))}
@@ -89,5 +67,5 @@ export default function CaptureModal({ message, error, onClose }: Props) {
         </div>
       </div>
     </Dialog>
-  )
+  );
 }

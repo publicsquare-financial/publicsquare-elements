@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from 'react'
-import { PublicSquare } from '@publicsquare/elements-js/PublicSquare'
-import { PublicSquareInitOptions } from '../types'
-import { GooglePayConfiguration, GooglePayButtonWidgetOptions } from '@publicsquare/elements-js/types'
+import React, { useEffect, useRef } from 'react';
+import { PublicSquare } from '@publicsquare/elements-js/PublicSquare';
+import { PublicSquareInitOptions } from '../types';
 import {
-  validateGooglePayButtonWidgetOptions
-} from '@publicsquare/elements-js/validators'
+  GooglePayConfiguration,
+  GooglePayButtonWidgetOptions,
+} from '@publicsquare/elements-js/types';
+import { validateGooglePayButtonWidgetOptions } from '@publicsquare/elements-js/validators';
 
 const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) => {
-  const { validated } = validateGooglePayButtonWidgetOptions(props)
+  const { validated } = validateGooglePayButtonWidgetOptions(props);
   const {
     id,
     environment,
@@ -22,60 +23,60 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
     transactionInfo,
     disabled = false,
     onClick,
-    onPaymentDataLoaded
-  } = validated
-  const containerRef = useRef<HTMLDivElement>(null)
-  let publicSquare = new PublicSquare()
-  
+    onPaymentDataLoaded,
+  } = validated;
+  const containerRef = useRef<HTMLDivElement>(null);
+  let publicSquare = new PublicSquare();
+
   useEffect(() => {
-    let paymentsClient: any
-    
+    let paymentsClient: any;
+
     const baseRequest = {
       apiVersion: 2,
       apiVersionMinor: 0,
-    }
+    };
     const baseCardPaymentMethod = {
       type: 'CARD',
       parameters: {
         allowedAuthMethods: allowedCardAuthMethods,
         allowedCardNetworks: allowedCardNetworks,
       },
-    }
+    };
 
-    async function setupGooglePayConfiguration():Promise<GooglePayConfiguration> {
-      const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!
+    async function setupGooglePayConfiguration(): Promise<GooglePayConfiguration> {
+      const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
       let options: PublicSquareInitOptions = {};
-      await publicSquare.init(apiKey, options)
+      await publicSquare.init(apiKey, options);
       try {
-        const config = await publicSquare.googlePay.getGooglePayConfiguration()
+        const config = await publicSquare.googlePay.getGooglePayConfiguration();
         return config[environment];
       } catch (error) {
-        console.error('Error fetching Google Pay configuration:', error)
-        throw error
+        console.error('Error fetching Google Pay configuration:', error);
+        throw error;
       }
     }
 
     async function onGooglePayLoaded() {
       paymentsClient = new (window as any).google.payments.api.PaymentsClient({
         environment: environment,
-      })
+      });
       const isReadyToPayRequest = Object.assign({}, baseRequest, {
         allowedPaymentMethods: [baseCardPaymentMethod],
-      })
+      });
       try {
-        const response = await paymentsClient.isReadyToPay(isReadyToPayRequest)
+        const response = await paymentsClient.isReadyToPay(isReadyToPayRequest);
         if (response.result) {
-          createAndAddButton()
+          createAndAddButton();
         } else {
-          console.error('Google Pay is not available.')
+          console.error('Google Pay is not available.');
         }
       } catch (error) {
-        console.error('Error checking readiness:', error)
+        console.error('Error checking readiness:', error);
       }
     }
 
     function createAndAddButton() {
-      if (!paymentsClient || !containerRef.current) return
+      if (!paymentsClient || !containerRef.current) return;
       const button = paymentsClient.createButton({
         buttonColor: buttonColor,
         buttonType: buttonType,
@@ -85,25 +86,25 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
         buttonSizeMode: 'fill',
         onClick: onGooglePaymentButtonClicked,
         allowedPaymentMethods: [baseCardPaymentMethod],
-      })
-      containerRef.current.innerHTML = ''
-      containerRef.current.appendChild(button)
+      });
+      containerRef.current.innerHTML = '';
+      containerRef.current.appendChild(button);
 
       const actualButton = button.querySelector('button');
-      if (actualButton && disabled !== true &&  typeof onClick === 'function') {
+      if (actualButton && disabled !== true && typeof onClick === 'function') {
         actualButton.addEventListener('click', onClick);
       }
     }
 
     async function onGooglePaymentButtonClicked() {
-      const googlePayconfiguration = await setupGooglePayConfiguration()
+      const googlePayconfiguration = await setupGooglePayConfiguration();
       const tokenizationSpecification = {
         type: 'PAYMENT_GATEWAY',
         parameters: {
           gateway: googlePayconfiguration.gateway,
-          gatewayMerchantId: googlePayconfiguration.gatewayMerchantId
+          gatewayMerchantId: googlePayconfiguration.gatewayMerchantId,
         },
-      }
+      };
 
       const paymentDataRequest = Object.assign({}, baseRequest, {
         allowedPaymentMethods: [
@@ -121,61 +122,58 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
           merchantId: merchantId,
           merchantName: merchantName,
         },
-      })
+      });
 
       try {
-        const paymentData = await paymentsClient.loadPaymentData(paymentDataRequest)
+        const paymentData = await paymentsClient.loadPaymentData(paymentDataRequest);
         if (onPaymentDataLoaded) {
-          onPaymentDataLoaded(paymentData)
+          onPaymentDataLoaded(paymentData);
         }
       } catch (error) {
-        console.error('Error loading payment data:', error)
+        console.error('Error loading payment data:', error);
       }
     }
 
     // Load Google Pay script
-    const script = document.createElement('script')
-    script.src = 'https://pay.google.com/gp/p/js/pay.js'
-    script.async = true
-    script.onload = onGooglePayLoaded
-    document.body.appendChild(script)
+    const script = document.createElement('script');
+    script.src = 'https://pay.google.com/gp/p/js/pay.js';
+    script.async = true;
+    script.onload = onGooglePayLoaded;
+    document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script)
+      document.body.removeChild(script);
       if (containerRef.current) {
-        const button = containerRef.current.querySelector('button')
+        const button = containerRef.current.querySelector('button');
         if (button && typeof onClick === 'function') {
-          button.removeEventListener('click', onClick)
+          button.removeEventListener('click', onClick);
         }
-        containerRef.current.innerHTML = ''
+        containerRef.current.innerHTML = '';
       }
-    }
-  }, [])
+    };
+  }, []);
 
-  const updateButtonStyle = (
-    button?: Element | null,
-    disabled?: boolean
-  ): void => {
-    const cursor = disabled === true ? 'not-allowed' : 'pointer'
-    const opacity = disabled === true ? '0.5' : '1'
-    button?.setAttribute('style', `cursor: ${cursor}; opacity: ${opacity};`)
+  const updateButtonStyle = (button?: Element | null, disabled?: boolean): void => {
+    const cursor = disabled === true ? 'not-allowed' : 'pointer';
+    const opacity = disabled === true ? '0.5' : '1';
+    button?.setAttribute('style', `cursor: ${cursor}; opacity: ${opacity};`);
     if (disabled) {
-      button?.setAttribute('disabled', 'true')
+      button?.setAttribute('disabled', 'true');
     } else {
-      button?.removeAttribute('disabled')
+      button?.removeAttribute('disabled');
     }
-  }
+  };
 
   useEffect(() => {
     if (containerRef.current) {
-      const button = containerRef.current.querySelector('div > div > button')
-      updateButtonStyle(button, disabled)
+      const button = containerRef.current.querySelector('div > div > button');
+      updateButtonStyle(button, disabled);
     }
-  }, [disabled, containerRef.current])
+  }, [disabled, containerRef.current]);
 
   return (
     <div ref={containerRef} id={id} style={{ width: style.width, height: style.height }}></div>
-  )
-}
- 
- export default GooglePayButtonElement
+  );
+};
+
+export default GooglePayButtonElement;
