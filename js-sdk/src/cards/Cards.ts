@@ -1,53 +1,55 @@
-import { CardCreateResponse, CardCreateInput } from '@/types/sdk/cards'
-import { PublicSquare } from '..'
-import {BASIS_THEORY_ENDPOINTS, ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE} from '@/constants'
-import { transformCreateCardInput } from '@/utils'
-import { validateCreateCardInput } from '@/validators'
+import { CardCreateResponse, CardCreateInput } from '@/types/sdk/cards';
+import { PublicSquare } from '..';
+import { BASIS_THEORY_ENDPOINTS, ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE } from '@/constants';
+import { transformCreateCardInput } from '@/utils';
+import { validateCreateCardInput } from '@/validators';
 
 export class PublicSquareCards {
-  private _publicSquare: PublicSquare
+  private _publicSquare: PublicSquare;
 
   constructor(publicSquarePointer: PublicSquare) {
     if (!publicSquarePointer) {
-      throw Error(ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE)
+      throw Error(ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE);
     }
-    this._publicSquare = publicSquarePointer
+    this._publicSquare = publicSquarePointer;
   }
 
-  public create(input: CardCreateInput, environment?: 'TEST' | 'PRODUCTION'): Promise<CardCreateResponse> {
+  public create(
+    input: CardCreateInput,
+    environment?: 'TEST' | 'PRODUCTION',
+  ): Promise<CardCreateResponse> {
     if (!this._publicSquare._apiKey) {
-      throw new Error('apiKey must be sent at initialization')
+      throw new Error('apiKey must be sent at initialization');
     } else if (!this._publicSquare.bt || !this._publicSquare.bt.client) {
-      throw new Error('PublicSquare JS has not be initialized yet')
+      throw new Error('PublicSquare JS has not be initialized yet');
     } else {
-      environment = environment ?? 'PRODUCTION'
-      const validatedInput = validateCreateCardInput(input)
-      const cardCreateUrl = environment === 'TEST'
-        ? BASIS_THEORY_ENDPOINTS.PROXY('https://api.test.basistheory.com')
-        : this._publicSquare._cardCreateUrl ?? BASIS_THEORY_ENDPOINTS.PROXY(this._publicSquare._btApiBaseUrl)
-      const proxyKey = environment === 'TEST'
-        ? 'key_test_us_proxy_FrL4kJFRXU1AwuYVnMbTnP'
-        : this._publicSquare._proxyKey
+      environment = environment ?? 'PRODUCTION';
+      const validatedInput = validateCreateCardInput(input);
+      const cardCreateUrl =
+        environment === 'TEST'
+          ? BASIS_THEORY_ENDPOINTS.PROXY('https://api.test.basistheory.com')
+          : (this._publicSquare._cardCreateUrl ??
+            BASIS_THEORY_ENDPOINTS.PROXY(this._publicSquare._btApiBaseUrl));
+      const proxyKey =
+        environment === 'TEST'
+          ? 'key_test_us_proxy_FrL4kJFRXU1AwuYVnMbTnP'
+          : this._publicSquare._proxyKey;
 
       return this._publicSquare.bt.client
-        .post(
-          cardCreateUrl,
-          transformCreateCardInput(validatedInput),
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'X-API-KEY': this._publicSquare._apiKey,
-              'BT-PROXY-KEY': proxyKey
-            }
-          }
-        )
+        .post(cardCreateUrl, transformCreateCardInput(validatedInput), {
+          headers: {
+            'Content-Type': 'application/json',
+            'X-API-KEY': this._publicSquare._apiKey,
+            'BT-PROXY-KEY': proxyKey,
+          },
+        })
         .then((res: any) =>
           res.error
             ? {
-                error: res.error
+                error: res.error,
               }
-            : res
-        )
+            : res,
+        );
     }
   }
 }

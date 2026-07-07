@@ -45,70 +45,69 @@ import {
   GooglePayCreateInput,
   ValidatedGooglePayCreateInput,
   ValidateGooglePayButtonWidgetOptions,
+  GooglePaymentMethodData,
   GooglePayCreateResponse,
   GooglePayCreateErrorResponse,
-  GooglePayIntermediateSigningKey,
-  GooglePaymentMethodToken
-} from '@publicsquare/elements-js/types'
-import { PublicSquare } from '@publicsquare/elements-js'
+} from '@publicsquare/elements-js/types';
+import { PublicSquare } from '@publicsquare/elements-js';
 
 export type PublicSquareProviderValue = {
-  publicsquare?: PublicSquare
+  publicsquare?: PublicSquare;
   createElement(
     type: ElementType,
-    options: CreateElementOptions
-  ): ReturnType<InstanceType<typeof PublicSquare>['createElement']>
-}
+    options: CreateElementOptions,
+  ): ReturnType<InstanceType<typeof PublicSquare>['createElement']>;
+};
 
 export type PublicSquareProviderProps = {
-  apiKey: string
-  options?: PublicSquareInitOptions
-}
+  apiKey: string;
+  options?: PublicSquareInitOptions;
+};
 
 export type ElementProps = {
-  id: string
-  type: ElementType
-  options?: CreateElementOptions
-}
+  id: string;
+  type: ElementType;
+  options?: CreateElementOptions;
+};
 
 export type CardElementProps = {
-  id: string
-}
+  id: string;
+};
 
 export type CardNumberElementProps = {
-  id: string
-}
+  id: string;
+};
 
 export type CardExpirationDateElementProps = {
-  id: string
-}
+  id: string;
+};
 
 export type CardVerificationCodeElementProps = {
-  id: string
-}
+  id: string;
+};
 
 export type BankAccountElementProps = {
-  id: string
-} & CreateBankAccountElementOptions
+  id: string;
+} & CreateBankAccountElementOptions;
 
 export type BankAccountVerificationElementProps = {
-  id: string
-  onVerificationComplete?: (result: BankAccountVerificationIdResponse) => void
-} & CreateBankAccountVerificationElementOptions
+  id: string;
+  onVerificationComplete?: (result: BankAccountVerificationIdResponse) => void;
+} & CreateBankAccountVerificationElementOptions;
 
 export type BankAccountRoutingNumberElementProps = {
-  id: string
-} & CreateBankAccountRoutingNumberElementOptions
+  id: string;
+} & CreateBankAccountRoutingNumberElementOptions;
 
 export type BankAccountAccountNumberElementProps = {
-  id: string
-} & CreateBankAccountAccountNumberElementOptions
+  id: string;
+} & CreateBankAccountAccountNumberElementOptions;
 
-export type ApplePayButtonElement = React.Ref<HTMLDivElement>
+export type ApplePayButtonElement = React.Ref<HTMLDivElement>;
 
 export type ApplePayButtonElementProps = {
-  id: string
-  buttonStyle?: 'black' | 'white' | 'white-outline'
+  id: string;
+  buttonStyle?: 'black' | 'white' | 'white-outline';
   type?:
     | 'plain'
     | 'add-money'
@@ -126,19 +125,19 @@ export type ApplePayButtonElementProps = {
     | 'subscribe'
     | 'support'
     | 'tip'
-    | 'top-up'
-  locale?: string
-  onClick?: () => void
+    | 'top-up';
+  locale?: string;
+  onClick?: () => void;
   style?: {
-    width?: string
-    height?: string
-    borderRadius?: string
-    padding?: string
-  }
-  disabled?: boolean
-}
+    width?: string;
+    height?: string;
+    borderRadius?: string;
+    padding?: string;
+  };
+  disabled?: boolean;
+};
 
-export type GooglePayButtonElement = React.Ref<HTMLDivElement>
+export type GooglePayButtonElement = React.Ref<HTMLDivElement>;
 
 export {
   ApplePayCreateResponse,
@@ -186,8 +185,7 @@ export {
   GooglePayCreateInput,
   ValidatedGooglePayCreateInput,
   ValidateGooglePayButtonWidgetOptions,
+  GooglePaymentMethodData,
   GooglePayCreateResponse,
   GooglePayCreateErrorResponse,
-  GooglePayIntermediateSigningKey,
-  GooglePaymentMethodToken
-}
+};

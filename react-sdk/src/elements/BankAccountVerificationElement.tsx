@@ -1,6 +1,6 @@
-import React, { forwardRef } from 'react'
-import PublicSquareElement from './PublicSquareElement'
-import * as Types from '../types'
+import React, { forwardRef } from 'react';
+import PublicSquareElement from './PublicSquareElement';
+import * as Types from '../types';
 
 export const BankAccountVerificationElement = forwardRef<
   Types.BankAccountVerificationElement,
@@ -13,5 +13,5 @@ export const BankAccountVerificationElement = forwardRef<
       options={{ ...options, onVerificationComplete }}
       ref={ref}
     />
-  )
-})
+  );
+});

@@ -8,7 +8,8 @@ import {
 import { PublicSquare } from '@/PublicSquare';
 import {
   ELEMENTS_PUBLICSQUARE_NO_POINTER_MESSAGE,
-  ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_VERIFICATION_NOT_ENABLED, API_ENDPOINTS,
+  ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_VERIFICATION_NOT_ENABLED,
+  API_ENDPOINTS,
 } from '@/constants';
 
 export class PublicSquareBankVerification {
@@ -106,14 +107,18 @@ export class PublicSquareBankVerification {
   public async saveBankAccountVerification(
     request: BankAccountVerificationIdRequest,
   ): Promise<BankAccountVerificationIdResponse> {
-    return fetch(this._publicSquare._bankAccountVerificationUrl ?? API_ENDPOINTS.BANK_ACCOUNT_VERIFICATION(this._publicSquare._apiUrl), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-KEY': this._publicSquare._apiKey!,
+    return fetch(
+      this._publicSquare._bankAccountVerificationUrl ??
+        API_ENDPOINTS.BANK_ACCOUNT_VERIFICATION(this._publicSquare._apiUrl),
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-KEY': this._publicSquare._apiKey!,
+        },
+        body: JSON.stringify(request),
       },
-      body: JSON.stringify(request),
-    })
+    )
       .then((res) => {
         return res.json();
       })
@@ -162,13 +167,17 @@ export class PublicSquareBankVerification {
   }
 
   private async getAuthorizationUrl(): Promise<BankAccountVerificationUrlResponse> {
-    const res = await fetch(this._publicSquare._bankAccountVerificationUrl ?? API_ENDPOINTS.BANK_ACCOUNT_VERIFICATION(this._publicSquare._apiUrl), {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-KEY': this._publicSquare._apiKey!,
+    const res = await fetch(
+      this._publicSquare._bankAccountVerificationUrl ??
+        API_ENDPOINTS.BANK_ACCOUNT_VERIFICATION(this._publicSquare._apiUrl),
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-KEY': this._publicSquare._apiKey!,
+        },
       },
-    });
+    );
 
     if (!res.ok) {
       throw Error(ELEMENTS_PUBLICSQUARE_BANK_ACCOUNT_VERIFICATION_NOT_ENABLED);

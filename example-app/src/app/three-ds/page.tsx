@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import HomeSection from '@/components/HomeSection'
-import ThreeDSFormColumn from '@/components/ThreeDSFormColumn'
+import HomeSection from '@/components/HomeSection';
+import ThreeDSFormColumn from '@/components/ThreeDSFormColumn';
 
 export default function Page() {
   return (
@@ -11,12 +11,10 @@ export default function Page() {
         description="This example shows how the PublicSquare 3DS Challenge Element works. Fill in the card details and 3DS parameters, then click 'Create card' to initiate the challenge flow."
         getStarted={{
           href: 'https://www.npmjs.com/package/@publicsquare/elements-js',
-          label: 'Get Started'
+          label: 'Get Started',
         }}
-        rightColumn={(type, allInOne) => (
-          <ThreeDSFormColumn type={type} allInOne={allInOne} />
-        )}
+        rightColumn={(type, allInOne) => <ThreeDSFormColumn type={type} allInOne={allInOne} />}
       />
     </div>
-  )
+  );
 }

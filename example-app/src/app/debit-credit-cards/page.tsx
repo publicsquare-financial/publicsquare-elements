@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import HomeSection from '@/components/HomeSection'
-import DebitCreditFormColumn from '@/components/DebitCreditFormColumn'
+import HomeSection from '@/components/HomeSection';
+import DebitCreditFormColumn from '@/components/DebitCreditFormColumn';
 
 export default function Page() {
   return (
@@ -11,12 +11,10 @@ export default function Page() {
         description="This example shows how the PublicSquare Card Elements look and operate."
         getStarted={{
           href: 'https://www.npmjs.com/package/@publicsquare/elements-js',
-          label: 'Get Started'
+          label: 'Get Started',
         }}
-        rightColumn={(type, allInOne) => (
-          <DebitCreditFormColumn type={type} allInOne={allInOne} />
-        )}
+        rightColumn={(type, allInOne) => <DebitCreditFormColumn type={type} allInOne={allInOne} />}
       />
     </div>
-  )
+  );
 }

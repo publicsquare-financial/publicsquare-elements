@@ -1,8 +1,8 @@
-import FooterLink from './FooterLink'
+import FooterLink from './FooterLink';
 
 export default function Footer() {
   return (
-    <footer className="mx-auto mb-32 grid grid-cols-1 md:grid-cols-3 text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:text-left py-8">
+    <footer className="mx-auto mb-32 grid grid-cols-1 py-8 text-center md:grid-cols-3 lg:mb-0 lg:w-full lg:max-w-5xl lg:text-left">
       <FooterLink
         label="Docs"
         href="https://developers.publicsquare.com"
@@ -19,5 +19,5 @@ export default function Footer() {
         description="View and download the PublicSquare React SDK."
       />
     </footer>
-  )
+  );
 }

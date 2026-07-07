@@ -1,5 +1,5 @@
-import React, { RefObject, useEffect, useRef } from 'react'
-import * as Types from '../types'
+import React, { RefObject, useEffect, useRef } from 'react';
+import * as Types from '../types';
 
 const ApplePayButtonElement: React.FC<Types.ApplePayButtonElementProps> = ({
   id,
@@ -8,87 +8,81 @@ const ApplePayButtonElement: React.FC<Types.ApplePayButtonElementProps> = ({
   locale = 'en-US',
   onClick,
   style,
-  disabled
+  disabled,
 }) => {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null);
 
   const handleClick = (): void => {
     if (disabled !== true && onClick !== undefined) {
-      onClick()
+      onClick();
     }
-  }
+  };
 
   useEffect(() => {
-    const scriptId = 'apple-pay-sdk-script'
-    const applePayScriptSrc =
-      'https://applepay.cdn-apple.com/jsapi/1.latest/apple-pay-sdk.js'
+    const scriptId = 'apple-pay-sdk-script';
+    const applePayScriptSrc = 'https://applepay.cdn-apple.com/jsapi/1.latest/apple-pay-sdk.js';
 
     if (document.getElementById(scriptId) !== null) {
-      return
+      return;
     }
 
-    const script = document.createElement('script')
-    script.id = scriptId
-    script.src = applePayScriptSrc
-    script.async = true
-    document.body.appendChild(script)
-  }, [])
+    const script = document.createElement('script');
+    script.id = scriptId;
+    script.src = applePayScriptSrc;
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
   useEffect(() => {
     if (ref.current) {
-      ref.current.addEventListener('click', handleClick)
+      ref.current.addEventListener('click', handleClick);
     }
 
     return () => {
       if (ref.current) {
-        ref.current.removeEventListener('click', handleClick)
+        ref.current.removeEventListener('click', handleClick);
       }
-    }
-  }, [onClick, disabled])
+    };
+  }, [onClick, disabled]);
 
-  const updateButtonStyle = (
-    button?: Element | null,
-    disabled?: boolean
-  ): void => {
-    const cursor = disabled === true ? 'not-allowed' : 'pointer'
-    const opacity = disabled === true ? '0.5' : '1'
-    button?.setAttribute('style', `cursor: ${cursor}; opacity: ${opacity};`)
-  }
+  const updateButtonStyle = (button?: Element | null, disabled?: boolean): void => {
+    const cursor = disabled === true ? 'not-allowed' : 'pointer';
+    const opacity = disabled === true ? '0.5' : '1';
+    button?.setAttribute('style', `cursor: ${cursor}; opacity: ${opacity};`);
+  };
 
   useEffect(() => {
     // This workaround modifies the cursor and opacity of the button. Due to the button being rendered in a Shadow DOM,
     // we face limitations with CSS and element attributes. Direct style application from the parent element,
     // or using pseudo-classes like :hover or :disabled, is not possible.
     if (ref.current?.shadowRoot) {
-      const button = ref.current.shadowRoot.querySelector('div > button')
-      updateButtonStyle(button, disabled)
+      const button = ref.current.shadowRoot.querySelector('div > button');
+      updateButtonStyle(button, disabled);
     }
-  }, [disabled, ref.current?.shadowRoot])
+  }, [disabled, ref.current?.shadowRoot]);
 
-  const createApplePayButtonStyle = (
-    style?: Types.ApplePayButtonElementProps['style']
-  ): string => `
+  const createApplePayButtonStyle = (style?: Types.ApplePayButtonElementProps['style']): string => `
     apple-pay-button {
         --apple-pay-button-width: ${style?.width ?? '140px'};
         --apple-pay-button-height: ${style?.height ?? '30px'};
         --apple-pay-button-border-radius: ${style?.borderRadius ?? '5px'};
         --apple-pay-button-padding: ${style?.padding ?? '5px 0px'};
     }
-`
+`;
 
   const createApplePayButton = (
     id: string,
     buttonstyle: string,
     type: string,
     locale: string,
-    ref: RefObject<HTMLDivElement>
+    ref: RefObject<HTMLDivElement>,
   ): React.ReactElement<
     {
-      id: string
-      buttonstyle: string
-      type: string
-      locale: string
-      ref: RefObject<HTMLDivElement>
+      id: string;
+      buttonstyle: string;
+      type: string;
+      locale: string;
+      ref: RefObject<HTMLDivElement>;
     },
     string | React.JSXElementConstructor<'apple-pay-button'>
   > =>
@@ -97,8 +91,8 @@ const ApplePayButtonElement: React.FC<Types.ApplePayButtonElementProps> = ({
       buttonstyle,
       type,
       locale,
-      ref
-    })
+      ref,
+    });
 
   return (
     <>
@@ -108,15 +102,9 @@ const ApplePayButtonElement: React.FC<Types.ApplePayButtonElementProps> = ({
       {/* <apple-pay-button> is not a valid JSX element
             so we need to use React.createElement() to render it
             and pass the props to it */}
-      {createApplePayButton(
-        id,
-        buttonStyle,
-        type,
-        locale,
-        ref as RefObject<HTMLDivElement>
-      )}
+      {createApplePayButton(id, buttonStyle, type, locale, ref as RefObject<HTMLDivElement>)}
     </>
-  )
-}
+  );
+};
 
-export default ApplePayButtonElement
+export default ApplePayButtonElement;

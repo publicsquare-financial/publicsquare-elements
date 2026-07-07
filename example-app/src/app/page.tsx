@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return redirect('/debit-credit-cards')
+  return redirect('/debit-credit-cards');
 }

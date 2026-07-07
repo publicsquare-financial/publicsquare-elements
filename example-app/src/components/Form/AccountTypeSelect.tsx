@@ -1,8 +1,4 @@
-export default function AccountTypeSelect({
-  required = false
-}: {
-  required?: boolean
-}) {
+export default function AccountTypeSelect({ required = false }: { required?: boolean }) {
   return (
     <div>
       <label htmlFor="name" className="block">
@@ -12,7 +8,7 @@ export default function AccountTypeSelect({
         <select
           name="account_type"
           id="account_type"
-          className="block w-full px-4 py-3 placeholder:text-gray-400 rounded-lg bg-white shadow focus:outline-none"
+          className="block w-full rounded-lg bg-white px-4 py-3 shadow placeholder:text-gray-400 focus:outline-none"
           required={required}
         >
           <option value="">Select account type</option>
@@ -21,5 +17,5 @@ export default function AccountTypeSelect({
         </select>
       </div>
     </div>
-  )
+  );
 }

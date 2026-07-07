@@ -1,5 +1,9 @@
 import { PublicSquare } from '@/PublicSquare';
-import type { GooglePayButtonWidgetOptions, GooglePayConfiguration, PublicSquareInitOptions } from '@/types'
+import type {
+  GooglePayButtonWidgetOptions,
+  GooglePayConfiguration,
+  PublicSquareInitOptions,
+} from '@/types';
 
 export class GooglePayButtonWidget {
   private options: GooglePayButtonWidgetOptions;
@@ -18,14 +22,22 @@ export class GooglePayButtonWidget {
       merchantId: options.merchantId,
       merchantName: options.merchantName,
       allowedCardAuthMethods: options.allowedCardAuthMethods || ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-      allowedCardNetworks: options.allowedCardNetworks || ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
+      allowedCardNetworks: options.allowedCardNetworks || [
+        'AMEX',
+        'DISCOVER',
+        'INTERAC',
+        'JCB',
+        'MASTERCARD',
+        'VISA',
+      ],
       buttonColor: options.buttonColor || 'black',
       buttonType: options.buttonType || 'buy',
-      style: { 
-        width: options.style?.width || '160px', 
-        height: options.style?.height || '40px', 
-        borderRadius: options.style?.borderRadius || 4, 
-        borderType: options.style?.borderType || 'default_border' },
+      style: {
+        width: options.style?.width || '160px',
+        height: options.style?.height || '40px',
+        borderRadius: options.style?.borderRadius || 4,
+        borderType: options.style?.borderType || 'default_border',
+      },
       locale: options.locale || 'en',
       transactionInfo: {
         totalPriceStatus: options.transactionInfo.totalPriceStatus,
@@ -98,7 +110,11 @@ export class GooglePayButtonWidget {
             container.appendChild(btn);
 
             const actualButton = btn.querySelector('button');
-            if (actualButton && this.options.disabled !== true && typeof this.options.onClick === 'function') {
+            if (
+              actualButton &&
+              this.options.disabled !== true &&
+              typeof this.options.onClick === 'function'
+            ) {
               actualButton.addEventListener('click', this.options.onClick);
             }
 
@@ -113,7 +129,7 @@ export class GooglePayButtonWidget {
     });
   }
 
-  async setupGooglePayConfiguration():Promise<GooglePayConfiguration> {
+  async setupGooglePayConfiguration(): Promise<GooglePayConfiguration> {
     const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
     let options: PublicSquareInitOptions = {};
     await this.publicSquare.init(apiKey, options);
@@ -129,12 +145,12 @@ export class GooglePayButtonWidget {
   async onGooglePaymentButtonClicked(baseCardPaymentMethod: any) {
     const googlePayconfiguration = await this.setupGooglePayConfiguration();
     const tokenizationSpecification = {
-        type: 'PAYMENT_GATEWAY',
-        parameters: {
-          gateway: googlePayconfiguration.gateway,
-          gatewayMerchantId: googlePayconfiguration.gatewayMerchantId,
-        },
-      };
+      type: 'PAYMENT_GATEWAY',
+      parameters: {
+        gateway: googlePayconfiguration.gateway,
+        gatewayMerchantId: googlePayconfiguration.gatewayMerchantId,
+      },
+    };
     const paymentDataRequest = Object.assign({}, this.baseRequest, {
       allowedPaymentMethods: [
         Object.assign({}, baseCardPaymentMethod, {
@@ -163,13 +179,10 @@ export class GooglePayButtonWidget {
     }
   }
 
-  updateButtonStyle(
-    button?: Element | null,
-    disabled?: boolean
-  ): void {
-    const cursor = disabled === true ? 'not-allowed' : 'pointer'
-    const opacity = disabled === true ? '0.5' : '1'
-    button?.setAttribute('style', `cursor: ${cursor}; opacity: ${opacity};`)
+  updateButtonStyle(button?: Element | null, disabled?: boolean): void {
+    const cursor = disabled === true ? 'not-allowed' : 'pointer';
+    const opacity = disabled === true ? '0.5' : '1';
+    button?.setAttribute('style', `cursor: ${cursor}; opacity: ${opacity};`);
     if (disabled) {
       button?.setAttribute('disabled', 'true');
     } else {
@@ -180,9 +193,8 @@ export class GooglePayButtonWidget {
   setDisabled(disabled: boolean): void {
     this.options.disabled = disabled;
     if (this.containerRef) {
-      const button = this.containerRef.querySelector('div > div > button')
+      const button = this.containerRef.querySelector('div > div > button');
       this.updateButtonStyle(button, disabled);
     }
   }
-
 }
