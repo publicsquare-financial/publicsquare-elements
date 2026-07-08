@@ -52,7 +52,10 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
         throw new Error('PublicSquare SDK not initialized');
       }
       try {
-        const config = await psq.googlePay.getGooglePayConfiguration();
+        const config = (await psq.googlePay.getGooglePayConfiguration()) as any;
+        if (config.error || !config[environment]) {
+          throw new Error('Failed to retrieve Google Pay configuration');
+        }
         return config[environment];
       } catch (error) {
         console.error('Error fetching Google Pay configuration:', error);

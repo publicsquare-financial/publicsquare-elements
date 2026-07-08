@@ -128,7 +128,10 @@ export class GooglePayButtonWidget {
 
   async setupGooglePayConfiguration(): Promise<GooglePayConfiguration> {
     try {
-      const config = await this.publicSquare.googlePay.getGooglePayConfiguration();
+      const config = (await this.publicSquare.googlePay.getGooglePayConfiguration()) as any;
+      if (config.error || !config[this.options.environment]) {
+        throw new Error('Failed to retrieve Google Pay configuration');
+      }
       return config[this.options.environment];
     } catch (error) {
       console.error('Error fetching Google Pay configuration:', error);
