@@ -1,11 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { PublicSquare } from '@publicsquare/elements-js/PublicSquare';
-import { PublicSquareInitOptions } from '../types';
 import {
   GooglePayConfiguration,
   GooglePayButtonWidgetOptions,
 } from '@publicsquare/elements-js/types';
 import { validateGooglePayButtonWidgetOptions } from '@publicsquare/elements-js/validators';
+import { usePublicSquare } from '../core/PublicSquareProvider';
 
 const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) => {
   const { validated } = validateGooglePayButtonWidgetOptions(props);
@@ -26,7 +25,11 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
     onPaymentDataLoaded,
   } = validated;
   const containerRef = useRef<HTMLDivElement>(null);
-  let publicSquare = new PublicSquare();
+  const { publicsquare } = usePublicSquare();
+  const publicSquareRef = useRef(publicsquare);
+  useEffect(() => {
+    publicSquareRef.current = publicsquare;
+  }, [publicsquare]);
 
   useEffect(() => {
     let paymentsClient: any;
@@ -44,11 +47,12 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
     };
 
     async function setupGooglePayConfiguration(): Promise<GooglePayConfiguration> {
-      const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
-      let options: PublicSquareInitOptions = {};
-      await publicSquare.init(apiKey, options);
+      const psq = publicSquareRef.current;
+      if (!psq) {
+        throw new Error('PublicSquare SDK not initialized');
+      }
       try {
-        const config = await publicSquare.googlePay.getGooglePayConfiguration();
+        const config = await psq.googlePay.getGooglePayConfiguration();
         return config[environment];
       } catch (error) {
         console.error('Error fetching Google Pay configuration:', error);
