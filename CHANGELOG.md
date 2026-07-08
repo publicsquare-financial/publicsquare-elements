@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.13.2...v1.14.0) (2026-07-08)
+
+
+### Features
+
+* Include API key in GooglePay configuration request headers ([#302](https://github.com/publicsquare-financial/publicsquare-elements/issues/302)) ([6688728](https://github.com/publicsquare-financial/publicsquare-elements/commit/6688728b3b582c443a3ef0b1ca04f4ede6f15a73))
+
 ## [1.13.2](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.13.1...v1.13.2) (2026-07-07)
 
 ## [1.13.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.13.0...v1.13.1) (2026-06-22)
