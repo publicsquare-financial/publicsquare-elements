@@ -42,6 +42,7 @@ export class PublicSquareGooglePay {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
+          'X-API-KEY': this._publicSquare._apiKey ?? '',
         },
       },
     )
