@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.14.0...v1.14.1) (2026-07-09)
+
+
+### Bug Fixes
+
+* trigger release of Google Pay widget config fixes ([#304](https://github.com/publicsquare-financial/publicsquare-elements/issues/304)) ([881b7e8](https://github.com/publicsquare-financial/publicsquare-elements/commit/881b7e89755a12b96111bc657b6aaaa2d428a11f))
+
 # [1.14.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.13.2...v1.14.0) (2026-07-08)
 
 
