@@ -1,21 +1,18 @@
 import { PublicSquare } from '@/PublicSquare';
-import type {
-  GooglePayButtonWidgetOptions,
-  GooglePayConfiguration,
-  PublicSquareInitOptions,
-} from '@/types';
+import type { GooglePayButtonWidgetOptions, GooglePayConfiguration } from '@/types';
 
 export class GooglePayButtonWidget {
   private options: GooglePayButtonWidgetOptions;
   private containerRef: HTMLElement | null;
   private paymentsClient: any;
-  private publicSquare = new PublicSquare();
+  private publicSquare: PublicSquare;
   private baseRequest = {
     apiVersion: 2,
     apiVersionMinor: 0,
   };
 
-  constructor(options: GooglePayButtonWidgetOptions) {
+  constructor(options: GooglePayButtonWidgetOptions, publicSquare: PublicSquare) {
+    this.publicSquare = publicSquare;
     this.options = {
       id: options.id,
       environment: options.environment,
@@ -130,11 +127,11 @@ export class GooglePayButtonWidget {
   }
 
   async setupGooglePayConfiguration(): Promise<GooglePayConfiguration> {
-    const apiKey = process.env.NEXT_PUBLIC_PUBLICSQUARE_KEY!;
-    let options: PublicSquareInitOptions = {};
-    await this.publicSquare.init(apiKey, options);
     try {
-      const config = await this.publicSquare.googlePay.getGooglePayConfiguration();
+      const config = (await this.publicSquare.googlePay.getGooglePayConfiguration()) as any;
+      if (config.error || !config[this.options.environment]) {
+        throw new Error('Failed to retrieve Google Pay configuration');
+      }
       return config[this.options.environment];
     } catch (error) {
       console.error('Error fetching Google Pay configuration:', error);

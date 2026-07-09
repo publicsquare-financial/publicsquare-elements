@@ -22,14 +22,17 @@ export class PublicSquareGooglePay {
 
   public renderButton(container: HTMLElement, options: GooglePayButtonWidgetOptions) {
     const validatedInput = validateGooglePayButtonWidgetOptions(options);
-    const widget = new GooglePayButtonWidget({
-      ...transformGooglePayButtonWidgetOptions(validatedInput),
-      onPaymentDataLoaded: (paymentData) => {
-        if (typeof options.onPaymentDataLoaded === 'function') {
-          options.onPaymentDataLoaded(paymentData);
-        }
+    const widget = new GooglePayButtonWidget(
+      {
+        ...transformGooglePayButtonWidgetOptions(validatedInput),
+        onPaymentDataLoaded: (paymentData) => {
+          if (typeof options.onPaymentDataLoaded === 'function') {
+            options.onPaymentDataLoaded(paymentData);
+          }
+        },
       },
-    });
+      this._publicSquare,
+    );
     widget.render(container);
     return widget;
   }
