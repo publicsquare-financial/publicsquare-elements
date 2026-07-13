@@ -149,15 +149,34 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
       }
     }
 
-    // Load Google Pay script
-    const script = document.createElement('script');
-    script.src = 'https://pay.google.com/gp/p/js/pay.js';
-    script.async = true;
-    script.onload = onGooglePayLoaded;
-    document.body.appendChild(script);
+    // Load Google Pay script, reusing an already-loaded script tag if one exists
+    // (guards against duplicate script injection when this effect re-runs, e.g.
+    // when shipping address options change, or when multiple buttons are on the page).
+    const scriptId = 'google-pay-sdk-script';
+    let script: HTMLScriptElement | null = null;
+    let createdScript = false;
+    const existingScript = document.getElementById(scriptId) as HTMLScriptElement | null;
+
+    if (existingScript) {
+      if ((window as any).google?.payments?.api) {
+        onGooglePayLoaded();
+      } else {
+        existingScript.addEventListener('load', onGooglePayLoaded, { once: true });
+      }
+    } else {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.src = 'https://pay.google.com/gp/p/js/pay.js';
+      script.async = true;
+      script.onload = onGooglePayLoaded;
+      document.body.appendChild(script);
+      createdScript = true;
+    }
 
     return () => {
-      document.body.removeChild(script);
+      if (createdScript && script) {
+        document.body.removeChild(script);
+      }
       if (containerRef.current) {
         const button = containerRef.current.querySelector('button');
         if (button && typeof onClick === 'function') {
@@ -166,7 +185,7 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
         containerRef.current.innerHTML = '';
       }
     };
-  }, []);
+  }, [shippingAddressRequired, shippingAddressParameters]);
 
   const updateButtonStyle = (button?: Element | null, disabled?: boolean): void => {
     const cursor = disabled === true ? 'not-allowed' : 'pointer';
