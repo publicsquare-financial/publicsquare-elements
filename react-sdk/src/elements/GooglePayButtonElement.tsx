@@ -20,6 +20,8 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
     locale = 'en',
     style = { width: '160px', height: '40px', borderRadius: 4, borderType: 'default_border' },
     transactionInfo,
+    shippingAddressRequired = false,
+    shippingAddressParameters,
     disabled = false,
     onClick,
     onPaymentDataLoaded,
@@ -43,6 +45,8 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
       parameters: {
         allowedAuthMethods: allowedCardAuthMethods,
         allowedCardNetworks: allowedCardNetworks,
+        billingAddressRequired: true,
+        billingAddressParameters: { format: 'FULL', phoneNumberRequired: false },
       },
     };
 
@@ -129,6 +133,10 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
           merchantId: merchantId,
           merchantName: merchantName,
         },
+        ...(shippingAddressRequired && {
+          shippingAddressRequired: true,
+          ...(shippingAddressParameters && { shippingAddressParameters }),
+        }),
       });
 
       try {
