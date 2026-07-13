@@ -42,6 +42,8 @@ export class GooglePayButtonWidget {
         currencyCode: options.transactionInfo.currencyCode,
         countryCode: options.transactionInfo.countryCode,
       },
+      shippingAddressRequired: options.shippingAddressRequired ?? false,
+      shippingAddressParameters: options.shippingAddressParameters,
       disabled: options.disabled ?? false,
       onClick: options.onClick,
       onPaymentDataLoaded: options.onPaymentDataLoaded || (() => {}),
@@ -64,15 +66,45 @@ export class GooglePayButtonWidget {
     });
   }
 
+  buildCardPaymentMethod() {
+    return {
+      type: 'CARD',
+      parameters: {
+        allowedAuthMethods: this.options.allowedCardAuthMethods,
+        allowedCardNetworks: this.options.allowedCardNetworks,
+        billingAddressRequired: true,
+        billingAddressParameters: { format: 'FULL', phoneNumberRequired: false },
+      },
+    };
+  }
+
+  buildPaymentDataRequest(cardPaymentMethod: any, tokenizationSpecification: any) {
+    return Object.assign({}, this.baseRequest, {
+      allowedPaymentMethods: [
+        Object.assign({}, cardPaymentMethod, { tokenizationSpecification }),
+      ],
+      transactionInfo: {
+        totalPriceStatus: this.options.transactionInfo.totalPriceStatus,
+        totalPrice: this.options.transactionInfo.totalPrice,
+        currencyCode: this.options.transactionInfo.currencyCode,
+        countryCode: this.options.transactionInfo.countryCode,
+      },
+      merchantInfo: {
+        merchantId: this.options.merchantId,
+        merchantName: this.options.merchantName,
+      },
+      ...(this.options.shippingAddressRequired && {
+        shippingAddressRequired: true,
+        ...(this.options.shippingAddressParameters && {
+          shippingAddressParameters: this.options.shippingAddressParameters,
+        }),
+      }),
+    });
+  }
+
   render(container: HTMLElement): Promise<void> {
     return this.createGooglePayButton().then(async () => {
-      const baseCardPaymentMethod = {
-        type: 'CARD',
-        parameters: {
-          allowedAuthMethods: this.options.allowedCardAuthMethods,
-          allowedCardNetworks: this.options.allowedCardNetworks,
-        },
-      };
+      const baseCardPaymentMethod = this.buildCardPaymentMethod();
 
       if (container && this.options.style) {
         if (this.options.style.width) container.style.width = this.options.style.width;
@@ -148,23 +180,10 @@ export class GooglePayButtonWidget {
         gatewayMerchantId: googlePayconfiguration.gatewayMerchantId,
       },
     };
-    const paymentDataRequest = Object.assign({}, this.baseRequest, {
-      allowedPaymentMethods: [
-        Object.assign({}, baseCardPaymentMethod, {
-          tokenizationSpecification: tokenizationSpecification,
-        }),
-      ],
-      transactionInfo: {
-        totalPriceStatus: this.options.transactionInfo.totalPriceStatus,
-        totalPrice: this.options.transactionInfo.totalPrice,
-        currencyCode: this.options.transactionInfo.currencyCode,
-        countryCode: this.options.transactionInfo.countryCode,
-      },
-      merchantInfo: {
-        merchantId: this.options.merchantId,
-        merchantName: this.options.merchantName,
-      },
-    });
+    const paymentDataRequest = this.buildPaymentDataRequest(
+      baseCardPaymentMethod,
+      tokenizationSpecification,
+    );
 
     try {
       const paymentData = await this.paymentsClient.loadPaymentData(paymentDataRequest);
