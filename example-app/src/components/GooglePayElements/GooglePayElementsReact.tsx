@@ -32,20 +32,9 @@ function Elements() {
     if (psq) {
       try {
         const tokenObj = event.paymentMethodData
-        const shippingAddress = event.shippingAddress;
         const response = await psq.googlePay.create({
           google_payment_method_data: tokenObj,
-          ...(shippingAddress && {
-            shipping_address: {
-              address_line_1: shippingAddress.address1,
-              address_line_2: shippingAddress.address2,
-              city: shippingAddress.locality,
-              state: shippingAddress.administrativeArea,
-              postal_code: shippingAddress.postalCode,
-              country_code: shippingAddress.countryCode,
-            },
-          }),
-        } as any);
+        });
         if (response) {
           return response;
         }
@@ -60,11 +49,24 @@ function Elements() {
     try {
       const googlePay = await createGooglePay(event);
       if (googlePay) {
+        const shippingAddress = event.shippingAddress;
+        // Pass this object as `shipping_address` on POST /payments when creating the
+        // payment — this demo stops at payment-method creation, so it's only displayed here.
+        const shippingAddressPayload = shippingAddress && {
+          address_line_1: shippingAddress.address1,
+          address_line_2: shippingAddress.address2,
+          city: shippingAddress.locality,
+          state: shippingAddress.administrativeArea,
+          postal_code: shippingAddress.postalCode,
+          country_code: shippingAddress.countryCode,
+        };
+        console.log('shipping_address payload for POST /payments:', shippingAddressPayload);
         setMessage({
           message: {
             ...googlePay,
             billingAddress: event.paymentMethodData?.info?.billingAddress,
             shippingAddress: event.shippingAddress,
+            shippingAddressPayload,
           },
           error: !!googlePay.error,
         });
