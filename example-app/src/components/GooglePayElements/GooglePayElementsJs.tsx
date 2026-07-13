@@ -64,8 +64,6 @@ export default function GooglePayElementsJs() {
         const googlePay = await createGooglePay(event);
         if (googlePay) {
           const shippingAddress = event.shippingAddress;
-          // Pass this object as `shipping_address` on POST /payments when creating the
-          // payment — this demo stops at payment-method creation, so it's only displayed here.
           const shippingAddressPayload = shippingAddress && {
             address_line_1: shippingAddress.address1,
             address_line_2: shippingAddress.address2,
@@ -81,6 +79,9 @@ export default function GooglePayElementsJs() {
               billingAddress: event.paymentMethodData?.info?.billingAddress,
               shippingAddress: event.shippingAddress,
               shippingAddressPayload,
+              note: shippingAddressPayload
+                ? "Pass shippingAddressPayload as shipping_address on POST /payments when creating the payment. This demo stops at payment-method creation, so it's only displayed here."
+                : undefined,
             },
             error: !!googlePay.error,
           });

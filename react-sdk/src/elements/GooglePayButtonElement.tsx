@@ -149,9 +149,6 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
       }
     }
 
-    // Load Google Pay script, reusing an already-loaded script tag if one exists
-    // (guards against duplicate script injection when this effect re-runs, e.g.
-    // when shipping address options change, or when multiple buttons are on the page).
     const scriptId = 'google-pay-sdk-script';
     let script: HTMLScriptElement | null = null;
     let createdScript = false;
