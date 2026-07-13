@@ -25,14 +25,6 @@ const validGooglePayCreateInput: GooglePayCreateInput = {
     },
   },
   customer_id: 'cus_123',
-  billing_details: {
-    address_line_1: '123 Main St',
-    address_line_2: 'Apt 1',
-    city: 'Anytown',
-    state: 'CA',
-    postal_code: '12345',
-    country: 'US',
-  },
 };
 
 describe('GooglePay', () => {

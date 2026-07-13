@@ -54,15 +54,28 @@ export interface GooglePayButtonWidgetOptions {
     currencyCode: string;
     countryCode: string;
   };
+  shippingAddressRequired?: boolean;
+  shippingAddressParameters?: GooglePayShippingAddressParameters;
   disabled?: boolean;
   onClick?: () => void;
-  onPaymentDataLoaded?: (paymentData: any) => void;
+  onPaymentDataLoaded?: (paymentData: GooglePayPaymentData) => void;
 }
+
+export type GooglePayShippingAddressParameters = {
+  allowedCountryCodes?: string[];
+  phoneNumberRequired?: boolean;
+};
+
+export type GooglePayPaymentData = {
+  apiVersion: number;
+  apiVersionMinor: number;
+  paymentMethodData: GooglePaymentMethodData;
+  shippingAddress?: GooglePayAddress;
+};
 
 export type GooglePayCreateInput = {
   google_payment_method_data?: GooglePaymentMethodData;
   customer_id?: string;
-  billing_details?: CardBillingDetails;
 };
 
 export type ValidatedGooglePayCreateInput = {
