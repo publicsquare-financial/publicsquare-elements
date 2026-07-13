@@ -16,6 +16,7 @@ export default function GooglePayElementsReact() {
 function Elements() {
   const { publicsquare } = usePublicSquare();
   const [loading, setLoading] = useState(false);
+  const [shippingAddressRequired, setShippingAddressRequired] = useState(false);
   const [message, setMessage] = useState<{
     message?: object;
     error?: boolean;
@@ -31,9 +32,20 @@ function Elements() {
     if (psq) {
       try {
         const tokenObj = event.paymentMethodData
+        const shippingAddress = event.shippingAddress;
         const response = await psq.googlePay.create({
           google_payment_method_data: tokenObj,
-        });
+          ...(shippingAddress && {
+            shipping_address: {
+              address_line_1: shippingAddress.address1,
+              address_line_2: shippingAddress.address2,
+              city: shippingAddress.locality,
+              state: shippingAddress.administrativeArea,
+              postal_code: shippingAddress.postalCode,
+              country_code: shippingAddress.countryCode,
+            },
+          }),
+        } as any);
         if (response) {
           return response;
         }
@@ -49,7 +61,11 @@ function Elements() {
       const googlePay = await createGooglePay(event);
       if (googlePay) {
         setMessage({
-          message: googlePay,
+          message: {
+            ...googlePay,
+            billingAddress: event.paymentMethodData?.info?.billingAddress,
+            shippingAddress: event.shippingAddress,
+          },
           error: !!googlePay.error,
         });
       }
@@ -61,6 +77,14 @@ function Elements() {
 
   return (
     <>
+      <label>
+        <input
+          type="checkbox"
+          checked={shippingAddressRequired}
+          onChange={(e) => setShippingAddressRequired(e.target.checked)}
+        />
+        Collect shipping address
+      </label>
       <GooglePayButtonElement
         id="google-pay-element"
         environment="TEST"
@@ -82,6 +106,7 @@ function Elements() {
           currencyCode: 'USD',
           countryCode: 'US',
         }}
+        shippingAddressRequired={shippingAddressRequired}
         disabled={loading}
         onPaymentDataLoaded={async (paymentData: any) => {
           onPaymentAuthorized(paymentData);

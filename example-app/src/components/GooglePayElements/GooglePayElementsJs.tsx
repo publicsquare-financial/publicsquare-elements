@@ -9,6 +9,7 @@ export default function GooglePayElementsJs() {
   const [publicsquare, setPublicSquare] = useState<PublicSquare>();
   const buttonContainerRef = useRef<HTMLDivElement>(null);
   const googlePayButtonRef = useRef<GooglePayButtonWidget>(null);
+  const [shippingAddressRequired, setShippingAddressRequired] = useState(false);
   const [message, setMessage] = useState<{
     message?: object;
     error?: boolean;
@@ -22,6 +23,7 @@ export default function GooglePayElementsJs() {
 
   useEffect(() => {
     if (publicsquare && buttonContainerRef.current) {
+      buttonContainerRef.current.innerHTML = '';
       googlePayButtonRef.current = publicsquare.googlePay.renderButton(
         buttonContainerRef.current!,
         {
@@ -45,13 +47,14 @@ export default function GooglePayElementsJs() {
             currencyCode: 'USD',
             countryCode: 'US',
           },
+          shippingAddressRequired,
           onPaymentDataLoaded: async (paymentData) => {
             onPaymentAuthorized(paymentData);
           },
         },
       );
     }
-  }, [publicsquare]);
+  }, [publicsquare, shippingAddressRequired]);
 
   async function onPaymentAuthorized(event: any) {
     if (publicsquare && buttonContainerRef.current) {
@@ -61,7 +64,11 @@ export default function GooglePayElementsJs() {
         const googlePay = await createGooglePay(event);
         if (googlePay) {
           setMessage({
-            message: googlePay,
+            message: {
+              ...googlePay,
+              billingAddress: event.paymentMethodData?.info?.billingAddress,
+              shippingAddress: event.shippingAddress,
+            },
             error: !!googlePay.error,
           });
         }
@@ -77,9 +84,20 @@ export default function GooglePayElementsJs() {
     if (publicsquare) {
       try {
         const tokenObj = event.paymentMethodData;
+        const shippingAddress = event.shippingAddress;
         const response = await publicsquare.googlePay.create({
           google_payment_method_data: tokenObj,
-        });
+          ...(shippingAddress && {
+            shipping_address: {
+              address_line_1: shippingAddress.address1,
+              address_line_2: shippingAddress.address2,
+              city: shippingAddress.locality,
+              state: shippingAddress.administrativeArea,
+              postal_code: shippingAddress.postalCode,
+              country_code: shippingAddress.countryCode,
+            },
+          }),
+        } as any);
         if (response) {
           return response;
         }
@@ -91,6 +109,14 @@ export default function GooglePayElementsJs() {
 
   return (
     <>
+      <label>
+        <input
+          type="checkbox"
+          checked={shippingAddressRequired}
+          onChange={(e) => setShippingAddressRequired(e.target.checked)}
+        />
+        Collect shipping address
+      </label>
       <div ref={buttonContainerRef}></div>
       <CaptureModal
         message={message?.message}
