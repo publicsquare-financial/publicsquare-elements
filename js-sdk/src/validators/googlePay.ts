@@ -14,14 +14,10 @@ export function validateCreateGooglePayInput(
   if (!['string', 'undefined'].includes(typeof input.customer_id)) {
     throw new Error('customer_id must be a string if included');
   }
-  if (!['object', 'undefined'].includes(typeof input.billing_details)) {
-    throw new Error('billing_details must be an object if included');
-  }
   return {
     validated: {
       google_payment_method_data: input.google_payment_method_data,
       customer_id: input.customer_id,
-      billing_details: input.billing_details,
     },
   };
 }
@@ -74,6 +70,8 @@ export function validateGooglePayButtonWidgetOptions(
       locale: input.locale,
       style: input.style as any,
       transactionInfo: input.transactionInfo as any,
+      shippingAddressRequired: input.shippingAddressRequired,
+      shippingAddressParameters: input.shippingAddressParameters,
       disabled: input.disabled,
       onClick: input.onClick as any,
       onPaymentDataLoaded: input.onPaymentDataLoaded as any,

@@ -20,6 +20,8 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
     locale = 'en',
     style = { width: '160px', height: '40px', borderRadius: 4, borderType: 'default_border' },
     transactionInfo,
+    shippingAddressRequired = false,
+    shippingAddressParameters,
     disabled = false,
     onClick,
     onPaymentDataLoaded,
@@ -43,6 +45,8 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
       parameters: {
         allowedAuthMethods: allowedCardAuthMethods,
         allowedCardNetworks: allowedCardNetworks,
+        billingAddressRequired: true,
+        billingAddressParameters: { format: 'FULL', phoneNumberRequired: false },
       },
     };
 
@@ -129,6 +133,10 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
           merchantId: merchantId,
           merchantName: merchantName,
         },
+        ...(shippingAddressRequired && {
+          shippingAddressRequired: true,
+          ...(shippingAddressParameters && { shippingAddressParameters }),
+        }),
       });
 
       try {
@@ -141,15 +149,31 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
       }
     }
 
-    // Load Google Pay script
-    const script = document.createElement('script');
-    script.src = 'https://pay.google.com/gp/p/js/pay.js';
-    script.async = true;
-    script.onload = onGooglePayLoaded;
-    document.body.appendChild(script);
+    const scriptId = 'google-pay-sdk-script';
+    let script: HTMLScriptElement | null = null;
+    let createdScript = false;
+    const existingScript = document.getElementById(scriptId) as HTMLScriptElement | null;
+
+    if (existingScript) {
+      if ((window as any).google?.payments?.api) {
+        onGooglePayLoaded();
+      } else {
+        existingScript.addEventListener('load', onGooglePayLoaded, { once: true });
+      }
+    } else {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.src = 'https://pay.google.com/gp/p/js/pay.js';
+      script.async = true;
+      script.onload = onGooglePayLoaded;
+      document.body.appendChild(script);
+      createdScript = true;
+    }
 
     return () => {
-      document.body.removeChild(script);
+      if (createdScript && script) {
+        document.body.removeChild(script);
+      }
       if (containerRef.current) {
         const button = containerRef.current.querySelector('button');
         if (button && typeof onClick === 'function') {
@@ -158,7 +182,7 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
         containerRef.current.innerHTML = '';
       }
     };
-  }, []);
+  }, [shippingAddressRequired, shippingAddressParameters]);
 
   const updateButtonStyle = (button?: Element | null, disabled?: boolean): void => {
     const cursor = disabled === true ? 'not-allowed' : 'pointer';
