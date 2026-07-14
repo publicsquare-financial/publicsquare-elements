@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.14.1...v1.15.0) (2026-07-14)
+
+
+### Features
+
+* use billing address and shipping address out of google pay sheet ([#305](https://github.com/publicsquare-financial/publicsquare-elements/issues/305)) ([10f8314](https://github.com/publicsquare-financial/publicsquare-elements/commit/10f831477b9e36ae562deb1a770d17c00c52c56e))
+
 ## [1.14.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.14.0...v1.14.1) (2026-07-09)
 
 
