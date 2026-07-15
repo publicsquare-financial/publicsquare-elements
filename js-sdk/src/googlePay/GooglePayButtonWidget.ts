@@ -73,7 +73,7 @@ export class GooglePayButtonWidget {
         allowedAuthMethods: this.options.allowedCardAuthMethods,
         allowedCardNetworks: this.options.allowedCardNetworks,
         billingAddressRequired: true,
-        billingAddressParameters: { format: 'FULL', phoneNumberRequired: false },
+        billingAddressParameters: { format: 'FULL', phoneNumberRequired: true },
       },
     };
   }

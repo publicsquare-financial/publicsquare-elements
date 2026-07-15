@@ -46,7 +46,7 @@ const GooglePayButtonElement: React.FC<GooglePayButtonWidgetOptions> = (props) =
         allowedAuthMethods: allowedCardAuthMethods,
         allowedCardNetworks: allowedCardNetworks,
         billingAddressRequired: true,
-        billingAddressParameters: { format: 'FULL', phoneNumberRequired: false },
+        billingAddressParameters: { format: 'FULL', phoneNumberRequired: true },
       },
     };
 
