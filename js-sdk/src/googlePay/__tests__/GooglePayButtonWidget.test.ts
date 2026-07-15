@@ -28,7 +28,7 @@ describe('GooglePayButtonWidget request building', () => {
     expect(card.parameters.billingAddressRequired).toBe(true);
     expect(card.parameters.billingAddressParameters).toEqual({
       format: 'FULL',
-      phoneNumberRequired: false,
+      phoneNumberRequired: true,
     });
   });
 
