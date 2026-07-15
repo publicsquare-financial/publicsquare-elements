@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.15.0...v1.15.1) (2026-07-15)
+
+
+### Bug Fixes
+
+* require phone number for google pay ([#306](https://github.com/publicsquare-financial/publicsquare-elements/issues/306)) ([97f477f](https://github.com/publicsquare-financial/publicsquare-elements/commit/97f477fb087686cb8e4e1e2ee5990cf0c64c3060))
+
 # [1.15.0](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.14.1...v1.15.0) (2026-07-14)
 
 
