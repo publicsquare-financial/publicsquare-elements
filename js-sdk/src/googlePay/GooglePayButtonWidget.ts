@@ -80,9 +80,7 @@ export class GooglePayButtonWidget {
 
   buildPaymentDataRequest(cardPaymentMethod: any, tokenizationSpecification: any) {
     return Object.assign({}, this.baseRequest, {
-      allowedPaymentMethods: [
-        Object.assign({}, cardPaymentMethod, { tokenizationSpecification }),
-      ],
+      allowedPaymentMethods: [Object.assign({}, cardPaymentMethod, { tokenizationSpecification })],
       transactionInfo: {
         totalPriceStatus: this.options.transactionInfo.totalPriceStatus,
         totalPrice: this.options.transactionInfo.totalPrice,

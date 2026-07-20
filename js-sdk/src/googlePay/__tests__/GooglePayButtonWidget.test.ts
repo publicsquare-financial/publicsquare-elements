@@ -34,7 +34,10 @@ describe('GooglePayButtonWidget request building', () => {
 
   it('does not request shipping by default', () => {
     const w = widget();
-    const request = w.buildPaymentDataRequest(w.buildCardPaymentMethod(), tokenizationSpecification);
+    const request = w.buildPaymentDataRequest(
+      w.buildCardPaymentMethod(),
+      tokenizationSpecification,
+    );
     expect(request.shippingAddressRequired).toBeUndefined();
   });
 
@@ -43,7 +46,10 @@ describe('GooglePayButtonWidget request building', () => {
       shippingAddressRequired: true,
       shippingAddressParameters: { allowedCountryCodes: ['US'], phoneNumberRequired: true },
     });
-    const request = w.buildPaymentDataRequest(w.buildCardPaymentMethod(), tokenizationSpecification);
+    const request = w.buildPaymentDataRequest(
+      w.buildCardPaymentMethod(),
+      tokenizationSpecification,
+    );
     expect(request.shippingAddressRequired).toBe(true);
     expect(request.shippingAddressParameters).toEqual({
       allowedCountryCodes: ['US'],
@@ -53,10 +59,15 @@ describe('GooglePayButtonWidget request building', () => {
 
   it('keeps existing request fields intact', () => {
     const w = widget();
-    const request = w.buildPaymentDataRequest(w.buildCardPaymentMethod(), tokenizationSpecification);
+    const request = w.buildPaymentDataRequest(
+      w.buildCardPaymentMethod(),
+      tokenizationSpecification,
+    );
     expect(request.apiVersion).toBe(2);
     expect(request.transactionInfo.totalPrice).toBe('1.00');
-    expect(request.allowedPaymentMethods[0].tokenizationSpecification).toBe(tokenizationSpecification);
+    expect(request.allowedPaymentMethods[0].tokenizationSpecification).toBe(
+      tokenizationSpecification,
+    );
     expect(request.allowedPaymentMethods[0].parameters.billingAddressRequired).toBe(true);
     expect(request.merchantInfo.merchantName).toBe('Test Merchant');
   });
