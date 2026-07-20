@@ -119,7 +119,7 @@ describe('ApplePay', () => {
           paymentData: {
             data: 'abcd1234',
           },
-      } ,
+        },
       },
       random_value: 'abcdefgh',
     };
