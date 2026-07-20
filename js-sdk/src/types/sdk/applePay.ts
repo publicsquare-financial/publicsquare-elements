@@ -36,7 +36,6 @@ export interface ApplePayButtonWidgetOptions {
 export type ApplePayCreateInput = {
   apple_payment_data?: ApplePaymentData;
   customer_id?: string;
-  billing_details?: CardBillingDetails;
 };
 
 export type ValidatedApplePayCreateInput = {
