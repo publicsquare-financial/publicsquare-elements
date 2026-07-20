@@ -18,14 +18,6 @@ jest.mock('@basis-theory/basis-theory-js', () => ({
 const validApplePayCreateInput: ApplePayCreateInput = {
   apple_payment_data: {},
   customer_id: 'cus_123',
-  billing_details: {
-    address_line_1: '123 Main St',
-    address_line_2: 'Apt 1',
-    city: 'Anytown',
-    state: 'CA',
-    postal_code: '12345',
-    country: 'US',
-  },
 };
 
 describe('ApplePay', () => {
@@ -123,8 +115,10 @@ describe('ApplePay', () => {
     );
     const input = {
       apple_payment_data: {
-        paymentData: {
-          data: 'abcd1234',
+        token: {
+          paymentData: {
+            data: 'abcd1234',
+          },
         },
       },
       random_value: 'abcdefgh',
@@ -140,8 +134,10 @@ describe('ApplePay', () => {
         },
         body: JSON.stringify({
           apple_payment_data: {
-            paymentData: {
-              data: 'abcd1234',
+            token: {
+              paymentData: {
+                data: 'abcd1234',
+              },
             },
           },
         }),
