@@ -115,9 +115,11 @@ describe('ApplePay', () => {
     );
     const input = {
       apple_payment_data: {
-        paymentData: {
-          data: 'abcd1234',
-        },
+        token: {
+          paymentData: {
+            data: 'abcd1234',
+          },
+      } ,
       },
       random_value: 'abcdefgh',
     };
@@ -132,8 +134,10 @@ describe('ApplePay', () => {
         },
         body: JSON.stringify({
           apple_payment_data: {
-            paymentData: {
-              data: 'abcd1234',
+            token: {
+              paymentData: {
+                data: 'abcd1234',
+              },
             },
           },
         }),

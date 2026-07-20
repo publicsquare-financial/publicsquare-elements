@@ -34,7 +34,7 @@ export interface ApplePayButtonWidgetOptions {
 }
 
 export type ApplePayCreateInput = {
-  apple_payment_data?: ApplePaymentData;
+  apple_payment_data?: ApplePayPayment;
   customer_id?: string;
 };
 
@@ -51,7 +51,13 @@ export type ValidatedApplePayCreateSessionInput = {
   validated: ApplePayCreateSessionInput;
 };
 
-export type ApplePaymentData = {
+export type ApplePayPayment = {
+  token?: ApplePayPaymentToken;
+  billingContact?: ApplePayPaymentContact;
+  shippingContact?: ApplePayPaymentContact;
+};
+
+export type ApplePayPaymentToken = {
   transactionIdentifier?: string;
   paymentData?: ApplePayPaymentData;
   paymentMethod?: ApplePayPaymentMethod;
@@ -68,7 +74,7 @@ export type ApplePayPaymentMethod = {
   displayName?: string;
   network?: string;
   type?: string;
-  billingContact?: ApplePayBillingContact;
+  billingContact?: ApplePayPaymentContact;
   paymentPass?: ApplePayPaymentPass;
 };
 
@@ -80,7 +86,7 @@ export type ApplePayPaymentDataHeader = {
   transactionId?: string;
 };
 
-export type ApplePayBillingContact = {
+export type ApplePayPaymentContact = {
   phoneNumber?: string;
   emailAddress?: string;
   givenName?: string;
