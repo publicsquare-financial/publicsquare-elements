@@ -86,10 +86,12 @@ function Elements() {
       currencyCode: 'USD',
       merchantCapabilities: ['supports3DS'],
       supportedNetworks: ['visa', 'masterCard', 'amex', 'discover'],
+      requiredBillingContactFields: ['postalAddress', 'phone'],
+      requiredShippingContactFields: ['postalAddress', 'phone'],
       total: {
         label: 'Demo (Card is not charged)',
         type: 'final',
-        amount: '1.99',
+        amount: '1.00',
       },
     });
   }
@@ -110,7 +112,7 @@ function Elements() {
     if (publicsquare) {
       try {
         const response = await publicsquare.applePay.create({
-          apple_payment_data: event.payment.token,
+          apple_payment_data: event.payment,
         });
         if (response) {
           return response;

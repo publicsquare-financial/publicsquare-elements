@@ -51,7 +51,7 @@ export function ThreeDsProvider({ children }: { children: ReactNode }) {
 
 export function buildCreateIntentBody(cardId: string) {
   return {
-    amount: 5000,
+    amount: 100,
     currency: 'USD',
     capture_method: 'Automatic',
     payment_method: { card: cardId },
