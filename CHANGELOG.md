@@ -1,3 +1,10 @@
+## [1.15.2](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.15.1...v1.15.2) (2026-07-20)
+
+
+### Bug Fixes
+
+* require billing address and phone number on Apple Pay ([#307](https://github.com/publicsquare-financial/publicsquare-elements/issues/307)) ([528ecc7](https://github.com/publicsquare-financial/publicsquare-elements/commit/528ecc7a864f4c104e5fbc154bbbc61f1f8abd65))
+
 ## [1.15.1](https://github.com/publicsquare-financial/publicsquare-elements/compare/v1.15.0...v1.15.1) (2026-07-15)
 
 
